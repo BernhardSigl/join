@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    font-family: 'Inter';
+    background: #F6F7F8;
+}
+
+.dNone {
+    display: none !important;
+}
+
+a {
+    text-decoration: none;
+    color: #29ABE2;
+}
+
+input {
+    font-family: 'Inter' !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+input:focus {
+    border: 1px solid #29ABE2;
+    outline: none;
+}
+
+.dFlex {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.alignCenter {
+    display: flex;
+    align-items: center;
+}
+
+.justifyCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.spaceBetween {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fontWhite {
+    color: white;
+}
+
+/* button */
+button {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: #2A3647;
+    border-radius: 8px;
+    font-family: 'Inter';
+}
+
+.btn1616 {
+    padding: 16px;
+    margin: 0;
+    gap: 4px;
+}
+
+.btn1524 {
+    padding: 15px 24px;
+    margin: 0;
+    gap: 4px;
+}
+
+.btnWhtie {
+    background-color: white;
+    border: 1px solid #2A3647;
+    color: #2A3647;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.symbol32 {
+    width: 32px;
+    height: 32px;
+}
+
+.symbol24 {
+    width: 24px;
+    height: 24px;
+}
+
+.symbol24Input {
+    background-color: white;
+    padding: 8px 19px 8px 21px;
+    margin: 5px 2px 5px;
+}
+
+.absoluteMiddle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* gap */
+.gap35 {
+    gap: 35px;
+}
+
+.gap32 {
+    gap: 32px;
+}
+
+.gap16 {
+    gap: 16px;
+}
+
+.gap8 {
+    gap: 8px;
+}
+
+.input1221 {
+    padding: 12px 21px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background: #FFF;
+    color: black;
+}
+
+.relative {
+    position: relative;
+}
+
+.relativ input {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.relative object {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

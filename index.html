@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logIn.css">
+    <script src="js/templates.js"></script>
+    <script src="js/logIn.js"></script>
+</head>
+
+<body>
+
+    <!-- header -->
+    <div class="headerFooterPosition column spaceBetween">
+        <section class="spaceBetween">
+            <object class="joinLoginRegisterLogo" type="image/svg+xml" data="img/joinLogo.svg">
+            </object>
+            <div id="hideSignUpHeaderId">
+                <span class="fontSize20">
+                    Not a Join user?
+                </span>
+                <button onclick="signUp()" class="btn1616 signUpBtn fontWhite fontSize16 bold pointer">
+                    Sign up
+                </button>
+            </div>
+        </section>
+        <!-- footer -->
+        <section class="logInFooter gap16 justifyCenter">
+            <a class="fontSize16 footerLinks pointer" href="#">
+                Privacy Policy
+            </a>
+            <a class="fontSize16 footerLinks pointer" href="#">
+                Legal notice
+            </a>
+        </section>
+    </div>
+
+    <section>
+        <div class="absoluteMiddle">
+            <!-- log in -->
+            <div class="logInBox gap32 column" id="hideLogInId">
+                <!-- title -->
+                <div class="column gap16 alignCenter">
+                    <span class="fontSize61 bold">
+                        Log in
+                    </span>
+                    <object class="blueLineLogin" type="image/svg+xml" data="img/blueLine.svg">
+                    </object>
+                </div>
+                <!-- input fields -->
+                <div class="column gap32">
+                    <div class="relative">
+                        <input type="text" placeholder="Email" class="input1221 fontSize20 inputField pointer">
+                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/email.svg">
+                        </object>
+                    </div>
+                    <div class="relative">
+                        <input type="text" placeholder="Passwort" class="input1221 fontSize20 inputField pointer">
+                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/password.svg">
+                        </object>
+                    </div>
+                </div>
+                <!-- remember me -->
+                <div onclick="toggleCheckImage('checkLogInId')" class="alignCenter gap8 rememberMe">
+                    <img src="img/uncheck.png" class="symbol24" id="checkLogInId">
+                    <span class="fontSize16">Remember me</span>
+                </div>
+                <!-- bottom buttons -->
+                <div class="gap35 justifyCenter">
+                    <button class="btn1524 fontWhite bold fontSize21 pointer">
+                        Log in
+                    </button>
+                    <button class="btn1524 fontWhite bold btnWhtie fontSize21 pointer">
+                        Guest Log in
+                    </button>
+                </div>
+            </div>
+
+            <!-- register -->
+            <div class="logInBox gap32 column dNone" id="showRegisterId">
+                <!-- title -->
+                <div class="column gap16 alignCenter">
+                    <span class="fontSize61 bold">
+                        Sign up
+                    </span>
+                    <object class="blueLineLogin" type="image/svg+xml" data="img/blueLine.svg">
+                    </object>
+
+                    <button onclick="backToLogin()" class="symbol32 backArrow pointer">
+                        <img src="img/arrowLeft.svg" alt="">
+                    </button>
+                </div>
+                <!-- input fields -->
+                <div class="column gap32">
+                    <div class="relative">
+                        <input type="text" placeholder="Name" class="input1221 fontSize20 inputField pointer">
+                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/person.svg">
+                        </object>
+                    </div>
+                    <div class="relative">
+                        <input type="text" placeholder="Email" class="input1221 fontSize20 inputField pointer">
+                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/email.svg">
+                        </object>
+                    </div>
+                    <div class="relative">
+                        <input type="text" placeholder="Passwort" class="input1221 fontSize20 inputField pointer">
+                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/password.svg">
+                        </object>
+                    </div>
+                    <div class="relative">
+                        <input type="text" placeholder="Confirm Password"
+                            class="input1221 fontSize20 inputField pointer">
+                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/password.svg">
+                        </object>
+                    </div>
+                </div>
+                <!-- remember me -->
+                <div class="alignCenter justifyCenter gap8" onclick="toggleCheckImage('checkSignUpId')">
+                    <img src="img/uncheck.png" class="symbol24" id="checkSignUpId">
+                    <span class="fontSize16">I accept the</span>
+                    <a href="#" class="fontSize16 pointer privacyLink">Privacy policy</a>
+                </div>
+                <!-- bottom buttons -->
+                <div class="justifyCenter">
+                    <button class="btn1524 fontWhite bold fontSize21 pointer">
+                        Sign up
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</body>
+
+</html>
