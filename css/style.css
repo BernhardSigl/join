@@ -64,6 +64,11 @@ button {
     font-family: 'Inter';
 }
 
+button:hover {
+    background-color: #29ABE2;
+    box-shadow: 0px 0px 10px silver;
+}
+
 .btn1616 {
     padding: 16px;
     margin: 0;
@@ -76,10 +81,17 @@ button {
     gap: 4px;
 }
 
-.btnWhtie {
+.btnWhite {
     background-color: white;
     border: 1px solid #2A3647;
     color: #2A3647;
+}
+
+.btnWhite:hover {
+    background-color: white;
+    border: 1px solid #29ABE2;
+    color: #29ABE2;
+    box-shadow: 0px 0px 10px silver;
 }
 
 .bold {

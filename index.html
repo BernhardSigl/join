@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/logIn.css">
     <script src="js/templates.js"></script>
-    <script src="js/logIn.js"></script>
+    <script src="js/authentication.js"></script>
+    <script src="js/storage.js"></script>
 </head>
 
 <body>
-
     <!-- header -->
     <div class="headerFooterPosition column spaceBetween">
         <section class="spaceBetween">
@@ -23,7 +23,8 @@
                 <span class="fontSize20">
                     Not a Join user?
                 </span>
-                <button onclick="signUp()" class="btn1616 signUpBtn fontWhite fontSize16 bold pointer">
+                <button onclick="signUp(), checkboxStatus()"
+                    class="btn1616 signUpBtn fontWhite fontSize16 bold pointer">
                     Sign up
                 </button>
             </div>
@@ -40,102 +41,113 @@
     </div>
 
     <section>
-        <div class="absoluteMiddle">
+        <div class="absoluteMiddle" id="logInWindowId">
             <!-- log in -->
-            <div class="logInBox gap32 column" id="hideLogInId">
-                <!-- title -->
-                <div class="column gap16 alignCenter">
-                    <span class="fontSize61 bold">
-                        Log in
-                    </span>
-                    <object class="blueLineLogin" type="image/svg+xml" data="img/blueLine.svg">
-                    </object>
-                </div>
-                <!-- input fields -->
-                <div class="column gap32">
-                    <div class="relative">
-                        <input type="text" placeholder="Email" class="input1221 fontSize20 inputField pointer">
-                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/email.svg">
+            <form onsubmit=" ; return false;">
+                <div class="logInBox gap32 column" id="hideLogInId">
+                    <!-- title -->
+                    <div class="column gap16 alignCenter">
+                        <span class="fontSize61 bold">
+                            Log in
+                        </span>
+                        <object class="blueLineLogin" type="image/svg+xml" data="img/blueLine.svg">
                         </object>
                     </div>
-                    <div class="relative">
-                        <input type="text" placeholder="Passwort" class="input1221 fontSize20 inputField pointer">
-                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/password.svg">
-                        </object>
+                    <!-- input fields -->
+                    <div class="column gap32">
+                        <div class="relative">
+                            <input type="email" placeholder="Email" type="email"
+                                class="input1221 fontSize20 inputField pointer">
+                            <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/email.svg">
+                            </object>
+                        </div>
+                        <div class="relative">
+                            <input type="password" placeholder="Password"
+                                class="input1221 fontSize20 inputField pointer">
+                            <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/password.svg">
+                            </object>
+                        </div>
+                    </div>
+                    <!-- remember me -->
+                    <div class="alignCenter gap8 rememberMe">
+                        <input class="checkbox pointer" type="checkbox">
+                        <span class="fontSize16">Remember me</span>
+                    </div>
+                    <!-- bottom buttons -->
+                    <div class="gap35 justifyCenter">
+                        <button class="btn1524 fontWhite bold fontSize21 pointer" type="submit">
+                            Log in
+                        </button>
+                        <button class="btn1524 fontWhite bold btnWhite fontSize21 pointer" type="submit">
+                            Guest Log in
+                        </button>
                     </div>
                 </div>
-                <!-- remember me -->
-                <div onclick="toggleCheckImage('checkLogInId')" class="alignCenter gap8 rememberMe">
-                    <img src="img/uncheck.png" class="symbol24" id="checkLogInId">
-                    <span class="fontSize16">Remember me</span>
-                </div>
-                <!-- bottom buttons -->
-                <div class="gap35 justifyCenter">
-                    <button class="btn1524 fontWhite bold fontSize21 pointer">
-                        Log in
-                    </button>
-                    <button class="btn1524 fontWhite bold btnWhtie fontSize21 pointer">
-                        Guest Log in
-                    </button>
-                </div>
-            </div>
-
+            </form>
+        </div>
+        <div class="absoluteMiddle">
             <!-- register -->
-            <div class="logInBox gap32 column dNone" id="showRegisterId">
-                <!-- title -->
-                <div class="column gap16 alignCenter">
-                    <span class="fontSize61 bold">
-                        Sign up
-                    </span>
-                    <object class="blueLineLogin" type="image/svg+xml" data="img/blueLine.svg">
-                    </object>
+            <form onsubmit="register(); return false;">
+                <div class="logInBox gap32 column dNone" id="showRegisterId">
+                    <!-- title -->
+                    <div class="column gap16 alignCenter">
+                        <span class="fontSize61 bold">
+                            Sign up
+                        </span>
+                        <object class="blueLineLogin" type="image/svg+xml" data="img/blueLine.svg">
+                        </object>
 
-                    <button onclick="backToLogin()" class="symbol32 backArrow pointer">
-                        <img src="img/arrowLeft.svg" alt="">
-                    </button>
-                </div>
-                <!-- input fields -->
-                <div class="column gap32">
-                    <div class="relative">
-                        <input type="text" placeholder="Name" class="input1221 fontSize20 inputField pointer">
-                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/person.svg">
-                        </object>
+                        <button onclick="backToLogin()" class="symbol32 backArrow pointer">
+                            <img src="img/arrowLeft.svg" alt="">
+                        </button>
                     </div>
-                    <div class="relative">
-                        <input type="text" placeholder="Email" class="input1221 fontSize20 inputField pointer">
-                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/email.svg">
-                        </object>
+                    <!-- input fields -->
+                    <div class="column gap32">
+                        <div class="relative">
+                            <input placeholder="Name" type="text" type="myName"
+                                class="input1221 fontSize20 inputField pointer" id="regNameId"
+                                oninput="validateNameInput(this)" required>
+                            <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/person.svg">
+                            </object>
+                        </div>
+                        <div class="relative">
+                            <input type="email" placeholder="Email" class="input1221 fontSize20 inputField pointer"
+                                id="regEmailId" oninput="validateEmailInput(this)" required>
+                            <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/email.svg">
+                            </object>
+                        </div>
+                        <div class="relative">
+                            <input type="password" placeholder="Password"
+                                class="input1221 fontSize20 inputField pointer" id="regPasswordFirstId"
+                                oninput="validatePasswordInput(this)" required>
+                            <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/password.svg">
+                            </object>
+                        </div>
+                        <div class="relative">
+                            <input type="password" placeholder="Confirm Password"
+                                class="input1221 fontSize20 inputField pointer" id="regPasswordSecondId"
+                                oninput="validatePasswordInput(this)" required>
+                            <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/password.svg">
+                            </object>
+                        </div>
                     </div>
-                    <div class="relative">
-                        <input type="text" placeholder="Passwort" class="input1221 fontSize20 inputField pointer">
-                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/password.svg">
-                        </object>
+                    <!-- remember me -->
+                    <div class="alignCenter justifyCenter gap8">
+                        <input class="checkbox pointer" type="checkbox" id="checkboxId"
+                            onchange="validateCheckbox(this);" required>
+                        <span class="fontSize16">I accept the</span>
+                        <a href="#" class="fontSize16 pointer privacyLink">privacy policy</a>
                     </div>
-                    <div class="relative">
-                        <input type="text" placeholder="Confirm Password"
-                            class="input1221 fontSize20 inputField pointer">
-                        <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/password.svg">
-                        </object>
+                    <!-- bottom buttons -->
+                    <div class="justifyCenter">
+                        <button class="btn1524 fontWhite bold fontSize21 pointer" id="regBtnId" type="submit">
+                            Sign up
+                        </button>
                     </div>
                 </div>
-                <!-- remember me -->
-                <div class="alignCenter justifyCenter gap8" onclick="toggleCheckImage('checkSignUpId')">
-                    <img src="img/uncheck.png" class="symbol24" id="checkSignUpId">
-                    <span class="fontSize16">I accept the</span>
-                    <a href="#" class="fontSize16 pointer privacyLink">Privacy policy</a>
-                </div>
-                <!-- bottom buttons -->
-                <div class="justifyCenter">
-                    <button class="btn1524 fontWhite bold fontSize21 pointer">
-                        Sign up
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
     </section>
-
-
-
 </body>
 
 </html>
