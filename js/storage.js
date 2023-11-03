@@ -1,3 +1,4 @@
+// save globally
 const STORAGE_TOKEN = 'D8ANP2GBA82DL0FF868LNODM60GNQ8NZG25KYGZL';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
@@ -16,3 +17,15 @@ async function getItem(key) {
     });
 }
 
+// save locally
+function save() {
+    let rememberMeAsText = JSON.stringify(rememberMe);
+    localStorage.setItem('rememberMe', rememberMeAsText);
+}
+
+function load() {
+    let rememberMeAsText = localStorage.getItem('rememberMe');
+    if (rememberMeAsText) {
+        rememberMe = JSON.parse(rememberMeAsText);
+    }
+}

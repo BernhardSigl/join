@@ -1,4 +1,5 @@
 let users = [];
+let rememberMe = [];
 
 async function regInit() {
     loadUsers();
@@ -16,7 +17,7 @@ async function loadUsers() {
 function signUp() {
     toggleVisibility('hideLogInId', false);
     toggleVisibility('hideSignUpHeaderId', false);
-    toggleCheckboxDisabled('checkboxId', false);
+    toggleCheckboxDisabled('regCheckboxId', false);
     toggleVisibility('showRegisterId', true);
     toggleRequiredAttribute('regNameId', true);
     toggleRequiredAttribute('regEmailId', true);
@@ -24,24 +25,60 @@ function signUp() {
     toggleRequiredAttribute('regPasswordSecondId', true);
 }
 
+function logIn() {
+    let logEmail = document.getElementById('logEmailId').value;
+    let logPassword = document.getElementById('logPasswordId').value;
+    let checkCredential = users.find(user => user.email === logEmail && user.password === logPassword);
+    if (checkCredential) {
+        trueCredential();
+        console.log('front page is comming');
+    } else {
+        falseCredential();
+    }
+}
+
+function trueCredential() {
+    let logCheckbox = document.getElementById('logCheckboxId');
+    let checkboxIsValid = logCheckbox.checked;
+    if (!checkboxIsValid) {
+        console.log('invalid');
+    } else {
+        console.log('valid');
+        rememberMe.push({
+            email: logEmailId.value,
+            password: logPasswordId.value,
+        });
+        save();
+    }
+}
+
+function falseCredential() {
+    let wrongInput = document.getElementById('logPasswordId');
+    wrongInput.setCustomValidity(`Wrong email or password`);
+    let form = wrongInput.form;
+    form.reportValidity();
+}
+
 // register
 function backToLogin() {
     toggleVisibility('hideLogInId', true);
     toggleVisibility('hideSignUpHeaderId', true);
     toggleVisibility('showRegisterId', false);
-    toggleCheckboxDisabled('checkboxId', true);
+    toggleCheckboxDisabled('regCheckboxId', true);
     toggleRequiredAttribute('regNameId', false);
     toggleRequiredAttribute('regEmailId', false);
     toggleRequiredAttribute('regPasswordFirstId', false);
     toggleRequiredAttribute('regPasswordSecondId', false);
+    users.pop();
 }
 
-function checkboxStatus() {
-    const checkboxStatus = document.getElementById('checkboxId');
-    validateCheckbox(checkboxStatus);
+async function deleteUsers() {
+    users = [];
+    await setItem('users', JSON.stringify(users));
 }
 
 function validateCheckbox(checkbox) {
+    const checkboxStatus = document.getElementById('regCheckboxId');
     const isValid = checkbox.checked;
     if (!isValid) {
         checkbox.setCustomValidity('You must accept the privacy policy.');
@@ -54,11 +91,11 @@ async function register() {
     let passwordFirst = document.getElementById('regPasswordFirstId');
     let passwordSecond = document.getElementById('regPasswordSecondId');
     let regBtn = document.getElementById('regBtnId').innerHTML;
-    const checkboxStatus = document.getElementById('checkboxId');
+    let regCheckboxStatus = document.getElementById('regCheckboxId');
     regBtn.disabled = true;
     if (passwordsMatch(passwordFirst, passwordSecond)) {
         createUser(passwordFirst);
-        resetForm(regBtn, checkboxStatus);
+        resetForm(regBtn, regCheckboxStatus);
     } else {
         passwordsDontMatch();
     }
@@ -78,12 +115,12 @@ async function createUser(passwordFirst) {
     await setItem('users', JSON.stringify(users));
 }
 
-function resetForm(regBtn, checkboxStatus) {
+function resetForm(regBtn, regCheckboxStatus) {
     regNameId.value = '';
     regEmailId.value = '';
     regPasswordFirstId.value = '';
     regPasswordSecondId.value = '';
-    checkboxStatus.checked = false;
+    regCheckboxStatus.checked = false;
     regBtn.disabled = false;
 }
 

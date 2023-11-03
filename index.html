@@ -13,7 +13,7 @@
     <script src="js/authentication.js"></script>
 </head>
 
-<body onload="regInit()">
+<body onload="regInit(), load()">
     <!-- header -->
     <div class="headerFooterPosition column spaceBetween">
         <section class="spaceBetween">
@@ -23,7 +23,7 @@
                 <span class="fontSize20">
                     Not a Join user?
                 </span>
-                <button onclick="signUp(), checkboxStatus()"
+                <button onclick="signUp(), validateCheckbox()"
                     class="btn1616 signUpBtn fontWhite fontSize16 bold pointer">
                     Sign up
                 </button>
@@ -43,7 +43,7 @@
     <section>
         <div class="absoluteMiddle" id="logInWindowId">
             <!-- log in -->
-            <form onsubmit=" ; return false;">
+            <form onsubmit="logIn(); return false;">
                 <div class="logInBox gap32 column" id="hideLogInId">
                     <!-- title -->
                     <div class="column gap16 alignCenter">
@@ -56,21 +56,23 @@
                     <!-- input fields -->
                     <div class="column gap32">
                         <div class="relative">
-                            <input type="email" placeholder="Email" type="email"
-                                class="input1221 fontSize20 inputField pointer">
+                            <input type="email" placeholder="Email" type="email" id="logEmailId"
+                                class="input1221 fontSize20 inputField pointer" oninput="validateEmailInput(this)"
+                                required>
                             <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/email.svg">
                             </object>
                         </div>
                         <div class="relative">
-                            <input type="password" placeholder="Password"
-                                class="input1221 fontSize20 inputField pointer">
+                            <input type="password" id="logPasswordId" placeholder="Password"
+                                class="input1221 fontSize20 inputField pointer" oninput="validatePasswordInput(this)"
+                                required>
                             <object class="symbol24 symbol24Input" type="image/svg+xml" data="img/password.svg">
                             </object>
                         </div>
                     </div>
                     <!-- remember me -->
                     <div class="alignCenter gap8 rememberMe">
-                        <input class="checkbox pointer" type="checkbox">
+                        <input class="checkbox pointer" type="checkbox" id="logCheckboxId">
                         <span class="fontSize16">Remember me</span>
                     </div>
                     <!-- bottom buttons -->
@@ -78,7 +80,7 @@
                         <button class="btn1524 fontWhite bold fontSize21 pointer" type="submit">
                             Log in
                         </button>
-                        <button class="btn1524 fontWhite bold btnWhite fontSize21 pointer" type="submit">
+                        <button class="btn1524 fontWhite bold btnWhite fontSize21 pointer">
                             Guest Log in
                         </button>
                     </div>
@@ -133,7 +135,7 @@
                     </div>
                     <!-- accept privacy polidy -->
                     <div class="alignCenter justifyCenter gap8">
-                        <input class="checkbox pointer" type="checkbox" id="checkboxId"
+                        <input class="checkbox pointer" type="checkbox" id="regCheckboxId"
                             onchange="validateCheckbox(this);" required>
                         <span class="fontSize16">I accept the</span>
                         <a href="#" class="fontSize16 pointer privacyLink">privacy policy</a>
