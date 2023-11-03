@@ -1,8 +1,18 @@
 let users = [];
 let rememberMe = [];
 
-async function regInit() {
+async function authenticationInit() {
     loadUsers();
+    load();
+    autoLogIn();
+}
+
+function autoLogIn() {
+    if (rememberMe.length > 0) {
+        let lastRememberedUser = rememberMe[rememberMe.length - 1];
+        document.getElementById('logEmailId').value = lastRememberedUser.email;
+        document.getElementById('logPasswordId').value = lastRememberedUser.password;
+    }
 }
 
 async function loadUsers() {
@@ -11,6 +21,10 @@ async function loadUsers() {
     } catch {
         console.warn('Token invalid becauce no user has been created yet');
     }
+}
+
+function openJoinProject() {
+    window.location.href = 'join.html';
 }
 
 // login
@@ -69,7 +83,6 @@ function backToLogin() {
     toggleRequiredAttribute('regEmailId', false);
     toggleRequiredAttribute('regPasswordFirstId', false);
     toggleRequiredAttribute('regPasswordSecondId', false);
-    users.pop();
 }
 
 async function deleteUsers() {
@@ -78,7 +91,6 @@ async function deleteUsers() {
 }
 
 function validateCheckbox(checkbox) {
-    const checkboxStatus = document.getElementById('regCheckboxId');
     const isValid = checkbox.checked;
     if (!isValid) {
         checkbox.setCustomValidity('You must accept the privacy policy.');

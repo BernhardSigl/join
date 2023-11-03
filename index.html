@@ -13,18 +13,17 @@
     <script src="js/authentication.js"></script>
 </head>
 
-<body onload="regInit(), load()">
+<body onload="authenticationInit()">
     <!-- header -->
     <div class="headerFooterPosition column spaceBetween">
         <section class="spaceBetween">
-            <object class="joinLoginRegisterLogo" type="image/svg+xml" data="img/joinLogo.svg">
+            <object class="bigJoinLogo" type="image/svg+xml" data="img/joinLogoDark.svg">
             </object>
             <div id="hideSignUpHeaderId">
                 <span class="fontSize20">
                     Not a Join user?
                 </span>
-                <button onclick="signUp(), validateCheckbox()"
-                    class="btn1616 signUpBtn fontWhite fontSize16 bold pointer">
+                <button onclick="signUp()" class="btn1616 signUpBtn fontWhite fontSize16 bold pointer">
                     Sign up
                 </button>
             </div>
@@ -77,7 +76,8 @@
                     </div>
                     <!-- bottom buttons -->
                     <div class="gap35 justifyCenter">
-                        <button class="btn1524 fontWhite bold fontSize21 pointer" type="submit">
+                        <button class="btn1524 fontWhite bold fontSize21 pointer" type="submit"
+                            onclick="openJoinProject()">
                             Log in
                         </button>
                         <button class="btn1524 fontWhite bold btnWhite fontSize21 pointer">

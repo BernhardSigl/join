@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navpanels.css">
+    <script src="js/fixNavPanels.js"></script>
+    <title>Document</title>
+</head>
+
+<body onload="initJoinProject()">
+    <header class="alignCenter spaceBetween">
+        <div class="fontSize20 headerTitle">
+            Kanban Project Management Tool
+        </div>
+        <div class="headerRight alignCenter gap16">
+            <object class="questionMarket" type="image/svg+xml" data="img/questionmarket.svg">
+            </object>
+            <img src="img/circle.png" class="headerCircle pointer">
+        </div>
+    </header>
+
+    <!-- category bar -->
+    <section class="categoryBar alignCenter column spaceBetween">
+        <!-- logo -->
+        <object class="bigJoinLogo" type="image/svg+xml" data="img/joinLogoBright.svg">
+        </object>
+        <!-- category links -->
+        <div class="categoryLinks column gap15">
+            <a class="categoryLink alignCenter gap8 pointer"
+                onclick="loadPage('summary.html'); updateTitle('summary.html'); return false;">
+                <object class="categoryImage" type="image/svg+xml" data="img/summary.svg">
+                </object>
+                <span class="fontWhite fontSize16 pointer">
+                    Summary
+                </span>
+            </a>
+            <a class="categoryLink alignCenter gap8 pointer"
+                onclick="loadPage('addTask.html'); updateTitle('addTask.html'); return false;">
+                <object class="categoryImage" type="image/svg+xml" data="img/addTask.svg">
+                </object>
+                <span class="fontWhite fontSize16 pointer">
+                    Add Task
+                </span>
+            </a>
+            <a class="categoryLink alignCenter gap8 pointer" href="#">
+                <object class="categoryImage" type="image/svg+xml" data="img/board.svg">
+                </object>
+                <span class="fontWhite fontSize16 pointer">
+                    Board
+                </span>
+            </a>
+            <a class="categoryLink alignCenter gap8 pointer" href="#">
+                <object class="categoryImage" type="image/svg+xml" data="img/contacts.svg">
+                </object>
+                <span class="fontWhite fontSize16 pointer">
+                    Contacts
+                </span>
+            </a>
+        </div>
+        <!-- quick links -->
+        <div class="quicklinks column gap4">
+            <a href="#" class="fontSize16 pointer">
+                Privacy policy
+            </a>
+            <a href="#" class="fontSize16 pointer">
+                Legal notice
+            </a>
+        </div>
+    </section>
+
+    <main id="mainContent">
+    </main>
+</body>
+
+</html>

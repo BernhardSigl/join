@@ -131,8 +131,16 @@ button:hover {
     gap: 16px;
 }
 
+.gap15 {
+    gap: 15px;
+}
+
 .gap8 {
     gap: 8px;
+}
+
+.gap4 {
+    gap: 4px;
 }
 
 /* input */
@@ -163,4 +171,10 @@ input {
     position: absolute;
     top: 0;
     right: 0;
+}
+
+.bigJoinLogo {
+    width: 101px;
+    height: 122px;
+    margin: 80px 0 0 77px;
 }
