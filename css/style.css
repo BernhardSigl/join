@@ -41,6 +41,16 @@ input:focus {
     justify-content: center;
 }
 
+.horizontalAndVertical {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.textCenter {
+    text-align: center;
+}
+
 .spaceBetween {
     display: flex;
     justify-content: space-between;
@@ -119,6 +129,18 @@ button:hover {
 }
 
 /* gap */
+.gap80 {
+    gap: 80px;
+}
+
+.gap61 {
+    gap: 61px;
+}
+
+.gap56 {
+    gap: 56px;
+}
+
 .gap35 {
     gap: 35px;
 }
@@ -127,12 +149,28 @@ button:hover {
     gap: 32px;
 }
 
+.gap30 {
+    gap: 30px;
+}
+
+.gap28 {
+    gap: 28px;
+}
+
+.gap18 {
+    gap: 16px;
+}
+
 .gap16 {
     gap: 16px;
 }
 
 .gap15 {
     gap: 15px;
+}
+
+.gap13 {
+    gap: 13px;
 }
 
 .gap8 {

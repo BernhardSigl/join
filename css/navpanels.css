@@ -8,6 +8,7 @@ header {
     padding: 20px 40px;
     background-color: white;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+    z-index: 1;
 }
 
 .headerTitle {
@@ -43,6 +44,7 @@ header {
     padding: 64px 0px;
     background: #2A3647;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    z-index: 1;
 }
 
 .bigJoinLogo {
@@ -86,5 +88,5 @@ path {
     left: 232px;
     width: calc(100vw - 232px);
     height: calc(100vh - 96px);
-    background-color: green;
+    background-color: #F6F7F8;
 }

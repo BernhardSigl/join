@@ -1,0 +1,74 @@
+.content {
+    margin: 110px 0 128px 96px;
+}
+
+.title {
+    margin-bottom: 56px;
+}
+
+.bluelineSummary {
+    width: 3px;
+    height: 59px;
+}
+
+.topContainer a {
+    width: calc(264px - 2 * 19px);
+    height: calc(168px - 2 * 38px);
+    padding: 38px 19px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+.middleContainer a {
+    width: calc(560px - 2 * 48px);
+    height: calc(168px - 2 * 28px);
+    padding: 28px 48px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+.bottomContainer a {
+    width: calc(168px - 2 * 25px);
+    height: calc(168px - 2 * 25px);
+    padding: 25px 25px;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+a {
+    color: black;
+}
+
+a img {
+    width: 69px;
+    height: 69px;
+}
+
+.greyLine {
+    width: 2px;
+    height: 102px
+}
+
+.topContainer a:hover,
+.middleContainer a:hover,
+.bottomContainer a:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color: #2A3647;
+    color: white;
+}
+
+.changePencilImage:hover img {
+    content: url('../img/pencilWhite.png');
+}
+
+.changeHookImage:hover img {
+    content: url('../img/hookWhite.png');
+}
+
+#currentUserId {
+    color: #29ABE2;
+}

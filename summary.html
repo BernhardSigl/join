@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navpanels.css">
+    <link rel="stylesheet" href="css/summary.css">
     <style>
         .hello {
             position: absolute;
@@ -16,7 +17,99 @@
 </head>
 
 <body>
-    <div class="hello">hello</div>
+    <div class="content">
+        <section class="alignCenter gap30 title">
+            <span class="fontSize61 bold">
+                Join
+            </span>
+            <img src="img/blueLine.png" class="bluelineSummary">
+            <span class="fontSize27">
+                Key metrics at a glance
+            </span>
+        </section>
+
+        <div class="alignCenter gap80">
+            <section class="column gap28">
+                <div class="topContainer dFlex gap32">
+                    <a href="#" class="horizontalAndVertical gap18 changePencilImage">
+                        <img src="img/pencil.png">
+                        <div class="column alignCenter">
+                            <div id="toDoNumberId" class="fontSize64 bold pointer">1
+                            </div>
+                            <span class="fontSize20 pointer">
+                                To-do
+                            </span>
+                        </div>
+                    </a>
+                    <a href="#" class="horizontalAndVertical gap18 changeHookImage">
+                        <img src="img/hook.png">
+                        <div class="column alignCenter">
+                            <div id="doneNumberId" class="fontSize64 bold pointer">1
+                            </div>
+                            <span class="fontSize20 pointer">
+                                Done
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                <div class="middleContainer dFlex">
+                    <a href="#" class="horizontalAndVertical gap61">
+                        <div class="alignCenter gap18">
+                            <img src="img/urgent.png">
+                            <div class="column alignCenter">
+                                <div id="urgentNumberId" class="fontSize64 bold pointer">1
+                                </div>
+                                <span class="fontSize26 pointer">
+                                    Urgent
+                                </span>
+                            </div>
+                        </div>
+                        <img src="img/greyLine.png" class="greyLine">
+                        <div class="column gap13">
+                            <div id="dateId" class="fontSize21 bold">
+                                October 16, 2022
+                            </div>
+                            <span class="fontSize16">
+                                Upcoming Deadline
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                <div class="bottomContainer dFlex gap28">
+                    <a href="#" class="horizontalAndVertical column">
+                        <div id="allTaskNumberId" class="fontSize64 bold pointer">1
+                        </div>
+                        <span class="fontSize20 textCenter pointer">
+                            Tasks in board
+                        </span>
+                    </a>
+                    <a href="#" class="horizontalAndVertical column">
+                        <div id="progressTaskNumberId" class="fontSize64 bold pointer">1
+                        </div>
+                        <span class="fontSize20 textCenter pointer">
+                            Tasks in progress
+                        </span>
+                    </a>
+                    <a href="#" class="horizontalAndVertical column">
+                        <div id="awaitingFeedbackNumberId" class="fontSize64 bold pointer">1
+                        </div>
+                        <span class="fontSize20 textCenter pointer">
+                            Awaiting feedback
+                        </span>
+                    </a>
+                </div>
+            </section>
+
+            <section>
+                <span class="fontSize47" id="dayTimeId">
+                    Good morning
+                </span>
+                <div class="fontSize64 bold" id="currentUserId">
+                    Bernhard Sigl
+                </div>
+            </section>
+        </div>
+    </div>
 </body>
 
 </html>
