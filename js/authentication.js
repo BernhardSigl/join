@@ -1,3 +1,17 @@
+let users = [];
+
+async function regInit() {
+    loadUsers();
+}
+
+async function loadUsers() {
+    try {
+        users = JSON.parse(await getItem('users'));
+    } catch {
+        console.warn('Token invalid becauce no user has been created yet');
+    }
+}
+
 // login
 function signUp() {
     toggleVisibility('hideLogInId', false);
@@ -36,8 +50,6 @@ function validateCheckbox(checkbox) {
     }
 }
 
-let users = [];
-
 async function register() {
     let passwordFirst = document.getElementById('regPasswordFirstId');
     let passwordSecond = document.getElementById('regPasswordSecondId');
@@ -46,7 +58,7 @@ async function register() {
     regBtn.disabled = true;
     if (passwordsMatch(passwordFirst, passwordSecond)) {
         createUser(passwordFirst);
-        deleteInput(regBtn, checkboxStatus);
+        resetForm(regBtn, checkboxStatus);
     } else {
         passwordsDontMatch();
     }
@@ -56,16 +68,17 @@ function passwordsMatch(passwordFirst, passwordSecond) {
     return passwordFirst.value === passwordSecond.value;
 }
 
-function createUser(passwordFirst) {
+async function createUser(passwordFirst) {
     let password = passwordFirst.value;
     users.push({
         name: regNameId.value,
         email: regEmailId.value,
         password: password,
     });
+    await setItem('users', JSON.stringify(users));
 }
 
-function deleteInput(regBtn, checkboxStatus) {
+function resetForm(regBtn, checkboxStatus) {
     regNameId.value = '';
     regEmailId.value = '';
     regPasswordFirstId.value = '';
