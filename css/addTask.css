@@ -10,7 +10,7 @@
 }
 
 textarea {
-    min-height: calc(120px - 2 * 18px - 2px) !important;
+    min-height: 120px !important;
     align-self: stretch;
     resize: vertical;
     overflow: auto;
@@ -23,12 +23,8 @@ textarea:focus {
 }
 
 .inputField {
-    width: calc(100% - 2 * 16px - 2px);
-}
-
-.dropdownPosition {
-    width: calc(100% - 16px * 2 - 2px);
-    padding: 12px 16px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .relative input::placeholder {
@@ -37,6 +33,7 @@ textarea:focus {
 
 .dropdown {
     display: inline-block;
+    width: 440px;
 }
 
 .dropdownContent {
@@ -57,4 +54,32 @@ textarea:focus {
 
 .dropdown:hover .dropdownContent {
     display: block;
+}
+
+.prioBtn {
+    padding: 16px 10px;
+    margin: 0;
+    gap: 8px;
+    border-radius: 10px;
+    background-color: white;
+    width: 100%;
+    cursor: pointer;
+}
+
+.prioBtn:hover {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    background-color: white;
+}
+
+.footer {
+    width: 977px;
+    position: absolute;
+    bottom: 71px;
+    left: 96px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.changeCrossImage:hover img {
+    content: url('../img/crossBlue.png');
 }

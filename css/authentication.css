@@ -18,7 +18,8 @@
 }
 
 .inputField {
-    width: calc(100% - 2 * 21px - 2px);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .rememberMe {

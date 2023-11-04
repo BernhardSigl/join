@@ -1,0 +1,85 @@
+.addContactArea {
+    width: 1212px;
+    height: 592px;
+    background-color: white;
+    border-radius: 30px;
+    z-index: 1;
+}
+
+.leftContainerAddContact {
+    width: 467px;
+    padding: 66px 48px;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #2A3647;
+    border-radius: 26px 0 0 26px;
+}
+
+.titleAddContact {
+    position: absolute;
+    width: calc(100% - 48px * 2);
+    top: 232.5px;
+    left: 48px;
+}
+
+.joinLogoAddTask {
+    position: absolute;
+    left: 48px;
+    top: 154px !important;
+    width: 55px;
+    height: 66px;
+}
+
+.bluelineEditContact,
+.bluelineAddContact {
+    position: absolute;
+    left: 48px;
+    width: 90px;
+    height: 3px;
+}
+
+.bluelineAddContact {
+    top: 362px !important;
+}
+
+.bluelineEditContact {
+    top: 320px !important
+}
+
+.middleContainerAddContact {
+    width: 275px;
+    height: 100%;
+}
+
+.circleAddProfile {
+    width: 120px;
+    height: 120px;
+    border: 3px solid white;
+    border-radius: 100%;
+    box-shadow: -2px 0 6px 0 rgb(0, 0, 0, 0.2);
+    background-color: #D1D1D1;
+    margin: 204px 0 0 83px;
+}
+
+.personAddContactImage {
+    width: 64px;
+    height: 64px;
+}
+
+.rightContainerAddContact {
+    position: relative;
+    width: 470px;
+    height: 100%;
+}
+
+.inputArea {
+    width: 422px;
+}
+
+.addContactBtn {
+    margin: 16px 0 0 0;
+}
+
+.inputArea input::placeholder {
+    color: #D1D1D1 !important;
+}

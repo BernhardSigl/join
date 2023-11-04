@@ -56,3 +56,41 @@ function markCategory(linkId) {
         selectedLink.style.backgroundColor = '#091931';
     }
 }
+
+function slideOneObject(frontId) {
+    toggleVisibility(frontId, true);
+    slideInAnimation = document.getElementById(frontId);
+    slideInAnimation.classList.remove('slide-out', 'slide-in');
+    slideInAnimation.classList.add('slide-in');
+}
+
+function slideOutOneObject(frontId) {
+    slideInAnimation = document.getElementById(frontId);
+    slideInAnimation.classList.remove('slide-out');
+    slideInAnimation.classList.add('slide-out');
+}
+
+function slideTwoObjects(frontId, backgroundId) {
+    slideInAnimation = document.getElementById(frontId);
+    toggleVisibility(frontId, true);
+    toggleVisibility(backgroundId, true);
+    slideInAnimation.classList.add('slide-in');
+    setTimeout(function () {
+        slideInAnimation.classList.remove('slide-in');
+    }, 200);
+}
+
+function slideOutTwoObjects(frontId, backgroundId) {
+    slideInAnimation = document.getElementById(frontId);
+    slideInAnimation.classList.add('slide-out');
+    setTimeout(function () {
+        toggleVisibility(backgroundId, false);
+        toggleVisibility(frontId, false);
+        slideInAnimation.classList.remove('slide-out');
+    }, 200);
+}
+
+/** * This function is used to prevent the popup from closing when clicked. */
+function doNotClose(event) {
+    event.stopPropagation();
+}

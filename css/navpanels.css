@@ -3,7 +3,8 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    width: calc(100vw - 2 * 40px);
+    width: 100vw;
+    box-sizing: border-box;
     height: auto;
     padding: 20px 40px;
     background-color: white;
@@ -12,7 +13,7 @@ header {
 }
 
 .headerTitle {
-    margin-left: 330px;
+    margin-left: calc(330px - 40px);
 }
 
 .headerCircle {
@@ -40,7 +41,8 @@ header {
     top: 0;
     left: 0;
     width: 232px;
-    height: calc(100vh - 2 * 64px);
+    height: 100vh;
+    box-sizing: border-box;
     padding: 64px 0px;
     background: #2A3647;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
