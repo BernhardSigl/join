@@ -18,7 +18,7 @@
 }
 
 .inputField {
-    width: calc(100% - 42px);
+    width: calc(100% - 2 * 21px - 2px);
 }
 
 .rememberMe {

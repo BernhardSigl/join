@@ -6,18 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navpanels.css">
+    <link rel="stylesheet" href="css/addTask.css">
     <title>Add Task</title>
-    <style>
-        .hello {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="hello">hello2</div>
+    <div class="content">
+        <section class="alignCenter gap30 title">
+            <span class="fontSize61 bold">
+                Add task
+            </span>
+        </section>
+
+        <div class="dFlex gap48">
+            <div class="leftContainer column gap32">
+                <!-- title -->
+                <section class="column gap8">
+                    <span class="fontSize20">
+                        Title
+                        <span class="red">*</span>
+                    </span>
+                    <input type="text" class="input1216 inputField pointer fontSize20" placeholder="Enter a title">
+                </section>
+                <!-- description -->
+                <section class="column gap8">
+                    <span class="fontSize20">
+                        Description
+                    </span>
+                    <textarea type="text" class="input1216 inputField inputDescription pointer fontSize20"
+                        placeholder="Enter a description"></textarea>
+                </section>
+                <!-- assigned to -->
+                <section class="column gap8">
+                    <span class="fontSize20">
+                        Assigned to
+                    </span>
+                    <div class="relative dropdown">
+                        <input class="input1216 inputField fontSize20 pointer" placeholder="Select contacts to assign">
+                        <img src="img/drowndown.png" class="symbol24Input pointer">
+                        <div class="dropdownContent" id="drowdownConentId">
+                            <a href="#">Link 1</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="greyline">
+            </div>
+
+            <div class="rightContainer">
+                <!-- due date -->
+                <section class="column gap8">
+                    <span class="fontSize20">
+                        Due date
+                        <span class="red">*</span>
+                    </span>
+                    <input type="text" class="input1216 inputField pointer fontSize20" placeholder="Enter a title">
+                </section>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

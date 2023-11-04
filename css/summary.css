@@ -1,16 +1,3 @@
-.content {
-    margin: 110px 0 128px 96px;
-}
-
-.title {
-    margin-bottom: 56px;
-}
-
-.bluelineSummary {
-    width: 3px;
-    height: 59px;
-}
-
 .topContainer a {
     width: calc(264px - 2 * 19px);
     height: calc(168px - 2 * 38px);

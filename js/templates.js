@@ -45,3 +45,14 @@ function validatePasswordInput(input) {
         input.setCustomValidity('');
     }
 }
+
+function markCategory(linkId) {
+    let links = document.getElementsByClassName('categoryLink');
+    for (i = 0; i < links.length; i++) {
+        links[i].style.backgroundColor = 'transparent';
+    }
+    let selectedLink = document.getElementById(linkId);
+    if (selectedLink) {
+        selectedLink.style.backgroundColor = '#091931';
+    }
+}

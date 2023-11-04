@@ -1,0 +1,60 @@
+.greyline {
+    width: 1px;
+    height: 424px;
+    background-color: #D1D1D1;
+}
+
+.rightContainer,
+.leftContainer {
+    width: 440px;
+}
+
+textarea {
+    min-height: calc(120px - 2 * 18px - 2px) !important;
+    align-self: stretch;
+    resize: vertical;
+    overflow: auto;
+    font-family: 'Inter';
+}
+
+textarea:focus {
+    border: 1px solid #29ABE2;
+    outline: none;
+}
+
+.inputField {
+    width: calc(100% - 2 * 16px - 2px);
+}
+
+.dropdownPosition {
+    width: calc(100% - 16px * 2 - 2px);
+    padding: 12px 16px;
+}
+
+.relative input::placeholder {
+    color: black;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdownContent a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdownContent {
+    display: block;
+}

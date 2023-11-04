@@ -116,6 +116,8 @@ button:hover {
 }
 
 .symbol24Input {
+    width: 24px;
+    height: 24px;
     background-color: white;
     padding: 8px 19px 8px 21px;
     margin: 5px 2px 5px;
@@ -139,6 +141,10 @@ button:hover {
 
 .gap56 {
     gap: 56px;
+}
+
+.gap48 {
+    gap: 48px;
 }
 
 .gap35 {
@@ -195,6 +201,15 @@ input {
     color: black;
 }
 
+.input1216 {
+    padding: 12px 16px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background: #FFF;
+    color: black;
+}
+
 .relative {
     position: relative;
 }
@@ -205,6 +220,7 @@ input {
     left: 0;
 }
 
+.relative img,
 .relative object {
     position: absolute;
     top: 0;
@@ -215,4 +231,24 @@ input {
     width: 101px;
     height: 122px;
     margin: 80px 0 0 77px;
+}
+
+/* box on summary, add task and board */
+.content {
+    margin: 110px 0 128px 96px;
+}
+
+.title {
+    margin-bottom: 48px;
+}
+
+/* blue line on summary and contacts */
+.blueline {
+    width: 3px;
+    height: 59px;
+}
+
+.red {
+    color: #FF8190;
+    margin-left: -5px;
 }
