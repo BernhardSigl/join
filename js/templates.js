@@ -71,22 +71,26 @@ function slideOutOneObject(frontId) {
 }
 
 function slideTwoObjects(frontId, backgroundId) {
+    document.body.classList.add('disable-scroll');
     slideInAnimation = document.getElementById(frontId);
     toggleVisibility(frontId, true);
     toggleVisibility(backgroundId, true);
     slideInAnimation.classList.add('slide-in');
     setTimeout(function () {
         slideInAnimation.classList.remove('slide-in');
-    }, 200);
+        document.body.classList.remove('disable-scroll');
+    }, 500);
 }
 
 function slideOutTwoObjects(frontId, backgroundId) {
+    document.body.classList.add('disable-scroll');
     slideInAnimation = document.getElementById(frontId);
     slideInAnimation.classList.add('slide-out');
     setTimeout(function () {
         toggleVisibility(backgroundId, false);
         toggleVisibility(frontId, false);
         slideInAnimation.classList.remove('slide-out');
+        document.body.classList.remove('disable-scroll');
     }, 200);
 }
 

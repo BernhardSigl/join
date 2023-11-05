@@ -354,3 +354,7 @@ input {
         transform: translateX(400%);
     }
 }
+
+body.disable-scroll {
+    overflow: hidden;
+}
