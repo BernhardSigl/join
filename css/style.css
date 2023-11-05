@@ -60,6 +60,10 @@ input:focus {
     color: white;
 }
 
+.fontGrey {
+    color: #A8A8A8;
+}
+
 /* button */
 button {
     margin: 0;
@@ -140,6 +144,7 @@ button:hover {
     margin: 13px 13px
 }
 
+.symbol32Input:hover,
 .symbol24InputHover:hover {
     border-radius: 100%;
     background-color: #EEEEEE;
@@ -190,6 +195,10 @@ button:hover {
 
 .gap28 {
     gap: 28px;
+}
+
+.gap26 {
+    gap: 26px;
 }
 
 .gap18 {

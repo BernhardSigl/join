@@ -13,7 +13,7 @@
 <body>
     <div class="content">
         <!-- title, searchbar, add task button -->
-        <section class="alignCenter title">
+        <section class="alignCenter title spaceBetween">
             <span class="fontSize61 bold">
                 Board
             </span>
@@ -25,7 +25,7 @@
                     <object class="symbol32Input" type="image/svg+xml" data="img/search.svg">
                     </object>
                 </div>
-                <button class="btn816 fontSize21 fontWhite addTaskBtn alignCenter">
+                <button class="btn816 fontSize21 fontWhite addTaskBtn alignCenter pointer">
                     Add Task
                     <object class="symbol32" type="image/svg+xml" data="img/plusWhite.svg">
                     </object>
@@ -33,6 +33,80 @@
             </div>
         </section>
 
+        <div class="dFlex gap26">
+            <!-- to do -->
+            <section class="column gap16">
+                <!-- category title -->
+                <div class="categoryTitle spaceBetween">
+                    <span class="fontSize20 bold">
+                        To do
+                    </span>
+                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn">
+                </div>
+                <!-- category content -->
+                <div class="categoryContent column gap16">
+                    <div class="noTask horizontalAndVertical">
+                        <span class="fontSize16 fontGrey">
+                            No tasks to do
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <!-- in progress -->
+            <section class="column gap16">
+                <!-- category title -->
+                <div class="categoryTitle spaceBetween">
+                    <span class="fontSize20 bold">
+                        In progress
+                    </span>
+                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn">
+                </div>
+                <!-- category content -->
+                <div class="categoryContent column gap16">
+                    <div class="noTask horizontalAndVertical">
+                        <span class="fontSize16 fontGrey">
+                            No progress tasks
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <!-- await feedback -->
+            <section class="column gap16">
+                <!-- category title -->
+                <div class="categoryTitle spaceBetween">
+                    <span class="fontSize20 bold">
+                        Await feedback
+                    </span>
+                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn">
+                </div>
+                <!-- category content -->
+                <div class="categoryContent column gap16">
+                    <div class="noTask horizontalAndVertical">
+                        <span class="fontSize16 fontGrey">
+                            No feedback tasks
+                        </span>
+                    </div>
+                </div>
+            </section>
+            <!-- done -->
+            <section class="column gap16">
+                <!-- category title -->
+                <div class="categoryTitle spaceBetween">
+                    <span class="fontSize20 bold">
+                        Done
+                    </span>
+                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn">
+                </div>
+                <!-- category content -->
+                <div class="categoryContent column gap16">
+                    <div class="noTask horizontalAndVertical">
+                        <span class="fontSize16 fontGrey">
+                            No finished tasks
+                        </span>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 </body>
 

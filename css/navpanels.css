@@ -54,8 +54,9 @@ header {
 }
 
 .categoryLink {
-    width: calc(232px - 56px * 2);
-    height: calc(46px - 8px * 2);
+    width: 232px;
+    box-sizing: border-box;
+    height: 46px;
     padding: 8px 56px;
 }
 
@@ -88,6 +89,7 @@ path {
     position: absolute;
     top: 96px;
     left: 232px;
+    /* minus navpanel */
     width: calc(100vw - 232px);
     height: calc(100vh - 96px);
     background-color: #F6F7F8;

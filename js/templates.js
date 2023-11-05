@@ -90,7 +90,6 @@ function slideOutTwoObjects(frontId, backgroundId) {
     }, 200);
 }
 
-/** * This function is used to prevent the popup from closing when clicked. */
 function doNotClose(event) {
     event.stopPropagation();
 }

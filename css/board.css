@@ -1,3 +1,9 @@
+/* title */
+.title {
+    width: 1054px;
+    height: auto;
+}
+
 .input816 {
     width: 312px;
 }
@@ -9,4 +15,28 @@
 .searchField,
 .addTaskBtn {
     height: 48px;
+}
+
+/* category */
+.categoryTitle {
+    width: 244px;
+    height: auto;
+}
+
+.categoryContent {
+    width: 244px;
+    height: 100%;
+}
+
+.changeAddBtn:hover {
+    content: url('../img/plusBorderBlue.png');
+}
+
+.noTask {
+    width: 100%;
+    box-sizing: border-box;
+    height: 48px;
+    background: #E7E7E7;
+    border-radius: 10px;
+    border: 1px dashed #A8A8A8;
 }
