@@ -10,8 +10,9 @@
     <link rel="stylesheet" href="css/addContactPopup.css">
     <link rel="stylesheet" href="css/addTaskPopup.css">
     <link rel="stylesheet" href="css/addTask.css">
-    <script src="js/fixNavPanels.js"></script>
+    <script src="js/pageConnection.js"></script>
     <script src="js/templates.js"></script>
+    <script src="js/board.js"></script>
     <link rel="icon" href="img/joinBrowserLogo.png">
     <title>Document</title>
 </head>
@@ -35,35 +36,28 @@
         </object>
         <!-- category links -->
         <div class="categoryLinks column gap15">
-            <a class="categoryLink alignCenter gap8 pointer"
-                onclick="loadPage('summary.html'); updateTitle('summary.html'); markCategory('summaryLinkId'); return false;"
-                id="summaryLinkId">
+            <a class="categoryLink alignCenter gap8 pointer" onclick="loadSummary(); return false;" id="summaryLinkId">
                 <object class="categoryImage" type="image/svg+xml" data="img/summary.svg">
                 </object>
                 <span class="fontWhite fontSize16 pointer">
                     Summary
                 </span>
             </a>
-            <a class="categoryLink alignCenter gap8 pointer"
-                onclick="loadPage('addTask.html'); updateTitle('addTask.html'); markCategory('addTaskLinkId'); return false;"
-                id="addTaskLinkId">
+            <a class="categoryLink alignCenter gap8 pointer" onclick="loadAddTask(); return false;" id="addTaskLinkId">
                 <object class="categoryImage" type="image/svg+xml" data="img/addTask.svg">
                 </object>
                 <span class="fontWhite fontSize16 pointer">
                     Add Task
                 </span>
             </a>
-            <a class="categoryLink alignCenter gap8 pointer"
-                onclick="loadPage('board.html'); updateTitle('board.html'); markCategory('boardLinkId'); return false;"
-                id="boardLinkId">
+            <a class="categoryLink alignCenter gap8 pointer" onclick="loadBoard(); return false;" id="boardLinkId">
                 <object class="categoryImage" type="image/svg+xml" data="img/board.svg">
                 </object>
                 <span class="fontWhite fontSize16 pointer">
                     Board
                 </span>
             </a>
-            <a class="categoryLink alignCenter gap8 pointer"
-                onclick="loadPage('contacts.html'); updateTitle('contacts.html'); markCategory('contactsLinkId'); return false;"
+            <a class="categoryLink alignCenter gap8 pointer" onclick="loadContacts(); return false;"
                 id="contactsLinkId">
                 <object class="categoryImage" type="image/svg+xml" data="img/contacts.svg">
                 </object>
