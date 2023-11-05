@@ -75,16 +75,23 @@ button:hover {
     box-shadow: 0px 0px 10px silver;
 }
 
-.btn1616 {
-    padding: 16px;
+.btn816,
+.btn1616,
+.btn1524 {
     margin: 0;
     gap: 4px;
 }
 
+.btn816 {
+    padding: 8px 16px;
+}
+
+.btn1616 {
+    padding: 16px;
+}
+
 .btn1524 {
     padding: 15px 24px;
-    margin: 0;
-    gap: 4px;
 }
 
 .btnWhite {
@@ -105,20 +112,30 @@ button:hover {
     font-weight: bold;
 }
 
-.symbol32 {
-    width: 32px;
-    height: 32px;
+.symbol20 {
+    width: 20px;
+    height: auto;
 }
 
+.symbol24InputHover,
+.symbol24Input,
 .symbol24 {
     width: 24px;
     height: 24px;
 }
 
+.symbol32,
+.symbol32Input {
+    width: 32px;
+    height: 32px;
+}
+
+.symbol32Input {
+    margin: 8px 16px;
+}
+
 .symbol24InputHover,
 .symbol24Input {
-    width: 24px;
-    height: 24px;
     background-color: white;
     margin: 13px 13px
 }
@@ -128,16 +145,18 @@ button:hover {
     background-color: #EEEEEE;
 }
 
-.symbol20 {
-    width: 20px;
-    height: auto;
-}
-
 .absoluteMiddle {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.greylineInput {
+    right: 63px !important;
+    padding-left: 16px;
+    background-color: white;
+    top: calc(50% - 32px / 2) !important;
 }
 
 /* gap */
@@ -202,8 +221,9 @@ input {
     font-family: 'Inter' !important;
 }
 
-.input1221 {
-    padding: 12px 46px 12px 21px;
+.input816,
+.input1221,
+.input1216 {
     border-radius: 10px;
     border: 1px solid #D1D1D1;
     background: #FFF;
@@ -212,14 +232,16 @@ input {
     width: 100%;
 }
 
+.input816 {
+    padding: 8px 63px 8px 16px;
+}
+
+.input1221 {
+    padding: 12px 46px 12px 21px;
+}
+
 .input1216 {
     padding: 12px 46px 12px 16px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
-    background: #FFF;
-    color: black;
-    box-sizing: border-box;
-    width: 100%;
 }
 
 .relative {

@@ -1,0 +1,12 @@
+.input816 {
+    width: 312px;
+}
+
+.relative input::placeholder {
+    color: #D1D1D1;
+}
+
+.searchField,
+.addTaskBtn {
+    height: 48px;
+}
