@@ -61,7 +61,7 @@ header {
 }
 
 .categoryLink:hover {
-    background-color: #091931;
+    background-color: #2A3D59 !important;
 }
 
 .categoryImage {

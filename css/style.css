@@ -17,6 +17,14 @@ a {
     cursor: pointer;
 }
 
+.grab {
+    cursor: grab;
+}
+
+.grabbing {
+    cursor: grabbing;
+}
+
 input:focus {
     border: 1px solid #29ABE2;
     outline: none;
@@ -62,6 +70,10 @@ input:focus {
 
 .fontGrey {
     color: #A8A8A8;
+}
+
+.fontBlue {
+    color: #42526E;
 }
 
 /* button */
@@ -199,6 +211,10 @@ button:hover {
 
 .gap26 {
     gap: 26px;
+}
+
+.gap24 {
+    gap: 24px;
 }
 
 .gap18 {

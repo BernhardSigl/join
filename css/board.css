@@ -25,7 +25,12 @@
 
 .dragArea {
     width: 244px;
-    height: 100%;
+    height: auto;
+}
+
+.dragAreaHighlight {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 24px;
 }
 
 .changeAddBtn:hover {
@@ -48,4 +53,21 @@
     border-radius: 24px;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
     padding: 16px;
+    background-color: white;
+    align-items: flex-start;
+}
+
+.dragPlaceholder {
+    width: 100%;
+    height: calc(244px * (2 / 3));
+    box-sizing: border-box;
+    border-radius: 24px;
+    border: 1px dashed #A8A8A8;
+}
+
+.subjectKanban {
+    padding: 4px 16px;
+    border-radius: 8px;
+    background-color: grey;
+    width: auto;
 }

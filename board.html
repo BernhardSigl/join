@@ -40,72 +40,79 @@
             <section class="column gap16">
                 <!-- category title -->
                 <div class="categoryTitle spaceBetween">
-                    <span class="fontSize20 bold">
+                    <span class="fontSize20 bold fontBlue">
                         To do
                     </span>
-                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn">
+                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn"
+                        onclick="slideTwoObjects('addTaskAreaId', 'backgroundAddTaskId')">
                 </div>
                 <!-- category content -->
-                <div class="dragArea column gap16" id="open">
-                    <div class="noTask horizontalAndVertical">
-                        <span class="fontSize16 fontGrey">
-                            No tasks to do 1
-                        </span>
-                    </div>
+                <div class="noTask horizontalAndVertical dNone" id="noToDoId">
+                    <span class="fontSize16 fontGrey">
+                        No tasks to do
+                    </span>
+                </div>
+                <div class="dragArea column gap16" id="toDoId" ondrop="moveTo('toDo')"
+                    ondragover="allowDrop(event); highlight('toDoId')" ondragleave="removeHighlight()">
                 </div>
             </section>
             <!-- in progress -->
             <section class="column gap16">
                 <!-- category title -->
                 <div class="categoryTitle spaceBetween">
-                    <span class="fontSize20 bold">
+                    <span class="fontSize20 bold fontBlue">
                         In progress
                     </span>
-                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn">
+                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn"
+                        onclick="slideTwoObjects('addTaskAreaId', 'backgroundAddTaskId')">
                 </div>
                 <!-- category content -->
-                <div class="dragArea column gap16" id="closed">
-                    <div class="noTask horizontalAndVertical">
-                        <span class="fontSize16 fontGrey">
-                            No tasks to do 2
-                        </span>
-                    </div>
+                <div class="noTask horizontalAndVertical dNone" id="noInProgressId">
+                    <span class="fontSize16 fontGrey">
+                        No tasks in progress
+                    </span>
+                </div>
+                <div class="dragArea column gap16" id="inProgressId" ondrop="moveTo('inProgress')"
+                    ondragover="allowDrop(event); highlight('inProgressId')" ondragleave="removeHighlight()">
                 </div>
             </section>
             <!-- await feedback -->
             <section class="column gap16">
                 <!-- category title -->
                 <div class="categoryTitle spaceBetween">
-                    <span class="fontSize20 bold">
+                    <span class="fontSize20 bold fontBlue">
                         Await feedback
                     </span>
-                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn">
+                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn"
+                        onclick="slideTwoObjects('addTaskAreaId', 'backgroundAddTaskId')">
                 </div>
                 <!-- category content -->
-                <div class="dragArea column gap16">
-                    <div class="noTask horizontalAndVertical">
-                        <span class="fontSize16 fontGrey">
-                            No tasks to do 3
-                        </span>
-                    </div>
+                <div class="noTask horizontalAndVertical dNone" id="noAwaitFeedbackId">
+                    <span class="fontSize16 fontGrey">
+                        No task feedbacks
+                    </span>
+                </div>
+                <div class="dragArea column gap16" id="awaitFeedbackId" ondrop="moveTo('awaitFeedback')"
+                    ondragover="allowDrop(event); highlight('awaitFeedbackId')" ondragleave="removeHighlight()">
                 </div>
             </section>
             <!-- done -->
             <section class="column gap16">
                 <!-- category title -->
-                <div class="categoryTitle spaceBetween">
-                    <span class="fontSize20 bold">
+                <div class="categoryTitle">
+                    <span class="fontSize20 bold fontBlue">
                         Done
                     </span>
-                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn">
+                    <!-- <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn"> -->
                 </div>
                 <!-- category content -->
-                <div class="dragArea column gap16">
-                    <div class="noTask horizontalAndVertical">
-                        <span class="fontSize16 fontGrey">
-                            No tasks to do 4
-                        </span>
-                    </div>
+                <div class="noTask horizontalAndVertical dNone" id="noDoneId">
+                    <span class="fontSize16 fontGrey">
+                        No tasks done
+                    </span>
+                </div>
+                <div class="dragArea column gap16" id="doneId" ondrop="moveTo('done')"
+                    ondragover="allowDrop(event); highlight('doneId')" ondragleave="removeHighlight()">
                 </div>
             </section>
         </div>
