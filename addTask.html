@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/navpanels.css">
     <link rel="stylesheet" href="css/addTask.css">
     <link rel="stylesheet" href="css/addContactPopup.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <script src="js/addTask.js"></script>
     <title>Add Task</title>
 </head>
 
@@ -64,7 +67,11 @@
                         Due date
                         <span class="red">*</span>
                     </span>
-                    <input type="text" class="input1216 inputField pointer fontSize20" placeholder="Enter a title">
+                    <div class="relative" onclick="datePicker()">
+                        <input type="text" class="input1216 inputField pointer fontSize20" placeholder="dd/mm/yyyy"
+                            id="datepicker">
+                        <img src="img/event.png" class="symbol24InputHover pointer">
+                    </div>
                 </section>
                 <!-- prio buttons -->
                 <section class="column gap8">
