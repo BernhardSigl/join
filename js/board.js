@@ -36,6 +36,7 @@ let currentDraggedTask;
 
 function initBoard() {
     updateTasks();
+
 }
 
 function updateTasks() {
@@ -166,4 +167,14 @@ function removeHighlight() {
 function generateTaskPlaceholderHTML() {
     return /*html*/ `
     <div class="dragPlaceholder dNone" id="dragPlaceholderId"></div>`;
+}
+
+function addTaskPopup() {
+    document.getElementById('addTaskPopupId').innerHTML = generateAddTaskContentHTML();
+}
+
+function openTaskPopup() {
+    addTaskPopup();
+    slideTwoObjects('addTaskPopupId', 'backgroundAddTaskPopupId'); toggleVisibility('closePopupId', true);
+    enableCalender();
 }

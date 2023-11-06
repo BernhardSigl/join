@@ -14,7 +14,7 @@ function loadAddTask() {
     loadPage('addTask.html', function () {
         updateTitle('addTask.html');
         markCategory('addTaskLinkId');
-
+        addTaskInit();
     });
 }
 

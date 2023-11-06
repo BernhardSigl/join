@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/navpanels.css">
     <link rel="stylesheet" href="css/board.css">
     <script src="js/board.js"></script>
+    <!-- popup -->
+    <script src="js/addTask.js"></script>
     <title>Add Task</title>
 </head>
 
@@ -26,8 +28,7 @@
                     <object class="symbol32Input" type="image/svg+xml" data="img/search.svg">
                     </object>
                 </div>
-                <button class="btn816 fontSize21 fontWhite addTaskBtn alignCenter pointer"
-                    onclick="slideTwoObjects('addTaskAreaId', 'backgroundAddTaskId')">
+                <button class="btn816 fontSize21 fontWhite addTaskBtn alignCenter pointer" onclick="openTaskPopup()">
                     Add Task
                     <object class="symbol32" type="image/svg+xml" data="img/plusWhite.svg">
                     </object>
@@ -43,8 +44,7 @@
                     <span class="fontSize20 bold fontBlue">
                         To do
                     </span>
-                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn"
-                        onclick="slideTwoObjects('addTaskAreaId', 'backgroundAddTaskId')">
+                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn" onclick="openTaskPopup()">
                 </div>
                 <!-- category content -->
                 <div class="noTask horizontalAndVertical dNone" id="noToDoId">
@@ -53,7 +53,7 @@
                     </span>
                 </div>
                 <div class="dragArea column gap16" id="toDoId" ondrop="moveTo('toDo')"
-                    ondragover="allowDrop(event); highlight('toDoId')" ondragleave="removeHighlight()">
+                    ondragover="addTaskPopup(); allowDrop(event); highlight('toDoId')" ondragleave="removeHighlight()">
                 </div>
             </section>
             <!-- in progress -->
@@ -63,8 +63,7 @@
                     <span class="fontSize20 bold fontBlue">
                         In progress
                     </span>
-                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn"
-                        onclick="slideTwoObjects('addTaskAreaId', 'backgroundAddTaskId')">
+                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn" onclick="openTaskPopup()">
                 </div>
                 <!-- category content -->
                 <div class="noTask horizontalAndVertical dNone" id="noInProgressId">
@@ -83,8 +82,7 @@
                     <span class="fontSize20 bold fontBlue">
                         Await feedback
                     </span>
-                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn"
-                        onclick="slideTwoObjects('addTaskAreaId', 'backgroundAddTaskId')">
+                    <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn" onclick="openTaskPopup()">
                 </div>
                 <!-- category content -->
                 <div class="noTask horizontalAndVertical dNone" id="noAwaitFeedbackId">
