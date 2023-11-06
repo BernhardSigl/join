@@ -233,6 +233,10 @@ button:hover {
     gap: 13px;
 }
 
+.gap10 {
+    gap: 10px;
+}
+
 .gap8 {
     gap: 8px;
 }
@@ -294,7 +298,7 @@ input {
 
 /* box on summary, add task and board */
 .content {
-    margin: 110px 0 128px 96px;
+    margin: 110px 96px;
 }
 
 .title {

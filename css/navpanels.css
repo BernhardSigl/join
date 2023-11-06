@@ -76,8 +76,9 @@ path {
 
 .quicklinks a {
     color: #A8A8A8;
-    padding: 8px;
-    width: 110px;
+    padding: 8px 56px;
+    width: 232px;
+    box-sizing: border-box;
 }
 
 .quicklinks a:hover {

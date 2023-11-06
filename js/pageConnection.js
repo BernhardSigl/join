@@ -34,6 +34,20 @@ function loadContacts() {
     });
 }
 
+function loadPrivacyPolicy() {
+    loadPage('privacyPolicy.html', function () {
+        updateTitle('privacyPolicy.html');
+        markCategory('privacyPoliciyLinkId');
+    });
+}
+
+function loadLegalNotice() {
+    loadPage('legalNotice.html', function () {
+        updateTitle('legalNotice.html');
+        markCategory('legalNoticeLinkId');
+    });
+}
+
 function loadPage(page, callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
