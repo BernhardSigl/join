@@ -77,7 +77,7 @@ textarea:focus {
     width: 977px;
     position: absolute;
     bottom: 71px;
-    left: 96px;
+    left: calc(96px + 232px);
     display: flex;
     align-items: flex-end;
 }

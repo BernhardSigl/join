@@ -1,7 +1,8 @@
 let datePickerExecuted;
 
-function addTaskInit() {
-    addTaskContent();
+function initAddTask() {
+    navPanelsTemplate();
+    addTaskTemplate();
     enableCalender();
 }
 

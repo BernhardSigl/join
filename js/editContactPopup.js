@@ -1,3 +1,12 @@
+function openEditTaskPopup() {
+    editContactPopupContent();
+    slideTwoObjects('editContactAreaId', 'backgroundEditContactId');
+}
+
+function editContactPopupContent() {
+    document.getElementById('editContactAreaId').innerHTML = generateEditContactContentHTML();
+}
+
 function generateEditContactContentHTML() {
     return /*html*/`
     <div class="leftContainerAddContact relative">

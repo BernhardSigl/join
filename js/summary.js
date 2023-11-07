@@ -1,0 +1,3 @@
+function initSummary() {
+    navPanelsTemplate();
+}

@@ -4,11 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- always included -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/navpanels.css">
+    <script src="js/navPanelsTemplate.js"></script>
+    <script src="js/templates.js"></script>
+    <!-- specific included -->
     <link rel="stylesheet" href="css/quicklinks.css">
-    <title>Document</title>
+    <title>Legal Notice</title>
 </head>
 
-<body>
+<body onload="navPanelsTemplate()">
+    <nav id="navPanelsTemplateId"></nav>
+
     <div class="content">
         <h1>Legal notice</h1>
         <div class="quicklinksContainer">

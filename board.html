@@ -4,16 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- always included -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/navpanels.css">
+    <script src="js/navPanelsTemplate.js"></script>
+    <script src="js/templates.js"></script>
+    <!-- specific included -->
     <link rel="stylesheet" href="css/board.css">
-    <!-- <script src="js/board.js"></script> -->
+    <script src="js/board.js"></script>
     <!-- popup -->
-    <!-- <script src="js/addTask.js"></script> -->
+    <script src="js/addTask.js"></script>
+    <script src="js/addTaskTemplate.js"></script>
+    <link rel="stylesheet" href="css/addTask.css">
+    <!-- calender -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     <title>Add Task</title>
 </head>
 
-<body>
+<body onload="initBoard()">
+    <nav id="navPanelsTemplateId"></nav>
+    <popup class="background dNone" id="backgroundAddTaskPopupId"
+        onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId')">
+        <div class="addTaskArea" id="addTaskTemplateId" onclick="doNotClose(event)">
+        </div>
+    </popup>
+
     <div class="content">
         <!-- title, searchbar, add task button -->
         <section class="alignCenter title spaceBetween">
@@ -53,7 +70,7 @@
                     </span>
                 </div>
                 <div class="dragArea column gap16" id="toDoId" ondrop="moveTo('toDo')"
-                    ondragover="addTaskPopup(); allowDrop(event); highlight('toDoId')" ondragleave="removeHighlight()">
+                    ondragover="allowDrop(event); highlight('toDoId')" ondragleave="removeHighlight()">
                 </div>
             </section>
             <!-- in progress -->

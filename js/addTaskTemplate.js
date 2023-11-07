@@ -1,4 +1,8 @@
-function generateAddTaskContentHTML() {
+function addTaskTemplate() {
+    document.getElementById('addTaskTemplateId').innerHTML = generateAddTaskHTML();
+}
+
+function generateAddTaskHTML() {
     return /*html*/`
     <section class="alignCenter gap30 title">
             <span class="fontSize61 bold">
@@ -140,5 +144,5 @@ function generateAddTaskContentHTML() {
             </div>
         </div>
     </section>
-    <img src="img/cross.png" class="closePopup dNone" id="closePopupId"onclick="slideOutTwoObjects('addTaskPopupId', 'backgroundAddTaskPopupId')">`
+    <img src="img/cross.png" class="closePopup dNone" id="closePopupId" onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId')">`
 }

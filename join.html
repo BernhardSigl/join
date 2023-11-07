@@ -7,108 +7,46 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/navpanels.css">
-    <link rel="stylesheet" href="css/addContactPopup.css">
-    <link rel="stylesheet" href="css/addTask.css">
+    <script src="js/storage.js"></script>
+    <script src="js/navPanels.js"></script>
     <!-- calender -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-    <script src="js/pageConnection.js"></script>
     <script src="js/templates.js"></script>
-    <script src="js/board.js"></script>
-    <!-- add task -->
-    <script src="js/addTask.js"></script>
-    <script src="js/addTaskPopup.js"></script>
-    <!-- contacts -->
-    <script src="js/contacts.js"></script>
-    <script src="js/addContactPopup.js"></script>
-    <script src="js/editContactPopup.js"></script>
+
     <link rel="icon" href="img/joinBrowserLogo.png">
     <title>Document</title>
 </head>
 
-<body onload="initJoinProject()">
-    <header class="alignCenter spaceBetween">
-        <div class="fontSize20 headerTitle">
-            Kanban Project Management Tool
-        </div>
-        <div class="headerRight alignCenter gap16">
-            <object class="questionMarket" type="image/svg+xml" data="img/questionmarket.svg">
-            </object>
-            <img src="img/circle.png" class="headerCircle pointer">
-        </div>
-    </header>
+<body onload="navPanelsTemplate()">
+    <div id="navPanelsTemplateId">
 
-    <!-- category bar -->
-    <section class="categoryBar alignCenter column spaceBetween">
-        <!-- logo -->
-        <object class="bigJoinLogo" type="image/svg+xml" data="img/joinLogoBright.svg">
-        </object>
-        <!-- category links -->
-        <div class="categoryLinks column gap15">
-            <a class="categoryLink alignCenter gap8 pointer" onclick="loadSummary(); return false;" id="summaryLinkId">
-                <object class="categoryImage" type="image/svg+xml" data="img/summary.svg">
-                </object>
-                <span class="fontWhite fontSize16 pointer">
-                    Summary
-                </span>
-            </a>
-            <a class="categoryLink alignCenter gap8 pointer" onclick="loadAddTask(); return false;" id="addTaskLinkId">
-                <object class="categoryImage" type="image/svg+xml" data="img/addTask.svg">
-                </object>
-                <span class="fontWhite fontSize16 pointer">
-                    Add Task
-                </span>
-            </a>
-            <a class="categoryLink alignCenter gap8 pointer" onclick="loadBoard(); return false;" id="boardLinkId">
-                <object class="categoryImage" type="image/svg+xml" data="img/board.svg">
-                </object>
-                <span class="fontWhite fontSize16 pointer">
-                    Board
-                </span>
-            </a>
-            <a class="categoryLink alignCenter gap8 pointer" onclick="loadContacts(); return false;"
-                id="contactsLinkId">
-                <object class="categoryImage" type="image/svg+xml" data="img/contacts.svg">
-                </object>
-                <span class="fontWhite fontSize16 pointer">
-                    Contacts
-                </span>
-            </a>
-        </div>
-        <!-- quick links -->
-        <div class="quicklinks column gap4">
-            <a onclick="loadPrivacyPolicy(); return false;" class="fontSize16 pointer" id="privacyPoliciyLinkId">
-                Privacy policy
-            </a>
-            <a onclick="loadLegalNotice(); return false;" class="fontSize16 pointer" id="legalNoticeLinkId">
-                Legal notice
-            </a>
-        </div>
-    </section>
+    </div>
 
-    <main id="mainContent">
-    </main>
+
+    <!-- <main id="mainContent">
+    </main> -->
 
     <!-- add task popup -->
-    <section class="background dNone" id="backgroundAddTaskPopupId"
+    <!-- <section class="background dNone" id="backgroundAddTaskPopupId"
         onclick="slideOutTwoObjects('addTaskPopupId', 'backgroundAddTaskPopupId')">
         <div class="addTaskArea" id="addTaskPopupId" onclick="doNotClose(event)">
         </div>
-    </section>
+    </section> -->
 
     <!-- add contact popup -->
-    <section class="background dNone" id="backgroundAddContactId"
+    <!-- <section class="background dNone" id="backgroundAddContactId"
         onclick="slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId')">
         <div class="dFlex addContactArea" id="addContactAreaId" onclick="doNotClose(event)">
         </div>
-    </section>
+    </section> -->
 
     <!-- edit contact popup -->
-    <section class="background dNone" id="backgroundEditContactId"
+    <!-- <section class="background dNone" id="backgroundEditContactId"
         onclick="slideOutTwoObjects('editContactAreaId', 'backgroundEditContactId')">
         <div id="editContactAreaId" class="dFlex addContactArea" onclick="doNotClose(event)">
         </div>
-    </section>
+    </section> -->
 </body>
 
 </html>

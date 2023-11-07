@@ -15,14 +15,6 @@ function autoLogIn() {
     }
 }
 
-async function loadUsers() {
-    try {
-        users = JSON.parse(await getItem('users'));
-    } catch {
-        console.warn('Token invalid becauce no user has been created yet');
-    }
-}
-
 function openJoinProject() {
     window.location.href = 'join.html';
 }

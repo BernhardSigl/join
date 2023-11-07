@@ -14,15 +14,11 @@ a {
 }
 
 .pointer {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .grab {
-    cursor: grab;
-}
-
-.grabbing {
-    cursor: grabbing;
+    cursor: grab !important;
 }
 
 input:focus {
@@ -74,6 +70,10 @@ input:focus {
 
 .fontBlue {
     color: #42526E;
+}
+
+.fontBrightBlue {
+    color: #007CEE;
 }
 
 /* button */
@@ -241,6 +241,10 @@ button:hover {
     gap: 8px;
 }
 
+.gap5 {
+    gap: 5px;
+}
+
 .gap4 {
     gap: 4px;
 }
@@ -298,7 +302,8 @@ input {
 
 /* box on summary, add task and board */
 .content {
-    margin: 110px 96px;
+    /* header + margin-top | margin-right | margin-bottom | sidebar + margin-left */
+    margin: calc(96px + 110px) 96px 110px calc(232px + 96px);
 }
 
 .title {

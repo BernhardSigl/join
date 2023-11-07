@@ -59,11 +59,24 @@
     box-shadow: -2px 0 6px 0 rgb(0, 0, 0, 0.2);
     background-color: #D1D1D1;
     margin: 204px 0 0 83px;
+    position: relative;
 }
 
 .personAddContactImage {
     width: 64px;
     height: 64px;
+}
+
+.colorPicker {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: white;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+.colorPicker:hover {
+    transform: scale(1.1);
 }
 
 .rightContainerAddContact {

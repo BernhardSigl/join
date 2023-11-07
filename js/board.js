@@ -35,8 +35,9 @@ let taskArray = [
 let currentDraggedTask;
 
 function initBoard() {
+    navPanelsTemplate();
+    addTaskTemplate();
     updateTasks();
-
 }
 
 function updateTasks() {
@@ -169,12 +170,12 @@ function generateTaskPlaceholderHTML() {
     <div class="dragPlaceholder dNone" id="dragPlaceholderId"></div>`;
 }
 
-function addTaskPopup() {
-    document.getElementById('addTaskPopupId').innerHTML = generateAddTaskContentHTML();
-}
-
 function openTaskPopup() {
-    addTaskPopup();
-    slideTwoObjects('addTaskPopupId', 'backgroundAddTaskPopupId'); toggleVisibility('closePopupId', true);
+    addTaskTemplate();
+    slideTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId'); toggleVisibility('closePopupId', true);
     enableCalender();
 }
+
+// function addTaskPopup() {
+//     document.getElementById('addTaskTemplateId').innerHTML = generateAddTaskContentHTML();
+// }

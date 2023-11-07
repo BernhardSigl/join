@@ -17,6 +17,22 @@ async function getItem(key) {
     });
 }
 
+async function loadUsers() {
+    try {
+        users = JSON.parse(await getItem('users'));
+    } catch {
+        console.warn('Token invalid becauce no user has been created yet');
+    }
+}
+
+async function loadContacts() {
+    try {
+        contactsArray = JSON.parse(await getItem('contactsArray'));
+    } catch {
+        console.warn('Token invalid becauce no user has been created yet');
+    }
+}
+
 // save locally
 function save() {
     let rememberMeAsText = JSON.stringify(rememberMe);

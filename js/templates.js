@@ -46,45 +46,28 @@ function validatePasswordInput(input) {
     }
 }
 
-function markCategory(linkId) {
-    let categoryLinks = document.getElementsByClassName('categoryLink');
-    let selectedLink = document.getElementById(linkId);
-    let privacyPolicyLink = document.getElementById('privacyPoliciyLinkId');
-    let legalNoticeLink = document.getElementById('legalNoticeLinkId');
-    deleteMark(categoryLinks, privacyPolicyLink, legalNoticeLink);
-    markBackground(selectedLink);
-}
-
-function deleteMark(categoryLinks, privacyPolicyLink, legalNoticeLink) {
-    for (i = 0; i < categoryLinks.length; i++) {
-        categoryLinks[i].style.backgroundColor = 'transparent';
-        categoryLinks[i].style.pointerEvents = 'auto';
+function setActiveLink() {
+    let currentUrl = window.location.href;
+    let activeLinkId = "";
+    if (currentUrl.includes("summary.html")) {
+        activeLinkId = "summaryLinkId";
+    } else if (currentUrl.includes("addTask.html")) {
+        activeLinkId = "addTaskLinkId";
+    } else if (currentUrl.includes("board.html")) {
+        activeLinkId = "boardLinkId";
+    } else if (currentUrl.includes("contacts.html")) {
+        activeLinkId = "contactsLinkId";
+    } else if (currentUrl.includes("privacyPolicy.html")) {
+        activeLinkId = "privacyPoliciyLinkId";
+    } else if (currentUrl.includes("legalNotice.html")) {
+        activeLinkId = "legalNoticeLinkId";
     }
-    privacyPolicyLink.style.backgroundColor = 'transparent';
-    privacyPolicyLink.style.pointerEvents = 'auto';
-    legalNoticeLink.style.backgroundColor = 'transparent';
-    legalNoticeLink.style.pointerEvents = 'auto';
-}
-
-function markBackground(selectedLink) {
-    if (selectedLink) {
-        selectedLink.style.backgroundColor = '#091931';
-        selectedLink.style.pointerEvents = 'none';
+    if (activeLinkId !== "") {
+        let activeLink = document.getElementById(activeLinkId);
+        activeLink.style.backgroundColor = "#091931";
+        activeLink.style.pointerEvents = "none";
     }
 }
-
-// function markQuicklinks(linkId) {
-//     let links = document.getElementsByClassName('categoryLink');
-//     let selectedQuicklink = document.getElementById(linkId);
-//     for (i = 0; i < links.length; i++) {
-//         links[i].style.backgroundColor = 'transparent';
-//         links[i].style.pointerEvents = 'auto';
-//     }
-//     if (selectedQuicklink) {
-//         selectedQuicklink.style.backgroundColor = '#091931';
-//         selectedQuicklink.style.pointerEvents = 'none';
-//     }
-// }
 
 function slideOneObject(frontId) {
     toggleVisibility(frontId, true);

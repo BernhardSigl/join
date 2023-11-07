@@ -4,22 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- always included -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/navpanels.css">
+    <script src="js/navPanelsTemplate.js"></script>
+    <script src="js/templates.js"></script>
+    <!-- specific included -->
     <link rel="stylesheet" href="css/addTask.css">
-    <link rel="stylesheet" href="css/addContactPopup.css">
+    <script src="js/addTask.js"></script>
+    <script src="js/addTaskTemplate.js"></script>
     <!-- calender -->
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css"> -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script> -->
-    <!-- main content -->
-    <!-- <script src="js/addTask.js"></script> -->
-    <!-- <script src="js/addTaskPopup.js"></script> -->
-
-    <title>Add Task</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <title>Document</title>
 </head>
 
-<body>
-    <div class="content" id="addTaskContentId">
+<body onload="initAddTask()">
+    <main id="navPanelsTemplateId">
+    </main>
+    <div class="content" id="addTaskTemplateId">
     </div>
 </body>
 

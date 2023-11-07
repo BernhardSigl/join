@@ -71,3 +71,8 @@
     background-color: grey;
     width: auto;
 }
+
+/* popup */
+.footer {
+    left: 96px !important;
+}

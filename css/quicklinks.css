@@ -1,6 +1,6 @@
 .symbol32 {
     position: absolute;
-    top: 110px;
+    top: calc(110px + 96px);
     right: 96px;
 }
 
