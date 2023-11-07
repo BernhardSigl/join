@@ -1,0 +1,23 @@
+.leftContainer {
+    width: 456px;
+    height: calc(100vh - 96px);
+    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
+    background-color: white;
+}
+
+.aboveScrollbar {
+    height: 101px;
+}
+
+.btn1212 {
+    padding: 12px;
+    margin: 0;
+    gap: 16px;
+    width: 352px;
+    height: auto;
+}
+
+.scrollContactsArea {
+    height: calc(100vh - 96px - 101px);
+    overflow-y: auto;
+}
