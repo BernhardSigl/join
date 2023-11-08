@@ -125,7 +125,7 @@ button:hover {
 
 /*  */
 .bold {
-    font-weight: bold;
+    font-weight: bold !important;
 }
 
 .symbol20 {
@@ -189,6 +189,10 @@ button:hover {
     gap: 56px;
 }
 
+.gap54 {
+    gap: 54px;
+}
+
 .gap48 {
     gap: 48px;
 }
@@ -215,6 +219,10 @@ button:hover {
 
 .gap24 {
     gap: 24px;
+}
+
+.gap21 {
+    gap: 21px;
 }
 
 .gap18 {

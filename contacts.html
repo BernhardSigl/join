@@ -28,6 +28,11 @@
         <div class="dFlex addContactArea" id="addContactAreaId" onclick="doNotClose(event)">
         </div>
     </popup>
+    <popup class="background dNone" id="backgroundEditContactId"
+        onclick="slideOutTwoObjects('editContactAreaId', 'backgroundEditContactId')">
+        <div class="dFlex addContactArea" id="editContactAreaId" onclick="doNotClose(event)">
+        </div>
+    </popup>
 
     <div class="content">
         <div class="dFlex">
@@ -44,7 +49,7 @@
                 </section>
             </div>
 
-            <div class="rightContainer">
+            <div class="rightContainer column gap32">
                 <section class="contactsTitle alignCenter gap30">
                     <span class="fontSize61 bold">
                         Contacts
@@ -53,6 +58,9 @@
                     <span class="fontSize27">
                         Better with a team
                     </span>
+                </section>
+                <section id="contactInfoId" class="column gap21">
+
                 </section>
             </div>
         </div>

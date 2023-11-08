@@ -70,16 +70,25 @@ function setActiveLink() {
 }
 
 function slideOneObject(frontId) {
-    toggleVisibility(frontId, true);
+    document.body.classList.add('disable-scroll');
     slideInAnimation = document.getElementById(frontId);
-    slideInAnimation.classList.remove('slide-out', 'slide-in');
+    toggleVisibility(frontId, true);
     slideInAnimation.classList.add('slide-in');
+    setTimeout(function () {
+        slideInAnimation.classList.remove('slide-in');
+        document.body.classList.remove('disable-scroll');
+    }, 500);
 }
 
 function slideOutOneObject(frontId) {
+    document.body.classList.add('disable-scroll');
     slideInAnimation = document.getElementById(frontId);
-    slideInAnimation.classList.remove('slide-out');
     slideInAnimation.classList.add('slide-out');
+    setTimeout(function () {
+        slideInAnimation.classList.remove('slide-out');
+        toggleVisibility(frontId, false);
+        document.body.classList.remove('disable-scroll');
+    }, 500);
 }
 
 function slideTwoObjects(frontId, backgroundId) {

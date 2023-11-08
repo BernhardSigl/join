@@ -34,12 +34,21 @@
     padding: 110px 55px;
 }
 
+.nameShortBig,
 .nameShortSmall {
-    width: 42px;
-    height: 42px;
     border: 2px solid white;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.20);
     border-radius: 100%;
+}
+
+.nameShortBig {
+    width: 120px;
+    height: 120px;
+}
+
+.nameShortSmall {
+    width: 42px;
+    height: 42px;
 }
 
 .contactInfoSmall {
@@ -63,6 +72,38 @@
 
 .categoryContacts {
     padding: 17px 36px;
+}
+
+.editContactArea {
+    width: 61px;
+}
+
+.deleteContactArea:hover span,
+.editContactArea:hover span {
+    color: #29ABE2 !important;
+    font-weight: bold !important;
+}
+
+.editContactArea:hover img {
+    content: url('../img/pencilBlue.png');
+}
+
+.deleteContactArea:hover img {
+    content: url('../img/garbageBlue.png');
+}
+
+.contactInfoTextBlock {
+    width: 207px;
+    height: 74px;
+}
+
+.contactInfoSmall.markContact {
+    background-color: #2A3647;
+    color: white;
+}
+
+.mb2 {
+    margin-bottom: -2px;
 }
 
 /* scroll */
