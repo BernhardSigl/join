@@ -3,20 +3,20 @@ let mediumStatus = false;
 let lowStatus = false;
 
 function urgentBtn() {
-    resetButtons();
-    mediumStatus = false;
-    lowStatus = false;
     let urgentBtn = document.getElementById('addUrgentId');
     let urgentImg = document.getElementById('urgentImgId');
     let urgentText = document.getElementById('urgentTextId');
-    if (urgentImg.src.includes('img/urgentRed.png')) {
-        urgentBtnPressed(urgentImg, urgentBtn, urgentText, urgentText);
+    resetButtons();
+    mediumStatus = false;
+    lowStatus = false;
+    if (urgentStatus === false) {
+        urgentBtnPressed(urgentImg, urgentBtn, urgentText);
     } else {
-        urgentBtnUnpressed(urgentImg, urgentBtn, urgentText, urgentText);
+        urgentBtnUnpressed(urgentImg, urgentBtn, urgentText);
     }
 }
 
-function urgentBtnPressed(urgentImg, urgentBtn, urgentText, urgentText) {
+function urgentBtnPressed(urgentImg, urgentBtn, urgentText) {
     urgentImg.src = 'img/urgentWhite.png';
     urgentBtn.style.backgroundColor = '#FF3D00';
     urgentText.style.color = 'white';
@@ -24,7 +24,7 @@ function urgentBtnPressed(urgentImg, urgentBtn, urgentText, urgentText) {
     urgentStatus = true;
 }
 
-function urgentBtnUnpressed(urgentImg, urgentBtn, urgentText, urgentText) {
+function urgentBtnUnpressed(urgentImg, urgentBtn, urgentText) {
     urgentImg.src = 'img/urgentRed.png';
     urgentBtn.style.backgroundColor = '';
     urgentText.style.color = '';
@@ -39,8 +39,6 @@ function mediumBtn() {
     let mediumBtn = document.getElementById('addMediumId');
     let mediumImg = document.getElementById('mediumImgId');
     let mediumText = document.getElementById('mediumTextId');
-    let mediumStatus = false;
-
     if (mediumImg.src.includes('img/mediumOrange.png')) {
         mediumBtnPressed(mediumImg, mediumBtn, mediumText);
     } else {
@@ -50,7 +48,7 @@ function mediumBtn() {
 
 function mediumBtnPressed(mediumImg, mediumBtn, mediumText) {
     mediumImg.src = 'img/mediumWhite.png';
-    mediumBtn.style.backgroundColor = '#FF3D00';
+    mediumBtn.style.backgroundColor = '#FFA800';
     mediumText.style.color = 'white';
     mediumText.style.fontWeight = 'bold';
     mediumStatus = true;
@@ -80,7 +78,7 @@ function lowBtn() {
 
 function lowBtnPressed(lowImg, lowBtn, lowText) {
     lowImg.src = 'img/lowWhite.png';
-    lowBtn.style.backgroundColor = '#FF3D00';
+    lowBtn.style.backgroundColor = '#7AE229';
     lowText.style.color = 'white';
     lowText.style.fontWeight = 'bold';
     lowStatus = true;
@@ -104,7 +102,6 @@ function resetButton(buttonId, imgId, textId, defaultImgSrc) {
     let button = document.getElementById(buttonId);
     let img = document.getElementById(imgId);
     let text = document.getElementById(textId);
-
     img.src = defaultImgSrc;
     button.style.backgroundColor = '';
     text.style.color = '';
