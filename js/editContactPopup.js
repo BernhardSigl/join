@@ -1,13 +1,18 @@
-function openEditTaskPopup() {
-    editContactPopupContent();
+function openEditTaskPopup(i) {
+    editContactPopupContent(i);
     slideTwoObjects('editContactAreaId', 'backgroundEditContactId');
+    editContact(i);
 }
 
-function editContactPopupContent() {
-    document.getElementById('editContactAreaId').innerHTML = generateEditContactContentHTML();
+function editContactPopupContent(i) {
+    document.getElementById('editContactAreaId').innerHTML = generateEditContactContentHTML(i);
 }
 
-function generateEditContactContentHTML() {
+function closeEditContactPopup() {
+    slideOutTwoObjects('editContactAreaId', 'backgroundEditContactId');
+}
+
+function generateEditContactContentHTML(i) {
     return /*html*/`
             <div class="leftContainerAddContact relative">
                 <img src="img/joinLogoBright.svg" class="joinLogoAddTask">
@@ -19,48 +24,48 @@ function generateEditContactContentHTML() {
                 <img src="img/blueLine.png" class="bluelineEditContact">
             </div>
             <div class="middleContainerAddContact">
-                <div class="circleAddProfile horizontalAndVertical" id="chooseColorId">
+                <div class="circleAddProfile horizontalAndVertical" id="profileColorId">
                     <img src="img/personWhite.png" class="personAddContactImage">
                     <input type="color" id="editColorPickerId" class="colorPicker pointer">
                 </div>
             </div>
-            <form onsubmit="createContact(); renderContacts(); return false;">
+            <form onsubmit="saveContact(${i}); return false;">
                 <div class="rightContainerAddContact column gap32 justifyCenter">
                     <div class="relative inputArea">
                         <input placeholder="Name" type="text" type="myName" class="input1221 fontSize20 inputField pointer"
-                        id="addNameId">
+                        id="editNameId">
                         <object class="symbol24Input" type="image/svg+xml" data="img/person.svg">
                         </object>
                     </div>
                     <div class="relative inputArea">
                         <input type="email" placeholder="Email" class="input1221 fontSize20 inputField pointer"
-                        id="addEmailId">
+                        id="editEmailId">
                         <object class="symbol24Input" type="image/svg+xml" data="img/email.svg">
                         </object>
                     </div>
                     <div class="relative inputArea">
                         <input type="tel" placeholder="Phone" class="input1221 fontSize20 inputField pointer"
-                        id="addPhoneId">
+                        id="editPhoneId">
                         <object class="symbol24Input" type="image/svg+xml" data="img/phone.svg">
                         </object>
                     </div>
                     <div class="addContactBtn dFlex gap16">
-                        <button class="btn1616 btnWhite alignCenter dFlex  pointer changeCrossImage">
+                        <button class="btn1616 btnWhite alignCenter dFlex  pointer changeCrossImage" onclick="deleteContact(${i})" id="deleteBtnId">
                             <span class="fontSize20 pointer">
-                            Cancel
+                            Delete
                             </span>
                             <img src="img/cross.png" class="symbol24">
                         </button>
                         <button class="btn1616 alignCenter dFlex pointer" type="submit">
                             <span class="fontSize20 fontWhite pointer">
-                            Create Contact
+                            Save
                             </span>
                             <img src="img/hookWhiteSmall.png" class="symbol24">
                         </button>
                     </div>
 
                     <!-- close popup -->
-                    <div class="closePopup" onclick="closeContactPopup()">
+                    <div class="closePopup" onclick="closeEditContactPopup()">
                         <img src="img/cross.png" class="symbol24">
                     </div>
                 </div>

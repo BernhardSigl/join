@@ -96,3 +96,7 @@
 .inputArea input::placeholder {
     color: #D1D1D1 !important;
 }
+
+.changeCrossImage:hover img {
+    content: url('../img/crossBlue.png');
+}

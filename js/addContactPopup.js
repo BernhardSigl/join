@@ -7,7 +7,7 @@ function addContactPopupContent() {
     document.getElementById('addContactAreaId').innerHTML = generateAddContactContentHTML();
 }
 
-function closeContactPopup() {
+function closeAddContactPopup() {
     slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');
 }
 
@@ -31,7 +31,7 @@ function generateAddContactContentHTML() {
                     <input type="color" id="colorPickerId" class="colorPicker pointer">
                 </div>
             </div>
-            <form onsubmit="createContact(); renderContacts(); return false;">
+            <form onsubmit="createContact(); return false;">
                 <div class="rightContainerAddContact column gap32 justifyCenter">
                     <div class="relative inputArea">
                         <input placeholder="Name" type="text" type="myName" class="input1221 fontSize20 inputField pointer"
@@ -52,7 +52,7 @@ function generateAddContactContentHTML() {
                         </object>
                     </div>
                     <div class="addContactBtn dFlex gap16">
-                        <button class="btn1616 btnWhite alignCenter dFlex  pointer changeCrossImage">
+                        <button class="btn1616 btnWhite alignCenter dFlex  pointer changeCrossImage" id="cancelBtn">
                             <span class="fontSize20 pointer">
                             Cancel
                             </span>

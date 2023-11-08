@@ -78,7 +78,8 @@ async function createContact() {
     }
     contactsArray.push(createContact);
     await setItem('contactsArray', JSON.stringify(contactsArray));
-    closeContactPopup();
+    renderContacts();
+    closeAddContactPopup();
 }
 
 // color function
@@ -91,6 +92,8 @@ oninput = function (event) {
 
 function updateSelectedColor(color) {
     document.getElementById("chooseColorId").style.backgroundColor = color;
+    selectedColor = color;
+    document.getElementById("profileColorId").style.backgroundColor = color;
     selectedColor = color;
 }
 
@@ -122,7 +125,7 @@ function generateContactInfoHTML(onClickedContact, i) {
         <div class="column gap8">
             <span class="fontSize47">${onClickedContact.name}</span>
             <div class="dFlex gap16">
-                <a class="dFlex gap8 alignCenter editContactArea pointer" onclick="openEditTaskPopup()">
+                <a class="dFlex gap8 alignCenter editContactArea pointer" onclick="openEditTaskPopup(${i})">
                     <img src="img/pencilDark.png" class="symbol24 pointer">
                     <span class="fontSize16 fontBlue pointer">Edit</span>
                 </a>
@@ -156,10 +159,42 @@ function generateContactInfoHTML(onClickedContact, i) {
     `
 }
 
-function deleteContact(i) {
+function editContact(i) {
+    document.getElementById('editNameId').value = contactsArray[i].name;
+    document.getElementById('editEmailId').value = contactsArray[i].email;
+    document.getElementById('editPhoneId').value = contactsArray[i].phone;
+    document.getElementById('profileColorId').style.background = contactsArray[i].color;
+}
+
+async function saveContact(i) {
+    let editedName = document.getElementById('editNameId').value;
+    let editedEmail = document.getElementById('editEmailId').value;
+    let editedPhone = document.getElementById('editPhoneId').value;
+    let editedColor = document.getElementById('profileColorId').style.background;
+
+    let editedContact = {
+        "name": editedName,
+        "nameShort": nameShort(editedName),
+        "email": editedEmail,
+        "phone": editedPhone,
+        "color": editedColor,
+    }
+
+    contactsArray[i] = editedContact;
+
+    await setItem('contactsArray', JSON.stringify(contactsArray));
+    renderContacts();
+    closeEditContactPopup();
+}
+
+async function deleteContact(i) {
+    document.getElementById('cancelBtn').disabled = true;
+    document.getElementById('deleteBtnId').disabled = true;
     toggleVisibility('contactInfoId', false);
     contactsArray.splice(i, 1);
+    await setItem('contactsArray', JSON.stringify(contactsArray));
     renderContacts();
+    closeEditContactPopup()
 }
 
 function markContact(i) {
