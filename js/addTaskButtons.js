@@ -39,7 +39,7 @@ function mediumBtn() {
     let mediumBtn = document.getElementById('addMediumId');
     let mediumImg = document.getElementById('mediumImgId');
     let mediumText = document.getElementById('mediumTextId');
-    if (mediumImg.src.includes('img/mediumOrange.png')) {
+    if (mediumStatus === false) {
         mediumBtnPressed(mediumImg, mediumBtn, mediumText);
     } else {
         mediumBtnUnpressed(mediumImg, mediumBtn, mediumText);
@@ -69,7 +69,7 @@ function lowBtn() {
     let lowBtn = document.getElementById('addLowId');
     let lowImg = document.getElementById('lowImgId');
     let lowText = document.getElementById('lowTextId');
-    if (lowImg.src.includes('img/lowGreen.png')) {
+    if (lowStatus === false) {
         lowBtnPressed(lowImg, lowBtn, lowText);
     } else {
         lowBtnUnpressed(lowImg, lowBtn, lowText);
