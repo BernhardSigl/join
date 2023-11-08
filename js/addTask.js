@@ -1,3 +1,4 @@
+let taskArray = [];
 let datePickerExecuted;
 
 function initAddTask() {
@@ -39,6 +40,21 @@ function removePikaday() {
     });
 }
 
-function addTaskContent() {
-    document.getElementById('addTaskContentId').innerHTML = generateAddTaskContentHTML();
+function createTask() {
+    let addTaskTitle = document.getElementById('addTaskTitleId').value;
+    let addTaskDescription = document.getElementById('addTaskDescriptionId').value;
+    let addTaskDate = document.getElementById('datepickerId').value;
+    let addUrgent = document.getElementById('addUrgentId').innerHTML;
+    let addMedium = document.getElementById('addMediumId').innerHTML;
+    let addLow = document.getElementById('addLowId').innerHTML;
+    let addTask = {
+        "title": addTaskTitle,
+        "description": addTaskDescription,
+        "date": addTaskDate,
+        // "urgent": addUrgent,
+        // "medium": addMedium,
+        // "low": addLow,
+    }
+    taskArray.push(addTask);
 }
+

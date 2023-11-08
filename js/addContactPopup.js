@@ -67,7 +67,7 @@ function generateAddContactContentHTML() {
                     </div>
 
                     <!-- close popup -->
-                    <div class="closePopup" onclick="closeContactPopup()">
+                    <div class="closePopup" onclick="closeAddContactPopup()">
                         <img src="img/cross.png" class="symbol24">
                     </div>
                 </div>

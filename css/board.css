@@ -4,6 +4,10 @@
     height: auto;
 }
 
+.titleAddTask {
+    width: auto;
+}
+
 .input816 {
     width: 312px;
 }
@@ -74,5 +78,5 @@
 
 /* popup */
 .footer {
-    left: 96px !important;
+    left: 74px !important;
 }

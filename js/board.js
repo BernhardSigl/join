@@ -1,4 +1,4 @@
-let taskArray = [
+let taskArrayTest = [
     {
         'id': 0,
         'category': 'toDo',
@@ -48,7 +48,7 @@ function updateTasks() {
 }
 
 function toDoFilter() {
-    let toDoFilter = taskArray.filter(t => t['category'] == 'toDo');
+    let toDoFilter = taskArrayTest.filter(t => t['category'] == 'toDo');
     document.getElementById('toDoId').innerHTML = '';
     for (let i = 0; i < toDoFilter.length; i++) {
         const toDoFiltered = toDoFilter[i];
@@ -67,7 +67,7 @@ function noToDo(toDoFilter) {
 }
 
 function inProgressFilter() {
-    let inProgressFilter = taskArray.filter(t => t['category'] == 'inProgress');
+    let inProgressFilter = taskArrayTest.filter(t => t['category'] == 'inProgress');
     document.getElementById('inProgressId').innerHTML = '';
     for (let i = 0; i < inProgressFilter.length; i++) {
         const inProgressFiltered = inProgressFilter[i];
@@ -86,7 +86,7 @@ function noInProgress(inProgressFilter) {
 }
 
 function awaitFeedbackFilter() {
-    let awaitFeedbackFilter = taskArray.filter(t => t['category'] == 'awaitFeedback');
+    let awaitFeedbackFilter = taskArrayTest.filter(t => t['category'] == 'awaitFeedback');
     document.getElementById('awaitFeedbackId').innerHTML = '';
     for (let i = 0; i < awaitFeedbackFilter.length; i++) {
         const awaitFeedbackFiltered = awaitFeedbackFilter[i];
@@ -105,7 +105,7 @@ function noAwaitFeedback(awaitFeedbackFilter) {
 }
 
 function doneFilter() {
-    let doneFilter = taskArray.filter(t => t['category'] == 'done');
+    let doneFilter = taskArrayTest.filter(t => t['category'] == 'done');
     document.getElementById('doneId').innerHTML = '';
     for (let i = 0; i < doneFilter.length; i++) {
         const doneFilterFiltered = doneFilter[i];
@@ -144,7 +144,7 @@ function allowDrop(ev) {
 }
 
 function moveTo(category) {
-    taskArray[currentDraggedTask]['category'] = category;
+    taskArrayTest[currentDraggedTask]['category'] = category;
     removeHighlight();
     updateTasks();
 }

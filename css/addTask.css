@@ -86,6 +86,14 @@ textarea:focus {
     content: url('../img/crossBlue.png');
 }
 
+#urgentTextId {
+    width: 67.5px;
+}
+
+#mediumTextId {}
+
+#lowTextId {}
+
 /* popup */
 .addTaskArea {
     padding: 64px 74px 280px 74px;

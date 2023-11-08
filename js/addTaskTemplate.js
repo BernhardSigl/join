@@ -1,32 +1,36 @@
+function addTaskContent() {
+    document.getElementById('addTaskContentId').innerHTML = generateAddTaskContentHTML();
+}
+
 function addTaskTemplate() {
     document.getElementById('addTaskTemplateId').innerHTML = generateAddTaskHTML();
 }
 
 function generateAddTaskHTML() {
     return /*html*/`
-    <section class="alignCenter gap30 title">
-            <span class="fontSize61 bold">
-                Add task
-            </span>
-        </section>
-
+    <section class="alignCenter gap30 title titleAddTask">
+        <span class="fontSize61 bold">
+        Add task
+        </span>
+    </section>
+    <form onsubmit="createTask(); return false;">
         <div class="dFlex gap48">
             <div class="leftContainer column gap32">
                 <!-- title -->
                 <section class="column gap8">
                     <span class="fontSize20">
-                        Title
-                        <span class="red">*</span>
+                    Title
+                    <span class="red">*</span>
                     </span>
-                    <input type="text" class="input1216 inputField pointer fontSize20" placeholder="Enter a title">
+                    <input type="text" class="input1216 inputField pointer fontSize20" placeholder="Enter a title" id="addTaskTitleId">
                 </section>
                 <!-- description -->
                 <section class="column gap8">
                     <span class="fontSize20">
-                        Description
+                    Description
                     </span>
                     <textarea type="text" class="input1216 inputField inputDescription pointer fontSize20"
-                        placeholder="Enter a description"></textarea>
+                    placeholder="Enter a description" id="addTaskDescriptionId"></textarea>
                 </section>
                 <!-- assigned to -->
                 <section class="column gap8">
@@ -52,12 +56,12 @@ function generateAddTaskHTML() {
                 <!-- due date -->
                 <section class="column gap8">
                     <span class="fontSize20">
-                        Due date
+                    Due date
                         <span class="red">*</span>
                     </span>
                     <div class="relative" onclick="datePicker()">
                         <input type="text" class="input1216 inputField pointer fontSize20" placeholder="dd/mm/yyyy"
-                            id="datepickerId">
+                        id="datepickerId">
                         <img src="img/event.png" class="symbol24InputHover pointer">
                     </div>
                 </section>
@@ -65,37 +69,34 @@ function generateAddTaskHTML() {
                 <section class="column gap8">
                     <span class="fontSize20 alignCenter">
                         <span>
-                            Prio
+                        Prio
                         </span>
                     </span>
                     <div class="dFlex gap16">
-                        <button class="prioBtn horizontalAndVertical">
-                            <span class="fontSize20 pointer">
-                                Urgent
+                        <button class="prioBtn horizontalAndVertical" id="addUrgentId" onclick="urgentBtn()">
+                            <span class="fontSize20 pointer" id="urgentTextId">
+                            Urgent
                             </span>
-                            <object class="symbol20" type="image/svg+xml" data="img/urgentPrio.svg">
-                            </object>
+                            <img class="symbol20" src="img/urgentRed.png" id="urgentImgId">
                         </button>
-                        <button class="prioBtn horizontalAndVertical">
-                            <span class="fontSize20 pointer">
+                        <button class="prioBtn horizontalAndVertical" id="addMediumId" onclick="mediumBtn()">
+                            <span class="fontSize20 pointer" id="mediumTextId">
                                 Medium
                             </span>
-                            <object class="symbol20" type="image/svg+xml" data="img/mediumPrio.svg">
-                            </object>
+                            <img class="symbol20" src="img/mediumOrange.png" id="mediumImgId">
                         </button>
-                        <button class="prioBtn horizontalAndVertical">
-                            <span class="fontSize20 pointer">
+                        <button class="prioBtn horizontalAndVertical" id="addLowId" onclick="lowBtn()">
+                            <span class="fontSize20 pointer" id="lowTextId">
                                 Low
                             </span>
-                            <object class="symbol20" type="image/svg+xml" data="img/lowPrio.svg">
-                            </object>
+                            <img class="symbol20" src="img/lowGreen.png" id="lowImgId">
                         </button>
                     </div>
                 </section>
                 <!-- category -->
                 <section class="column gap8">
                     <span class="fontSize20">
-                        Category
+                    Category
                         <span class="red">*</span>
                     </span>
                     <div class="relative dropdown">
@@ -111,7 +112,7 @@ function generateAddTaskHTML() {
                 <!-- subtasks -->
                 <section class="column gap8">
                     <span class="fontSize20">
-                        Subtasks
+                    Subtasks
                     </span>
                     <div class="relative">
                         <input class="input1216 inputField fontSize20 pointer" placeholder="Select task category">
@@ -123,26 +124,27 @@ function generateAddTaskHTML() {
             <div class="footer spaceBetween">
                 <div class="leftFooter">
                     <span class="fontSize20">
-                        <span class="red">*</span>
+                        <span class="redFooter">*</span>
                         This field is required
                     </span>
                 </div>
                 <div class="rightFooter dFlex gap16">
                     <button class="btn1616 btnWhite alignCenter dFlex  pointer changeCrossImage">
                         <span class="fontSize20 pointer">
-                            Clear
+                        Clear
                         </span>
                         <img src="img/cross.png" class="symbol24">
                     </button>
-                    <button class="btn1616 alignCenter dFlex pointer">
+                    <button class="btn1616 alignCenter dFlex pointer" type="submit">
                         <span class="fontSize20 fontWhite pointer">
-                            Create Task
+                        Create Task
                         </span>
                         <img src="img/hookWhiteSmall.png" class="symbol24">
                     </button>
                 </div>
             </div>
         </div>
-    </section>
+    </form>
+
     <img src="img/cross.png" class="closePopup dNone" id="closePopupId" onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId')">`
 }
