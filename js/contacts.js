@@ -75,7 +75,7 @@ async function createContact() {
         "email": emailInput,
         "phone": phoneInput,
         "color": selectedColor,
-    }
+    };
     contactsArray.push(createContact);
     await setItem('contactsArray', JSON.stringify(contactsArray));
     renderContacts();
@@ -171,19 +171,17 @@ async function saveContact(i) {
     let editedEmail = document.getElementById('editEmailId').value;
     let editedPhone = document.getElementById('editPhoneId').value;
     let editedColor = document.getElementById('profileColorId').style.background;
-
     let editedContact = {
         "name": editedName,
         "nameShort": nameShort(editedName),
         "email": editedEmail,
         "phone": editedPhone,
         "color": editedColor,
-    }
-
+    };
     contactsArray[i] = editedContact;
-
-    await setItem('contactsArray', JSON.stringify(contactsArray));
+    toggleVisibility('contactInfoId', false);
     renderContacts();
+    await setItem('contactsArray', JSON.stringify(contactsArray));
     closeEditContactPopup();
 }
 

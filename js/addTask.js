@@ -13,6 +13,11 @@ function enableCalender() {
     datePicker();
 }
 
+async function deleteAllTasks() {
+    taskArray = [];
+    await setItem('contactsArray', JSON.stringify(taskArray));
+}
+
 function datePicker() {
     if (!datePickerExecuted) {
         let dateInput = document.getElementById('datepickerId');
