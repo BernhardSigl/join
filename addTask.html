@@ -11,11 +11,15 @@
     <script src="js/navPanelsTemplate.js"></script>
     <script src="js/templates.js"></script>
     <script src="js/storage.js"></script>
-    <!-- specific included -->
+    <!-- specific included "add task" -->
     <link rel="stylesheet" href="css/addTask.css">
     <script src="js/addTask.js"></script>
     <script src="js/addTaskTemplate.js"></script>
     <script src="js/addTaskButtons.js"></script>
+    <!-- specific included "contacts" -->
+    <script src="js/contacts.js"></script>
+    <script src="js/addContactPopup.js"></script>
+    <link rel="stylesheet" href="css/addContactPopup.css">
     <!-- calender -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
@@ -27,6 +31,12 @@
     </main>
     <div class="content" id="addTaskTemplateId">
     </div>
+
+    <popup class="background dNone" id="backgroundAddContactId"
+        onclick="slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId')">
+        <div class="dFlex addContactArea" id="addContactAreaId" onclick="doNotClose(event)">
+        </div>
+    </popup>
 </body>
 
 </html>

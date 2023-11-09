@@ -102,6 +102,14 @@ button:hover {
     padding: 8px 16px;
 }
 
+.btn1212 {
+    padding: 12px;
+    margin: 0;
+    gap: 16px;
+    width: 352px;
+    height: auto;
+}
+
 .btn1616 {
     padding: 16px;
 }
@@ -258,8 +266,10 @@ button:hover {
 }
 
 /* input */
+textarea,
 input {
     font-family: 'Inter' !important;
+    cursor: text !important;
 }
 
 .input816,

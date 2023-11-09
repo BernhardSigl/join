@@ -29,7 +29,15 @@ async function loadContacts() {
     try {
         contactsArray = JSON.parse(await getItem('contactsArray'));
     } catch {
-        console.warn('Token invalid becauce no user has been created yet');
+        console.warn('Token invalid becauce no contact has been created yet');
+    }
+}
+
+async function loadTask() {
+    try {
+        taskArray = JSON.parse(await getItem('taskArray'));
+    } catch {
+        console.warn('Token invalid becauce no tasks has been created yet');
     }
 }
 

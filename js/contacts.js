@@ -4,7 +4,7 @@ let selectedColor = '#D1D1D1';
 let nameShortReturn;
 let lastFirstLetter = null;
 
-async function deleteArray() {
+async function deleteContactsArray() {
     contactsArray = [];
     await setItem('contactsArray', JSON.stringify(contactsArray));
 }
@@ -18,13 +18,15 @@ async function initContacts() {
 }
 
 function renderContacts() {
-    let contactsInScrollbar = document.getElementById('contactsInScrollbarId');
-    contactsInScrollbar.innerHTML = '';
-    for (let i = 0; i < contactsArray.length; i++) {
-        let contact = contactsArray[i];
-        sortContacts(contactsArray);
-        categoryContacts(contact, contactsInScrollbar);
-        contactsInScrollbar.innerHTML += generateContactsInScrollbarHTML(contact, i);
+    if (window.location.pathname.endsWith('contacts.html')) {
+        let contactsInScrollbar = document.getElementById('contactsInScrollbarId');
+        contactsInScrollbar.innerHTML = '';
+        for (let i = 0; i < contactsArray.length; i++) {
+            let contact = contactsArray[i];
+            sortContacts(contactsArray);
+            categoryContacts(contact, contactsInScrollbar);
+            contactsInScrollbar.innerHTML += generateContactsInScrollbarHTML(contact, i);
+        }
     }
 }
 
@@ -77,9 +79,9 @@ async function createContact() {
         "color": selectedColor,
     };
     contactsArray.push(createContact);
-    await setItem('contactsArray', JSON.stringify(contactsArray));
-    renderContacts();
     closeAddContactPopup();
+    renderContacts();
+    await setItem('contactsArray', JSON.stringify(contactsArray));
 }
 
 // color function
@@ -93,8 +95,10 @@ oninput = function (event) {
 function updateSelectedColor(color) {
     document.getElementById("chooseColorId").style.backgroundColor = color;
     selectedColor = color;
-    document.getElementById("profileColorId").style.backgroundColor = color;
-    selectedColor = color;
+    if (window.location.pathname.endsWith('contacts.html')) {
+        document.getElementById("profileColorId").style.backgroundColor = color;
+        selectedColor = color;
+    }
 }
 
 // name short function
@@ -180,9 +184,10 @@ async function saveContact(i) {
     };
     contactsArray[i] = editedContact;
     toggleVisibility('contactInfoId', false);
+    closeEditContactPopup();
+    renderContacts();
     renderContacts();
     await setItem('contactsArray', JSON.stringify(contactsArray));
-    closeEditContactPopup();
 }
 
 async function deleteContact(i) {
@@ -190,9 +195,9 @@ async function deleteContact(i) {
     document.getElementById('deleteBtnId').disabled = true;
     toggleVisibility('contactInfoId', false);
     contactsArray.splice(i, 1);
-    await setItem('contactsArray', JSON.stringify(contactsArray));
+    closeEditContactPopup();
     renderContacts();
-    closeEditContactPopup()
+    await setItem('contactsArray', JSON.stringify(contactsArray));
 }
 
 function markContact(i) {

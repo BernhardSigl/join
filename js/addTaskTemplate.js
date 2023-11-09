@@ -22,14 +22,14 @@ function generateAddTaskHTML() {
                     Title
                     <span class="red">*</span>
                     </span>
-                    <input type="text" class="input1216 inputField pointer fontSize20" placeholder="Enter a title" id="addTaskTitleId">
+                    <input type="text" class="input1216 inputField fontSize20" placeholder="Enter a title" id="addTaskTitleId">
                 </section>
                 <!-- description -->
                 <section class="column gap8">
                     <span class="fontSize20">
                     Description
                     </span>
-                    <textarea type="text" class="input1216 inputField inputDescription pointer fontSize20"
+                    <textarea type="text" class="input1216 inputField inputDescription fontSize20"
                     placeholder="Enter a description" id="addTaskDescriptionId"></textarea>
                 </section>
                 <!-- assigned to -->
@@ -37,14 +37,23 @@ function generateAddTaskHTML() {
                     <span class="fontSize20">
                         Assigned to
                     </span>
-                    <div class="relative dropdown">
-                        <input class="input1216 inputField fontSize20 pointer" placeholder="Select contacts to assign">
-                        <img src="img/drowndown.png" class="symbol24InputHover pointer">
-                        <div class="dropdownContent" id="assignToId">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                    <div class="relative">
+                        <input class="input1216 inputField fontSize20" placeholder="Select contacts to assign" onclick="contactsDropdown()">
+                        <img src="img/drowndown.png" class="symbol24InputHover pointer" id="contactsDropdownImgId" onclick="toggleContactsDrowdown()">
+                        <div class="column dropdownContacts dNone" id="contactsDropdownContentId">
+                            <div class="column scrollAddTaskArea" id="assignToId">
+                            </div>
+                            <div class="addContactBtnArea justifyCenter">
+                                <button class="btn1212 horizontalAndVertical gap16 pointer" onclick="openAddContactPopup()">
+                                    <span class="fontSize21 bold fontWhite pointer">
+                                    Add new contact
+                                    </span>
+                                    <div class="symbol32 addContactImg"></div>
+                                </button>
+                            </div>
                         </div>
+                    </div>
+                    <div id="assignedContactsId" class="dFlex gap16">
                     </div>
                 </section>
             </div>
@@ -60,7 +69,7 @@ function generateAddTaskHTML() {
                         <span class="red">*</span>
                     </span>
                     <div class="relative" onclick="datePicker()">
-                        <input type="text" class="input1216 inputField pointer fontSize20" placeholder="dd/mm/yyyy"
+                        <input type="text" class="input1216 inputField fontSize20" placeholder="dd/mm/yyyy"
                         id="datepickerId">
                         <img src="img/event.png" class="symbol24InputHover pointer">
                     </div>
@@ -73,19 +82,19 @@ function generateAddTaskHTML() {
                         </span>
                     </span>
                     <div class="dFlex gap16">
-                        <button class="prioBtn horizontalAndVertical" id="addUrgentId" onclick="urgentBtn()">
+                        <button type="button" class="prioBtn horizontalAndVertical" id="addUrgentId" onclick="urgentBtn()">
                             <span class="fontSize20 pointer" id="urgentTextId">
                             Urgent
                             </span>
                             <img class="symbol20" src="img/urgentRed.png" id="urgentImgId">
                         </button>
-                        <button class="prioBtn horizontalAndVertical" id="addMediumId" onclick="mediumBtn()">
+                        <button type="button" class="prioBtn horizontalAndVertical" id="addMediumId" onclick="mediumBtn()">
                             <span class="fontSize20 pointer" id="mediumTextId">
                                 Medium
                             </span>
                             <img class="symbol20" src="img/mediumOrange.png" id="mediumImgId">
                         </button>
-                        <button class="prioBtn horizontalAndVertical" id="addLowId" onclick="lowBtn()">
+                        <button type="button" class="prioBtn horizontalAndVertical" id="addLowId" onclick="lowBtn()">
                             <span class="fontSize20 pointer" id="lowTextId">
                                 Low
                             </span>

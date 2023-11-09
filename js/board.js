@@ -34,10 +34,11 @@ let taskArrayTest = [
 
 let currentDraggedTask;
 
-function initBoard() {
+async function initBoard() {
     navPanelsTemplate();
     addTaskTemplate();
     updateTasks();
+    await loadContacts();
 }
 
 function updateTasks() {
@@ -174,6 +175,7 @@ function openTaskPopup() {
     addTaskTemplate();
     slideTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId'); toggleVisibility('closePopupId', true);
     enableCalender();
+    listContacts();
 }
 
 // function addTaskPopup() {

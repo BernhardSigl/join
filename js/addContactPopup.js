@@ -1,4 +1,4 @@
-function openAddTaskPopup() {
+function openAddContactPopup() {
     addContactPopupContent();
     slideTwoObjects('addContactAreaId', 'backgroundAddContactId');
 }
