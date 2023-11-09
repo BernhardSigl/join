@@ -41,7 +41,7 @@ function generateAddTaskHTML() {
                         <input class="input1216 inputField fontSize20" placeholder="Select contacts to assign" onclick="contactsDropdown()">
                         <img src="img/drowndown.png" class="symbol24InputHover pointer" id="contactsDropdownImgId" onclick="toggleContactsDrowdown()">
                         <div class="column dropdownContacts dNone" id="contactsDropdownContentId">
-                            <div class="column scrollAddTaskArea" id="assignToId">
+                            <div class="column scrollAddTaskArea gap2" id="assignToId">
                             </div>
                             <div class="addContactBtnArea justifyCenter">
                                 <button class="btn1212 horizontalAndVertical gap16 pointer" onclick="openAddContactPopup()">

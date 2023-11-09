@@ -77,7 +77,7 @@ function listContacts() {
 
 function generateListContactsHTML(contact, i) {
     return /*html*/ `
-    <div class="listContacts dFlex alignCenter spaceBetween pointer" onclick="toggleCheckContact('checkContactImgId${i}', ${i})">
+    <div class="listContacts dFlex alignCenter spaceBetween pointer" onclick="toggleCheckContact('checkContactImgId${i}', ${i})" id="assignedContactId${i}">
         <div class="dFlex alignCenter gap16">
             <div class="nameShortSmall horizontalAndVertical pointer" style="background-color: ${contact.color};">
                 <span class="fontWhite fontSize12 pointer mb2">
@@ -119,11 +119,10 @@ function toggleCheckContact(id, i) {
     contact = contactsArray[i];
     let img = document.getElementById(id);
     if (img.style.backgroundImage.includes("uncheck.png")) {
-        img.style.backgroundImage = "url('../img/check.png')";
+        markAssignedContact(i, img);
         contactsInTaskArray.push(contact);
     } else {
-        img.style.backgroundImage = "url('../img/uncheck.png')";
-        contactsInTaskArray = contactsInTaskArray.filter((c) => c !== contact);
+        unmarkAssignedContact(contact, img, i);
     }
 }
 
@@ -145,3 +144,22 @@ function generateContactsBelowAssignedTo(contactBelowAssignedTo) {
         </div>
     `
 }
+
+function markAssignedContact(i, img) {
+    let allAssignedContactContainers = document.getElementById(`assignedContactId${i}`);
+    allAssignedContactContainers.style.backgroundColor = "#2A3647";
+    allAssignedContactContainers.style.color = "white";
+    allAssignedContactContainers.classList.add('darkHoverListContacts');
+    img.style.backgroundImage = "url('../img/checkWhite.png')";
+}
+
+function unmarkAssignedContact(contact, img, i) {
+    let allAssignedContactContainers = document.getElementById(`assignedContactId${i}`);
+    img.style.backgroundImage = "url('../img/uncheck.png')";
+    allAssignedContactContainers.style.backgroundColor = "white";
+    allAssignedContactContainers.style.color = "black";
+    allAssignedContactContainers.classList.remove('darkHoverListContacts');
+
+    contactsInTaskArray = contactsInTaskArray.filter((c) => c !== contact);
+}
+// listContacts

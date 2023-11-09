@@ -265,6 +265,10 @@ button:hover {
     gap: 4px;
 }
 
+.gap2 {
+    gap: 2px;
+}
+
 /* input */
 textarea,
 input {

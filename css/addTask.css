@@ -64,7 +64,11 @@ textarea:focus {
 }
 
 .listContacts:hover {
-    background-color: #EEEEEE;
+    background-color: #EEEEEE !important;
+}
+
+.darkHoverListContacts:hover {
+    background-color: #071427 !important;
 }
 
 .nameShortSmall {
