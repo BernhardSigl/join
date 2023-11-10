@@ -21,6 +21,13 @@
     height: 48px;
 }
 
+.greylineInput {
+    right: 63px !important;
+    padding-left: 16px;
+    background-color: white;
+    top: calc(50% - 32px / 2) !important;
+}
+
 /* category */
 .categoryTitle {
     width: 244px;

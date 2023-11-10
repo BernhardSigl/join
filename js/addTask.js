@@ -1,5 +1,6 @@
 let taskArray = [];
 let contactsInTaskArray = [];
+let categoriesInTaskArray = [];
 let datePickerExecuted;
 
 async function initAddTask() {
@@ -7,8 +8,14 @@ async function initAddTask() {
     addTaskTemplate();
     enableCalender();
     await loadContacts();
-    listContacts();
+    renderAddTask();
     // await loadTask();
+}
+
+function renderAddTask() {
+    listContacts();
+    checkCategoryEmptyStatus();
+    updateCategoryList();
 }
 
 function enableCalender() {
@@ -69,6 +76,8 @@ function createTask() {
 
 function listContacts() {
     let listContacts = document.getElementById('assignToId');
+    contactsArray.sort((a, b) => a.name.localeCompare(b.name));
+    listContacts.innerHTML = '';
     for (let i = 0; i < contactsArray.length; i++) {
         let contact = contactsArray[i];
         listContacts.innerHTML += generateListContactsHTML(contact, i);
@@ -84,7 +93,7 @@ function generateListContactsHTML(contact, i) {
                 ${contact.nameShort}
                 </span>
             </div>
-            <span class="fontSize20 pointer pointer">
+            <span class="fontSize20 pointer">
             ${contact.name}
             </span>
         </div>
@@ -94,7 +103,21 @@ function generateListContactsHTML(contact, i) {
     `
 }
 
+function filterContacts() {
+    let searchInput = document.getElementById('searchContactId');
+    let contactList = document.getElementById('assignToId');
+    let searchText = searchInput.value.toLowerCase();
+    let filteredContacts = contactsArray.filter(contact => contact.name.toLowerCase().includes(searchText));
+    contactList.innerHTML = '';
+    for (let i = 0; i < filteredContacts.length; i++) {
+        let contact = filteredContacts[i];
+        contactList.innerHTML += generateListContactsHTML(contact, i);
+    }
+}
+
+// contacts
 function contactsDropdown() {
+    document.getElementById('searchContactId').placeholder = "Type to search";
     let dropdownContent = document.getElementById('contactsDropdownContentId');
     let dropdownImg = document.getElementById('contactsDropdownImgId');
     if (dropdownContent.classList.contains('dNone')) {
@@ -104,6 +127,7 @@ function contactsDropdown() {
 }
 
 function toggleContactsDrowdown() {
+    document.getElementById('searchContactId').placeholder = "Select contacts to assign2";
     let dropdownContent = document.getElementById('contactsDropdownContentId');
     let dropdownImg = document.getElementById('contactsDropdownImgId');
     if (!dropdownContent.classList.contains('dNone')) {
@@ -128,6 +152,7 @@ function toggleCheckContact(id, i) {
 
 function assignedContacts() {
     let assignedContacts = document.getElementById('assignedContactsId');
+    contactsInTaskArray.sort((a, b) => a.name.localeCompare(b.name));
     assignedContacts.innerHTML = '';
     for (let i = 0; i < contactsInTaskArray.length; i++) {
         let contactBelowAssignedTo = contactsInTaskArray[i];
@@ -137,8 +162,8 @@ function assignedContacts() {
 
 function generateContactsBelowAssignedTo(contactBelowAssignedTo) {
     return /*html*/ `
-        <div class="nameShortSmall horizontalAndVertical pointer" style="background-color: ${contactBelowAssignedTo.color};">
-            <span class="fontWhite fontSize12 pointer mb2">
+        <div class="nameShortSmall horizontalAndVertical" style="background-color: ${contactBelowAssignedTo.color};">
+            <span class="fontWhite fontSize12 mb2">
             ${contactBelowAssignedTo.nameShort}
             </span>
         </div>
@@ -159,7 +184,109 @@ function unmarkAssignedContact(contact, img, i) {
     allAssignedContactContainers.style.backgroundColor = "white";
     allAssignedContactContainers.style.color = "black";
     allAssignedContactContainers.classList.remove('darkHoverListContacts');
-
     contactsInTaskArray = contactsInTaskArray.filter((c) => c !== contact);
 }
-// listContacts
+
+// category
+function categoryDropdown() {
+    let dropdownCategory = document.getElementById('categoryDropdownContentId');
+    let dropdownImg = document.getElementById('categoryDropdownImgId');
+    if (dropdownCategory.classList.contains('dNone') && categoriesInTaskArray.length != 0) {
+        dropdownImg.src = '../img/plus.png';
+        toggleVisibility('categoryDropdownContentId', true);
+        toggleVisibility('categoryCloseId', true);
+        toggleVisibility('categoryGreylineId', true);
+        changeFunction();
+    }
+}
+
+function categoryDropup() {
+    let dropupImg = document.getElementById('categoryDropdownImgId');
+    toggleVisibility('categoryDropdownContentId', false);
+    toggleVisibility('categoryCloseId', false);
+    toggleVisibility('categoryGreylineId', false);
+    dropupImg.src = 'img/drowndown.png';
+    originalFunction();
+}
+
+function changeFunction() {
+    let dropdownBtn = document.getElementById('categoryDropdownImgId');
+    dropdownBtn.onclick = function () {
+        listCategories();
+    };
+}
+
+function originalFunction() {
+    let addCategoryBtn = document.getElementById('categoryDropdownImgId');
+    addCategoryBtn.onclick = function () {
+        categoryDropdown();
+    };
+}
+
+function listCategories() {
+    let categoryInput = document.getElementById('addCategoryId');
+    let categoryList = document.getElementById('categoryListId');
+    categoriesInTaskArray.push(categoryInput.value);
+    categoriesInTaskArray.sort();
+    checkCategoryEmptyStatus();
+    categoryDropdown();
+    categoryList.innerHTML = '';
+    for (let i = 0; i < categoriesInTaskArray.length; i++) {
+        let category = categoriesInTaskArray[i];
+        categoryList.innerHTML += generateCategoryListHTML(category, i);
+    }
+}
+
+function generateCategoryListHTML(category, i) {
+    return /*html*/ `
+    <div class="listCategories dFlex alignCenter spaceBetween pointer" onclick="addCategory(${i})">
+        <div class="dFlex alignCenter gap16">
+        ${category}
+        </div>
+        <div class="alignCenter gap8">
+            <div class="symbol24 pointer editCategory" style="background-image: url('../img/pencilDark.png');" onclick="editCategory(${i})">
+            </div>
+            <div class="symbol24 pointer deleteCategory" style="background-image: url('../img/garbageDark.png');" onclick="deleteCategory(${i}), doNotClose(event)">
+            </div>
+        </div>
+    </div>
+    `
+}
+
+function checkCategoryEmptyStatus() {
+    let dropdownImg = document.getElementById('categoryDropdownImgId');
+    if (categoriesInTaskArray.length == 0) {
+        dropdownImg.src = '../img/plus.png';
+        changeFunction();
+        console.log(`empty0`);
+        toggleVisibility('categoryCloseId', false);
+        toggleVisibility('categoryGreylineId', false);
+    } else if (categoriesInTaskArray.length != 0) {
+        console.log(`empty`);
+        toggleVisibility('categoryCloseId', true);
+        toggleVisibility('categoryGreylineId', true);
+    }
+}
+
+function addCategory(i) {
+    let category = categoriesInTaskArray[i];
+    let categoryInput = document.getElementById('addCategoryId');
+    categoryInput.value = category;
+    categoryDropup();
+}
+
+function deleteCategory(i) {
+    // let categoryInput = document.getElementById('addCategoryId');
+    categoriesInTaskArray.splice(i, 1);
+    renderAddTask();
+}
+
+function updateCategoryList() {
+    let categoryList = document.getElementById('categoryListId');
+    categoryList.innerHTML = '';
+
+    for (let i = 0; i < categoriesInTaskArray.length; i++) {
+        let category = categoriesInTaskArray[i];
+        categoryList.innerHTML += generateCategoryListHTML(category, i);
+    }
+}

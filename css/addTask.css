@@ -54,21 +54,39 @@ textarea:focus {
 
 .scrollAddTaskArea {
     overflow-y: auto;
-    height: 224px;
+    height: auto;
+    max-height: 224px;
 }
 
+.scrollLimitCategories {
+    max-height: 240px;
+}
+
+.listCategories,
 .listContacts {
-    padding: 7px 16px;
     font-size: 20px;
     border-radius: 10px;
 }
 
+.listContacts {
+    padding: 7px 16px;
+}
+
+.listCategories {
+    padding: 12px 16px;
+}
+
+.listCategories:hover,
 .listContacts:hover {
     background-color: #EEEEEE !important;
 }
 
 .darkHoverListContacts:hover {
     background-color: #071427 !important;
+}
+
+.mb2 {
+    margin-bottom: -2px;
 }
 
 .nameShortSmall {
@@ -119,6 +137,22 @@ textarea:focus {
 
 #lowTextId {
     width: 40.5px;
+}
+
+/* category */
+.greylineInput {
+    right: 49px !important;
+    background-color: white;
+    top: calc(50% - 32px / 2) !important;
+}
+
+.crossImg {
+    right: 50px !important;
+}
+
+.deleteCategory:hover,
+.editCategory:hover {
+    transform: scale(1.1);
 }
 
 /* popup */

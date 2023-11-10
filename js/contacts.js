@@ -81,6 +81,7 @@ async function createContact() {
     contactsArray.push(createContact);
     closeAddContactPopup();
     renderContacts();
+    listContacts();
     await setItem('contactsArray', JSON.stringify(contactsArray));
 }
 

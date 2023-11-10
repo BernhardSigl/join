@@ -38,10 +38,10 @@ function generateAddTaskHTML() {
                         Assigned to
                     </span>
                     <div class="relative">
-                        <input class="input1216 inputField fontSize20" placeholder="Select contacts to assign" onclick="contactsDropdown()">
+                        <input class="input1216withImg inputField fontSize20" placeholder="Select contacts to assign" onclick="contactsDropdown()" oninput="filterContacts()" id="searchContactId">
                         <img src="img/drowndown.png" class="symbol24InputHover pointer" id="contactsDropdownImgId" onclick="toggleContactsDrowdown()">
                         <div class="column dropdownContacts dNone" id="contactsDropdownContentId">
-                            <div class="column scrollAddTaskArea gap2" id="assignToId">
+                            <div class="column scrollAddTaskArea" id="assignToId">
                             </div>
                             <div class="addContactBtnArea justifyCenter">
                                 <button class="btn1212 horizontalAndVertical gap16 pointer" onclick="openAddContactPopup()">
@@ -69,7 +69,7 @@ function generateAddTaskHTML() {
                         <span class="red">*</span>
                     </span>
                     <div class="relative" onclick="datePicker()">
-                        <input type="text" class="input1216 inputField fontSize20" placeholder="dd/mm/yyyy"
+                        <input type="text" class="input1216withImg inputField fontSize20" placeholder="dd/mm/yyyy"
                         id="datepickerId">
                         <img src="img/event.png" class="symbol24InputHover pointer">
                     </div>
@@ -108,13 +108,15 @@ function generateAddTaskHTML() {
                     Category
                         <span class="red">*</span>
                     </span>
-                    <div class="relative dropdown">
-                        <input class="input1216 inputField fontSize20 pointer" placeholder="Select task category">
-                        <img src="img/drowndown.png" class="symbol24InputHover pointer">
-                        <div class="dropdownContent" id="selectCategoryId">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                    <div class="relative">
+                        <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Select task category" onclick="categoryDropdown()" id="addCategoryId">
+                        <img src="img/cross.png" class="symbol24InputHover pointer crossImg dNone" id="categoryCloseId" onclick="categoryDropup()">
+                        <object class="greylineInput dNone" type="image/svg+xml" data="img/greylineInputfield.svg" id="categoryGreylineId">
+                        </object>
+                        <img src="img/drowndown.png" class="symbol24InputHover pointer" id="categoryDropdownImgId" onclick="categoryDropdown()">
+                        <div class="column dropdownContacts dNone" id="categoryDropdownContentId">
+                            <div class="column scrollAddTaskArea scrollLimitCategories" id="categoryListId">
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -124,7 +126,7 @@ function generateAddTaskHTML() {
                     Subtasks
                     </span>
                     <div class="relative">
-                        <input class="input1216 inputField fontSize20 pointer" placeholder="Select task category">
+                        <input class="input1216withImg inputField fontSize20 pointer" placeholder="Add new subtask">
                         <img src="img/plus.png" class="symbol24InputHover pointer">
                     </div>
                 </section>
