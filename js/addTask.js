@@ -64,6 +64,7 @@ function createTask() {
         "low": lowStatus,
         "category": addTaskCategory,
         "contacts": contactsInTaskArray,
+        "subtasks": subtasksInTaskArray,
     }
     taskArray.push(addTask);
     contactsInTaskArray = [];
