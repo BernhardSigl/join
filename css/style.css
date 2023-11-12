@@ -328,7 +328,9 @@ input {
 /* box on summary, add task and board */
 .content {
     /* header + margin-top | margin-right | margin-bottom | sidebar + margin-left */
-    margin: calc(96px + 110px) 96px 110px calc(232px + 96px);
+    height: 100vh;
+    box-sizing: border-box;
+    padding: calc(96px + 110px) 96px 110px calc(232px + 96px);
 }
 
 .title {

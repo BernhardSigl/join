@@ -112,7 +112,7 @@ function generateAddTaskHTML() {
                         <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Select task category" id="addCategoryId">
                         <img src="img/cross.png" class="symbol24InputHover pointer crossImg dNone" id="categoryCloseId" onclick="categoryDropup()">
                         <img src="img/plus.png" class="symbol24InputHover pointer crossImg" onclick="listCategories()" id="addCategoryBtnId">
-                        <object class="greylineInput" type="image/svg+xml" data="img/greylineInputfield.svg" id="categoryGreylineId">
+                        <object class="greylineInputAddTask" type="image/svg+xml" data="img/greylineInputfield.svg" id="categoryGreylineId">
                         </object>
                         <img src="img/drowndown.png" class="symbol24InputHover pointer" id="categoryDropdownImgId" onclick="categoryDropdown()">
                         <div class="column dropdownContacts dNone" id="categoryDropdownContentId">
@@ -122,13 +122,15 @@ function generateAddTaskHTML() {
                     </div>
                 </section>
                 <!-- subtasks -->
-                <section class="column gap8">
+                <section class="column gap8 relative">
                     <span class="fontSize20">
                     Subtasks
                     </span>
-                    <div class="relative">
-                        <input class="input1216withImg inputField fontSize20 pointer" placeholder="Add new subtask">
-                        <img src="img/plus.png" class="symbol24InputHover pointer">
+                    <div class="relative column">
+                        <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Add new subtask" id="subtaskInputId">
+                        <img src="img/plus.png" class="symbol24InputHover pointer" id="addSubtaskImgId" onclick="addSubtask()">
+                    </div>
+                    <div id="subtaskListId" class="gap8 column scrollAddTaskArea scrollLimitAddTask">
                     </div>
                 </section>
             </div>

@@ -1,6 +1,7 @@
 let taskArray = [];
 let contactsInTaskArray = [];
 let categoriesInTaskArray = [];
+let subtasksInTaskArray = [];
 let datePickerExecuted;
 
 async function initAddTask() {
@@ -8,7 +9,9 @@ async function initAddTask() {
     addTaskTemplate();
     enableCalender();
     await loadContacts();
+    listContacts();
     await loadCategories();
+    updateCategoryList();
     checkCategoryEmptyStatus();
     // await loadTask();
 }
@@ -17,11 +20,6 @@ function enableCalender() {
     datePickerExecuted = false;
     removePikaday();
     datePicker();
-}
-
-async function deleteAllTasks() {
-    taskArray = [];
-    await setItem('contactsArray', JSON.stringify(taskArray));
 }
 
 function datePicker() {
@@ -56,6 +54,7 @@ function createTask() {
     let addTaskTitle = document.getElementById('addTaskTitleId').value;
     let addTaskDescription = document.getElementById('addTaskDescriptionId').value;
     let addTaskDate = document.getElementById('datepickerId').value;
+    let addTaskCategory = document.getElementById('addCategoryId').value;
     let addTask = {
         "title": addTaskTitle,
         "description": addTaskDescription,
@@ -63,12 +62,13 @@ function createTask() {
         "urgent": urgentStatus,
         "medium": mediumStatus,
         "low": lowStatus,
+        "category": addTaskCategory,
         "contacts": contactsInTaskArray,
     }
     taskArray.push(addTask);
     contactsInTaskArray = [];
 }
-
+// contacts
 function listContacts() {
     let listContacts = document.getElementById('assignToId');
     contactsArray.sort((a, b) => a.name.localeCompare(b.name));
@@ -100,17 +100,18 @@ function generateListContactsHTML(contact, i) {
 
 function filterContacts() {
     let searchInput = document.getElementById('searchContactId');
-    let contactList = document.getElementById('assignToId');
     let searchText = searchInput.value.toLowerCase();
-    let filteredContacts = contactsArray.filter(contact => contact.name.toLowerCase().includes(searchText));
-    contactList.innerHTML = '';
-    for (let i = 0; i < filteredContacts.length; i++) {
-        let contact = filteredContacts[i];
-        contactList.innerHTML += generateListContactsHTML(contact, i);
+    for (let i = 0; i < contactsArray.length; i++) {
+        let contact = contactsArray[i];
+        let selectedContact = document.getElementById(`assignedContactId${i}`);
+        if (contact.name.toLowerCase().includes(searchText)) {
+            selectedContact.style.display = 'flex';
+        } else {
+            selectedContact.style.display = 'none';
+        }
     }
 }
 
-// contacts
 function contactsDropdown() {
     document.getElementById('searchContactId').placeholder = "Type to search";
     let dropdownContent = document.getElementById('contactsDropdownContentId');
@@ -122,7 +123,7 @@ function contactsDropdown() {
 }
 
 function toggleContactsDrowdown() {
-    document.getElementById('searchContactId').placeholder = "Select contacts to assign2";
+    document.getElementById('searchContactId').placeholder = "Select contacts to assign";
     let dropdownContent = document.getElementById('contactsDropdownContentId');
     let dropdownImg = document.getElementById('contactsDropdownImgId');
     if (!dropdownContent.classList.contains('dNone')) {
@@ -184,7 +185,7 @@ function unmarkAssignedContact(contact, img, i) {
 
 // category
 function categoryDropdown() {
-    disableInput();
+    disableCategoryInput();
     let dropdownImg = document.getElementById('categoryDropdownImgId');
     dropdownImg.src = '../img/arrow_drop_up.svg';
     toggleVisibility('categoryDropdownContentId', true);
@@ -264,10 +265,10 @@ function addCategory(i) {
 
 async function editCategory(i) {
     doNotClose(event);
-    enableInput(i);
+    enableCategoryInput(i);
     let categoryInput = document.getElementById(`inputFieldCategory${i}`);
     let pencilImage = document.getElementById(`editCategoryImgID${i}`);
-    changeEditFunction(pencilImage, i);
+    changeEditCategoryFunction(pencilImage, i);
     pencilImage.style.backgroundImage = 'url("img/confirm.png")';
     categoryInput.removeAttribute('readonly');
     categoryInput.classList.add('editCategoryInput');
@@ -279,35 +280,34 @@ async function editCategory(i) {
 
 async function confirmCategoryRenaming(pencilImage, i) {
     doNotClose(event);
-    disableInput();
     pencilImage.style.backgroundImage = 'url("../img/pencilDark.png")';
-    originalEditFunction(pencilImage, i);
+    originalEditCategoryFunction(pencilImage, i);
     let rename = document.getElementById(`inputFieldCategory${i}`);
     categoriesInTaskArray.splice(i, 1);
     categoriesInTaskArray.push(rename.value);
     updateCategoryList();
     contactsInTaskArray.sort((a, b) => a.name.localeCompare(b.name));
-    disableInput();
+    disableCategoryInput();
     await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
 }
 
-function originalEditFunction(pencilImage, i) {
+function originalEditCategoryFunction(pencilImage, i) {
     pencilImage.onclick = function () {
         editCategory(i);
     };
 }
 
-function changeEditFunction(pencilImage, i) {
+function changeEditCategoryFunction(pencilImage, i) {
     pencilImage.onclick = function () {
         confirmCategoryRenaming(pencilImage, i);
     };
 }
 
-function enableInput(i) {
+function enableCategoryInput(i) {
     document.getElementById(`inputFieldCategory${i}`).style.pointerEvents = 'auto';
 }
 
-function disableInput() {
+function disableCategoryInput() {
     document.querySelectorAll('.categoryContent').forEach(function (element) {
         element.style.pointerEvents = 'none';
     });
@@ -318,16 +318,114 @@ async function deleteCategory(i) {
     categoriesInTaskArray.splice(i, 1);
     checkCategoryEmptyStatus();
     updateCategoryList();
-    disableInput();
+    disableCategoryInput();
     await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
 }
 
 function updateCategoryList() {
     let categoryList = document.getElementById('categoryListId');
     categoryList.innerHTML = '';
-
     for (let i = 0; i < categoriesInTaskArray.length; i++) {
         let category = categoriesInTaskArray[i];
         categoryList.innerHTML += generateCategoryListHTML(category, i);
     }
+}
+
+// subtasks
+function addSubtask() {
+    let subtaskInput = document.getElementById('subtaskInputId');
+    let subtaskList = document.getElementById('subtaskListId');
+    subtasksInTaskArray.push(subtaskInput.value);
+    subtaskList.innerHTML = '';
+    subtaskInput.value = '';
+    for (let i = 0; i < subtasksInTaskArray.length; i++) {
+        const subtask = subtasksInTaskArray[i];
+        subtaskList.innerHTML += generateSubtaskListHTML(subtask, i);
+    }
+    disableSubtaskInput();
+}
+
+function generateSubtaskListHTML(subtask, i) {
+    return /*html*/ `
+    <div class="listSubtask listSubtaskHover" id="subtaskListElement${i}">
+        <ul class="alignCenter spaceBetween">
+            <li><input class="alignCenter gap16 fontSize20 subtaskContent pointer" value="${subtask}" id="subtaskEditInputId${i}" readonly></li>
+            <div class="alignCenter gap4">
+            <div class="symbol24 pointer editSubtask" id="pencilEditSubtaskImgId${i}" style="background-image: url('../img/pencilDark.png');" onclick="editSubtask(${i})">
+            </div>
+            <div class="smallGreylineSubtask"></div>
+            <div class="symbol24 pointer deleteSubtask" style="background-image: url('../img/garbageDark.png');" onclick="deleteSubtask(${i})">
+            </div>
+        </div>
+        </ul>
+    </div>
+    `
+}
+
+function clearSubtaskInput() {
+    let subtaskInput = document.getElementById('subtaskInputId');
+    subtaskInput.value = '';
+}
+
+function enableSubtaskInput(i) {
+    document.getElementById(`subtaskEditInputId${i}`).style.pointerEvents = 'auto';
+}
+
+function disableSubtaskInput() {
+    document.querySelectorAll('.subtaskContent').forEach(function (element) {
+        element.style.pointerEvents = 'none';
+    });
+}
+
+function editSubtask(i) {
+    enableSubtaskInput(i);
+    let subtaskInput = document.getElementById(`subtaskEditInputId${i}`);
+    let subtaskListElement = document.getElementById(`subtaskListElement${i}`);
+    let pencilImage = document.getElementById(`pencilEditSubtaskImgId${i}`);
+    changeEditSubtaskFunction(pencilImage, i);
+    subtaskInput.removeAttribute('readonly');
+    subtaskListElement.style.backgroundColor = 'white';
+    subtaskListElement.style.borderBottom = '1px solid #29ABE2'
+    subtaskListElement.classList.remove('listSubtaskHover');
+    subtaskInput.focus();
+    subtaskInput.selectionStart = subtaskInput.value.length;
+    pencilImage.style.backgroundImage = 'url("../img/confirm.png")';
+}
+
+function confirmSubtaskRenaming(pencilImage, i) {
+    let subtaskListElement = document.getElementById(`subtaskListElement${i}`);
+    let rename = document.getElementById(`subtaskEditInputId${i}`);
+    pencilImage.style.backgroundImage = 'url("../img/pencilDark.png")';
+    subtasksInTaskArray.splice(i, 1);
+    subtasksInTaskArray.push(rename.value);
+    subtaskListElement.style.backgroundColor = 'transparent';
+    subtaskListElement.style.borderBottom = 'none'
+    subtaskListElement.classList.add('listSubtaskHover');
+    originalEditSubtaskFunction(pencilImage, i);
+}
+
+function deleteSubtask(i) {
+    subtasksInTaskArray.splice(i, 1);
+    updateSubtaskList();
+}
+
+function updateSubtaskList() {
+    let subtaskList = document.getElementById('subtaskListId');
+    subtaskList.innerHTML = '';
+    for (let i = 0; i < subtasksInTaskArray.length; i++) {
+        let subtask = subtasksInTaskArray[i];
+        subtaskList.innerHTML += generateSubtaskListHTML(subtask, i);
+    }
+}
+
+function originalEditSubtaskFunction(pencilImage, i) {
+    pencilImage.onclick = function () {
+        editSubtask(i);
+    };
+}
+
+function changeEditSubtaskFunction(pencilImage, i) {
+    pencilImage.onclick = function () {
+        confirmSubtaskRenaming(pencilImage, i);
+    };
 }

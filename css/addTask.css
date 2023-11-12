@@ -76,6 +76,7 @@ textarea:focus {
     padding: 12px 16px;
 }
 
+.listSubtaskHover:hover,
 .listCategories:hover,
 .listContacts:hover {
     background-color: #EEEEEE !important;
@@ -140,7 +141,7 @@ textarea:focus {
 }
 
 /* category */
-.greylineInput {
+.greylineInputAddTask {
     right: 49px !important;
     background-color: white;
     top: calc(50% - 32px / 2) !important;
@@ -150,11 +151,14 @@ textarea:focus {
     right: 50px !important;
 }
 
+.editSubtask:hover,
+.deleteSubtask:hover,
 .deleteCategory:hover,
 .editCategory:hover {
     transform: scale(1.2);
 }
 
+.subtaskContent,
 .categoryContent {
     border: none;
     background-color: transparent;
@@ -165,14 +169,53 @@ textarea:focus {
     color: #007CEE;
 }
 
+.subtaskContent:focus,
 .editCategoryInput:focus {
     border: none;
 }
 
+.smallGreylineSubtask,
 .smallGreyline {
     width: 1px;
     height: 24px;
     background-image: url('../img/greyLine.png');
+}
+
+/* subtask */
+.listSubtask {
+    padding: 6px 16px;
+}
+
+.listSubtaskHover:hover {
+    border-radius: 10px;
+}
+
+ul {
+    margin: 0;
+    padding: 0 0 0 16px;
+}
+
+#subtaskListId {
+    position: absolute;
+    left: 0;
+    top: 90px;
+    width: 100%;
+}
+
+.scrollLimitAddTask {
+    max-height: 124px;
+}
+
+.editSubtask,
+.deleteSubtask,
+.smallGreylineSubtask {
+    display: none;
+}
+
+.listSubtask:hover .editSubtask,
+.listSubtask:hover .deleteSubtask,
+.listSubtask:hover .smallGreylineSubtask {
+    display: block;
 }
 
 /* popup */
