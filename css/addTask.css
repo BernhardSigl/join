@@ -152,7 +152,27 @@ textarea:focus {
 
 .deleteCategory:hover,
 .editCategory:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
+}
+
+.categoryContent {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+.editCategoryInput {
+    color: #007CEE;
+}
+
+.editCategoryInput:focus {
+    border: none;
+}
+
+.smallGreyline {
+    width: 1px;
+    height: 24px;
+    background-image: url('../img/greyLine.png');
 }
 
 /* popup */

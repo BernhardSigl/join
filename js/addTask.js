@@ -8,14 +8,9 @@ async function initAddTask() {
     addTaskTemplate();
     enableCalender();
     await loadContacts();
-    renderAddTask();
-    // await loadTask();
-}
-
-function renderAddTask() {
-    listContacts();
+    await loadCategories();
     checkCategoryEmptyStatus();
-    updateCategoryList();
+    // await loadTask();
 }
 
 function enableCalender() {
@@ -189,64 +184,57 @@ function unmarkAssignedContact(contact, img, i) {
 
 // category
 function categoryDropdown() {
-    let dropdownCategory = document.getElementById('categoryDropdownContentId');
+    disableInput();
     let dropdownImg = document.getElementById('categoryDropdownImgId');
-    if (dropdownCategory.classList.contains('dNone') && categoriesInTaskArray.length != 0) {
-        dropdownImg.src = '../img/plus.png';
-        toggleVisibility('categoryDropdownContentId', true);
-        toggleVisibility('categoryCloseId', true);
-        toggleVisibility('categoryGreylineId', true);
-        changeFunction();
-    }
+    dropdownImg.src = '../img/arrow_drop_up.svg';
+    toggleVisibility('categoryDropdownContentId', true);
+    changeDropdownFunction();
 }
 
 function categoryDropup() {
     let dropupImg = document.getElementById('categoryDropdownImgId');
     toggleVisibility('categoryDropdownContentId', false);
-    toggleVisibility('categoryCloseId', false);
-    toggleVisibility('categoryGreylineId', false);
     dropupImg.src = 'img/drowndown.png';
-    originalFunction();
+    originalDropdownFunction();
 }
 
-function changeFunction() {
+function changeDropdownFunction() {
     let dropdownBtn = document.getElementById('categoryDropdownImgId');
     dropdownBtn.onclick = function () {
-        listCategories();
+        categoryDropup();
     };
 }
 
-function originalFunction() {
+function originalDropdownFunction() {
     let addCategoryBtn = document.getElementById('categoryDropdownImgId');
     addCategoryBtn.onclick = function () {
         categoryDropdown();
     };
 }
 
-function listCategories() {
+async function listCategories() {
     let categoryInput = document.getElementById('addCategoryId');
     let categoryList = document.getElementById('categoryListId');
     categoriesInTaskArray.push(categoryInput.value);
     categoriesInTaskArray.sort();
     checkCategoryEmptyStatus();
-    categoryDropdown();
     categoryList.innerHTML = '';
     for (let i = 0; i < categoriesInTaskArray.length; i++) {
         let category = categoriesInTaskArray[i];
         categoryList.innerHTML += generateCategoryListHTML(category, i);
     }
+    await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
 }
 
 function generateCategoryListHTML(category, i) {
     return /*html*/ `
     <div class="listCategories dFlex alignCenter spaceBetween pointer" onclick="addCategory(${i})">
-        <div class="dFlex alignCenter gap16">
-        ${category}
-        </div>
-        <div class="alignCenter gap8">
-            <div class="symbol24 pointer editCategory" style="background-image: url('../img/pencilDark.png');" onclick="editCategory(${i})">
+        <input class="dFlex alignCenter gap16 fontSize20 categoryContent pointer" value="${category}" id="inputFieldCategory${i}" onclick="doNotClose(event)" readonly>
+        <div class="alignCenter gap4">
+            <div class="symbol24 pointer editCategory" id="editCategoryImgID${i}" style="background-image: url('../img/pencilDark.png');" onclick="editCategory(${i})">
             </div>
-            <div class="symbol24 pointer deleteCategory" style="background-image: url('../img/garbageDark.png');" onclick="deleteCategory(${i}), doNotClose(event)">
+            <div class="smallGreyline"></div>
+            <div class="symbol24 pointer deleteCategory" style="background-image: url('../img/garbageDark.png');" onclick="deleteCategory(${i})">
             </div>
         </div>
     </div>
@@ -254,16 +242,15 @@ function generateCategoryListHTML(category, i) {
 }
 
 function checkCategoryEmptyStatus() {
-    let dropdownImg = document.getElementById('categoryDropdownImgId');
+    let addCategoryImg = document.getElementById('addCategoryBtnId');
     if (categoriesInTaskArray.length == 0) {
-        dropdownImg.src = '../img/plus.png';
-        changeFunction();
-        console.log(`empty0`);
-        toggleVisibility('categoryCloseId', false);
+        addCategoryImg.style.setProperty('right', '0', 'important');
+        toggleVisibility('categoryDropdownImgId', false);
         toggleVisibility('categoryGreylineId', false);
+        categoryDropup();
     } else if (categoriesInTaskArray.length != 0) {
-        console.log(`empty`);
-        toggleVisibility('categoryCloseId', true);
+        addCategoryImg.style.setProperty('right', '50px', 'important');
+        toggleVisibility('categoryDropdownImgId', true);
         toggleVisibility('categoryGreylineId', true);
     }
 }
@@ -275,10 +262,64 @@ function addCategory(i) {
     categoryDropup();
 }
 
-function deleteCategory(i) {
-    // let categoryInput = document.getElementById('addCategoryId');
+async function editCategory(i) {
+    doNotClose(event);
+    enableInput(i);
+    let categoryInput = document.getElementById(`inputFieldCategory${i}`);
+    let pencilImage = document.getElementById(`editCategoryImgID${i}`);
+    changeEditFunction(pencilImage, i);
+    pencilImage.style.backgroundImage = 'url("img/confirm.png")';
+    categoryInput.removeAttribute('readonly');
+    categoryInput.classList.add('editCategoryInput');
+    categoryInput.focus();
+    categoryInput.selectionStart = categoryInput.value.length;
+    categoryInput.selectionEnd = categoryInput.value.length;
+    await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
+}
+
+async function confirmCategoryRenaming(pencilImage, i) {
+    doNotClose(event);
+    disableInput();
+    pencilImage.style.backgroundImage = 'url("../img/pencilDark.png")';
+    originalEditFunction(pencilImage, i);
+    let rename = document.getElementById(`inputFieldCategory${i}`);
     categoriesInTaskArray.splice(i, 1);
-    renderAddTask();
+    categoriesInTaskArray.push(rename.value);
+    updateCategoryList();
+    contactsInTaskArray.sort((a, b) => a.name.localeCompare(b.name));
+    disableInput();
+    await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
+}
+
+function originalEditFunction(pencilImage, i) {
+    pencilImage.onclick = function () {
+        editCategory(i);
+    };
+}
+
+function changeEditFunction(pencilImage, i) {
+    pencilImage.onclick = function () {
+        confirmCategoryRenaming(pencilImage, i);
+    };
+}
+
+function enableInput(i) {
+    document.getElementById(`inputFieldCategory${i}`).style.pointerEvents = 'auto';
+}
+
+function disableInput() {
+    document.querySelectorAll('.categoryContent').forEach(function (element) {
+        element.style.pointerEvents = 'none';
+    });
+}
+
+async function deleteCategory(i) {
+    doNotClose(event);
+    categoriesInTaskArray.splice(i, 1);
+    checkCategoryEmptyStatus();
+    updateCategoryList();
+    disableInput();
+    await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
 }
 
 function updateCategoryList() {

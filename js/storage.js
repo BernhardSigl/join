@@ -41,6 +41,14 @@ async function loadTask() {
     }
 }
 
+async function loadCategories() {
+    try {
+        categoriesInTaskArray = JSON.parse(await getItem('categoriesInTaskArray'));
+    } catch {
+        console.warn('Token invalid becauce no categories has been created yet');
+    }
+}
+
 // save locally
 function save() {
     let rememberMeAsText = JSON.stringify(rememberMe);

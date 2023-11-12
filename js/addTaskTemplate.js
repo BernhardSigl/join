@@ -109,9 +109,10 @@ function generateAddTaskHTML() {
                         <span class="red">*</span>
                     </span>
                     <div class="relative">
-                        <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Select task category" onclick="categoryDropdown()" id="addCategoryId">
+                        <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Select task category" id="addCategoryId">
                         <img src="img/cross.png" class="symbol24InputHover pointer crossImg dNone" id="categoryCloseId" onclick="categoryDropup()">
-                        <object class="greylineInput dNone" type="image/svg+xml" data="img/greylineInputfield.svg" id="categoryGreylineId">
+                        <img src="img/plus.png" class="symbol24InputHover pointer crossImg" onclick="listCategories()" id="addCategoryBtnId">
+                        <object class="greylineInput" type="image/svg+xml" data="img/greylineInputfield.svg" id="categoryGreylineId">
                         </object>
                         <img src="img/drowndown.png" class="symbol24InputHover pointer" id="categoryDropdownImgId" onclick="categoryDropdown()">
                         <div class="column dropdownContacts dNone" id="categoryDropdownContentId">
