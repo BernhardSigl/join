@@ -39,6 +39,10 @@ textarea:focus {
     padding: 8px 16px;
 }
 
+.dateImg:hover {
+    background-color: white !important;
+}
+
 .dropdownContacts {
     position: absolute;
     top: 50px;

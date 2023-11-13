@@ -22,7 +22,7 @@ function generateAddTaskHTML() {
                     Title
                     <span class="red">*</span>
                     </span>
-                    <input type="text" class="input1216 inputField fontSize20" placeholder="Enter a title" id="addTaskTitleId">
+                    <input type="text" class="input1216 inputField fontSize20" placeholder="Enter a title" id="addTaskTitleId" required>
                 </section>
                 <!-- description -->
                 <section class="column gap8">
@@ -70,8 +70,8 @@ function generateAddTaskHTML() {
                     </span>
                     <div class="relative" onclick="datePicker()">
                         <input type="text" class="input1216withImg inputField fontSize20" placeholder="dd/mm/yyyy"
-                        id="datepickerId">
-                        <img src="img/event.png" class="symbol24InputHover pointer">
+                        id="datepickerId" oninput="validateDateInput(this)" required>
+                        <img src="img/event.png" class="symbol24InputHover dateImg">
                     </div>
                 </section>
                 <!-- prio buttons -->
@@ -109,7 +109,7 @@ function generateAddTaskHTML() {
                         <span class="red">*</span>
                     </span>
                     <div class="relative">
-                        <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Select task category" id="addCategoryId">
+                        <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Select task category" id="addCategoryId" required>
                         <img src="img/cross.png" class="symbol24InputHover pointer crossImg dNone" id="categoryCloseId" onclick="categoryDropup()">
                         <img src="img/plus.png" class="symbol24InputHover pointer crossImg" onclick="listCategories()" id="addCategoryBtnId">
                         <object class="greylineInputAddTask" type="image/svg+xml" data="img/greylineInputfield.svg" id="categoryGreylineId">

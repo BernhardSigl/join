@@ -46,6 +46,17 @@ function validatePasswordInput(input) {
     }
 }
 
+function validateDateInput(input) {
+    const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
+    const isValid = regex.test(input.value);
+
+    if (!isValid) {
+        input.setCustomValidity(`Only numbers and '/' are allowed.`);
+    } else {
+        input.setCustomValidity('');
+    }
+};
+
 function setActiveLink() {
     let currentUrl = window.location.href;
     let activeLinkId = "";
