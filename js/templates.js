@@ -55,7 +55,7 @@ function validateDateInput(input) {
     } else {
         input.setCustomValidity('');
     }
-};
+}
 
 function setActiveLink() {
     let currentUrl = window.location.href;

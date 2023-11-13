@@ -4,6 +4,9 @@ function openAddContactPopup() {
     isAddContactPopupOpen = true;
     addContactPopupContent();
     slideTwoObjects('addContactAreaId', 'backgroundAddContactId');
+    toggleRequiredAttribute('addTaskTitleId', false);
+    toggleRequiredAttribute('datepickerId', false);
+    toggleRequiredAttribute('addCategoryId', false);
 }
 
 function addContactPopupContent() {
@@ -13,6 +16,9 @@ function addContactPopupContent() {
 function closeAddContactPopup() {
     isAddContactPopupOpen = false;
     slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');
+    toggleRequiredAttribute('addTaskTitleId', true);
+    toggleRequiredAttribute('datepickerId', true);
+    toggleRequiredAttribute('addCategoryId', true);
 }
 
 function generateAddContactContentHTML() {
