@@ -286,8 +286,8 @@ async function confirmCategoryRenaming(pencilImage, i) {
     let rename = document.getElementById(`inputFieldCategory${i}`);
     categoriesInTaskArray.splice(i, 1);
     categoriesInTaskArray.push(rename.value);
+    categoriesInTaskArray.sort();
     updateCategoryList();
-    contactsInTaskArray.sort((a, b) => a.name.localeCompare(b.name));
     disableCategoryInput();
     await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
 }
