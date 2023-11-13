@@ -1,4 +1,7 @@
+let isAddContactPopupOpen = false;
+
 function openAddContactPopup() {
+    isAddContactPopupOpen = true;
     addContactPopupContent();
     slideTwoObjects('addContactAreaId', 'backgroundAddContactId');
 }
@@ -8,6 +11,7 @@ function addContactPopupContent() {
 }
 
 function closeAddContactPopup() {
+    isAddContactPopupOpen = false;
     slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');
 }
 

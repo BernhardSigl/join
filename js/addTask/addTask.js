@@ -13,7 +13,7 @@ async function initAddTask() {
     await loadCategories();
     updateCategoryList();
     checkCategoryEmptyStatus();
-    // await loadTask();
+    await loadTask();
 }
 
 function enableCalender() {
@@ -49,7 +49,7 @@ function removePikaday() {
     });
 }
 
-function createTask() {
+async function createTask() {
     let addTaskTitle = document.getElementById('addTaskTitleId').value;
     let addTaskDescription = document.getElementById('addTaskDescriptionId').value;
     let addTaskDate = document.getElementById('datepickerId').value;
@@ -67,6 +67,8 @@ function createTask() {
     }
     taskArray.push(addTask);
     contactsInTaskArray = [];
+    await setItem('taskArray', JSON.stringify(taskArray));
+    clearTask();
 }
 // contacts
 function listContacts() {
@@ -406,4 +408,16 @@ function closeDropdown(event) {
     contactsDropdown();
     toggleContactsDrowdown()
     categoryDropup();
+}
+
+function handleEnterKey(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        const activeElementId = document.activeElement.id;
+        if (activeElementId === 'subtaskInputId') {
+            addSubtask();
+        } else if (activeElementId === 'addCategoryId') {
+            listCategories();
+        }
+    }
 }

@@ -53,7 +53,7 @@ function generateAddTaskHTML() {
                             </div>
                         </div>
                     </div>
-                    <div id="assignedContactsId" class="dFlex gap16">
+                    <div id="assignedContactsId" class="dFlex">
                     </div>
                 </section>
             </div>
@@ -109,7 +109,7 @@ function generateAddTaskHTML() {
                         <span class="red">*</span>
                     </span>
                     <div class="relative">
-                        <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Select task category" id="addCategoryId" required>
+                        <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Select task category" id="addCategoryId" onkeypress="handleEnterKey(event)" required>
                         <img src="img/cross.png" class="symbol24InputHover pointer crossImg dNone" id="categoryCloseId" onclick="categoryDropup()">
                         <img src="img/plus.png" class="symbol24InputHover pointer crossImg" onclick="listCategories()" id="addCategoryBtnId">
                         <object class="greylineInputAddTask" type="image/svg+xml" data="img/greylineInputfield.svg" id="categoryGreylineId">
@@ -127,7 +127,7 @@ function generateAddTaskHTML() {
                     Subtasks
                     </span>
                     <div class="relative column">
-                        <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Add new subtask" id="subtaskInputId">
+                        <input class="input1216withTwoImg inputField fontSize20 pointer" placeholder="Add new subtask" id="subtaskInputId" onkeypress="handleEnterKey(event)">
                         <img src="img/plus.png" class="symbol24InputHover pointer" id="addSubtaskImgId" onclick="addSubtask()">
                     </div>
                     <div id="subtaskListId" class="gap8 column scrollAddTaskArea scrollLimitAddTask">
@@ -143,7 +143,7 @@ function generateAddTaskHTML() {
                     </span>
                 </div>
                 <div class="rightFooter dFlex gap16">
-                    <button class="btn1616 btnWhite alignCenter dFlex  pointer changeCrossImage">
+                    <button class="btn1616 btnWhite alignCenter dFlex  pointer changeCrossImage" onclick="clearTask()" type="button">
                         <span class="fontSize20 pointer">
                         Clear
                         </span>

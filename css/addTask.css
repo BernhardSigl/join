@@ -43,6 +43,11 @@ textarea:focus {
     background-color: white !important;
 }
 
+#assignedContactsId {
+    flex-wrap: wrap;
+    gap: 14.8px;
+}
+
 .dropdownContacts {
     position: absolute;
     top: 50px;
