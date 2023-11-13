@@ -3,6 +3,8 @@ let contactsInTaskArray = [];
 let categoriesInTaskArray = [];
 let subtasksInTaskArray = [];
 let datePickerExecuted;
+// let taskIdCounter = 1;
+let currentId;
 
 async function initAddTask() {
     navPanelsTemplate();
@@ -14,6 +16,33 @@ async function initAddTask() {
     updateCategoryList();
     checkCategoryEmptyStatus();
     await loadTask();
+    checkCurrentId();
+}
+
+async function deleteAllTasks() {
+    taskArray = [];
+    await setItem('taskArray', JSON.stringify(taskArray));
+}
+
+function checkCurrentId() {
+    if (taskArray.length > 0) {
+        currentId = taskArray.reduce((maxId, task) => Math.max(maxId, task.id), -1) + 1;
+    } else {
+        currentId = 0;
+    }
+}
+
+async function deleteTask(taskId) {
+    // Hier implementieren Sie die Löschlogik, und nehmen Sie taskId als Parameter an
+    taskArray = taskArray.filter(task => task.id !== taskId);
+
+    // Nach dem Löschen aktualisieren Sie die IDs lückenlos
+    taskArray.forEach((task, index) => {
+        task.id = index;
+    });
+
+    // Speichern Sie das aktualisierte Array in Ihrem Speichermechanismus (z.B., localStorage)
+    await setItem('taskArray', JSON.stringify(taskArray));
 }
 
 function enableCalender() {
@@ -50,6 +79,11 @@ function removePikaday() {
 }
 
 async function createTask() {
+    // currentId++;
+    while (taskArray.some(task => task.id === currentId)) {
+        currentId++;
+    }
+    console.log(currentId);
     let addTaskTitle = document.getElementById('addTaskTitleId').value;
     let addTaskDescription = document.getElementById('addTaskDescriptionId').value;
     let addTaskDate = document.getElementById('datepickerId').value;
@@ -64,6 +98,8 @@ async function createTask() {
         "category": addTaskCategory,
         "contacts": contactsInTaskArray,
         "subtasks": subtasksInTaskArray,
+        "progressStatus": 'toDo',
+        "id": currentId,
     }
     taskArray.push(addTask);
     contactsInTaskArray = [];
