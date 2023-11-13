@@ -87,3 +87,7 @@
 .footer {
     left: 74px !important;
 }
+
+.inputDescription {
+    resize: none;
+}

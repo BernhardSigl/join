@@ -48,6 +48,11 @@ textarea:focus {
     gap: 14.8px;
 }
 
+.inputDescription {
+    max-height: 250px;
+    min-height: 120px;
+}
+
 .dropdownContacts {
     position: absolute;
     top: 50px;
@@ -237,6 +242,7 @@ ul {
 }
 
 /* scroll */
+.inputDescription::-webkit-scrollbar-button:start:decrement,
 .scrollAddTaskArea::-webkit-scrollbar-button:start:decrement {
     background-position: center;
     background-image: url('../img/arrow_drop_up.svg');
@@ -244,6 +250,7 @@ ul {
     border-top-left-radius: 100% !important;
 }
 
+.inputDescription::-webkit-scrollbar-button:end:increment,
 .scrollAddTaskArea::-webkit-scrollbar-button:end:increment {
     background-position: center;
     background-image: url('../img/arrow_drop_down.svg');
@@ -251,15 +258,18 @@ ul {
     border-bottom-left-radius: 100%;
 }
 
+.inputDescription::-webkit-scrollbar,
 .scrollAddTaskArea::-webkit-scrollbar {
     display: block;
     width: 8px;
 }
 
+.inputDescription::-webkit-scrollbar-track,
 .scrollAddTaskArea::-webkit-scrollbar-track {
     background-color: transparent;
 }
 
+.inputDescription::-webkit-scrollbar-thumb,
 .scrollAddTaskArea::-webkit-scrollbar-thumb {
     background-color: #909090;
     border-radius: 10px;
