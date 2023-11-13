@@ -50,7 +50,6 @@ function removePikaday() {
 }
 
 function createTask() {
-    taskArray = [];
     let addTaskTitle = document.getElementById('addTaskTitleId').value;
     let addTaskDescription = document.getElementById('addTaskDescriptionId').value;
     let addTaskDate = document.getElementById('datepickerId').value;
@@ -78,25 +77,6 @@ function listContacts() {
         let contact = contactsArray[i];
         listContacts.innerHTML += generateListContactsHTML(contact, i);
     }
-}
-
-function generateListContactsHTML(contact, i) {
-    return /*html*/ `
-    <div class="listContacts dFlex alignCenter spaceBetween pointer" onclick="toggleCheckContact('checkContactImgId${i}', ${i})" id="assignedContactId${i}">
-        <div class="dFlex alignCenter gap16">
-            <div class="nameShortSmall horizontalAndVertical pointer" style="background-color: ${contact.color};">
-                <span class="fontWhite fontSize12 pointer mb2">
-                ${contact.nameShort}
-                </span>
-            </div>
-            <span class="fontSize20 pointer">
-            ${contact.name}
-            </span>
-        </div>
-        <div class="symbol24 pointer" style="background-image: url('../img/uncheck.png');" id="checkContactImgId${i}">
-        </div>
-    </div>
-    `
 }
 
 function filterContacts() {
@@ -155,16 +135,6 @@ function assignedContacts() {
         let contactBelowAssignedTo = contactsInTaskArray[i];
         assignedContacts.innerHTML += generateContactsBelowAssignedTo(contactBelowAssignedTo);
     }
-}
-
-function generateContactsBelowAssignedTo(contactBelowAssignedTo) {
-    return /*html*/ `
-        <div class="nameShortSmall horizontalAndVertical" style="background-color: ${contactBelowAssignedTo.color};">
-            <span class="fontWhite fontSize12 mb2">
-            ${contactBelowAssignedTo.nameShort}
-            </span>
-        </div>
-    `
 }
 
 function markAssignedContact(i, img) {
@@ -226,21 +196,6 @@ async function listCategories() {
         categoryList.innerHTML += generateCategoryListHTML(category, i);
     }
     await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
-}
-
-function generateCategoryListHTML(category, i) {
-    return /*html*/ `
-    <div class="listCategories dFlex alignCenter spaceBetween pointer" onclick="addCategory(${i})">
-        <input class="dFlex alignCenter gap16 fontSize20 categoryContent pointer" value="${category}" id="inputFieldCategory${i}" onclick="doNotClose(event)" readonly>
-        <div class="alignCenter gap4">
-            <div class="symbol24 pointer editCategory" id="editCategoryImgID${i}" style="background-image: url('../img/pencilDark.png');" onclick="editCategory(${i})">
-            </div>
-            <div class="smallGreyline"></div>
-            <div class="symbol24 pointer deleteCategory" style="background-image: url('../img/garbageDark.png');" onclick="deleteCategory(${i})">
-            </div>
-        </div>
-    </div>
-    `
 }
 
 function checkCategoryEmptyStatus() {
@@ -346,23 +301,6 @@ function addSubtask() {
     disableSubtaskInput();
 }
 
-function generateSubtaskListHTML(subtask, i) {
-    return /*html*/ `
-    <div class="listSubtask listSubtaskHover" id="subtaskListElement${i}">
-        <ul class="alignCenter spaceBetween">
-            <li><input class="alignCenter gap16 fontSize20 subtaskContent pointer" value="${subtask}" id="subtaskEditInputId${i}" readonly></li>
-            <div class="alignCenter gap4">
-            <div class="symbol24 pointer editSubtask" id="pencilEditSubtaskImgId${i}" style="background-image: url('../img/pencilDark.png');" onclick="editSubtask(${i})">
-            </div>
-            <div class="smallGreylineSubtask"></div>
-            <div class="symbol24 pointer deleteSubtask" style="background-image: url('../img/garbageDark.png');" onclick="deleteSubtask(${i})">
-            </div>
-        </div>
-        </ul>
-    </div>
-    `
-}
-
 function clearSubtaskInput() {
     let subtaskInput = document.getElementById('subtaskInputId');
     subtaskInput.value = '';
@@ -429,4 +367,43 @@ function changeEditSubtaskFunction(pencilImage, i) {
     pencilImage.onclick = function () {
         confirmSubtaskRenaming(pencilImage, i);
     };
+}
+
+function clearTask() {
+    clearButtons();
+    document.getElementById('addTaskTitleId').value = '';
+    document.getElementById('addTaskDescriptionId').value = '';
+    document.getElementById('datepickerId').value = '';
+    document.getElementById('addCategoryId').value = '';
+    document.getElementById('subtaskInputId').value = '';
+    document.getElementById('searchContactId').value = '';
+    document.getElementById('subtaskListId').innerHTML = '';
+    subtasksInTaskArray = [];
+    clearAssignedContacts();
+}
+
+function clearAssignedContacts() {
+    contactsInTaskArray = [];
+    for (let i = 0; i < contactsArray.length; i++) {
+        let img = document.getElementById(`checkContactImgId${i}`);
+        let selectedContact = document.getElementById(`assignedContactId${i}`);
+        img.style.backgroundImage = "url('../img/uncheck.png')";
+        selectedContact.style.backgroundColor = "white";
+        selectedContact.style.color = "black";
+        selectedContact.classList.remove('darkHoverListContacts');
+    }
+    assignedContacts();
+}
+
+function closeDropdown(event) {
+    const excludedContainerIds = ['searchContactId', 'contactsDropdownImgId', 'contactsDropdownContentId', 'addCategoryId', 'categoryDropdownImgId', 'categoryDropdownContentId'];
+    for (const excludedContainerId of excludedContainerIds) {
+        const excludedContainer = document.getElementById(excludedContainerId);
+        if (excludedContainer && (event.target === excludedContainer || excludedContainer.contains(event.target))) {
+            return;
+        }
+    }
+    contactsDropdown();
+    toggleContactsDrowdown()
+    categoryDropup();
 }

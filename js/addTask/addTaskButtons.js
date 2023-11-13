@@ -107,3 +107,10 @@ function resetButton(buttonId, imgId, textId, defaultImgSrc) {
     text.style.color = '';
     text.style.fontWeight = '';
 }
+
+function clearButtons() {
+    resetButtons();
+    urgentStatus = false;
+    mediumStatus = false;
+    lowStatus = false;
+}

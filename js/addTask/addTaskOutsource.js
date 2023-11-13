@@ -162,3 +162,64 @@ function generateAddTaskHTML() {
 
     <img src="img/cross.png" class="closePopup dNone" id="closePopupId" onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId')">`
 }
+
+function generateListContactsHTML(contact, i) {
+    return /*html*/ `
+    <div class="listContacts dFlex alignCenter spaceBetween pointer" onclick="toggleCheckContact('checkContactImgId${i}', ${i})" id="assignedContactId${i}">
+        <div class="dFlex alignCenter gap16">
+            <div class="nameShortSmall horizontalAndVertical pointer" style="background-color: ${contact.color};">
+                <span class="fontWhite fontSize12 pointer mb2">
+                ${contact.nameShort}
+                </span>
+            </div>
+            <span class="fontSize20 pointer">
+            ${contact.name}
+            </span>
+        </div>
+        <div class="symbol24 pointer" style="background-image: url('../img/uncheck.png');" id="checkContactImgId${i}">
+        </div>
+    </div>
+    `
+}
+
+function generateContactsBelowAssignedTo(contactBelowAssignedTo) {
+    return /*html*/ `
+        <div class="nameShortSmall horizontalAndVertical" style="background-color: ${contactBelowAssignedTo.color};">
+            <span class="fontWhite fontSize12 mb2">
+            ${contactBelowAssignedTo.nameShort}
+            </span>
+        </div>
+    `
+}
+
+function generateCategoryListHTML(category, i) {
+    return /*html*/ `
+    <div class="listCategories dFlex alignCenter spaceBetween pointer" onclick="addCategory(${i})">
+        <input class="dFlex alignCenter gap16 fontSize20 categoryContent pointer" value="${category}" id="inputFieldCategory${i}" onclick="doNotClose(event)" readonly>
+        <div class="alignCenter gap4">
+            <div class="symbol24 pointer editCategory" id="editCategoryImgID${i}" style="background-image: url('../img/pencilDark.png');" onclick="editCategory(${i})">
+            </div>
+            <div class="smallGreyline"></div>
+            <div class="symbol24 pointer deleteCategory" style="background-image: url('../img/garbageDark.png');" onclick="deleteCategory(${i})">
+            </div>
+        </div>
+    </div>
+    `
+}
+
+function generateSubtaskListHTML(subtask, i) {
+    return /*html*/ `
+    <div class="listSubtask listSubtaskHover" id="subtaskListElement${i}">
+        <ul class="alignCenter spaceBetween">
+            <li><input class="alignCenter gap16 fontSize20 subtaskContent pointer" value="${subtask}" id="subtaskEditInputId${i}" readonly></li>
+            <div class="alignCenter gap4">
+            <div class="symbol24 pointer editSubtask" id="pencilEditSubtaskImgId${i}" style="background-image: url('../img/pencilDark.png');" onclick="editSubtask(${i})">
+            </div>
+            <div class="smallGreylineSubtask"></div>
+            <div class="symbol24 pointer deleteSubtask" style="background-image: url('../img/garbageDark.png');" onclick="deleteSubtask(${i})">
+            </div>
+        </div>
+        </ul>
+    </div>
+    `
+}
