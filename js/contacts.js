@@ -79,7 +79,7 @@ async function createContact() {
         "color": selectedColor,
     };
     contactsArray.push(createContact);
-    closeAddContactPopup();
+    slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');;
     renderContacts();
     listContacts();
     await setItem('contactsArray', JSON.stringify(contactsArray));

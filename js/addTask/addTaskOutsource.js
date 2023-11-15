@@ -44,7 +44,7 @@ function generateAddTaskHTML() {
                             <div class="column scrollAddTaskArea" id="assignToId">
                             </div>
                             <div class="addContactBtnArea justifyCenter">
-                                <button class="btn1212 horizontalAndVertical gap16 pointer" onclick="openAddContactPopup()">
+                                <button class="btn1212 horizontalAndVertical gap16 pointer" onclick="openAddContactPopup()" type="button">
                                     <span class="fontSize21 bold fontWhite pointer">
                                     Add new contact
                                     </span>

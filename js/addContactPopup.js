@@ -1,24 +1,10 @@
-let isAddContactPopupOpen = false;
-
 function openAddContactPopup() {
-    isAddContactPopupOpen = true;
     addContactPopupContent();
     slideTwoObjects('addContactAreaId', 'backgroundAddContactId');
-    toggleRequiredAttribute('addTaskTitleId', false);
-    toggleRequiredAttribute('datepickerId', false);
-    toggleRequiredAttribute('addCategoryId', false);
 }
 
 function addContactPopupContent() {
     document.getElementById('addContactAreaId').innerHTML = generateAddContactContentHTML();
-}
-
-function closeAddContactPopup() {
-    isAddContactPopupOpen = false;
-    slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');
-    toggleRequiredAttribute('addTaskTitleId', true);
-    toggleRequiredAttribute('datepickerId', true);
-    toggleRequiredAttribute('addCategoryId', true);
 }
 
 function generateAddContactContentHTML() {
@@ -77,7 +63,7 @@ function generateAddContactContentHTML() {
                     </div>
 
                     <!-- close popup -->
-                    <div class="closePopup" onclick="closeAddContactPopup()">
+                    <div class="closePopup" onclick="slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');">
                         <img src="img/cross.png" class="symbol24">
                     </div>
                 </div>

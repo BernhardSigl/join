@@ -471,7 +471,7 @@ function closeDropdown(event) {
         }
     }
     contactsDropdown();
-    toggleContactsDrowdown()
+    toggleContactsDrowdown();
     categoryDropup();
 }
 

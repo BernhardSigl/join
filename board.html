@@ -34,11 +34,12 @@
     <nav id="navPanelsTemplateId"></nav>
     <popup class="background dNone" id="backgroundAddTaskPopupId"
         onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId')">
-        <div class="addTaskArea" id="addTaskTemplateId" onclick="doNotClose(event)">
+        <div class="addTaskArea" id="addTaskTemplateId" onclick="doNotClose(event), closeDropdown(event)">
         </div>
     </popup>
 
-    <popup class="background dNone" id="backgroundAddContactId" onclick="closeAddContactPopup()">
+    <popup class="background dNone" id="backgroundAddContactId"
+        onclick="slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');">
         <div class="dFlex addContactArea" id="addContactAreaId" onclick="doNotClose(event)">
         </div>
     </popup>
