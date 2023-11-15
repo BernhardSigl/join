@@ -66,6 +66,11 @@
     padding: 16px;
     background-color: white;
     align-items: flex-start;
+    border: solid 1px white;
+}
+
+.task:hover {
+    border: solid 1px rgba(0, 0, 0, 0.1);
 }
 
 .dragPlaceholder {
@@ -76,18 +81,119 @@
     border: 1px dashed #A8A8A8;
 }
 
-.subjectKanban {
-    padding: 4px 16px;
+.subjectKanbanBig,
+.subjectKanbanSmall {
     border-radius: 8px;
     background-color: grey;
     width: auto;
 }
 
-/* popup */
+.subjectKanbanSmall {
+    padding: 4px 16px;
+}
+
+.subjectKanbanBig {
+    padding: 4px 24px;
+}
+
+.nameShortBoardSmall {
+    width: 28px;
+    height: 28px;
+    border: 2px solid white;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.20);
+    border-radius: 100%;
+    margin-right: -10px;
+}
+
+.descriptionKanbanBig,
+.descriptionKanbanSmall {
+    hyphens: auto;
+}
+
+/* popup task */
 .footer {
     left: 74px !important;
 }
 
 .inputDescription {
     resize: none;
+}
+
+/* popup board */
+.boardArea {
+    width: 525px;
+    height: auto;
+    max-height: 100vh;
+    box-sizing: border-box;
+    padding: 48px 40px;
+    border-radius: 30px;
+    background: white;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+}
+
+.contactBigBoard {
+    padding: 7px 16px;
+}
+
+.subtaskBigBoard {
+    padding: 6px 16px;
+}
+
+.subtaskBigBoard:hover {
+    background-color: #EEEEEE;
+    border-radius: 10px;
+}
+
+.greyline {
+    width: 1px;
+    height: 24px;
+}
+
+.footerBoardBig {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.deleteBoardArea {
+    width: 81px;
+}
+
+.editBoardArea {
+    width: 61.5px;
+}
+
+.editBoardArea:hover span,
+.deleteBoardArea:hover span {
+    color: #29ABD8;
+    font-weight: bold;
+}
+
+.deleteBoardArea:hover img {
+    content: url('../img/garbageBlue.png');
+}
+
+.editBoardArea:hover img {
+    content: url('../img/pencilBlue.png');
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.progressBarArea {
+    width: 100%;
+    height: 5px;
+    background-color: red;
+    border-radius: 8px;
+    background: #F4F4F4;
+    height: 8px;
+}
+
+.progressBarFilled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #29ABD8;
+    border-radius: 8px;
+    height: 8px;
 }

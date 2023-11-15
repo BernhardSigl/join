@@ -49,6 +49,14 @@ async function loadCategories() {
     }
 }
 
+async function loadSubtasks() {
+    try {
+        subtasksInTaskArray = JSON.parse(await getItem('subtasksInTaskArray'));
+    } catch {
+        console.warn('Token invalid becauce no subtasks has been created yet');
+    }
+}
+
 // save locally
 function save() {
     let rememberMeAsText = JSON.stringify(rememberMe);

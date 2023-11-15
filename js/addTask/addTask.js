@@ -2,8 +2,8 @@ let taskArray = [];
 let contactsInTaskArray = [];
 let categoriesInTaskArray = [];
 let subtasksInTaskArray = [];
+let confirmedSubtasksArray = [];
 let datePickerExecuted;
-// let taskIdCounter = 1;
 let currentId;
 
 async function initAddTask() {
@@ -33,16 +33,13 @@ function checkCurrentId() {
 }
 
 async function deleteTask(taskId) {
-    // Hier implementieren Sie die Löschlogik, und nehmen Sie taskId als Parameter an
     taskArray = taskArray.filter(task => task.id !== taskId);
-
-    // Nach dem Löschen aktualisieren Sie die IDs lückenlos
     taskArray.forEach((task, index) => {
         task.id = index;
     });
-
-    // Speichern Sie das aktualisierte Array in Ihrem Speichermechanismus (z.B., localStorage)
     await setItem('taskArray', JSON.stringify(taskArray));
+    updateTasks();
+    slideOutTwoObjects('boardAreaId', 'backgroundBoardPopupId');
 }
 
 function enableCalender() {
@@ -79,33 +76,32 @@ function removePikaday() {
 }
 
 async function createTask() {
-    // currentId++;
     while (taskArray.some(task => task.id === currentId)) {
         currentId++;
     }
-    console.log(currentId);
-    let addTaskTitle = document.getElementById('addTaskTitleId').value;
-    let addTaskDescription = document.getElementById('addTaskDescriptionId').value;
-    let addTaskDate = document.getElementById('datepickerId').value;
-    let addTaskCategory = document.getElementById('addCategoryId').value;
-    let addTask = {
-        "title": addTaskTitle,
-        "description": addTaskDescription,
-        "date": addTaskDate,
-        "urgent": urgentStatus,
-        "medium": mediumStatus,
-        "low": lowStatus,
-        "category": addTaskCategory,
-        "contacts": contactsInTaskArray,
-        "subtasks": subtasksInTaskArray,
-        "progressStatus": 'toDo',
-        "id": currentId,
-    }
+    let confirmedSubtasksArray = Array(subtasksInTaskArray.length).fill(false);
+    const addTask = {
+        'title': document.getElementById('addTaskTitleId').value,
+        'description': document.getElementById('addTaskDescriptionId').value,
+        'date': document.getElementById('datepickerId').value,
+        'category': document.getElementById('addCategoryId').value,
+        'urgent': urgentStatus,
+        'medium': mediumStatus,
+        'low': lowStatus,
+        'contacts': contactsInTaskArray,
+        'subtasks': subtasksInTaskArray,
+        'progressStatus': 'toDo',
+        'id': currentId,
+        'subtasksAmount': 0,
+        'confirmedSubtasks': confirmedSubtasksArray,
+    };
+
     taskArray.push(addTask);
     contactsInTaskArray = [];
     await setItem('taskArray', JSON.stringify(taskArray));
     clearTask();
 }
+
 // contacts
 function listContacts() {
     let listContacts = document.getElementById('assignToId');

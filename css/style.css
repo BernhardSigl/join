@@ -13,6 +13,10 @@ a {
     color: #29ABE2;
 }
 
+.w100 {
+    width: 100%;
+}
+
 .pointer {
     cursor: pointer !important;
 }
@@ -240,6 +244,10 @@ button:hover {
 
 .gap13 {
     gap: 13px;
+}
+
+.gap11 {
+    gap: 11px;
 }
 
 .gap10 {
