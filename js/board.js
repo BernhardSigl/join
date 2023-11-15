@@ -15,6 +15,7 @@ function updateTasks() {
     inProgressFilter();
     awaitFeedbackFilter();
     doneFilter();
+    subtasksExistingBoardSmall();
 }
 
 function toDoFilter() {
@@ -24,6 +25,7 @@ function toDoFilter() {
         const toDoFiltered = toDoFilter[i];
         document.getElementById('toDoId').innerHTML += generateTaskHTML(toDoFiltered);
         checkAmountContactsBoardSmall(toDoFiltered.contacts, toDoFiltered.id);
+        checkSubtaskProgress(toDoFiltered);
     }
     noToDo(toDoFilter);
     document.getElementById('toDoId').innerHTML += generateTaskPlaceholderHTML();
@@ -44,6 +46,7 @@ function inProgressFilter() {
         const inProgressFiltered = inProgressFilter[i];
         document.getElementById('inProgressId').innerHTML += generateTaskHTML(inProgressFiltered);
         checkAmountContactsBoardSmall(inProgressFiltered.contacts, inProgressFiltered.id);
+        checkSubtaskProgress(inProgressFiltered);
     }
     noInProgress(inProgressFilter);
     document.getElementById('inProgressId').innerHTML += generateTaskPlaceholderHTML();
@@ -64,6 +67,7 @@ function awaitFeedbackFilter() {
         const awaitFeedbackFiltered = awaitFeedbackFilter[i];
         document.getElementById('awaitFeedbackId').innerHTML += generateTaskHTML(awaitFeedbackFiltered);
         checkAmountContactsBoardSmall(awaitFeedbackFiltered.contacts, awaitFeedbackFiltered.id);
+        checkSubtaskProgress(awaitFeedbackFiltered);
     }
     noAwaitFeedback(awaitFeedbackFilter);
     document.getElementById('awaitFeedbackId').innerHTML += generateTaskPlaceholderHTML();
@@ -84,6 +88,7 @@ function doneFilter() {
         const doneFilterFiltered = doneFilter[i];
         document.getElementById('doneId').innerHTML += generateTaskHTML(doneFilterFiltered);
         checkAmountContactsBoardSmall(doneFilterFiltered.contacts, doneFilterFiltered.id);
+        checkSubtaskProgress(doneFilterFiltered);
     }
     noDone(doneFilter);
     document.getElementById('doneId').innerHTML += generateTaskPlaceholderHTML();
@@ -99,11 +104,6 @@ function noDone(doneFilter) {
 
 function generateTaskHTML(task) {
     checkPrio(task);
-
-    const subtasksLimit = task.confirmedSubtasks.length;
-    const completedSubtasks = task.confirmedSubtasks.filter(subtask => subtask === true).length;
-    const progressPercentage = subtasksLimit > 0 ? (completedSubtasks / subtasksLimit) * 100 : 0;
-
     return /*html*/ `
     <div class="task pointer column gap24" draggable="true" ondragstart="startDragging(${task.id})" onclick="openBoard(${task.id})">
         <span class="fontSize16 subjectKanbanSmall fontWhite pointer">${task.category}</span>
@@ -111,26 +111,35 @@ function generateTaskHTML(task) {
             <span class="fontSize16 titleKanban bold pointer">${task.title}</span>
             <span class="fontSize16 descriptionKanbanSmall fontGrey pointer">${task.description}</span>
         </div>
-        <div class="w100 alignCenter gap11">
+        <div class="w100 alignCenter gap11 dNone" id="progressBarAreaId${task.id}">
             <div class="progressBarArea relative">
-                <div id="progressBarId${task.id}" class="progressBarFilled" style="width: ${progressPercentage}%">
+                <div id="progressBarId${task.id}" class="progressBarFilled">
                 </div>
             </div>
 
             <div class="alignCenter gap2">
                 <span class="fontSize12" id="progressId${task.id}">
-                ${completedSubtasks}/${subtasksLimit}
                 </span>
                 <span class="fontSize12">Subtasks</span>
             </div>
         </div>
-        <div class="w100 spaceBetween alignCenter">
+        <div class="w100 spaceBetween alignCenter ${dNone}">
             <div id="contactsInBoardSmallId${task.id}" class="alignCenter">
             </div>
             <img src="../img/${prioImg}.png" class="symbol20">
         </div>
     </div>
     `;
+}
+
+function checkSubtaskProgress(task) {
+    const subtasksLimit = task.confirmedSubtasks.length;
+    const completedSubtasks = task.confirmedSubtasks.filter(subtask => subtask === true).length;
+    const progressPercentage = subtasksLimit > 0 ? (completedSubtasks / subtasksLimit) * 100 : 0;
+    const progressBar = document.getElementById(`progressBarId${task.id}`);
+    progressBar.style.width = `${progressPercentage}%`;
+    const progressText = document.getElementById(`progressId${task.id}`);
+    progressText.textContent = `${completedSubtasks}/${subtasksLimit}`;
 }
 
 function startDragging(id) {
@@ -141,11 +150,11 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-function moveTo(category) {
+async function moveTo(category) {
     taskArray[currentDraggedTask]['progressStatus'] = category;
-    console.log(category);
     removeHighlight();
     updateTasks();
+    await setItem('taskArray', JSON.stringify(taskArray));
 }
 
 function highlight(id) {
@@ -179,13 +188,13 @@ function openTaskPopup() {
 
 function checkPrio(task) {
     if (task.low === true) {
-        return prioImg = 'lowGreen', prioText = "Low";
+        return prioImg = 'lowGreen', prioText = "Low", dNone = '';
     } else if (task.medium === true) {
-        return prioImg = 'mediumOrange', prioText = "Medium";
+        return prioImg = 'mediumOrange', prioText = "Medium", dNone = '';
     } else if (task.urgent === true) {
-        return prioImg = 'urgentRed', prioText = "Urgent";
+        return prioImg = 'urgentRed', prioText = "Urgent", dNone = '';
     } else {
-        return '';
+        return prioImg = 'urgentRed', prioText = "", dNone = 'dNone';
     }
 }
 
@@ -208,13 +217,26 @@ function generateContactsBoardSmallHTML(contactsBoard) {
     `
 }
 
-function openBoard(id) {
-    let task = taskArray[id];
+function openBoard(taskIndex) {
+    let task = taskArray[taskIndex];
     slideTwoObjects('boardAreaId', 'backgroundBoardPopupId');
     checkPrio(task);
-    document.getElementById('boardAreaId').innerHTML = generateBoardHTML(task, id);
-    checkAmountContactsBoardBig(task.contacts, task.id);
-    checkAmountSubtasksBoardBig(task.subtasks, task.id);
+    document.getElementById('boardAreaId').innerHTML = generateBoardHTML(task, taskIndex);
+    checkAmountContactsBoardBig(task.contacts, taskIndex);
+    if (task.contacts.length != 0) {
+        toggleVisibility(`assignedToAreaBoardBigId${taskIndex}`, true);
+    }
+    if (task.subtasks.length != 0) {
+        checkAmountSubtasksBoardBig(task.subtasks, taskIndex);
+        toggleVisibility(`subtaskBoardBigAreaId${taskIndex}`, true);
+    }
+    if (task.low === false && task.medium === false && task.urgent === false) {
+        toggleVisibility(`prioAreaBoardBigId${taskIndex}`, false);
+    }
+    if (task.description === '') {
+        toggleVisibility(`descriptionBoardBigId${taskIndex}`, false);
+    }
+    checkSubtaskConfirmed(task.confirmedSubtasks);
 }
 
 function generateBoardHTML(task, id) {
@@ -227,25 +249,25 @@ function generateBoardHTML(task, id) {
     <span class="fontSize61 bold">
     ${task.title}
     </span>
-    <span class="fontSize20 descriptionKanbanBig">
+    <span class="fontSize20 descriptionKanbanBig" id="descriptionBoardBigId${id}">
     ${task.description}
     </span>
     <div class="dFlex gap28">
         <span class="fontSize20 fontBlue">Due date:</span>
         <span class="fontSize20">${task.date}</span>
     </div>
-    <div class="dFlex gap48">
+    <div class="dFlex gap48" id="prioAreaBoardBigId${id}">
         <span class="fontSize20 fontBlue">Priority:</span>
         <div class="dFlex gap10 alignCenter">
             <span class="fontSize20">${prioText}</span>
             <img src="../img/${prioImg}.png" class="symbol20">
         </div>
     </div>
-    <div class="column gap8">
+    <div class="column gap8 dNone" id="assignedToAreaBoardBigId${id}">
         <span class="fontSize20 fontBlue">Assigned to:</span>
         <div id="contactsInBoardBigId${id}"></div>
     </div>
-    <div class="column gap8">
+    <div class="column gap8 dNone" id="subtaskBoardBigAreaId${id}">
         <span class="fontBlue fontSize20">Subtasks</span>
         <div id="subtasksInBoardBigId${id}" class="pointer"></div>
     </div>
@@ -254,7 +276,7 @@ function generateBoardHTML(task, id) {
             <img class="symbol24" src="img/garbageDark.png">
             <span class="fontSize16 pointer">Delete</span>
         </div>
-        <img class="greyline" src="img/greyLine.png">
+        <img class="greylineSmall" src="img/greyLine.png">
         <div class="alignCenter gap8 pointer editBoardArea">
             <img class="symbol24" src="img/pencilDark.png">
             <span class="fontSize16 pointer">Edit</span>
@@ -263,8 +285,8 @@ function generateBoardHTML(task, id) {
     `;
 }
 
-function checkAmountContactsBoardBig(contacts, id) {
-    const contactsBoardBig = document.getElementById(`contactsInBoardBigId${id}`);
+function checkAmountContactsBoardBig(contacts, taskIndex) {
+    const contactsBoardBig = document.getElementById(`contactsInBoardBigId${taskIndex}`);
     contactsBoardBig.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
@@ -287,51 +309,57 @@ function generateContactsBoardBigHTML(contact) {
     `
 }
 
-function checkAmountSubtasksBoardBig(subtasks, indexTask) {
-    let subtasksBoardBig = document.getElementById(`subtasksInBoardBigId${indexTask}`);
+function checkAmountSubtasksBoardBig(subtasks, taskIndex) {
+    let subtasksBoardBig = document.getElementById(`subtasksInBoardBigId${taskIndex}`);
     subtasksBoardBig.innerHTML = '';
     for (let i = 0; i < subtasks.length; i++) {
         let subtask = subtasks[i];
-        subtasksBoardBig.innerHTML += gernerateSubtasksBoardBigHTML(subtask, i, indexTask);
+        subtasksBoardBig.innerHTML += gernerateSubtasksBoardBigHTML(subtask, i, taskIndex);
     }
-    checkSubtaskConfirmed();
 }
 
-function gernerateSubtasksBoardBigHTML(subtask, indexSubtask, indexTask) {
+function gernerateSubtasksBoardBigHTML(subtask, subtaskIndex, taskIndex) {
     return /*html*/ `
     <div class="alignCenter subtaskBigBoard gap16"
-    onclick="toggleSubtask(${indexSubtask}, ${indexTask})">
-        <img src="../img/uncheck.png" class="symbol24" id="subtaskImgId${indexSubtask}">
-        <span class="fontSize16 pointer" id="subtaskTextId${indexSubtask}">
+    onclick="toggleSubtask(${subtaskIndex}, ${taskIndex})">
+        <img src="../img/uncheck.png" class="symbol24" id="subtaskImgId${subtaskIndex}">
+        <span class="fontSize16 pointer" id="subtaskTextId${subtaskIndex}">
         ${subtask}
         </span>
     </div>
     `
 }
 
-function toggleSubtask(indexSubtask, indexTask) {
-    let task = taskArray[indexTask];
-    let subtaskStatus = task.confirmedSubtasks[indexSubtask];
-    task.confirmedSubtasks[indexSubtask] = !subtaskStatus;
-    checkSubtaskConfirmed();
+function toggleSubtask(subtaskIndex, taskIndex) {
+    let task = taskArray[taskIndex];
+    let subtaskStatus = task.confirmedSubtasks[subtaskIndex];
+    task.confirmedSubtasks[subtaskIndex] = !subtaskStatus;
+    checkSubtaskConfirmed(taskArray[taskIndex].confirmedSubtasks);
     updateTasks();
 }
 
-async function checkSubtaskConfirmed() {
+async function checkSubtaskConfirmed(confirmedSubtasks) {
+    for (let i = 0; i < confirmedSubtasks.length; i++) {
+        const confirmedSubtask = confirmedSubtasks[i];
+        let subtaskImg = document.getElementById(`subtaskImgId${i}`);
+        let subtaskText = document.getElementById(`subtaskTextId${i}`);
+        if (confirmedSubtask === true) {
+            subtaskImg.src = '../img/check.png';
+            subtaskText.classList.add('completed');
+        } else if (confirmedSubtask === false) {
+            subtaskImg.src = '../img/uncheck.png';
+            subtaskText.classList.remove('completed');
+        }
+        await setItem('taskArray', JSON.stringify(taskArray));
+    }
+}
+
+function subtasksExistingBoardSmall() {
     for (let i = 0; i < taskArray.length; i++) {
-        const task = taskArray[i];
-        for (let j = 0; j < task.confirmedSubtasks.length; j++) {
-            const confirmedSubtask = task.confirmedSubtasks[j];
-            let subtaskImg = document.getElementById(`subtaskImgId${j}`);
-            let subtaskText = document.getElementById(`subtaskTextId${j}`);
-            if (confirmedSubtask === true) {
-                subtaskImg.src = '../img/check.png';
-                subtaskText.classList.add('completed');
-            } else if (confirmedSubtask === false) {
-                subtaskImg.src = '../img/uncheck.png';
-                subtaskText.classList.remove('completed');
-            }
+        let task = taskArray[i];
+        if (task.subtasks.length != 0) {
+            toggleVisibility(`progressBarAreaId${i}`, true);
         }
     }
-    await setItem('taskArray', JSON.stringify(taskArray));
 }
+

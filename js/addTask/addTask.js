@@ -92,7 +92,6 @@ async function createTask() {
         'subtasks': subtasksInTaskArray,
         'progressStatus': 'toDo',
         'id': currentId,
-        'subtasksAmount': 0,
         'confirmedSubtasks': confirmedSubtasksArray,
     };
 
@@ -100,6 +99,29 @@ async function createTask() {
     contactsInTaskArray = [];
     await setItem('taskArray', JSON.stringify(taskArray));
     clearTask();
+
+    if (window.location.href.endsWith("board.html")) {
+        updateTasks();
+        slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId');
+    }
+}
+
+function createTaskContent() {
+    let confirmedSubtasksArray = Array(subtasksInTaskArray.length).fill(false);
+    return {
+        'title': document.getElementById('addTaskTitleId').value,
+        'description': document.getElementById('addTaskDescriptionId').value,
+        'date': document.getElementById('datepickerId').value,
+        'category': document.getElementById('addCategoryId').value,
+        'urgent': urgentStatus,
+        'medium': mediumStatus,
+        'low': lowStatus,
+        'contacts': contactsInTaskArray,
+        'subtasks': subtasksInTaskArray,
+        'progressStatus': 'toDo',
+        'id': currentId,
+        'confirmedSubtasks': confirmedSubtasksArray,
+    };
 }
 
 // contacts
