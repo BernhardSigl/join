@@ -101,14 +101,14 @@
 /* scroll */
 .scrollContactsArea::-webkit-scrollbar-button:start:decrement {
     background-position: center;
-    background-image: url('../img/arrow_drop_up.svg');
+    background-image: url('../../img/arrow_drop_up.svg');
     border-top-right-radius: 100% !important;
     border-top-left-radius: 100% !important;
 }
 
 .scrollContactsArea::-webkit-scrollbar-button:end:increment {
     background-position: center;
-    background-image: url('../img/arrow_drop_down.svg');
+    background-image: url('../../img/arrow_drop_down.svg');
     border-bottom-right-radius: 100%;
     border-bottom-left-radius: 100%;
 }
