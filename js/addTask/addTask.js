@@ -75,7 +75,19 @@ function removePikaday() {
     });
 }
 
-async function createTask() {
+function onClickToDo() {
+    createTask(`toDo`);
+}
+
+function onClickInProgress() {
+    createTask(`inProgress`);
+}
+
+function onClickAwaitFeedback() {
+    createTask(`awaitFeedback`);
+}
+
+async function createTask(moveTo) {
     while (taskArray.some(task => task.id === currentId)) {
         currentId++;
     }
@@ -90,11 +102,10 @@ async function createTask() {
         'low': lowStatus,
         'contacts': contactsInTaskArray,
         'subtasks': subtasksInTaskArray,
-        'progressStatus': 'toDo',
+        'progressStatus': moveTo,
         'id': currentId,
         'confirmedSubtasks': confirmedSubtasksArray,
     };
-
     taskArray.push(addTask);
     contactsInTaskArray = [];
     await setItem('taskArray', JSON.stringify(taskArray));

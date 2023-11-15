@@ -13,7 +13,7 @@ function generateAddTaskHTML() {
         Add task
         </span>
     </section>
-    <form onsubmit="createTask(); return false;">
+    <form onsubmit="onClickToDo(); return false;" id="createTaskId">
         <div class="dFlex gap48">
             <div class="leftContainer column gap32">
                 <!-- title -->

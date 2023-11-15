@@ -8,6 +8,7 @@ async function initBoard() {
     await loadCategories();
     await loadSubtasks();
     updateTasks();
+    checkCurrentId();
 }
 
 function updateTasks() {
@@ -363,3 +364,26 @@ function subtasksExistingBoardSmall() {
     }
 }
 
+function changeToCreateInProgressTaskFunction() {
+    const inProgress = document.getElementById('createTaskId');
+    inProgress.onsubmit = function () {
+        onClickInProgress();
+        return false;
+    };
+}
+
+function changeToCreateAwaitFeedbackFunction() {
+    const awaitFeedback = document.getElementById('createTaskId');
+    awaitFeedback.onsubmit = function () {
+        onClickAwaitFeedback();
+        return false;
+    };
+}
+
+function originalCreateTaskFunction() {
+    const standardCreateTast = document.getElementById('createTaskId');
+    standardCreateTast.onsubmit = function () {
+        onClickToDo();
+        return false;
+    };
+}
