@@ -107,6 +107,7 @@ async function createTask(moveTo) {
         'confirmedSubtasks': confirmedSubtasksArray,
     };
     taskArray.push(addTask);
+    // taskArray.sort((a, b) => a.id - b.id);
     contactsInTaskArray = [];
     await setItem('taskArray', JSON.stringify(taskArray));
     clearTask();
@@ -192,6 +193,12 @@ function toggleCheckContact(id, i) {
     } else {
         unmarkAssignedContact(contact, img, i);
     }
+}
+
+function unmarkContactsEdit(id, i) {
+    contact = contactsArray[i];
+    let img = document.getElementById(id);
+    unmarkAssignedContact(contact, img, i);
 }
 
 function assignedContacts() {

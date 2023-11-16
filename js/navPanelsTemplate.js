@@ -10,6 +10,7 @@ function generateNavPanelsHTML() {
             Kanban Project Management Tool
         </div>
         <div class="headerRight alignCenter gap16">
+            <button onclick="toggleFullscreen()">Toggle Fullscreen</button>
             <object class="questionMarket" type="image/svg+xml" data="img/questionmarket.svg">
             </object>
             <img src="img/circle.png" class="headerCircle pointer">

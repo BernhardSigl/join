@@ -9,7 +9,7 @@ function addTaskTemplate() {
 function generateAddTaskHTML() {
     return /*html*/`
     <section class="alignCenter gap30 title titleAddTask">
-        <span class="fontSize61 bold">
+        <span class="fontSize61 bold" id="addTaskTextId">
         Add task
         </span>
     </section>
@@ -149,7 +149,7 @@ function generateAddTaskHTML() {
                         <img src="img/cross.png" class="symbol24">
                     </button>
                     <button class="btn1616 alignCenter dFlex pointer" type="submit">
-                        <span class="fontSize20 fontWhite pointer">
+                        <span class="fontSize20 fontWhite pointer" id="createTaskTextId">
                         Create Task
                         </span>
                         <img src="img/hookWhiteSmall.png" class="symbol24">
@@ -159,7 +159,7 @@ function generateAddTaskHTML() {
         </div>
     </form>
 
-    <img src="img/cross.png" class="closePopup dNone" id="closePopupId" onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId')">`
+    <img src="img/cross.png" class="closePopup dNone" id="closePopupId" onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId'), clearTask()">`
 }
 
 function generateListContactsHTML(contact, i) {

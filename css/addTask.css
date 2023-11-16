@@ -139,7 +139,7 @@ textarea:focus {
 }
 
 .changeCrossImage:hover img {
-    content: url('../img/crossBlue.png');
+    content: url('../img/crossBlue.png') !important;
 }
 
 #urgentTextId {

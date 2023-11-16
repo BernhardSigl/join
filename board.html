@@ -33,7 +33,7 @@
 <body onload="initBoard()">
     <nav id="navPanelsTemplateId"></nav>
     <popup class="background dNone" id="backgroundAddTaskPopupId"
-        onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId')">
+        onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId'), clearTask()">
         <div class="addTaskArea" id="addTaskTemplateId" onclick="doNotClose(event), closeDropdown(event)">
         </div>
     </popup>
@@ -100,7 +100,7 @@
                         In progress
                     </span>
                     <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn"
-                        onclick="openTaskPopup(), changeToCreateInProgressTaskFunction()">
+                        onclick="openTaskPopup(), inProgressChangeFunction()">
                 </div>
                 <!-- category content -->
                 <div class="noTask horizontalAndVertical dNone" id="noInProgressId">
@@ -120,7 +120,7 @@
                         Await feedback
                     </span>
                     <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn"
-                        onclick="openTaskPopup(), changeToCreateAwaitFeedbackFunction()">
+                        onclick="openTaskPopup(), awaitFeedbackChangeFunction()">
                 </div>
                 <!-- category content -->
                 <div class="noTask horizontalAndVertical dNone" id="noAwaitFeedbackId">
@@ -139,7 +139,6 @@
                     <span class="fontSize20 bold fontBlue">
                         Done
                     </span>
-                    <!-- <img src="img/plusBorder.png" class="symbol24 pointer changeAddBtn"> -->
                 </div>
                 <!-- category content -->
                 <div class="noTask horizontalAndVertical dNone" id="noDoneId">

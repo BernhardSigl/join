@@ -21,6 +21,7 @@ function updateTasks() {
 
 function toDoFilter() {
     let toDoFilter = taskArray.filter(t => t['progressStatus'] == 'toDo');
+    toDoFilter.sort(sortBoard);
     document.getElementById('toDoId').innerHTML = '';
     for (let i = 0; i < toDoFilter.length; i++) {
         const toDoFiltered = toDoFilter[i];
@@ -42,6 +43,7 @@ function noToDo(toDoFilter) {
 
 function inProgressFilter() {
     let inProgressFilter = taskArray.filter(t => t['progressStatus'] == 'inProgress');
+    inProgressFilter.sort(sortBoard);
     document.getElementById('inProgressId').innerHTML = '';
     for (let i = 0; i < inProgressFilter.length; i++) {
         const inProgressFiltered = inProgressFilter[i];
@@ -63,6 +65,7 @@ function noInProgress(inProgressFilter) {
 
 function awaitFeedbackFilter() {
     let awaitFeedbackFilter = taskArray.filter(t => t['progressStatus'] == 'awaitFeedback');
+    awaitFeedbackFilter.sort(sortBoard);
     document.getElementById('awaitFeedbackId').innerHTML = '';
     for (let i = 0; i < awaitFeedbackFilter.length; i++) {
         const awaitFeedbackFiltered = awaitFeedbackFilter[i];
@@ -84,6 +87,7 @@ function noAwaitFeedback(awaitFeedbackFilter) {
 
 function doneFilter() {
     let doneFilter = taskArray.filter(t => t['progressStatus'] == 'done');
+    doneFilter.sort(sortBoard);
     document.getElementById('doneId').innerHTML = '';
     for (let i = 0; i < doneFilter.length; i++) {
         const doneFilterFiltered = doneFilter[i];
@@ -103,10 +107,20 @@ function noDone(doneFilter) {
     }
 }
 
+function sortBoard(a, b) {
+    const priorityComparison = (b.urgent - a.urgent) || (b.medium - a.medium) || (b.low - a.low);
+    const [dayA, monthA, yearA] = a.date.split('/');
+    const [dayB, monthB, yearB] = b.date.split('/');
+    const dateA = new Date(`${yearA}-${monthA}-${dayA}`);
+    const dateB = new Date(`${yearB}-${monthB}-${dayB}`);
+    const dateComparison = dateA - dateB;
+    return priorityComparison || dateComparison;
+}
+
 function generateTaskHTML(task) {
     checkPrio(task);
     return /*html*/ `
-    <div class="task pointer column gap24" draggable="true" ondragstart="startDragging(${task.id})" onclick="openBoard(${task.id})">
+    <div class="task pointer column gap24" draggable="true" id="taskId${task.id}" ondragstart="startDragging(${task.id})" onclick="openBoard(${task.id})">
         <span class="fontSize16 subjectKanbanSmall fontWhite pointer">${task.category}</span>
         <div class="gap8 column">
             <span class="fontSize16 titleKanban bold pointer">${task.title}</span>
@@ -278,7 +292,7 @@ function generateBoardHTML(task, id) {
             <span class="fontSize16 pointer">Delete</span>
         </div>
         <img class="greylineSmall" src="img/greyLine.png">
-        <div class="alignCenter gap8 pointer editBoardArea">
+        <div class="alignCenter gap8 pointer editBoardArea" onclick="editTask(${id})">
             <img class="symbol24" src="img/pencilDark.png">
             <span class="fontSize16 pointer">Edit</span>
         </div>
@@ -364,7 +378,15 @@ function subtasksExistingBoardSmall() {
     }
 }
 
-function changeToCreateInProgressTaskFunction() {
+function toDoChangeFunction() {
+    const inProgress = document.getElementById('createTaskId');
+    inProgress.onsubmit = function () {
+        onClickToDo();
+        return false;
+    };
+}
+
+function inProgressChangeFunction() {
     const inProgress = document.getElementById('createTaskId');
     inProgress.onsubmit = function () {
         onClickInProgress();
@@ -372,7 +394,7 @@ function changeToCreateInProgressTaskFunction() {
     };
 }
 
-function changeToCreateAwaitFeedbackFunction() {
+function awaitFeedbackChangeFunction() {
     const awaitFeedback = document.getElementById('createTaskId');
     awaitFeedback.onsubmit = function () {
         onClickAwaitFeedback();
@@ -380,10 +402,45 @@ function changeToCreateAwaitFeedbackFunction() {
     };
 }
 
-function originalCreateTaskFunction() {
-    const standardCreateTast = document.getElementById('createTaskId');
-    standardCreateTast.onsubmit = function () {
-        onClickToDo();
-        return false;
-    };
+function editTask(taskIndex) {
+    // let task = taskArray[taskIndex];
+    // // if (task.progressStatus === "toDo") {
+    // //     toDoChangeFunction()
+    // // } else if (task.progressStatus === "inProgress") {
+    // //     inProgressChangeFunction()
+    // // } else if (task.progressStatus === "awaitFeedback") {
+    // //     awaitFeedbackChangeFunction();
+    // // }
+    let task = taskArray[taskIndex];
+    openTaskPopup();
+    toggleVisibility('backgroundBoardPopupId', false);
+    document.getElementById('addTaskTextId').innerHTML = 'Edit task';
+    document.getElementById('createTaskTextId').innerHTML = 'Save task';
+    document.getElementById('addTaskTitleId').value = task.title;
+    document.getElementById('addTaskDescriptionId').value = task.description;
+    document.getElementById('datepickerId').value = task.date;
+    document.getElementById('addCategoryId').value = task.category;
+    if (task.urgent === true) {
+        urgentBtn();
+    } else if (task.medium === true) {
+        mediumBtn();
+    } else if (task.low === true) {
+        lowBtn();
+    }
+    for (let i = 0; i < task.subtasks.length; i++) {
+        const subtask = task.subtasks[i];
+        document.getElementById('subtaskInputId').value = subtask;
+        addSubtask();
+    }
+    for (let j = 0; j < task.contacts.length; j++) {
+        toggleCheckContact(`checkContactImgId${j}`, j);
+    }
+    assignedContacts();
+}
+
+function saveTask(taskIndex) {
+    createTask(`toDo`);
+    setTimeout(() => {
+        deleteTask(taskIndex);
+    }, 500);
 }
