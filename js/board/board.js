@@ -159,6 +159,7 @@ function checkSubtaskProgress(task) {
 
 function startDragging(id) {
     currentDraggedTask = id;
+    document.getElementById(`taskId${id}`).classList.add('rotated');
 }
 
 function allowDrop(ev) {
@@ -379,8 +380,8 @@ function subtasksExistingBoardSmall() {
 }
 
 function toDoChangeFunction() {
-    const inProgress = document.getElementById('createTaskId');
-    inProgress.onsubmit = function () {
+    const toDo = document.getElementById('createTaskId');
+    toDo.onsubmit = function () {
         onClickToDo();
         return false;
     };
@@ -402,17 +403,19 @@ function awaitFeedbackChangeFunction() {
     };
 }
 
+function saveChangeFunction(taskIndex) {
+    const saveDestination = document.getElementById('createTaskId');
+    saveDestination.onsubmit = function () {
+        saveTask(taskIndex);
+        return false;
+    };
+}
+
 function editTask(taskIndex) {
-    // let task = taskArray[taskIndex];
-    // // if (task.progressStatus === "toDo") {
-    // //     toDoChangeFunction()
-    // // } else if (task.progressStatus === "inProgress") {
-    // //     inProgressChangeFunction()
-    // // } else if (task.progressStatus === "awaitFeedback") {
-    // //     awaitFeedbackChangeFunction();
-    // // }
     let task = taskArray[taskIndex];
     openTaskPopup();
+    resetSearch()
+    saveChangeFunction(taskIndex);
     toggleVisibility('backgroundBoardPopupId', false);
     document.getElementById('addTaskTextId').innerHTML = 'Edit task';
     document.getElementById('createTaskTextId').innerHTML = 'Save task';
@@ -439,8 +442,43 @@ function editTask(taskIndex) {
 }
 
 function saveTask(taskIndex) {
-    createTask(`toDo`);
+    let saveDestination = taskArray[taskIndex].progressStatus;
+    createTask(`${saveDestination}`);
     setTimeout(() => {
         deleteTask(taskIndex);
     }, 500);
+}
+let filteredTasksArray = [];
+
+function filterTasks(searchTerm) {
+    filteredTasksArray = taskArray.filter(task => task.title.toLowerCase().includes(searchTerm.toLowerCase()) || task.category.toLowerCase().includes(searchTerm.toLowerCase()) || task.description.toLowerCase().includes(searchTerm.toLowerCase()));
+    taskArray.forEach((_, index) => {
+        const taskElement = document.getElementById(`taskId${index}`);
+        taskElement.style.display = 'none';
+    });
+    document.getElementById('toDoSearchId').style.display = 'none';
+    document.getElementById('inProgressSearchId').style.display = 'none';
+    document.getElementById('awaitFeedbackSearchId').style.display = 'none';
+    document.getElementById('doneSearchId').style.display = 'none';
+    filteredTasksArray.forEach(task => {
+        const index = taskArray.indexOf(task);
+        const taskElement = document.getElementById(`taskId${index}`);
+        const category = task.progressStatus;
+
+        taskElement.style.display = 'flex';
+        document.getElementById(`${category}SearchId`).style.display = 'flex';
+    });
+}
+
+function resetSearch() {
+    document.getElementById('searchFieldTasksId').value = '';
+    taskArray.forEach((_, index) => {
+        const taskElement = document.getElementById(`taskId${index}`);
+        taskElement.style.display = 'flex';
+    });
+    document.getElementById('toDoSearchId').style.display = 'flex';
+    document.getElementById('inProgressSearchId').style.display = 'flex';
+    document.getElementById('awaitFeedbackSearchId').style.display = 'flex';
+    document.getElementById('doneSearchId').style.display = 'flex';
+    filteredTasksArray = [];
 }

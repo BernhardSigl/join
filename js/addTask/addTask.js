@@ -195,12 +195,6 @@ function toggleCheckContact(id, i) {
     }
 }
 
-function unmarkContactsEdit(id, i) {
-    contact = contactsArray[i];
-    let img = document.getElementById(id);
-    unmarkAssignedContact(contact, img, i);
-}
-
 function assignedContacts() {
     let assignedContacts = document.getElementById('assignedContactsId');
     contactsInTaskArray.sort((a, b) => a.name.localeCompare(b.name));

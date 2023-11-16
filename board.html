@@ -58,7 +58,8 @@
             </span>
             <div class="dFlex gap32">
                 <div class="relative alignCenter">
-                    <input type="text" placeholder="Find task" class="input816 fontSize20 searchField">
+                    <input type="text" placeholder="Find task" class="input816 fontSize20 searchField"
+                        oninput="filterTasks(this.value)" id="searchFieldTasksId">
                     <object class="greylineInput" type="image/svg+xml" data="img/greylineInputfield.svg">
                     </object>
                     <object class="symbol32Input" type="image/svg+xml" data="img/search.svg">
@@ -74,7 +75,7 @@
 
         <div class="dFlex gap26">
             <!-- to do -->
-            <section class="column gap16">
+            <section class="column gap16" id="toDoSearchId">
                 <!-- category title -->
                 <div class="categoryTitle spaceBetween">
                     <span class="fontSize20 bold fontBlue">
@@ -93,7 +94,7 @@
                 </div>
             </section>
             <!-- in progress -->
-            <section class="column gap16">
+            <section class="column gap16" id="inProgressSearchId">
                 <!-- category title -->
                 <div class="categoryTitle spaceBetween">
                     <span class="fontSize20 bold fontBlue">
@@ -113,7 +114,7 @@
                 </div>
             </section>
             <!-- await feedback -->
-            <section class="column gap16">
+            <section class="column gap16" id="awaitFeedbackSearchId">
                 <!-- category title -->
                 <div class="categoryTitle spaceBetween">
                     <span class="fontSize20 bold fontBlue">
@@ -133,7 +134,7 @@
                 </div>
             </section>
             <!-- done -->
-            <section class="column gap16">
+            <section class="column gap16" id="doneSearchId">
                 <!-- category title -->
                 <div class="categoryTitle">
                     <span class="fontSize20 bold fontBlue">

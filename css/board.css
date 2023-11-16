@@ -67,6 +67,11 @@
     background-color: white;
     align-items: flex-start;
     border: solid 1px white;
+    transition: transform 0.2s ease;
+}
+
+.rotated {
+    transform: rotate(3deg);
 }
 
 .task:hover {
