@@ -90,7 +90,7 @@
                     </span>
                 </div>
                 <div class="dragArea column gap16" id="toDoId" ondrop="moveTo('toDo')"
-                    ondragover="allowDrop(event); highlight('toDoId')" ondragleave="removeHighlight()">
+                    ondragover="allowDrop(event); highlight('toDoId')" ondragend="updateTasks()">
                 </div>
             </section>
             <!-- in progress -->
@@ -110,7 +110,8 @@
                     </span>
                 </div>
                 <div class="dragArea column gap16" id="inProgressId" ondrop="moveTo('inProgress')"
-                    ondragover="allowDrop(event); highlight('inProgressId')" ondragleave="removeHighlight()">
+                    ondragover="allowDrop(event); highlight('inProgressId')" ondragleave="removeHighlight()"
+                    ondragend="updateTasks()">
                 </div>
             </section>
             <!-- await feedback -->
@@ -130,7 +131,8 @@
                     </span>
                 </div>
                 <div class="dragArea column gap16" id="awaitFeedbackId" ondrop="moveTo('awaitFeedback')"
-                    ondragover="allowDrop(event); highlight('awaitFeedbackId')" ondragleave="removeHighlight()">
+                    ondragover="allowDrop(event); highlight('awaitFeedbackId')" ondragleave="removeHighlight()"
+                    ondragend="updateTasks()">
                 </div>
             </section>
             <!-- done -->
@@ -148,7 +150,8 @@
                     </span>
                 </div>
                 <div class="dragArea column gap16" id="doneId" ondrop="moveTo('done')"
-                    ondragover="allowDrop(event); highlight('doneId')" ondragleave="removeHighlight()">
+                    ondragover="allowDrop(event); highlight('doneId')" ondragleave="removeHighlight()"
+                    ondragend="updateTasks()">
                 </div>
             </section>
         </div>

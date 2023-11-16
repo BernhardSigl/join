@@ -1,3 +1,5 @@
+let filteredTasksArray = [];
+
 let currentDraggedTask;
 
 async function initBoard() {
@@ -448,7 +450,6 @@ function saveTask(taskIndex) {
         deleteTask(taskIndex);
     }, 500);
 }
-let filteredTasksArray = [];
 
 function filterTasks(searchTerm) {
     filteredTasksArray = taskArray.filter(task => task.title.toLowerCase().includes(searchTerm.toLowerCase()) || task.category.toLowerCase().includes(searchTerm.toLowerCase()) || task.description.toLowerCase().includes(searchTerm.toLowerCase()));
