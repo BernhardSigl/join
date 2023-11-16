@@ -1,0 +1,8 @@
+# edit subtasks bug
+# board summary connection
+# finish login online log-in
+# finish login local storage guest
+# header dropdown
+# header question market
+# privacy policy and legal notice log in screen connection
+# mobile view

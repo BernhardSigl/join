@@ -77,11 +77,11 @@
 }
 
 .editContactArea:hover img {
-    content: url('../img/pencilBlue.png');
+    content: url('../../img/pencilBlue.png');
 }
 
 .deleteContactArea:hover img {
-    content: url('../img/garbageBlue.png');
+    content: url('../../img/garbageBlue.png');
 }
 
 .contactInfoTextBlock {

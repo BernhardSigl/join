@@ -98,5 +98,5 @@
 }
 
 .changeCrossImage:hover img {
-    content: url('../img/crossBlue.png');
+    content: url('../../img/crossBlue.png');
 }
