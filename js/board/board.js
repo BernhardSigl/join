@@ -412,12 +412,16 @@ function saveChangeFunction(taskIndex) {
         return false;
     };
 }
-
+let storedConfirmedSubtasksArray = [];
 function editTask(taskIndex) {
     let task = taskArray[taskIndex];
+    storedConfirmedSubtasksArray = [];
+    let storedConfirmed = task.confirmedSubtasks;
+    storedConfirmedSubtasksArray.push(storedConfirmed);
     openTaskPopup();
     resetSearch()
     saveChangeFunction(taskIndex);
+    addSubtaskChangeFunction(taskIndex);
     toggleVisibility('backgroundBoardPopupId', false);
     document.getElementById('addTaskTextId').innerHTML = 'Edit task';
     document.getElementById('createTaskTextId').innerHTML = 'Save task';
@@ -440,15 +444,28 @@ function editTask(taskIndex) {
     for (let j = 0; j < task.contacts.length; j++) {
         toggleCheckContact(`checkContactImgId${j}`, j);
     }
+
     assignedContacts();
+    updateSubtaskListInEditMode(taskIndex);
 }
 
-function saveTask(taskIndex) {
+async function saveTask(taskIndex) {
     let saveDestination = taskArray[taskIndex].progressStatus;
+
     createTask(`${saveDestination}`);
+
     setTimeout(() => {
         deleteTask(taskIndex);
-    }, 500);
+        taskArray[taskIndex].confirmedSubtasks = [...taskArray[taskIndex].confirmedSubtasks, ...storedConfirmedSubtasksArray];
+        taskArray[taskIndex].confirmedSubtasks = [].concat(...taskArray[taskIndex].confirmedSubtasks);
+        taskArray[taskIndex].confirmedSubtasks.splice(0, Math.ceil(taskArray[taskIndex].confirmedSubtasks.length / 2));
+        updateTasks();
+        saveMe();
+    }, 501);
+}
+
+async function saveMe() {
+    await setItem('taskArray', JSON.stringify(taskArray));
 }
 
 function filterTasks(searchTerm) {
@@ -482,4 +499,47 @@ function resetSearch() {
     document.getElementById('awaitFeedbackSearchId').style.display = 'flex';
     document.getElementById('doneSearchId').style.display = 'flex';
     filteredTasksArray = [];
+}
+
+function addSubtaskChangeFunction(taskIndex) {
+    const addSubtaskEdit = document.getElementById('addSubtaskImgId');
+    addSubtaskEdit.onclick = function () {
+        addSubtaskInEditMode(taskIndex);
+        return false;
+    };
+}
+
+function addSubtaskInEditMode(taskIndex) {
+    let task = taskArray[taskIndex];
+    let subtasks = task.subtasks;
+    let subtaskInput = document.getElementById('subtaskInputId');
+    let subtaskList = document.getElementById('subtaskListId');
+    subtasks.push(subtaskInput.value);
+    subtasksInTaskArray.push(subtaskInput.value);
+    task.confirmedSubtasks.push(false);
+    subtaskList.innerHTML = '';
+    subtaskInput.value = '';
+    for (let i = 0; i < subtasks.length; i++) {
+        const subtask = subtasks[i];
+        console.log(subtask);
+        subtaskList.innerHTML += generateSubtaskListHTML(subtask, i);
+    }
+    disableSubtaskInput();
+    updateSubtaskListInEditMode(taskIndex);
+}
+
+function updateSubtaskListInEditMode(taskIndex) {
+    let task = taskArray[taskIndex];
+    let subtasks = task.subtasks;
+    let subtaskList = document.getElementById('subtaskListId');
+    subtaskList.innerHTML = '';
+    for (let i = 0; i < subtasks.length; i++) {
+        const subtask = subtasks[i];
+        const confirmedSubtask = task.confirmedSubtasks[i];
+        subtaskList.innerHTML += generateSubtaskListHTML(subtask, i);
+        if (confirmedSubtask) {
+            document.getElementById(`subtaskListElement${i}`).style.color = '#7EE331';
+            document.getElementById(`subtaskEditInputId${i}`).style.color = '#7EE331';
+        }
+    }
 }

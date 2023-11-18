@@ -1,4 +1,7 @@
-# edit subtasks bug
+# change enter onclick subtasks function
+# edit subtasks bug DID
+# edit color bug popup
+# add category color
 # board summary connection
 # finish login online log-in
 # finish login local storage guest
