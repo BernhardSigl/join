@@ -17,6 +17,10 @@ a {
     width: 100%;
 }
 
+.h32 {
+    height: 32px;
+}
+
 .pointer {
     cursor: pointer !important;
 }

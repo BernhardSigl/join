@@ -140,7 +140,7 @@ function generateTaskHTML(task) {
                 <span class="fontSize12">Subtasks</span>
             </div>
         </div>
-        <div class="w100 spaceBetween alignCenter ${dNone}">
+        <div class="w100 h32 spaceBetween alignCenter ${dNone}">
             <div id="contactsInBoardSmallId${task.id}" class="alignCenter">
             </div>
             <img src="../img/${prioImg}.png" class="symbol20">
@@ -211,6 +211,8 @@ function checkPrio(task) {
         return prioImg = 'mediumOrange', prioText = "Medium", dNone = '';
     } else if (task.urgent === true) {
         return prioImg = 'urgentRed', prioText = "Urgent", dNone = '';
+    } else if (task.contacts.length !== 0) {
+        return prioImg = 'placeholder', dNone = '';
     } else {
         return prioImg = 'urgentRed', prioText = "", dNone = 'dNone';
     }
