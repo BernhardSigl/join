@@ -419,7 +419,7 @@ function editTask(taskIndex) {
     let storedConfirmed = task.confirmedSubtasks;
     storedConfirmedSubtasksArray.push(storedConfirmed);
     openTaskPopup();
-    resetSearch()
+    resetSearch();
     saveChangeFunction(taskIndex);
     addSubtaskChangeFunction(taskIndex);
     toggleVisibility('backgroundBoardPopupId', false);
@@ -469,6 +469,10 @@ async function saveMe() {
 }
 
 function filterTasks(searchTerm) {
+    if (searchTerm.trim() === '') {
+        resetSearch();
+        return;
+    }
     filteredTasksArray = taskArray.filter(task => task.title.toLowerCase().includes(searchTerm.toLowerCase()) || task.category.toLowerCase().includes(searchTerm.toLowerCase()) || task.description.toLowerCase().includes(searchTerm.toLowerCase()));
     taskArray.forEach((_, index) => {
         const taskElement = document.getElementById(`taskId${index}`);
