@@ -410,20 +410,29 @@ function awaitFeedbackChangeFunction() {
 function saveChangeFunction(taskIndex) {
     const saveDestination = document.getElementById('createTaskId');
     saveDestination.onsubmit = function () {
-        saveTask(taskIndex);
+        saveEditedTask(taskIndex);
         return false;
     };
 }
-let storedConfirmedSubtasksArray = [];
+
+let updatedTitle;
+let updatedDescription;
+let updatedDate;
+let updatedCategory;
+let updatedPrioLow;
+let updatedPrioMedium;
+let updatedPrioUrgent;
+let intervalId;
+let updatedContactsInTaskArray;
+let updatedConfirmedSubtasksArray;
+let subtasksAtBeginning;
+let updatedSubtasksInTaskArray;
+
 function editTask(taskIndex) {
     let task = taskArray[taskIndex];
-    storedConfirmedSubtasksArray = [];
-    let storedConfirmed = task.confirmedSubtasks;
-    storedConfirmedSubtasksArray.push(storedConfirmed);
     openTaskPopup();
     resetSearch();
     saveChangeFunction(taskIndex);
-    addSubtaskChangeFunction(taskIndex);
     toggleVisibility('backgroundBoardPopupId', false);
     document.getElementById('addTaskTextId').innerHTML = 'Edit task';
     document.getElementById('createTaskTextId').innerHTML = 'Save task';
@@ -431,6 +440,7 @@ function editTask(taskIndex) {
     document.getElementById('addTaskDescriptionId').value = task.description;
     document.getElementById('datepickerId').value = task.date;
     document.getElementById('addCategoryId').value = task.category;
+
     if (task.urgent === true) {
         urgentBtn();
     } else if (task.medium === true) {
@@ -438,6 +448,7 @@ function editTask(taskIndex) {
     } else if (task.low === true) {
         lowBtn();
     }
+
     for (let i = 0; i < task.subtasks.length; i++) {
         const subtask = task.subtasks[i];
         document.getElementById('subtaskInputId').value = subtask;
@@ -447,26 +458,51 @@ function editTask(taskIndex) {
         toggleCheckContact(`checkContactImgId${j}`, j);
     }
 
+    subtasksAtBeginning = subtasksInTaskArray.length;
+
+    intervalId = setInterval(() => {
+        updatedDescription = document.getElementById('addTaskDescriptionId').value;
+        updatedTitle = document.getElementById('addTaskTitleId').value;
+        updatedDate = document.getElementById('datepickerId').value;
+        updatedCategory = document.getElementById('addCategoryId').value;
+        updatedPrioLow = lowStatus;
+        updatedPrioMedium = mediumStatus;
+        updatedPrioUrgent = urgentStatus;
+        updatedContactsInTaskArray = contactsInTaskArray;
+
+        updatedSubtasksInTaskArray = subtasksInTaskArray;
+        updatedConfirmedSubtasksArray = task.confirmedSubtasks;
+        if (updatedSubtasksInTaskArray.length != updatedConfirmedSubtasksArray.length) {
+            const newSubtasksCount = updatedSubtasksInTaskArray.length - updatedConfirmedSubtasksArray.length;
+            for (let i = 0; i < newSubtasksCount; i++) {
+                updatedConfirmedSubtasksArray.push(false);
+            }
+        }
+    }, 1000);
+
     assignedContacts();
     updateSubtaskListInEditMode(taskIndex);
 }
 
-async function saveTask(taskIndex) {
-    let saveDestination = taskArray[taskIndex].progressStatus;
 
-    createTask(`${saveDestination}`);
+async function saveEditedTask(taskIndex) {
+    let task = taskArray[taskIndex];
 
-    setTimeout(() => {
-        deleteTask(taskIndex);
-        taskArray[taskIndex].confirmedSubtasks = [...taskArray[taskIndex].confirmedSubtasks, ...storedConfirmedSubtasksArray];
-        taskArray[taskIndex].confirmedSubtasks = [].concat(...taskArray[taskIndex].confirmedSubtasks);
-        taskArray[taskIndex].confirmedSubtasks.splice(0, Math.ceil(taskArray[taskIndex].confirmedSubtasks.length / 2));
-        updateTasks();
-        saveMe();
-    }, 501);
-}
+    task.title = updatedTitle;
+    task.description = updatedDescription;
+    task.date = updatedDate;
+    task.category = updatedCategory;
+    task.low = updatedPrioLow;
+    task.medium = updatedPrioMedium;
+    task.urgent = updatedPrioUrgent;
+    task.contacts = updatedContactsInTaskArray;
+    task.subtasks = updatedSubtasksInTaskArray;
+    task.confirmedSubtasks = updatedConfirmedSubtasksArray;
 
-async function saveMe() {
+    slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId');
+    clearTask();
+    clearInterval(intervalId);
+    updateTasks();
     await setItem('taskArray', JSON.stringify(taskArray));
 }
 
@@ -527,7 +563,6 @@ function addSubtaskInEditMode(taskIndex) {
     subtaskInput.value = '';
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
-        console.log(subtask);
         subtaskList.innerHTML += generateSubtaskListHTML(subtask, i);
     }
     disableSubtaskInput();

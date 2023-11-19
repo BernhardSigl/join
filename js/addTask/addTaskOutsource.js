@@ -208,9 +208,9 @@ function generateCategoryListHTML(category, i) {
 
 function generateSubtaskListHTML(subtask, i) {
     return /*html*/ `
-    <div class="listSubtask listSubtaskHover" id="subtaskListElement${i}">
-        <ul class="alignCenter spaceBetween">
-            <li><input class="alignCenter gap16 fontSize20 subtaskContent pointer" value="${subtask}" id="subtaskEditInputId${i}" readonly></li>
+    <div class="listSubtask listSubtaskHover default" id="subtaskListElement${i}">
+        <ul class="alignCenter spaceBetween default">
+            <li><input class="alignCenter gap16 fontSize20 subtaskContent default" value="${subtask}" id="subtaskEditInputId${i}" readonly></li>
             <div class="alignCenter gap4">
             <div class="symbol24 pointer editSubtask" id="pencilEditSubtaskImgId${i}" style="background-image: url('../img/pencilDark.png');" onclick="editSubtask(${i})">
             </div>

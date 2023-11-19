@@ -389,6 +389,7 @@ function editSubtask(i) {
     let subtaskInput = document.getElementById(`subtaskEditInputId${i}`);
     let subtaskListElement = document.getElementById(`subtaskListElement${i}`);
     let pencilImage = document.getElementById(`pencilEditSubtaskImgId${i}`);
+    document.getElementById(`subtaskEditInputId${i}`).classList.add('text');
     changeEditSubtaskFunction(pencilImage, i);
     subtaskInput.removeAttribute('readonly');
     subtaskListElement.style.backgroundColor = 'white';
@@ -402,9 +403,9 @@ function editSubtask(i) {
 function confirmSubtaskRenaming(pencilImage, i) {
     let subtaskListElement = document.getElementById(`subtaskListElement${i}`);
     let rename = document.getElementById(`subtaskEditInputId${i}`);
+    document.getElementById(`subtaskEditInputId${i}`).classList.remove('text');
     pencilImage.style.backgroundImage = 'url("../img/pencilDark.png")';
-    subtasksInTaskArray.splice(i, 1);
-    subtasksInTaskArray.push(rename.value);
+    subtasksInTaskArray[i] = rename.value;
     subtaskListElement.style.backgroundColor = 'transparent';
     subtaskListElement.style.borderBottom = 'none'
     subtaskListElement.classList.add('listSubtaskHover');
@@ -412,6 +413,9 @@ function confirmSubtaskRenaming(pencilImage, i) {
 }
 
 function deleteSubtask(i) {
+    if (Array.isArray(updatedConfirmedSubtasksArray)) {
+        updatedConfirmedSubtasksArray.splice(i, 1);
+    }
     subtasksInTaskArray.splice(i, 1);
     updateSubtaskList();
 }

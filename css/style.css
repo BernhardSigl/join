@@ -25,6 +25,14 @@ a {
     cursor: pointer !important;
 }
 
+.default {
+    cursor: default !important;
+}
+
+.text {
+    cursor: text !important;
+}
+
 .grab {
     cursor: grab !important;
 }
