@@ -1,6 +1,5 @@
-# change enter onclick subtasks function
-# edit subtasks bug DID
-# edit color bug popup
+# edit subtasks bug ID #completed
+# edit color bug popup #completed
 # add category color
 # board summary connection
 # finish login online log-in

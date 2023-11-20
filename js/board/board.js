@@ -9,8 +9,10 @@ async function initBoard() {
     await loadContacts();
     await loadCategories();
     await loadSubtasks();
+    await loadCategoryColors();
     updateTasks();
     checkCurrentId();
+    // checkCategoryColor();
 }
 
 function updateTasks() {
@@ -19,6 +21,7 @@ function updateTasks() {
     awaitFeedbackFilter();
     doneFilter();
     subtasksExistingBoardSmall();
+    categoryColor();
 }
 
 function toDoFilter() {
@@ -117,36 +120,6 @@ function sortBoard(a, b) {
     const dateB = new Date(`${yearB}-${monthB}-${dayB}`);
     const dateComparison = dateA - dateB;
     return priorityComparison || dateComparison;
-}
-
-function generateTaskHTML(task) {
-    checkPrio(task);
-    return /*html*/ `
-    <div class="task pointer column gap24" draggable="true" id="taskId${task.id}" ondragstart="startDragging(${task.id})" onclick="openBoard(${task.id})">
-        <span class="fontSize16 subjectKanbanSmall fontWhite pointer">${task.category}</span>
-        <div class="gap8 column">
-            <span class="fontSize16 titleKanban bold pointer">${task.title}</span>
-            <span class="fontSize16 descriptionKanbanSmall fontGrey pointer">${task.description}</span>
-        </div>
-        <div class="w100 alignCenter gap11 dNone" id="progressBarAreaId${task.id}">
-            <div class="progressBarArea relative">
-                <div id="progressBarId${task.id}" class="progressBarFilled">
-                </div>
-            </div>
-
-            <div class="alignCenter gap2">
-                <span class="fontSize12" id="progressId${task.id}">
-                </span>
-                <span class="fontSize12">Subtasks</span>
-            </div>
-        </div>
-        <div class="w100 h32 spaceBetween alignCenter ${dNone}">
-            <div id="contactsInBoardSmallId${task.id}" class="alignCenter">
-            </div>
-            <img src="../img/${prioImg}.png" class="symbol20">
-        </div>
-    </div>
-    `;
 }
 
 function checkSubtaskProgress(task) {
@@ -257,52 +230,7 @@ function openBoard(taskIndex) {
         toggleVisibility(`descriptionBoardBigId${taskIndex}`, false);
     }
     checkSubtaskConfirmed(task.confirmedSubtasks);
-}
-
-function generateBoardHTML(task, id) {
-    return /*html*/ `
-    <div class="dFlex">
-        <span class="fontSize23 subjectKanbanBig fontWhite">
-        ${task.category}
-        </span>
-    </div>
-    <span class="fontSize61 bold">
-    ${task.title}
-    </span>
-    <span class="fontSize20 descriptionKanbanBig" id="descriptionBoardBigId${id}">
-    ${task.description}
-    </span>
-    <div class="dFlex gap28">
-        <span class="fontSize20 fontBlue">Due date:</span>
-        <span class="fontSize20">${task.date}</span>
-    </div>
-    <div class="dFlex gap48" id="prioAreaBoardBigId${id}">
-        <span class="fontSize20 fontBlue">Priority:</span>
-        <div class="dFlex gap10 alignCenter">
-            <span class="fontSize20">${prioText}</span>
-            <img src="../img/${prioImg}.png" class="symbol20">
-        </div>
-    </div>
-    <div class="column gap8 dNone" id="assignedToAreaBoardBigId${id}">
-        <span class="fontSize20 fontBlue">Assigned to:</span>
-        <div id="contactsInBoardBigId${id}"></div>
-    </div>
-    <div class="column gap8 dNone" id="subtaskBoardBigAreaId${id}">
-        <span class="fontBlue fontSize20">Subtasks</span>
-        <div id="subtasksInBoardBigId${id}" class="pointer"></div>
-    </div>
-    <div class="footerBoardBig gap8">
-        <div class="alignCenter gap8 pointer deleteBoardArea" onclick="deleteTask(${id})">
-            <img class="symbol24" src="img/garbageDark.png">
-            <span class="fontSize16 pointer">Delete</span>
-        </div>
-        <img class="greylineSmall" src="img/greyLine.png">
-        <div class="alignCenter gap8 pointer editBoardArea" onclick="editTask(${id})">
-            <img class="symbol24" src="img/pencilDark.png">
-            <span class="fontSize16 pointer">Edit</span>
-        </div>
-    </div>
-    `;
+    categoryColor();
 }
 
 function checkAmountContactsBoardBig(contacts, taskIndex) {
@@ -314,21 +242,6 @@ function checkAmountContactsBoardBig(contacts, taskIndex) {
     }
 }
 
-function generateContactsBoardBigHTML(contact) {
-    return /*html*/ `
-    <div class="dFlex alignCenter gap16 contactBigBoard">
-        <div class="nameShortSmall horizontalAndVertical" style="background-color: ${contact.color};">
-            <span class="fontWhite fontSize12 mb2">
-            ${contact.nameShort}
-            </span>
-        </div>
-        <span class="fontSize20">
-        ${contact.name}
-        </span>
-    </div>
-    `
-}
-
 function checkAmountSubtasksBoardBig(subtasks, taskIndex) {
     let subtasksBoardBig = document.getElementById(`subtasksInBoardBigId${taskIndex}`);
     subtasksBoardBig.innerHTML = '';
@@ -336,18 +249,6 @@ function checkAmountSubtasksBoardBig(subtasks, taskIndex) {
         let subtask = subtasks[i];
         subtasksBoardBig.innerHTML += gernerateSubtasksBoardBigHTML(subtask, i, taskIndex);
     }
-}
-
-function gernerateSubtasksBoardBigHTML(subtask, subtaskIndex, taskIndex) {
-    return /*html*/ `
-    <div class="alignCenter subtaskBigBoard gap16"
-    onclick="toggleSubtask(${subtaskIndex}, ${taskIndex})">
-        <img src="../img/uncheck.png" class="symbol24" id="subtaskImgId${subtaskIndex}">
-        <span class="fontSize16 pointer" id="subtaskTextId${subtaskIndex}">
-        ${subtask}
-        </span>
-    </div>
-    `
 }
 
 function toggleSubtask(subtaskIndex, taskIndex) {
@@ -478,16 +379,23 @@ function editTask(taskIndex) {
                 updatedConfirmedSubtasksArray.push(false);
             }
         }
-    }, 1000);
+
+        for (let j = 0; j < updatedSubtasksInTaskArray.length; j++) {
+            const updatetConfirmedSubtask = task.confirmedSubtasks[j];
+            if (updatetConfirmedSubtask) {
+                document.getElementById(`subtaskListElement${j}`).style.color = '#7EE331';
+                document.getElementById(`subtaskEditInputId${j}`).style.color = '#7EE331';
+            }
+        }
+    }, 250);
 
     assignedContacts();
     updateSubtaskListInEditMode(taskIndex);
 }
 
-
 async function saveEditedTask(taskIndex) {
+    await new Promise(resolve => setTimeout(resolve, 175));
     let task = taskArray[taskIndex];
-
     task.title = updatedTitle;
     task.description = updatedDescription;
     task.date = updatedDate;
@@ -498,7 +406,6 @@ async function saveEditedTask(taskIndex) {
     task.contacts = updatedContactsInTaskArray;
     task.subtasks = updatedSubtasksInTaskArray;
     task.confirmedSubtasks = updatedConfirmedSubtasksArray;
-
     slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId');
     clearTask();
     clearInterval(intervalId);
@@ -583,4 +490,49 @@ function updateSubtaskListInEditMode(taskIndex) {
             document.getElementById(`subtaskEditInputId${i}`).style.color = '#7EE331';
         }
     }
+}
+
+
+let categoryColorsArray = [];
+
+function generateDarkColorFromString(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const hue = Math.floor(Math.random() * 361);
+    const saturation = Math.floor(Math.random() * 51) + 50;
+    const lightness = Math.floor(Math.random() * 31) + 20;
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
+function setCategoryBackgroundColor(task) {
+    const smallCategoryElement = document.getElementById(`subjectKanbanSmallId${task.id}`);
+    const bigCategoryElement = document.getElementById(`subjectKanbanBigId${task.id}`);
+    const categoryName = task.category;
+
+    let colorObject = categoryColorsArray.find(obj => obj.categoryName === task.category);
+
+    if (!colorObject) {
+        const colorValue = generateDarkColorFromString(task.category);
+        colorObject = { categoryName: categoryName, color: colorValue };
+        categoryColorsArray.push(colorObject);
+    }
+    smallCategoryElement.style.backgroundColor = colorObject.color;
+    if (bigCategoryElement) {
+        bigCategoryElement.style.backgroundColor = colorObject.color;
+    }
+}
+
+async function categoryColor() {
+    taskArray.forEach(task => {
+        setCategoryBackgroundColor(task);
+    });
+    const existingCategories = new Set(taskArray.map(task => task.category));
+    categoryColorsArray = categoryColorsArray.filter(obj => existingCategories.has(obj.categoryName));
+
+    taskArray.forEach(task => {
+        setCategoryBackgroundColor(task);
+    });
+    await setItem('categoryColorsArray', JSON.stringify(categoryColorsArray));
 }

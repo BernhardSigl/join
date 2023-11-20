@@ -57,6 +57,14 @@ async function loadSubtasks() {
     }
 }
 
+async function loadCategoryColors() {
+    try {
+        categoryColorsArray = JSON.parse(await getItem('categoryColorsArray'));
+    } catch {
+        console.warn('Token invalid becauce no colors has been created yet');
+    }
+}
+
 // save locally
 function save() {
     let rememberMeAsText = JSON.stringify(rememberMe);
