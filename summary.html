@@ -10,11 +10,18 @@
     <link rel="stylesheet" href="css/navpanels.css">
     <script src="js/navPanelsTemplate.js"></script>
     <script src="js/templates.js"></script>
+    <script src="js/storage.js"></script>
     <!-- specific included -->
     <link rel="stylesheet" href="css/summary.css">
     <script src="js/summary.js"></script>
     <link rel="icon" href="img/joinBrowserLogo.png">
     <title>Summary</title>
+    <!-- board included -->
+    <!-- <script src="js/addTask/addTask.js"></script> -->
+    <!-- <script src="js/addTask/addTaskButtons.js"></script> -->
+    <!-- <script src="js/addTask/addTaskOutsource.js"></script> -->
+    <script src="js/board/board.js"></script>
+    <!-- <script src="js/board/boardOutsource.js"></script> -->
 </head>
 
 <body onload="initSummary()">
@@ -35,20 +42,22 @@
         <div class="alignCenter gap80">
             <section class="column gap28">
                 <div class="topContainer dFlex gap32">
-                    <a href="#" class="horizontalAndVertical gap18 changePencilImage">
+                    <a href="board.html" class="horizontalAndVertical gap18 changePencilImage">
                         <img src="img/pencil.png">
                         <div class="column alignCenter ">
-                            <div id="toDoNumberId" class="fontSize64 bold pointer">1
+                            <div id="toDoNumberId" class="fontSize64 bold pointer">
+                                0
                             </div>
                             <span class="fontSize20 pointer">
                                 To-do
                             </span>
                         </div>
                     </a>
-                    <a href="#" class="horizontalAndVertical gap18 changeHookImage">
+                    <a href="board.html" class="horizontalAndVertical gap18 changeHookImage">
                         <img src="img/hook.png">
                         <div class="column alignCenter">
-                            <div id="doneNumberId" class="fontSize64 bold pointer">1
+                            <div id="doneNumberId" class="fontSize64 bold pointer">
+                                0
                             </div>
                             <span class="fontSize20 pointer">
                                 Done
@@ -57,21 +66,22 @@
                     </a>
                 </div>
                 <div class="middleContainer dFlex">
-                    <a href="#" class="horizontalAndVertical gap61">
+                    <a href="board.html" class="horizontalAndVertical gap45">
                         <div class="alignCenter gap18">
-                            <img src="img/urgent.png">
+                            <img src="img/noPrio.png" id="prioFrontPageImgId">
                             <div class="column alignCenter">
-                                <div id="urgentNumberId" class="fontSize64 bold pointer">1
+                                <div id="prioNumberId" class="fontSize64 bold pointer middleContainerNumberSize">
+                                    0
                                 </div>
-                                <span class="fontSize26 pointer">
-                                    Urgent
+                                <span class="fontSize26 pointer" id="prioFrontPageTextId">
+                                    ...
                                 </span>
                             </div>
                         </div>
                         <img src="img/greyLine.png" class="greyLine">
                         <div class="column gap13">
-                            <div id="dateId" class="fontSize21 bold pointer">
-                                October 16, 2022
+                            <div id="dateFrontPageId" class="fontSize20 bold pointer">
+                                ...
                             </div>
                             <span class="fontSize16 pointer">
                                 Upcoming Deadline
@@ -80,22 +90,25 @@
                     </a>
                 </div>
                 <div class="bottomContainer dFlex gap28">
-                    <a href="#" class="horizontalAndVertical column">
-                        <div id="allTaskNumberId" class="fontSize64 bold pointer">1
+                    <a href="board.html" class="horizontalAndVertical column">
+                        <div id="allTaskNumberId" class="fontSize64 bold pointer">
+                            0
                         </div>
                         <span class="fontSize20 textCenter pointer">
                             Tasks in board
                         </span>
                     </a>
-                    <a href="#" class="horizontalAndVertical column">
-                        <div id="progressTaskNumberId" class="fontSize64 bold pointer">1
+                    <a href="board.html" class="horizontalAndVertical column">
+                        <div id="progressTaskNumberId" class="fontSize64 bold pointer">
+                            0
                         </div>
                         <span class="fontSize20 textCenter pointer">
                             Tasks in progress
                         </span>
                     </a>
-                    <a href="#" class="horizontalAndVertical column">
-                        <div id="awaitingFeedbackNumberId" class="fontSize64 bold pointer">1
+                    <a href="board.html" class="horizontalAndVertical column">
+                        <div id="awaitingFeedbackNumberId" class="fontSize64 bold pointer">
+                            0
                         </div>
                         <span class="fontSize20 textCenter pointer">
                             Awaiting feedback
@@ -106,7 +119,7 @@
 
             <section>
                 <span class="fontSize47" id="dayTimeId">
-                    Good morning
+                    ...
                 </span>
                 <div class="fontSize64 bold" id="currentUserId">
                     Bernhard Sigl

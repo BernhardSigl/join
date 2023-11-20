@@ -214,6 +214,10 @@ button:hover {
     gap: 48px;
 }
 
+.gap45 {
+    gap: 45px;
+}
+
 .gap35 {
     gap: 35px;
 }

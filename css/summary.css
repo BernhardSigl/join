@@ -60,3 +60,12 @@ a img {
 #currentUserId {
     color: #29ABE2;
 }
+
+#dateFrontPageId {
+    width: 200px;
+}
+
+.middleContainerNumberSize {
+    width: 85px;
+    text-align: center;
+}

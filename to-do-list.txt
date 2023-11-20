@@ -1,7 +1,7 @@
 # edit subtasks bug ID #completed
 # edit color bug popup #completed
-# add category color
-# board summary connection
+# add category color #completed
+# board summary connection #completed
 # finish login online log-in
 # finish login local storage guest
 # header dropdown
