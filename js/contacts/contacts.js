@@ -14,7 +14,10 @@ async function initContacts() {
     addContactPopupContent();
     editContactPopupContent();
     await loadContacts();
+    await loadLoggedInUser();
+    // createLoggedInUser();
     renderContacts();
+    // loggedInUserNotClickable();
 }
 
 function renderContacts() {
@@ -57,12 +60,12 @@ function generateContactsCategoryHTML(firstLetter) {
 function generateContactsInScrollbarHTML(contact, i) {
     return /*html*/ `
     <div class="dFlex gap35 contactInfoSmall alignCenter pointer" onclick="openContactInfo(${i})" id="contactInfoSmallId${i}">
-        <div class="nameShortSmall horizontalAndVertical pointer" style="background-color: ${contact.color};">
-            <span class="fontWhite fontSize12 pointer mb2">${contact.nameShort}</span>
+        <div class="nameShortSmall horizontalAndVertical pointer" style="background-color: ${contact.color};"  id="nameShortSmallId${i}">
+            <span class="fontWhite fontSize12 pointer mb2" id="nameShortSmallText${i}">${contact.nameShort}</span>
         </div>
         <div class="column gap5">
-            <span class="fontSize20 pointer">${contact.name}</span>
-            <span class="fontSize16 fontBrightBlue pointer">${contact.email}</span>
+            <span class="fontSize20 pointer" id="contactNameSmallId${i}">${contact.name}</span>
+            <span class="fontSize16 fontBrightBlue pointer" id="contactEmailSmallId${i}">${contact.email}</span>
         </div>
     </div>`
 }
@@ -83,6 +86,7 @@ async function createContact() {
     renderContacts();
     listContacts();
     await setItem('contactsArray', JSON.stringify(contactsArray));
+    renderContacts();
 }
 
 // color function
@@ -208,4 +212,33 @@ function markContact(i) {
         container.classList.remove('markContact');
     });
     contactsInScrollbar.classList.add('markContact');
+}
+
+async function createLoggedInUser() {
+    let contactExists = contactsArray.some(contact => contact.email === loggedInUser[0].email);
+    if (!contactExists) {
+        let createContact = {
+            "name": loggedInUser[0].name + ' (You)',
+            "nameShort": nameShort(loggedInUser[0].name),
+            "email": loggedInUser[0].email,
+            "color": 'grey',
+        };
+        contactsArray.push(createContact);
+        await setItem('contactsArray', JSON.stringify(contactsArray));
+    }
+}
+
+function loggedInUserNotClickable() {
+    let indexOfLoggedInUser = contactsArray.findIndex(contact => contact.email === loggedInUser[0].email);
+    let loggedInUserInContactList = document.getElementById(`contactInfoSmallId${indexOfLoggedInUser}`);
+    let nameShortSmallId = document.getElementById(`nameShortSmallId${indexOfLoggedInUser}`);
+    let nameShortSmallText = document.getElementById(`nameShortSmallText${indexOfLoggedInUser}`);
+    let contactNameSmallId = document.getElementById(`contactNameSmallId${indexOfLoggedInUser}`);
+    let contactEmailSmallId = document.getElementById(`contactEmailSmallId${indexOfLoggedInUser}`);
+    loggedInUserInContactList.removeAttribute('onclick');
+    loggedInUserInContactList.style.setProperty('cursor', 'not-allowed', 'important');
+    nameShortSmallId.style.setProperty('cursor', 'not-allowed', 'important');
+    nameShortSmallText.style.setProperty('cursor', 'not-allowed', 'important');
+    contactNameSmallId.style.setProperty('cursor', 'not-allowed', 'important');
+    contactEmailSmallId.style.setProperty('cursor', 'not-allowed', 'important');
 }

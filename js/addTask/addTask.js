@@ -11,6 +11,7 @@ async function initAddTask() {
     addTaskTemplate();
     enableCalender();
     await loadContacts();
+    await loadLoggedInUser();
     listContacts();
     await loadCategories();
     updateCategoryList();

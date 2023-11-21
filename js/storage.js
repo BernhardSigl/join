@@ -66,14 +66,26 @@ async function loadCategoryColors() {
 }
 
 // save locally
-function save() {
+async function saveRememberMe() {
     let rememberMeAsText = JSON.stringify(rememberMe);
     localStorage.setItem('rememberMe', rememberMeAsText);
 }
 
-function load() {
+async function loadRememberMe() {
     let rememberMeAsText = localStorage.getItem('rememberMe');
     if (rememberMeAsText) {
         rememberMe = JSON.parse(rememberMeAsText);
+    }
+}
+
+async function saveLoggedInUser() {
+    let loggedInUserAsText = JSON.stringify(loggedInUser);
+    localStorage.setItem('loggedInUser', loggedInUserAsText);
+}
+
+async function loadLoggedInUser() {
+    let loggedInUserAsText = localStorage.getItem('loggedInUser');
+    if (loggedInUserAsText) {
+        loggedInUser = JSON.parse(loggedInUserAsText);
     }
 }

@@ -7,12 +7,12 @@ async function initBoard() {
     addTaskTemplate();
     await loadTask();
     await loadContacts();
+    // await loadLoggedInUser();
     await loadCategories();
     await loadSubtasks();
     await loadCategoryColors();
     updateTasks();
     checkCurrentId();
-    // checkCategoryColor();
 }
 
 function updateTasks() {

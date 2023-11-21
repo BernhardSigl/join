@@ -12,17 +12,17 @@ async function initSummary() {
     updateGreeting();
     navPanelsTemplate();
     await loadTask();
+    await loadUsers();
+    await loadLoggedInUser();
+    updateName();
     sortTaskArray();
     taskArrayCounter();
     updateCounter();
+    toggleVisibility('hiddenSummaryId', true);
 }
 
 function sortTaskArray() {
     sortedArray = [...taskArray].sort(sortBoard);
-    mostUrgentTask = sortedArray.find(task => task.urgent === true);
-    if (mostUrgentTask) {
-        // console.log(mostUrgentTask);
-    }
 }
 
 function taskArrayCounter() {
@@ -74,6 +74,10 @@ function updateCounter() {
         document.getElementById('prioFrontPageImgId').src = "img/low.png";
         document.getElementById('prioFrontPageTextId').textContent = "Low";
     }
+}
+
+function updateName() {
+    document.getElementById('currentUserId').innerHTML = loggedInUser[0].name;
 }
 
 function formatDate(dateString) {

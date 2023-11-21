@@ -17,18 +17,14 @@
     <link rel="icon" href="img/joinBrowserLogo.png">
     <title>Summary</title>
     <!-- board included -->
-    <!-- <script src="js/addTask/addTask.js"></script> -->
-    <!-- <script src="js/addTask/addTaskButtons.js"></script> -->
-    <!-- <script src="js/addTask/addTaskOutsource.js"></script> -->
     <script src="js/board/board.js"></script>
-    <!-- <script src="js/board/boardOutsource.js"></script> -->
 </head>
 
 <body onload="initSummary()">
     <!-- nav panels -->
     <nav id="navPanelsTemplateId"></nav>
 
-    <div class="content">
+    <div class="content dNone" id="hiddenSummaryId">
         <section class="alignCenter gap30 title">
             <span class="fontSize61 bold">
                 Join
@@ -122,7 +118,7 @@
                     ...
                 </span>
                 <div class="fontSize64 bold" id="currentUserId">
-                    Bernhard Sigl
+                    ...
                 </div>
             </section>
         </div>

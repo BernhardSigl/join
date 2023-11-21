@@ -14,7 +14,7 @@
     <link rel="icon" href="img/joinBrowserLogo.png">
 </head>
 
-<body onload="authenticationInit()">
+<body onload="authenticationInit()" id="hiddenLoginId" class="dNone">
     <!-- header -->
     <div class="headerFooterPosition column spaceBetween">
         <section class="spaceBetween">
@@ -72,13 +72,13 @@
                     </div>
                     <!-- remember me -->
                     <div class="alignCenter gap8 rememberMe">
-                        <input class="checkbox pointer" type="checkbox" id="logCheckboxId">
+                        <input class="checkbox pointer" type="checkbox" id="logCheckboxId"
+                            onchange="validateCheckbox(this);">
                         <span class="fontSize16">Remember me</span>
                     </div>
                     <!-- bottom buttons -->
                     <div class="gap35 justifyCenter">
-                        <button class="btn1524 fontWhite bold fontSize21 pointer" type="submit"
-                            onclick="openJoinProject()">
+                        <button class="btn1524 fontWhite bold fontSize21 pointer" type="submit">
                             Log in
                         </button>
                         <button class="btn1524 fontWhite bold btnWhite fontSize21 pointer">
@@ -100,7 +100,7 @@
                         <object class="blueLineLogin" type="image/svg+xml" data="img/blueLine.svg">
                         </object>
 
-                        <button onclick="backToLogin()" class="symbol32 backArrow pointer">
+                        <button onclick="backToLogin()" class="symbol32 backArrow pointer" type="button">
                             <img src="img/arrowLeft.svg" alt="">
                         </button>
                     </div>
