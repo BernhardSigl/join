@@ -11,7 +11,7 @@ async function initAddTask() {
     addTaskTemplate();
     enableCalender();
     await loadContacts();
-    await loadLoggedInUser();
+    // await loadLoggedInUser();
     listContacts();
     await loadCategories();
     updateCategoryList();
@@ -108,7 +108,6 @@ async function createTask(moveTo) {
         'confirmedSubtasks': confirmedSubtasksArray,
     };
     taskArray.push(addTask);
-    // taskArray.sort((a, b) => a.id - b.id);
     contactsInTaskArray = [];
     await setItem('taskArray', JSON.stringify(taskArray));
     clearTask();
@@ -140,7 +139,6 @@ function createTaskContent() {
 // contacts
 function listContacts() {
     let listContacts = document.getElementById('assignToId');
-    contactsArray.sort((a, b) => a.name.localeCompare(b.name));
     listContacts.innerHTML = '';
     for (let i = 0; i < contactsArray.length; i++) {
         let contact = contactsArray[i];

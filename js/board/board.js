@@ -11,6 +11,7 @@ async function initBoard() {
     await loadCategories();
     await loadSubtasks();
     await loadCategoryColors();
+    updateContactColors();
     updateTasks();
     checkCurrentId();
 }
@@ -355,8 +356,13 @@ function editTask(taskIndex) {
         document.getElementById('subtaskInputId').value = subtask;
         addSubtask();
     }
-    for (let j = 0; j < task.contacts.length; j++) {
-        toggleCheckContact(`checkContactImgId${j}`, j);
+    for (let j = 0; j < contactsArray.length; j++) {
+        let contact = contactsArray[j];
+        let contactsInCurrentTaskArray = taskArray[taskIndex].contacts;
+        console.log(contactsInCurrentTaskArray);
+        if (contactsInCurrentTaskArray.some(item => item.name === contact.name)) {
+            toggleCheckContact(`checkContactImgId${j}`, j);
+        }
     }
 
     subtasksAtBeginning = subtasksInTaskArray.length;
@@ -391,6 +397,20 @@ function editTask(taskIndex) {
 
     assignedContacts();
     updateSubtaskListInEditMode(taskIndex);
+}
+
+function isEqual(obj1, obj2) {
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+    if (keys1.length !== keys2.length) {
+        return false;
+    }
+    for (let key of keys1) {
+        if (obj1[key] !== obj2[key]) {
+            return false;
+        }
+    }
+    return true;
 }
 
 async function saveEditedTask(taskIndex) {
@@ -535,4 +555,24 @@ async function categoryColor() {
         setCategoryBackgroundColor(task);
     });
     await setItem('categoryColorsArray', JSON.stringify(categoryColorsArray));
+}
+
+function updateContactColors() {
+    for (let i = 0; i < taskArray.length; i++) {
+        const task = taskArray[i];
+
+        for (let j = 0; j < task.contacts.length; j++) {
+            const taskContact = task.contacts[j];
+
+            const contactIndex = contactsArray.findIndex(contact => contact.name === taskContact.name);
+
+            if (contactIndex !== -1) {
+                taskArray[i].contacts[j].color = contactsArray[contactIndex].color;
+            } else {
+                // Remove contact from task.contacts if not found in contactsArray
+                taskArray[i].contacts.splice(j, 1);
+                j--;  // Adjust index after removing element
+            }
+        }
+    }
 }

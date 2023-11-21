@@ -1,6 +1,6 @@
-function addTaskContent() {
-    document.getElementById('addTaskContentId').innerHTML = generateAddTaskContentHTML();
-}
+// function addTaskContent() {
+//     document.getElementById('addTaskContentId').innerHTML = generateAddTaskContentHTML();
+// }
 
 function addTaskTemplate() {
     document.getElementById('addTaskTemplateId').innerHTML = generateAddTaskHTML();

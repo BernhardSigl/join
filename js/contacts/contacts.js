@@ -14,13 +14,15 @@ async function initContacts() {
     addContactPopupContent();
     editContactPopupContent();
     await loadContacts();
-    await loadLoggedInUser();
+    await renderContacts();
+
+    // await loadLoggedInUser();
     // createLoggedInUser();
-    renderContacts();
+
     // loggedInUserNotClickable();
 }
 
-function renderContacts() {
+async function renderContacts() {
     if (window.location.pathname.endsWith('contacts.html')) {
         let contactsInScrollbar = document.getElementById('contactsInScrollbarId');
         contactsInScrollbar.innerHTML = '';
@@ -83,10 +85,8 @@ async function createContact() {
     };
     contactsArray.push(createContact);
     slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');;
-    renderContacts();
-    listContacts();
     await setItem('contactsArray', JSON.stringify(contactsArray));
-    renderContacts();
+    await renderContacts();
 }
 
 // color function
@@ -190,9 +190,8 @@ async function saveContact(i) {
     contactsArray[i] = editedContact;
     toggleVisibility('contactInfoId', false);
     closeEditContactPopup();
-    renderContacts();
-    renderContacts();
     await setItem('contactsArray', JSON.stringify(contactsArray));
+    await renderContacts();
 }
 
 async function deleteContact(i) {
@@ -201,8 +200,8 @@ async function deleteContact(i) {
     toggleVisibility('contactInfoId', false);
     contactsArray.splice(i, 1);
     closeEditContactPopup();
-    renderContacts();
     await setItem('contactsArray', JSON.stringify(contactsArray));
+    await renderContacts();
 }
 
 function markContact(i) {

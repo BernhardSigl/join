@@ -4,6 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- specific included "add task" -->
+    <!-- <link rel="stylesheet" href="css/addTask.css"> -->
+    <script src="js/addTask/addTask.js"></script>
+    <script src="js/addTask/addTaskOutsource.js"></script>
+    <!-- <script src="js/addTask/addTaskButtons.js"></script> -->
+
     <!-- always included -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fonts.css">
@@ -12,8 +19,11 @@
     <script src="js/templates.js"></script>
     <script src="js/storage.js"></script>
 
-    <script src="js/addTask/addTask.js"></script>
-    <script src="js/board/board.js"></script>
+    <!-- specific included authentication-->
+    <script src="js/authentication.js"></script>
+
+
+
     <!-- specific included -->
     <link rel="stylesheet" href="css/contacts/contacts.css">
     <link rel="stylesheet" href="css/contacts/addContactPopup.css">
@@ -22,8 +32,7 @@
     <script src="js/contacts/contacts.js"></script>
     <link rel="icon" href="img/joinBrowserLogo.png">
     <title>Contacts</title>
-    <!-- specific included authentication-->
-    <script src="js/authentication.js"></script>
+
 </head>
 
 <body onload="initContacts()">
