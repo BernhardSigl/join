@@ -4,6 +4,7 @@
 # board summary connection #completed
 # finish login online log-in
 # finish login local storage guest
+# name existing
 # header dropdown
 # header question market
 # privacy policy and legal notice log in screen connection

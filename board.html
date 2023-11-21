@@ -32,6 +32,10 @@
 </head>
 
 <body onload="initBoard()">
+    <!-- loading animation -->
+    <div class="loader-container" id="loaderContainerBoardId">
+        <div class="loader"></div>
+    </div>
     <nav id="navPanelsTemplateId"></nav>
     <popup class="background dNone" id="backgroundAddTaskPopupId"
         onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId'), clearTask()">

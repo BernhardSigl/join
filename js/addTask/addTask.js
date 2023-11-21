@@ -18,6 +18,7 @@ async function initAddTask() {
     checkCategoryEmptyStatus();
     await loadTask();
     checkCurrentId();
+    toggleVisibility('loaderContainerAddTaskId', false);
 }
 
 async function deleteAllTasks() {

@@ -14,6 +14,7 @@ async function initBoard() {
     updateContactColors();
     updateTasks();
     checkCurrentId();
+    toggleVisibility('loaderContainerBoardId', false);
 }
 
 function updateTasks() {

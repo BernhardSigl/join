@@ -20,6 +20,7 @@ async function initContacts() {
     // createLoggedInUser();
 
     // loggedInUserNotClickable();
+    toggleVisibility('loaderContainerContactsId', false);
 }
 
 async function renderContacts() {

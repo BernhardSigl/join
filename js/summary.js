@@ -19,6 +19,7 @@ async function initSummary() {
     taskArrayCounter();
     updateCounter();
     toggleVisibility('hiddenSummaryId', true);
+    toggleVisibility('loaderContainerSummaryId', false);
 }
 
 function sortTaskArray() {
