@@ -9,7 +9,7 @@ let contactsArray;
 
 async function deleteContactsArray() {
     contactsArray = [];
-    await setItem('contactsArray', JSON.stringify(contactsArray));
+    await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
 }
 
 async function initContacts() {

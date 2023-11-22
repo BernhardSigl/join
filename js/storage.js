@@ -65,6 +65,24 @@ async function loadCategoryColors() {
     }
 }
 
+async function loadIndividuallyContacts() {
+    try {
+        contactsArray = JSON.parse(await getItem(`individuallyContacts_${userId}`));
+        console.log(userId);
+    } catch {
+        console.warn('Token invalid becauce ... has been created yet');
+    }
+}
+
+async function loadIndividuallyTasks() {
+    try {
+        taskArray = JSON.parse(await getItem(`individuallyTasks_${userId}`));
+        console.log(userId);
+    } catch {
+        console.warn('Token invalid becauce ... has been created yet');
+    }
+}
+
 // save locally
 async function saveRememberMe() {
     let rememberMeAsText = JSON.stringify(rememberMe);
@@ -88,18 +106,4 @@ async function loadLoggedInUser() {
     if (loggedInUserAsText) {
         loggedInUser = JSON.parse(loggedInUserAsText);
     }
-}
-
-async function loadIndividuallyContacts() {
-    try {
-        contactsArray = JSON.parse(await getItem(`individuallyContacts_${userId}`));
-        console.log(userId);
-    } catch {
-        console.warn('Token invalid becauce ... has been created yet');
-    }
-}
-
-async function deleteIndividuallyContacts() {
-    individuallyContacts = [];
-    await setItem('contactsArray', JSON.stringify(individuallyContacts));
 }
