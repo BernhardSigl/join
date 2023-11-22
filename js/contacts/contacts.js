@@ -1,8 +1,11 @@
-let contactsArray = [];
+// let contactsArray = [];
 let nameShortArray = [];
 let selectedColor = '#D1D1D1';
 let nameShortReturn;
-let lastFirstLetter = null;
+let lastFirstLetter = '';
+let userContactsArray = []; // test
+let userId = null;
+let contactsArray;
 
 async function deleteContactsArray() {
     contactsArray = [];
@@ -11,16 +14,31 @@ async function deleteContactsArray() {
 
 async function initContacts() {
     navPanelsTemplate();
+    navPanelPopupTemplate();
     addContactPopupContent();
     editContactPopupContent();
-    await loadContacts();
+    await loadLoggedInUser(); //for later
+    await loadUsers();
+    // await loadContacts();
+    await createIndividuallyContactsArray(); //test
+    await loadIndividuallyContacts(); //test
+    await renderContacts();
     await renderContacts();
 
-    // await loadLoggedInUser();
-    // createLoggedInUser();
-
     // loggedInUserNotClickable();
-    toggleVisibility('loaderContainerContactsId', false);
+    // await createLoggedInUser();
+    toggleVisibility('loaderContainerId', false);
+}
+
+async function createIndividuallyContactsArray() {
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        userId = user.id;
+        if (loggedInUser[0].email === user.email) {
+            contactsArray = user[`individuallyContacts_${userId}`] = [];
+            return userId, contactsArray;
+        }
+    }
 }
 
 async function renderContacts() {
@@ -85,9 +103,14 @@ async function createContact() {
         "color": selectedColor,
     };
     contactsArray.push(createContact);
-    slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');;
-    await setItem('contactsArray', JSON.stringify(contactsArray));
+    slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');
     await renderContacts();
+    await renderContacts();
+    // await setItem('contactsArray', JSON.stringify(contactsArray));
+    await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
+    if (window.location.href.includes("addTask.html") || window.location.href.includes("board.html")) {
+        listContacts();
+    }
 }
 
 // color function
@@ -191,7 +214,9 @@ async function saveContact(i) {
     contactsArray[i] = editedContact;
     toggleVisibility('contactInfoId', false);
     closeEditContactPopup();
-    await setItem('contactsArray', JSON.stringify(contactsArray));
+    // await setItem('contactsArray', JSON.stringify(contactsArray));
+    await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
+    await renderContacts();
     await renderContacts();
 }
 
@@ -201,7 +226,8 @@ async function deleteContact(i) {
     toggleVisibility('contactInfoId', false);
     contactsArray.splice(i, 1);
     closeEditContactPopup();
-    await setItem('contactsArray', JSON.stringify(contactsArray));
+    // await setItem('contactsArray', JSON.stringify(contactsArray));
+    await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     await renderContacts();
 }
 
@@ -224,7 +250,10 @@ async function createLoggedInUser() {
             "color": 'grey',
         };
         contactsArray.push(createContact);
-        await setItem('contactsArray', JSON.stringify(contactsArray));
+        await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
+        // await setItem('contactsArray', JSON.stringify(contactsArray));
+        await renderContacts();
+        // loggedInUserNotClickable();
     }
 }
 

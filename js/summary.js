@@ -9,17 +9,25 @@ let mostUrgentTask;
 let sortedArray = [];
 
 async function initSummary() {
-    updateGreeting();
     navPanelsTemplate();
-    await loadTask();
+    navPanelPopupTemplate();
     await loadUsers();
     await loadLoggedInUser();
+
+
+    // await loadContacts(); // need array
+    // await loadIndividuallyContacts(); // load already saved contacts
+    // await loggedInUserContent(); // set saved contacts in contactsarray
+
+
+    await loadTask();
+    updateGreeting();
     updateName();
     sortTaskArray();
     taskArrayCounter();
     updateCounter();
     toggleVisibility('hiddenSummaryId', true);
-    toggleVisibility('loaderContainerSummaryId', false);
+    toggleVisibility('loaderContainerId', false);
 }
 
 function sortTaskArray() {

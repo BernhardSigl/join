@@ -4,17 +4,22 @@ let currentDraggedTask;
 
 async function initBoard() {
     navPanelsTemplate();
+    navPanelPopupTemplate();
     addTaskTemplate();
     await loadTask();
-    await loadContacts();
-    // await loadLoggedInUser();
+    // await loadContacts();
+    await loadLoggedInUser();
+    await loadUsers(); //
+    await createIndividuallyContactsArray(); //
+    await loadIndividuallyContacts(); //
+
     await loadCategories();
     await loadSubtasks();
     await loadCategoryColors();
     updateContactColors();
     updateTasks();
     checkCurrentId();
-    toggleVisibility('loaderContainerBoardId', false);
+    toggleVisibility('loaderContainerId', false);
 }
 
 function updateTasks() {
@@ -360,7 +365,6 @@ function editTask(taskIndex) {
     for (let j = 0; j < contactsArray.length; j++) {
         let contact = contactsArray[j];
         let contactsInCurrentTaskArray = taskArray[taskIndex].contacts;
-        console.log(contactsInCurrentTaskArray);
         if (contactsInCurrentTaskArray.some(item => item.name === contact.name)) {
             toggleCheckContact(`checkContactImgId${j}`, j);
         }

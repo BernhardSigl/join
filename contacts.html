@@ -37,11 +37,13 @@
 
 <body onload="initContacts()">
     <!-- loading animation -->
-    <div class="loader-container" id="loaderContainerContactsId">
+    <div class="loader-container" id="loaderContainerId">
         <div class="loader"></div>
     </div>
     <!-- nav panels -->
     <nav id="navPanelsTemplateId"></nav>
+    <nav id="navPanelsPopupId" class="column dNone"></nav>
+    <!-- add contact popup -->
     <popup class="background dNone" id="backgroundAddContactId"
         onclick="slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId')">
         <div class="dFlex addContactArea" id="addContactAreaId" onclick="doNotClose(event)">

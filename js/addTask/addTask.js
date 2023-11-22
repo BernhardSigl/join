@@ -8,17 +8,26 @@ let currentId;
 
 async function initAddTask() {
     navPanelsTemplate();
+    navPanelPopupTemplate();
     addTaskTemplate();
     enableCalender();
-    await loadContacts();
-    // await loadLoggedInUser();
-    listContacts();
+    // await loadContacts();
+    await initContactsInAddTask();
     await loadCategories();
     updateCategoryList();
     checkCategoryEmptyStatus();
     await loadTask();
     checkCurrentId();
-    toggleVisibility('loaderContainerAddTaskId', false);
+    toggleVisibility('loaderContainerId', false);
+}
+
+async function initContactsInAddTask() {
+    await loadLoggedInUser();
+    await loadUsers(); //
+    await createIndividuallyContactsArray(); //
+    await loadIndividuallyContacts(); //
+    await createLoggedInUser();
+    listContacts();
 }
 
 async function deleteAllTasks() {
@@ -140,6 +149,11 @@ function createTaskContent() {
 // contacts
 function listContacts() {
     let listContacts = document.getElementById('assignToId');
+    contactsArray.sort((a, b) => {
+        if (a.email === loggedInUser[0].email) return -1;
+        if (b.email === loggedInUser[0].email) return 1;
+        return 0;
+    });
     listContacts.innerHTML = '';
     for (let i = 0; i < contactsArray.length; i++) {
         let contact = contactsArray[i];

@@ -33,16 +33,20 @@
 
 <body onload="initBoard()">
     <!-- loading animation -->
-    <div class="loader-container" id="loaderContainerBoardId">
+    <div class="loader-container" id="loaderContainerId">
         <div class="loader"></div>
     </div>
     <nav id="navPanelsTemplateId"></nav>
+    <nav id="navPanelsPopupId" class="column dNone"></nav>
+
+    <!-- add task template -->
     <popup class="background dNone" id="backgroundAddTaskPopupId"
         onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId'), clearTask()">
         <div class="addTaskArea" id="addTaskTemplateId" onclick="doNotClose(event), closeDropdown(event)">
         </div>
     </popup>
 
+    <!-- add contact -->
     <popup class="background dNone" id="backgroundAddContactId"
         onclick="slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');">
         <div class="dFlex addContactArea" id="addContactAreaId" onclick="doNotClose(event)">

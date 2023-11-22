@@ -3,27 +3,30 @@ let rememberMe = [];
 let loggedInUser = [];
 
 async function authenticationInit() {
+    await saveLoggedInUser();
     await loadUsers();
     await loadRememberMe();
-    await autoLogIn();
+    loadAutoLoginData();
 }
 
-async function autoLogIn() {
+// async function autoLogIn() {
+//     let logCheckbox = document.getElementById('logCheckboxId');
+//     if (rememberMe.length > 0) {
+//         await loadAutoLoginData(logCheckbox);
+//         logIn();
+//     } else {
+//         toggleVisibility('hiddenLoginId', true);
+//     }
+// }
+
+function loadAutoLoginData() {
     let logCheckbox = document.getElementById('logCheckboxId');
     if (rememberMe.length > 0) {
-        await loadAutoLoginData(logCheckbox);
-        logIn();
-    } else {
-        toggleVisibility('hiddenLoginId', true);
+        let lastRememberedUser = rememberMe[0];
+        document.getElementById('logEmailId').value = lastRememberedUser.email;
+        document.getElementById('logPasswordId').value = lastRememberedUser.password;
+        logCheckbox.checked = true;
     }
-}
-
-async function loadAutoLoginData(logCheckbox) {
-    let lastRememberedUser = rememberMe[0];
-    console.log(lastRememberedUser);
-    document.getElementById('logEmailId').value = lastRememberedUser.email;
-    document.getElementById('logPasswordId').value = lastRememberedUser.password;
-    logCheckbox.checked = true;
 }
 
 function logIn() {
@@ -82,40 +85,6 @@ function signUp() {
     toggleRequiredAttribute('regPasswordSecondId', true);
 }
 
-// function logIn() {
-//     let logEmail = document.getElementById('logEmailId').value;
-//     let logPassword = document.getElementById('logPasswordId').value;
-//     let checkCredential = users.find(user => user.email === logEmail && user.password === logPassword);
-//     if (checkCredential) {
-//         trueCredential();
-//         console.log('front page is comming');
-//     } else {
-//         falseCredential();
-//     }
-// }
-
-// function trueCredential() {
-//     let logCheckbox = document.getElementById('logCheckboxId');
-//     let checkboxIsValid = logCheckbox.checked;
-//     if (!checkboxIsValid) {
-//         console.log('invalid');
-//     } else {
-//         console.log('valid');
-//         rememberMe.push({
-//             email: logEmailId.value,
-//             password: logPasswordId.value,
-//         });
-//         saveRememberMe();
-//     }
-// }
-
-// function falseCredential() {
-//     let wrongInput = document.getElementById('logPasswordId');
-//     wrongInput.setCustomValidity(`Wrong email or password`);
-//     let form = wrongInput.form;
-//     form.reportValidity();
-// }
-
 // register
 function backToLogin() {
     toggleVisibility('hideLogInId', true);
@@ -166,6 +135,7 @@ async function createUser(passwordFirst) {
         name: regNameId.value,
         email: regEmailId.value,
         password: password,
+        id: new Date().getTime(),
     });
     await setItem('users', JSON.stringify(users));
 }

@@ -3,6 +3,10 @@ function navPanelsTemplate() {
     setActiveLink();
 }
 
+function navPanelPopupTemplate() {
+    document.getElementById('navPanelsPopupId').innerHTML = generateNavPanelsPopupHTML();
+}
+
 function generateNavPanelsHTML() {
     return /*html*/ `
     <header class="alignCenter spaceBetween">
@@ -13,7 +17,9 @@ function generateNavPanelsHTML() {
             <button onclick="toggleFullscreen()">Toggle Fullscreen</button>
             <object class="questionMarket" type="image/svg+xml" data="img/questionmarket.svg">
             </object>
-            <img src="img/circle.png" class="headerCircle pointer">
+            <div onclick="openNavPopup()">
+                <img src="img/circle.png" class="headerCircle pointer">
+            </div>
         </div>
     </header>
 
@@ -65,4 +71,23 @@ function generateNavPanelsHTML() {
         </div>
     </section>
     `
+}
+
+function generateNavPanelsPopupHTML() {
+    return /*html*/ `
+    <a class="fontSize16 pointer" href="legalNotice.html">Legal notice</a>
+    <a class="fontSize16 pointer" href="privacyPolicy.html">Privacy policy</a>
+    <a class="fontSize16 pointer" href="index.html" onclick="deleteRememberMe()">Log out</a>
+    `
+}
+let isNavPopupVisible = false;
+function openNavPopup() {
+    isNavPopupVisible = !isNavPopupVisible;
+    toggleVisibility('navPanelsPopupId', isNavPopupVisible);
+}
+
+async function deleteRememberMe() {
+    await loadRememberMe();
+    rememberMe = [];
+    await saveRememberMe();
 }

@@ -16,17 +16,20 @@
     <script src="js/summary.js"></script>
     <link rel="icon" href="img/joinBrowserLogo.png">
     <title>Summary</title>
-    <!-- board included -->
+    <!-- board included (Array is needed)-->
     <script src="js/board/board.js"></script>
+    <!-- contacts included (Array is needed)-->
+    <script src="js/contacts/contacts.js"></script>
 </head>
 
 <body onload="initSummary()">
     <!-- loading animation -->
-    <div class="loader-container" id="loaderContainerSummaryId">
+    <div class="loader-container" id="loaderContainerId">
         <div class="loader"></div>
     </div>
     <!-- nav panels -->
     <nav id="navPanelsTemplateId"></nav>
+    <nav id="navPanelsPopupId" class="column dNone"></nav>
 
     <div class="content dNone" id="hiddenSummaryId">
         <section class="alignCenter gap30 title">
@@ -127,8 +130,6 @@
             </section>
         </div>
     </div>
-
-
 </body>
 
 </html>
