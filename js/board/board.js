@@ -1,18 +1,18 @@
 let filteredTasksArray = [];
-
 let currentDraggedTask;
 
 async function initBoard() {
     navPanelsTemplate();
     navPanelPopupTemplate();
     addTaskTemplate();
-    await loadTask();
+    // await loadTask();
+
     // await loadContacts();
     await loadLoggedInUser();
     await loadUsers(); //
     await createIndividuallyContactsArray(); //
     await loadIndividuallyContacts(); //
-
+    await loadIndividuallyTasks(); //
     await loadCategories();
     await loadSubtasks();
     await loadCategoryColors();
@@ -435,7 +435,8 @@ async function saveEditedTask(taskIndex) {
     clearTask();
     clearInterval(intervalId);
     updateTasks();
-    await setItem('taskArray', JSON.stringify(taskArray));
+    await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
+    // await setItem('taskArray', JSON.stringify(taskArray));
 }
 
 function filterTasks(searchTerm) {
@@ -517,7 +518,6 @@ function updateSubtaskListInEditMode(taskIndex) {
     }
 }
 
-
 let categoryColorsArray = [];
 
 function generateDarkColorFromString(str) {
@@ -563,20 +563,22 @@ async function categoryColor() {
 }
 
 function updateContactColors() {
-    for (let i = 0; i < taskArray.length; i++) {
-        const task = taskArray[i];
+    if (taskArray.length > 0) {
+        for (let i = 0; i < taskArray.length; i++) {
+            const task = taskArray[i];
 
-        for (let j = 0; j < task.contacts.length; j++) {
-            const taskContact = task.contacts[j];
+            for (let j = 0; j < task.contacts.length; j++) {
+                const taskContact = task.contacts[j];
 
-            const contactIndex = contactsArray.findIndex(contact => contact.name === taskContact.name);
+                const contactIndex = contactsArray.findIndex(contact => contact.name === taskContact.name);
 
-            if (contactIndex !== -1) {
-                taskArray[i].contacts[j].color = contactsArray[contactIndex].color;
-            } else {
-                // Remove contact from task.contacts if not found in contactsArray
-                taskArray[i].contacts.splice(j, 1);
-                j--;  // Adjust index after removing element
+                if (contactIndex !== -1) {
+                    taskArray[i].contacts[j].color = contactsArray[contactIndex].color;
+                } else {
+                    // Remove contact from task.contacts if not found in contactsArray
+                    taskArray[i].contacts.splice(j, 1);
+                    j--;  // Adjust index after removing element
+                }
             }
         }
     }

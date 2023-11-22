@@ -18,9 +18,9 @@ async function initSummary() {
     // await loadContacts(); // need array
     // await loadIndividuallyContacts(); // load already saved contacts
     // await loggedInUserContent(); // set saved contacts in contactsarray
-
-
-    await loadTask();
+    await createIndividuallyTaskArray();
+    await loadIndividuallyTasks(); //
+    // await loadTask();
     updateGreeting();
     updateName();
     sortTaskArray();

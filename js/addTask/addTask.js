@@ -1,10 +1,11 @@
-let taskArray = [];
+// let taskArray = [];
 let contactsInTaskArray = [];
 let categoriesInTaskArray = [];
 let subtasksInTaskArray = [];
 let confirmedSubtasksArray = [];
 let datePickerExecuted;
 let currentId;
+let taskArray;
 
 async function initAddTask() {
     navPanelsTemplate();
@@ -12,17 +13,19 @@ async function initAddTask() {
     addTaskTemplate();
     enableCalender();
     // await loadContacts();
+    await loadLoggedInUser();
     await initContactsInAddTask();
     await loadCategories();
     updateCategoryList();
     checkCategoryEmptyStatus();
-    await loadTask();
+    await createIndividuallyTaskArray();
+    await loadIndividuallyTasks();
+    // await loadTask();
     checkCurrentId();
     toggleVisibility('loaderContainerId', false);
 }
 
 async function initContactsInAddTask() {
-    await loadLoggedInUser();
     await loadUsers(); //
     await createIndividuallyContactsArray(); //
     await loadIndividuallyContacts(); //
@@ -30,9 +33,21 @@ async function initContactsInAddTask() {
     listContacts();
 }
 
+async function createIndividuallyTaskArray() {
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        userId = user.id;
+        if (loggedInUser[0].email === user.email) {
+            taskArray = user[`individuallyTasks_${userId}`] = [];
+            return userId, taskArray;
+        }
+    }
+}
+
 async function deleteAllTasks() {
     taskArray = [];
-    await setItem('taskArray', JSON.stringify(taskArray));
+    await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
+    // await setItem('taskArray', JSON.stringify(taskArray));
 }
 
 function checkCurrentId() {
@@ -48,7 +63,8 @@ async function deleteTask(taskId) {
     taskArray.forEach((task, index) => {
         task.id = index;
     });
-    await setItem('taskArray', JSON.stringify(taskArray));
+    // await setItem('taskArray', JSON.stringify(taskArray));
+    await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
     updateTasks();
     slideOutTwoObjects('boardAreaId', 'backgroundBoardPopupId');
 }
@@ -119,7 +135,8 @@ async function createTask(moveTo) {
     };
     taskArray.push(addTask);
     contactsInTaskArray = [];
-    await setItem('taskArray', JSON.stringify(taskArray));
+    await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
+    // await setItem('taskArray', JSON.stringify(taskArray));
     clearTask();
 
     if (window.location.href.endsWith("board.html")) {
