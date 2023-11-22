@@ -66,21 +66,25 @@ async function loadCategoryColors() {
 }
 
 async function loadIndividuallyContacts() {
+    // if (contactsArray.length > 0) {
     try {
         contactsArray = JSON.parse(await getItem(`individuallyContacts_${userId}`));
         console.log(userId);
     } catch {
-        console.warn('Token invalid becauce ... has been created yet');
+        console.warn('Token invalid becauce no contact has been created yet');
     }
+    // }
 }
 
 async function loadIndividuallyTasks() {
+    // if (taskArray.length > 0) {
     try {
         taskArray = JSON.parse(await getItem(`individuallyTasks_${userId}`));
         console.log(userId);
     } catch {
-        console.warn('Token invalid becauce ... has been created yet');
+        console.warn('Token invalid becauce no task has been created yet');
     }
+    // }
 }
 
 // save locally

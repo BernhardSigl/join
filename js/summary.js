@@ -9,12 +9,10 @@ let mostUrgentTask;
 let sortedArray = [];
 
 async function initSummary() {
+    await loadLoggedInUser();
     navPanelsTemplate();
     navPanelPopupTemplate();
     await loadUsers();
-    await loadLoggedInUser();
-
-
     // await loadContacts(); // need array
     // await loadIndividuallyContacts(); // load already saved contacts
     // await loggedInUserContent(); // set saved contacts in contactsarray
@@ -64,24 +62,26 @@ function taskArrayCounter() {
 }
 
 function updateCounter() {
-    document.getElementById('toDoNumberId').innerHTML = toDoCounter;
-    document.getElementById('doneNumberId').innerHTML = doneCounter;
-    document.getElementById('dateFrontPageId').innerHTML = formatDate(sortedArray[0].date);
-    document.getElementById('allTaskNumberId').innerHTML = taskArray.length;
-    document.getElementById('progressTaskNumberId').innerHTML = inProgressCounter;
-    document.getElementById('awaitingFeedbackNumberId').innerHTML = awaitingFeedbackCounter;
-    if (sortedArray[0].urgent) {
-        document.getElementById('prioNumberId').innerHTML = urgentCounter;
-        document.getElementById('prioFrontPageImgId').src = "img/urgent.png";
-        document.getElementById('prioFrontPageTextId').textContent = "Urgent";
-    } else if (sortedArray[0].medium) {
-        document.getElementById('prioNumberId').innerHTML = mediumCounter;
-        document.getElementById('prioFrontPageImgId').src = "img/medium.png";
-        document.getElementById('prioFrontPageTextId').textContent = "Medium";
-    } else if (sortedArray[0].low) {
-        document.getElementById('prioNumberId').innerHTML = lowCounter;
-        document.getElementById('prioFrontPageImgId').src = "img/low.png";
-        document.getElementById('prioFrontPageTextId').textContent = "Low";
+    if (taskArray.length > 0) {
+        document.getElementById('toDoNumberId').innerHTML = toDoCounter;
+        document.getElementById('doneNumberId').innerHTML = doneCounter;
+        document.getElementById('dateFrontPageId').innerHTML = formatDate(sortedArray[0].date);
+        document.getElementById('allTaskNumberId').innerHTML = taskArray.length;
+        document.getElementById('progressTaskNumberId').innerHTML = inProgressCounter;
+        document.getElementById('awaitingFeedbackNumberId').innerHTML = awaitingFeedbackCounter;
+        if (sortedArray[0].urgent) {
+            document.getElementById('prioNumberId').innerHTML = urgentCounter;
+            document.getElementById('prioFrontPageImgId').src = "img/urgent.png";
+            document.getElementById('prioFrontPageTextId').textContent = "Urgent";
+        } else if (sortedArray[0].medium) {
+            document.getElementById('prioNumberId').innerHTML = mediumCounter;
+            document.getElementById('prioFrontPageImgId').src = "img/medium.png";
+            document.getElementById('prioFrontPageTextId').textContent = "Medium";
+        } else if (sortedArray[0].low) {
+            document.getElementById('prioNumberId').innerHTML = lowCounter;
+            document.getElementById('prioFrontPageImgId').src = "img/low.png";
+            document.getElementById('prioFrontPageTextId').textContent = "Low";
+        }
     }
 }
 

@@ -1,5 +1,7 @@
 function navPanelsTemplate() {
-    document.getElementById('navPanelsTemplateId').innerHTML = generateNavPanelsHTML();
+    loadLoggedInUser();
+    let initials = extractInitials(loggedInUser[0].name);
+    document.getElementById('navPanelsTemplateId').innerHTML = generateNavPanelsHTML(initials);
     setActiveLink();
 }
 
@@ -7,18 +9,18 @@ function navPanelPopupTemplate() {
     document.getElementById('navPanelsPopupId').innerHTML = generateNavPanelsPopupHTML();
 }
 
-function generateNavPanelsHTML() {
+function generateNavPanelsHTML(initials) {
     return /*html*/ `
     <header class="alignCenter spaceBetween">
         <div class="fontSize20 headerTitle">
             Kanban Project Management Tool
         </div>
         <div class="headerRight alignCenter gap16">
-            <button onclick="toggleFullscreen()">Toggle Fullscreen</button>
             <object class="questionMarket" type="image/svg+xml" data="img/questionmarket.svg">
             </object>
-            <div onclick="openNavPopup()">
-                <img src="img/circle.png" class="headerCircle pointer">
+            <div onclick="openNavPopup()" class="headerCircle relative">
+                <img src="img/circle.png" class="pointer">
+                <span class="fontSize20 bold absoluteMiddle">${initials}</span>
             </div>
         </div>
     </header>
@@ -90,4 +92,13 @@ async function deleteRememberMe() {
     await loadRememberMe();
     rememberMe = [];
     await saveRememberMe();
+}
+
+function extractInitials(names) {
+    const nameParts = names.split(' ');
+    let initials = nameParts[0].charAt(0).toUpperCase();
+    if (nameParts.length > 1) {
+        initials += nameParts[1].charAt(0).toUpperCase();
+    }
+    return initials;
 }

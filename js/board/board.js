@@ -563,23 +563,23 @@ async function categoryColor() {
 }
 
 function updateContactColors() {
-    if (taskArray.length > 0) {
-        for (let i = 0; i < taskArray.length; i++) {
-            const task = taskArray[i];
+    // if (taskArray.length > 0) {
+    for (let i = 0; i < taskArray.length; i++) {
+        const task = taskArray[i];
 
-            for (let j = 0; j < task.contacts.length; j++) {
-                const taskContact = task.contacts[j];
+        for (let j = 0; j < task.contacts.length; j++) {
+            const taskContact = task.contacts[j];
 
-                const contactIndex = contactsArray.findIndex(contact => contact.name === taskContact.name);
+            const contactIndex = contactsArray.findIndex(contact => contact.name === taskContact.name);
 
-                if (contactIndex !== -1) {
-                    taskArray[i].contacts[j].color = contactsArray[contactIndex].color;
-                } else {
-                    // Remove contact from task.contacts if not found in contactsArray
-                    taskArray[i].contacts.splice(j, 1);
-                    j--;  // Adjust index after removing element
-                }
+            if (contactIndex !== -1) {
+                taskArray[i].contacts[j].color = contactsArray[contactIndex].color;
+            } else {
+
+                taskArray[i].contacts.splice(j, 1);
+                j--;
             }
         }
+        // }
     }
 }

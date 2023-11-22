@@ -21,6 +21,10 @@ header {
     height: 56px;
 }
 
+.headerCircle span {
+    color: #29ABE2;
+}
+
 .headerCircle:hover {
     background-color: #E1E6EC;
     border-radius: 100%;
