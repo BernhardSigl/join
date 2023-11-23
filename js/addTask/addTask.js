@@ -1,11 +1,12 @@
 // let taskArray = [];
 let contactsInTaskArray = [];
-let categoriesInTaskArray = [];
+// let categoriesInTaskArray = [];
 let subtasksInTaskArray = [];
 let confirmedSubtasksArray = [];
 let datePickerExecuted;
 let currentId;
 let taskArray;
+let categoriesInTaskArray;//
 
 async function initAddTask() {
     navPanelsTemplate();
@@ -15,7 +16,9 @@ async function initAddTask() {
     // await loadContacts();
     await loadLoggedInUser();
     await initContactsInAddTask();
-    await loadCategories();
+    await createIndividuallyCategories();//
+    await loadIndividuallyCategories();//
+    // await loadCategories();
     updateCategoryList();
     checkCategoryEmptyStatus();
     await createIndividuallyTaskArray();
@@ -26,20 +29,31 @@ async function initAddTask() {
 }
 
 async function initContactsInAddTask() {
-    await loadUsers(); //
-    await createIndividuallyContactsArray(); //
-    await loadIndividuallyContacts(); //
+    await loadUsers();
+    await createIndividuallyContactsArray();
+    await loadIndividuallyContacts();
     await createLoggedInUser();
     listContacts();
 }
 
-async function createIndividuallyTaskArray() {
+async function createIndividuallyTaskArray() {//
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
         userId = user.id;
         if (loggedInUser[0].email === user.email) {
             taskArray = user[`individuallyTasks_${userId}`] = [];
             return userId, taskArray;
+        }
+    }
+}
+
+async function createIndividuallyCategories() {
+    for (let i = 0; i < users.length; i++) {
+        const user = users[i];
+        userId = user.id;
+        if (loggedInUser[0].email === user.email) {
+            categoriesInTaskArray = user[`individuallyCategories_${userId}`] = [];
+            return userId, categoriesInTaskArray;
         }
     }
 }
@@ -294,7 +308,8 @@ async function listCategories() {
         let category = categoriesInTaskArray[i];
         categoryList.innerHTML += generateCategoryListHTML(category, i);
     }
-    await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
+    await setItem(`individuallyCategories_${userId}`, JSON.stringify(categoriesInTaskArray));
+    // await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
 }
 
 function checkCategoryEmptyStatus() {
@@ -330,7 +345,8 @@ async function editCategory(i) {
     categoryInput.focus();
     categoryInput.selectionStart = categoryInput.value.length;
     categoryInput.selectionEnd = categoryInput.value.length;
-    await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
+    await setItem(`individuallyCategories_${userId}`, JSON.stringify(categoriesInTaskArray));
+    // await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
 }
 
 async function confirmCategoryRenaming(pencilImage, i) {
@@ -343,7 +359,8 @@ async function confirmCategoryRenaming(pencilImage, i) {
     categoriesInTaskArray.sort();
     updateCategoryList();
     disableCategoryInput();
-    await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
+    await setItem(`individuallyCategories_${userId}`, JSON.stringify(categoriesInTaskArray));
+    // await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
 }
 
 function originalEditCategoryFunction(pencilImage, i) {
@@ -374,7 +391,8 @@ async function deleteCategory(i) {
     checkCategoryEmptyStatus();
     updateCategoryList();
     disableCategoryInput();
-    await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
+    await setItem(`individuallyCategories_${userId}`, JSON.stringify(categoriesInTaskArray));
+    // await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
 }
 
 function updateCategoryList() {

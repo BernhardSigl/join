@@ -30,10 +30,11 @@ function generateTaskHTML(task) {
 
 function generateBoardHTML(task, id) {
     return /*html*/ `
-    <div class="dFlex">
+    <div class="dFlex relative spaceBetween">
         <span class="fontSize23 subjectKanbanBig fontWhite" id="subjectKanbanBigId${task.id}">
         ${task.category}
         </span>
+        <img src="img/cross.png" class="closePopup" onclick="closeBoard()">
     </div>
     <span class="fontSize61 bold">
     ${task.title}
@@ -99,4 +100,9 @@ function gernerateSubtasksBoardBigHTML(subtask, subtaskIndex, taskIndex) {
         </span>
     </div>
     `
+}
+
+async function closeBoard() {
+    slideOutTwoObjects('boardAreaId', 'backgroundBoardPopupId')
+    await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
 }

@@ -2,7 +2,7 @@
 # edit color bug popup #completed
 # add category color #completed
 # board summary connection #completed
-# finish login online log-in (categories are missing)
+# finish login online log-in #completed
 # finish login local storage guest
 # board bug by creating a new user and open it before creating a task
 # name existing
