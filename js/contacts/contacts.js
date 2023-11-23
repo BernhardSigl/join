@@ -22,11 +22,10 @@ async function initContacts() {
     // await loadContacts();
     await createIndividuallyContactsArray(); //test
     await loadIndividuallyContacts(); //test
+    await createLoggedInUser();
+    await renderContacts(); // two times because of "async"
     await renderContacts();
-    await renderContacts();
-
-    // loggedInUserNotClickable();
-    // await createLoggedInUser();
+    loggedInUserNotClickable();
     toggleVisibility('loaderContainerId', false);
 }
 
@@ -108,8 +107,19 @@ async function createContact() {
     await renderContacts();
     // await setItem('contactsArray', JSON.stringify(contactsArray));
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
+    if (window.location.href.includes("contacts.html")) {
+        loggedInUserNotClickable();
+    }
     if (window.location.href.includes("addTask.html") || window.location.href.includes("board.html")) {
         listContacts();
+        for (let j = 0; j < contactsArray.length; j++) {
+            let contact = contactsArray[j];
+            if (contactsInTaskArray.some(item => item.name === contact.name)) {
+                toggleCheckContact(`checkContactImgId${j}`, j);
+            }
+        }
+        const deleteRestArray = Math.ceil(contactsInTaskArray.length / 2);
+        contactsInTaskArray.splice(deleteRestArray);
     }
 }
 
@@ -218,6 +228,7 @@ async function saveContact(i) {
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     await renderContacts();
     await renderContacts();
+    loggedInUserNotClickable();
 }
 
 async function deleteContact(i) {
@@ -229,6 +240,7 @@ async function deleteContact(i) {
     // await setItem('contactsArray', JSON.stringify(contactsArray));
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     await renderContacts();
+    loggedInUserNotClickable();
 }
 
 function markContact(i) {
@@ -252,8 +264,7 @@ async function createLoggedInUser() {
         contactsArray.push(createContact);
         await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
         // await setItem('contactsArray', JSON.stringify(contactsArray));
-        await renderContacts();
-        // loggedInUserNotClickable();
+        // await renderContacts()
     }
 }
 

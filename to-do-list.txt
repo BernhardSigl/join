@@ -2,10 +2,11 @@
 # edit color bug popup #completed
 # add category color #completed
 # board summary connection #completed
-# finish login online log-in
+# finish login online log-in (categories are missing)
 # finish login local storage guest
+# board bug by creating a new user and open it before creating a task
 # name existing
-# header dropdown
+# header dropdown #completed
 # header question market
 # privacy policy and legal notice log in screen connection
 # mobile view

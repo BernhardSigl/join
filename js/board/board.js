@@ -12,6 +12,8 @@ async function initBoard() {
     await loadUsers(); //
     await createIndividuallyContactsArray(); //
     await loadIndividuallyContacts(); //
+    await createLoggedInUser();
+    await createIndividuallyTaskArray();
     await loadIndividuallyTasks(); //
     await loadCategories();
     await loadSubtasks();
@@ -335,6 +337,7 @@ let updatedContactsInTaskArray;
 let updatedConfirmedSubtasksArray;
 let subtasksAtBeginning;
 let updatedSubtasksInTaskArray;
+let currentTaskIndex;
 
 function editTask(taskIndex) {
     let task = taskArray[taskIndex];
@@ -381,7 +384,6 @@ function editTask(taskIndex) {
         updatedPrioMedium = mediumStatus;
         updatedPrioUrgent = urgentStatus;
         updatedContactsInTaskArray = contactsInTaskArray;
-
         updatedSubtasksInTaskArray = subtasksInTaskArray;
         updatedConfirmedSubtasksArray = task.confirmedSubtasks;
         if (updatedSubtasksInTaskArray.length != updatedConfirmedSubtasksArray.length) {
@@ -402,21 +404,22 @@ function editTask(taskIndex) {
 
     assignedContacts();
     updateSubtaskListInEditMode(taskIndex);
+    currentTaskIndex = taskIndex;
 }
 
-function isEqual(obj1, obj2) {
-    const keys1 = Object.keys(obj1);
-    const keys2 = Object.keys(obj2);
-    if (keys1.length !== keys2.length) {
-        return false;
-    }
-    for (let key of keys1) {
-        if (obj1[key] !== obj2[key]) {
-            return false;
-        }
-    }
-    return true;
-}
+// function isEqual(obj1, obj2) {
+//     const keys1 = Object.keys(obj1);
+//     const keys2 = Object.keys(obj2);
+//     if (keys1.length !== keys2.length) {
+//         return false;
+//     }
+//     for (let key of keys1) {
+//         if (obj1[key] !== obj2[key]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
 
 async function saveEditedTask(taskIndex) {
     await new Promise(resolve => setTimeout(resolve, 175));
@@ -563,23 +566,23 @@ async function categoryColor() {
 }
 
 function updateContactColors() {
-    // if (taskArray.length > 0) {
-    for (let i = 0; i < taskArray.length; i++) {
-        const task = taskArray[i];
+    if (taskArray.length > 0) {
+        for (let i = 0; i < taskArray.length; i++) {
+            const task = taskArray[i];
 
-        for (let j = 0; j < task.contacts.length; j++) {
-            const taskContact = task.contacts[j];
+            for (let j = 0; j < task.contacts.length; j++) {
+                const taskContact = task.contacts[j];
 
-            const contactIndex = contactsArray.findIndex(contact => contact.name === taskContact.name);
+                const contactIndex = contactsArray.findIndex(contact => contact.name === taskContact.name);
 
-            if (contactIndex !== -1) {
-                taskArray[i].contacts[j].color = contactsArray[contactIndex].color;
-            } else {
+                if (contactIndex !== -1) {
+                    taskArray[i].contacts[j].color = contactsArray[contactIndex].color;
+                } else {
 
-                taskArray[i].contacts.splice(j, 1);
-                j--;
+                    taskArray[i].contacts.splice(j, 1);
+                    j--;
+                }
             }
         }
-        // }
     }
 }
