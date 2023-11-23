@@ -13,12 +13,26 @@ function toggleCheckboxDisabled(elementId, disabled) {
     checkbox.disabled = disabled;
 }
 
+// function validateNameInput(input) {
+//     const regex = /^[a-zA-Z\s]+$/;
+//     const isValid = regex.test(input.value);
+
+//     if (!isValid) {
+//         input.setCustomValidity('Only letters are allowed.');
+//     } else {
+//         input.setCustomValidity('');
+//     }
+// }
+
 function validateNameInput(input) {
     const regex = /^[a-zA-Z\s]+$/;
     const isValid = regex.test(input.value);
+    const isNameInArray = contactsArray.some(contact => contact.name === input.value);
 
     if (!isValid) {
         input.setCustomValidity('Only letters are allowed.');
+    } else if (isNameInArray) {
+        input.setCustomValidity('Name already exists in contacts.');
     } else {
         input.setCustomValidity('');
     }
@@ -60,7 +74,6 @@ function validateDateInput(input) {
 function validatePhoneInput(input) {
     const regex = /^[0-9\s+\/]+$/;
     const isValid = regex.test(input.value);
-
     if (!isValid) {
         input.setCustomValidity('Only numbers, spaces, "+", and "/" are allowed.');
     } else {

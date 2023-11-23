@@ -30,7 +30,7 @@ function generateAddContactContentHTML() {
             <form onsubmit="createContact(); return false;">
                 <div class="rightContainerAddContact column gap32 justifyCenter">
                     <div class="relative inputArea">
-                        <input placeholder="Name" type="text" type="myName" class="input1221 fontSize20 inputField pointer"
+                        <input placeholder="Name (required)" type="text" type="myName" class="input1221 fontSize20 inputField pointer"
                         id="addNameId" oninput="validateNameInput(this)" required>
                         <object class="symbol24Input" type="image/svg+xml" data="img/person.svg">
                         </object>
