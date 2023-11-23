@@ -13,26 +13,27 @@ function toggleCheckboxDisabled(elementId, disabled) {
     checkbox.disabled = disabled;
 }
 
-// function validateNameInput(input) {
-//     const regex = /^[a-zA-Z\s]+$/;
-//     const isValid = regex.test(input.value);
-
-//     if (!isValid) {
-//         input.setCustomValidity('Only letters are allowed.');
-//     } else {
-//         input.setCustomValidity('');
-//     }
-// }
-
 function validateNameInput(input) {
     const regex = /^[a-zA-Z\s]+$/;
     const isValid = regex.test(input.value);
     const isNameInArray = contactsArray.some(contact => contact.name === input.value);
-
     if (!isValid) {
         input.setCustomValidity('Only letters are allowed.');
     } else if (isNameInArray) {
-        input.setCustomValidity('Name already exists in contacts.');
+        input.setCustomValidity('Name already exists.');
+    } else {
+        input.setCustomValidity('');
+    }
+}
+
+function validateEmailInputRegister(input) {
+    const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const isValid = regex.test(input.value);
+    const isEmailInArray = users.some(user => user.email === input.value);
+    if (!isValid) {
+        input.setCustomValidity('Please enter a valid email address.');
+    } else if (isEmailInArray) {
+        input.setCustomValidity('Email already exists.');
     } else {
         input.setCustomValidity('');
     }
