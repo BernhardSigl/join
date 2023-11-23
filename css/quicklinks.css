@@ -8,18 +8,22 @@ h1 {
     margin: 0;
     font-size: 61px;
     height: 100px;
+    cursor: default;
 }
 
 h2 {
     font-size: 27px;
+    cursor: default;
 }
 
 h3 {
     font-size: 21px;
+    cursor: default;
 }
 
 p {
     font-size: 16px;
+    cursor: default;
 }
 
 .symbol32:hover {
@@ -64,6 +68,28 @@ p {
     border-radius: 10px;
 }
 
+.ul-edited {
+    list-style-type: decimal;
+    font-size: 21px;
+    font-weight: bold;
+    padding-left: 24px;
+}
+
+.p-edited {
+    font-weight: normal;
+    margin: 0;
+    margin-left: 35px
+}
+
+.h3-edited {
+    margin: 0;
+    margin-top: 16px;
+    margin-left: 35px
+}
+
+.fontBrighterBlue {
+    color: #29ABE2;
+}
 
 @media(max-width: 1000px) {
     .quicklinksContainer {

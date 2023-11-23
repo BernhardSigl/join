@@ -16,8 +16,9 @@ function generateNavPanelsHTML(initials) {
             Kanban Project Management Tool
         </div>
         <div class="headerRight alignCenter gap16">
-            <object class="questionMarket" type="image/svg+xml" data="img/questionmarket.svg">
-            </object>
+            <a href="help.html">
+                <img src="/img/help.png" class="questionMarket">
+            </a>
             <div onclick="openNavPopup()" class="headerCircle relative">
                 <img src="img/circle.png" class="pointer">
                 <span class="fontSize20 bold absoluteMiddle">${initials}</span>
