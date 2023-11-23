@@ -133,3 +133,15 @@ function doNotClose(event) {
 function openLastOpenedHTML() {
     window.history.back();
 }
+
+let lastOpenedHTML = '';
+function openPrivacyPolicyLogScreen() {
+    loggedInUser.push({
+        'name': 'nothing',
+        'email': 'nothing@nothing.com',
+    });
+    lastOpenedHTML = window.location.href;
+    saveLoggedInUser();
+    saveLastOpenedHTML();
+    window.location.href = 'privacyPolicy.html';
+}

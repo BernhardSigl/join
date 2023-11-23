@@ -17,7 +17,23 @@
     <link rel="icon" href="img/joinBrowserLogo.png">
 </head>
 
-<body onload="navPanelsTemplate(); navPanelPopupTemplate()">
+<script>
+    async function initLegalNotice() {
+        navPanelsTemplate();
+        navPanelPopupTemplate();
+        await loadLastOpenedHTML();
+        checkLastOpenedHTML();
+    }
+
+    function checkLastOpenedHTML() {
+        if (lastOpenedHTML.includes("index")) {
+            toggleVisibility('categoryLinksId', false);
+            toggleVisibility('headerRightId', false);
+        }
+    }
+</script>
+
+<body onload="initLegalNotice()">
     <!-- nav panels -->
     <nav id="navPanelsTemplateId"></nav>
     <nav id="navPanelsPopupId" class="column dNone"></nav>

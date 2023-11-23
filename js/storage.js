@@ -116,3 +116,15 @@ async function loadLoggedInUser() {
         loggedInUser = JSON.parse(loggedInUserAsText);
     }
 }
+
+async function saveLastOpenedHTML() {
+    let lastOpenedHTMLAsText = JSON.stringify(lastOpenedHTML);
+    localStorage.setItem('lastOpenedHTML', lastOpenedHTMLAsText);
+}
+
+async function loadLastOpenedHTML() {
+    let lastOpenedHTMLAsText = localStorage.getItem('lastOpenedHTML');
+    if (lastOpenedHTMLAsText) {
+        lastOpenedHTML = JSON.parse(lastOpenedHTMLAsText);
+    }
+}

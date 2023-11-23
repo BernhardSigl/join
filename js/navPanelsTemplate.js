@@ -15,13 +15,13 @@ function generateNavPanelsHTML(initials) {
         <div class="fontSize20 headerTitle">
             Kanban Project Management Tool
         </div>
-        <div class="headerRight alignCenter gap16">
+        <div class="headerRight alignCenter gap16" id="headerRightId">
             <a href="help.html">
                 <img src="/img/help.png" class="questionMarket">
             </a>
             <div onclick="openNavPopup()" class="headerCircle relative">
                 <img src="img/circle.png" class="pointer">
-                <span class="fontSize20 bold absoluteMiddle">${initials}</span>
+                <span class="fontSize20 bold absoluteMiddle pointer">${initials}</span>
             </div>
         </div>
     </header>
@@ -32,7 +32,7 @@ function generateNavPanelsHTML(initials) {
         <object class="bigJoinLogo" type="image/svg+xml" data="img/joinLogoBright.svg">
         </object>
         <!-- category links -->
-        <div class="categoryLinks column gap15">
+        <div class="categoryLinks column gap15" id="categoryLinksId">
             <a href="summary.html" class="categoryLink alignCenter gap8 pointer" id="summaryLinkId">
                 <object class="categoryImage" type="image/svg+xml" data="img/summary.svg">
                 </object>

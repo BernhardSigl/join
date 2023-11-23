@@ -7,6 +7,7 @@ async function authenticationInit() {
     await loadUsers();
     await loadRememberMe();
     loadAutoLoginData();
+    localStorage.removeItem('lastOpenedHTML');
 }
 
 // async function autoLogIn() {

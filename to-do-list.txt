@@ -6,6 +6,6 @@
 # finish login local storage guest
 # name existing
 # header dropdown #completed
-# header question market
-# privacy policy and legal notice log in screen connection
+# header question market #completed
+# privacy policy and legal notice log in screen connection #completed
 # mobile view
