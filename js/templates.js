@@ -129,3 +129,7 @@ function slideOutTwoObjects(frontId, backgroundId) {
 function doNotClose(event) {
     event.stopPropagation();
 }
+
+function openLastOpenedHTML() {
+    window.history.back();
+}
