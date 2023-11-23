@@ -33,19 +33,17 @@ function generateEditContactContentHTML(i) {
                 <div class="rightContainerAddContact column gap32 justifyCenter">
                     <div class="relative inputArea">
                         <input placeholder="Name" type="text" type="myName" class="input1221 fontSize20 inputField pointer"
-                        id="editNameId">
+                        id="editNameId" oninput="validateNameInput(this)" required>
                         <object class="symbol24Input" type="image/svg+xml" data="img/person.svg">
                         </object>
                     </div>
                     <div class="relative inputArea">
-                        <input type="email" placeholder="Email" class="input1221 fontSize20 inputField pointer"
-                        id="editEmailId">
+                        <input type="email" placeholder="Email" class="input1221 fontSize20 inputField pointer" oninput="validateEmailInput(this)" id="editEmailId">
                         <object class="symbol24Input" type="image/svg+xml" data="img/email.svg">
                         </object>
                     </div>
                     <div class="relative inputArea">
-                        <input type="tel" placeholder="Phone" class="input1221 fontSize20 inputField pointer"
-                        id="editPhoneId">
+                        <input type="tel" placeholder="Phone" class="input1221 fontSize20 inputField pointer" oninput="validatePhoneInput(this)" id="editPhoneId">
                         <object class="symbol24Input" type="image/svg+xml" data="img/phone.svg">
                         </object>
                     </div>
