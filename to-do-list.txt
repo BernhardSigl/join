@@ -8,4 +8,6 @@
 # header dropdown #completed
 # header question market #completed
 # privacy policy and legal notice log in screen connection #completed
+
+# fix remember me
 # mobile view
