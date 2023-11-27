@@ -7,7 +7,7 @@ async function authenticationInit() {
     await loadUsers();
     await loadRememberMe();
     loadAutoLoginData();
-    localStorage.removeItem('lastOpenedHTML');
+    animationStartScreen();
 }
 
 // async function autoLogIn() {
@@ -169,4 +169,12 @@ function passwordsDontMatch() {
     passwordSecond.setCustomValidity(`Passwords don't match.`);
     const form = passwordSecond.form;
     form.reportValidity();
+}
+
+function animationStartScreen() {
+    setTimeout(() => {
+        document.getElementById('logInJoinLogoId').classList.remove('notVisible');
+        document.getElementById('animatedLogInImageId').style.display = 'none';
+        document.getElementById('animationLogInBackgroundId').style.display = 'none';
+    }, 3000);
 }

@@ -3,7 +3,7 @@
 # add category color #completed
 # board summary connection #completed
 # finish login online log-in #completed
-# finish login local storage guest
+# finish login local storage guest #completed
 # name existing #completed
 # header dropdown #completed
 # header question market #completed

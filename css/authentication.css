@@ -65,3 +65,70 @@
     height: 16px;
     margin: 0;
 }
+
+.logInHeader {
+    height: 200px;
+}
+
+#animatedLogInImageId {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 287.5px;
+    height: 300px;
+    z-index: 2;
+    animation: slideAndFadeImg 2s forwards;
+    animation-delay: 1s;
+}
+
+#animationLogInBackgroundId {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #F6F7F8;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 1s ease;
+    animation: slideAndFadeBackground 2s forwards;
+    animation-delay: 1s;
+    pointer-events: none;
+}
+
+@keyframes slideAndFadeImg {
+    0% {
+        left: 50%;
+        top: 50%;
+        width: 287.5px;
+        height: 300px;
+    }
+
+    100% {
+        top: 100px;
+        left: 96.25px;
+        transform: translate(0, 0);
+        transform: translate(-50%, -50%);
+        width: 115px;
+        height: 120px;
+        padding: 80px 0 0 77px;
+        margin: 0;
+    }
+}
+
+@keyframes slideAndFadeBackground {
+    0% {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+
+    100% {
+        left: 0;
+        top: 0;
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+}

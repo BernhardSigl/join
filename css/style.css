@@ -46,6 +46,10 @@ input:focus {
     display: flex;
 }
 
+.notVisible {
+    visibility: hidden;
+}
+
 .column {
     display: flex;
     flex-direction: column;
@@ -74,6 +78,12 @@ input:focus {
 .spaceBetween {
     display: flex;
     justify-content: space-between;
+}
+
+.flexEnd {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 .fontWhite {
@@ -344,8 +354,8 @@ input {
 }
 
 .bigJoinLogo {
-    width: 101px;
-    height: 122px;
+    width: 115px;
+    height: 120px;
     margin: 80px 0 0 77px;
 }
 

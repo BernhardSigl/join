@@ -15,11 +15,13 @@
 </head>
 
 <body onload="authenticationInit()" id="hiddenLoginId">
+    <!-- animation -->
+    <div id="animationLogInBackgroundId"></div>
+    <img src="img/joinLogoLogin.png" id="animatedLogInImageId">
     <!-- header -->
     <div class="headerFooterPosition column spaceBetween">
-        <section class="spaceBetween">
-            <object class="bigJoinLogo" type="image/svg+xml" data="img/joinLogoDark.svg">
-            </object>
+        <section class="spaceBetween logInHeader">
+            <img src="img/joinLogoLogin.png" class="bigJoinLogo notVisible" id="logInJoinLogoId">
             <div id="hideSignUpHeaderId">
                 <span class="fontSize20">
                     Not a Join user?

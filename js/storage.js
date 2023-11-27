@@ -68,7 +68,6 @@ async function loadCategoryColors() {
 async function loadIndividuallyContacts() {
     try {
         contactsArray = JSON.parse(await getItem(`individuallyContacts_${userId}`));
-        console.log(userId);
     } catch {
         console.warn('Token invalid becauce no contact has been created yet');
     }
@@ -77,7 +76,6 @@ async function loadIndividuallyContacts() {
 async function loadIndividuallyTasks() {
     try {
         taskArray = JSON.parse(await getItem(`individuallyTasks_${userId}`));
-        console.log(userId);
     } catch {
         console.warn('Token invalid becauce no task has been created yet');
     }
@@ -86,7 +84,6 @@ async function loadIndividuallyTasks() {
 async function loadIndividuallyCategories() {
     try {
         categoriesInTaskArray = JSON.parse(await getItem(`individuallyCategories_${userId}`));
-        console.log(userId);
     } catch {
         console.warn('Token invalid becauce no category has been created yet');
     }
@@ -126,30 +123,5 @@ async function loadLastOpenedHTML() {
     let lastOpenedHTMLAsText = localStorage.getItem('lastOpenedHTML');
     if (lastOpenedHTMLAsText) {
         lastOpenedHTML = JSON.parse(lastOpenedHTMLAsText);
-    }
-}
-
-//guest login
-async function saveGuestTaskArray() {
-    let guestTaskArrayAsText = JSON.stringify(guestTaskArray);
-    localStorage.setItem('guestTaskArray', guestTaskArrayAsText);
-}
-
-async function loadGuestTaskArray() {
-    let guestTaskArrayAsText = localStorage.getItem('guestTaskArray');
-    if (guestTaskArrayAsText) {
-        guestTaskArray = JSON.parse(guestTaskArrayAsText);
-    }
-}
-
-async function saveGuestContactsArray() {
-    let guestContactArrayAsText = JSON.stringify(guestContactArray);
-    localStorage.setItem('guestContactArray', guestContactArrayAsText);
-}
-
-async function loadGuestContactsArray() {
-    let guestContactArrayAsText = localStorage.getItem('guestContactArray');
-    if (guestContactArrayAsText) {
-        guestContactArray = JSON.parse(guestContactArrayAsText);
     }
 }
