@@ -18,6 +18,8 @@ async function initSummary() {
     // await loggedInUserContent(); // set saved contacts in contactsarray
     await createIndividuallyTaskArray();
     await loadIndividuallyTasks(); //
+    guestDeleteArrays(); // deleteTask
+    guestCreateTaskArray(); // create task
     // await loadTask();
     updateGreeting();
     updateName();

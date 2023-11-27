@@ -23,6 +23,7 @@ async function initContacts() {
     await createIndividuallyContactsArray(); //test
     await loadIndividuallyContacts(); //test
     await createLoggedInUser();
+    guestCreateContactArray();
     await renderContacts(); // two times because of "async"
     await renderContacts();
     loggedInUserNotClickable();

@@ -196,10 +196,10 @@ function generateCategoryListHTML(category, i) {
     <div class="listCategories dFlex alignCenter spaceBetween pointer" onclick="addCategory(${i})">
         <input class="dFlex alignCenter gap16 fontSize20 categoryContent pointer" value="${category}" id="inputFieldCategory${i}" onclick="doNotClose(event)" readonly>
         <div class="alignCenter gap4">
-            <div class="symbol24 pointer editCategory" id="editCategoryImgID${i}" style="background-image: url('../img/pencilDark.png');" onclick="editCategory(${i})">
+            <div class="symbol24 pointer editCategory" id="editCategoryImgID${i}" style="background-image: url('./img/pencilDark.png');" onclick="editCategory(${i})">
             </div>
             <div class="smallGreyline"></div>
-            <div class="symbol24 pointer deleteCategory" style="background-image: url('../img/garbageDark.png');" onclick="deleteCategory(${i})">
+            <div class="symbol24 pointer deleteCategory" style="background-image: url('./img/garbageDark.png');" onclick="deleteCategory(${i})">
             </div>
         </div>
     </div>
@@ -212,10 +212,10 @@ function generateSubtaskListHTML(subtask, i) {
         <ul class="alignCenter spaceBetween default">
             <li><input class="alignCenter gap16 fontSize20 subtaskContent default" value="${subtask}" id="subtaskEditInputId${i}" readonly></li>
             <div class="alignCenter gap4">
-            <div class="symbol24 pointer editSubtask" id="pencilEditSubtaskImgId${i}" style="background-image: url('../img/pencilDark.png');" onclick="editSubtask(${i})">
+            <div class="symbol24 pointer editSubtask" id="pencilEditSubtaskImgId${i}" style="background-image: url('./img/pencilDark.png');" onclick="editSubtask(${i})">
             </div>
             <div class="smallGreylineSubtask"></div>
-            <div class="symbol24 pointer deleteSubtask" style="background-image: url('../img/garbageDark.png');" onclick="deleteSubtask(${i})">
+            <div class="symbol24 pointer deleteSubtask" style="background-image: url('./img/garbageDark.png');" onclick="deleteSubtask(${i})">
             </div>
         </div>
         </ul>

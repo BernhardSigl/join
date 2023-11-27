@@ -19,6 +19,9 @@ async function initBoard() {
     await loadSubtasks();
     await loadCategoryColors();
     updateContactColors();
+    guestCreateTaskArray();
+    guestCreateContactArray();
+    checkGuestCategory();
     updateTasks();
     checkCurrentId();
     toggleVisibility('loaderContainerId', false);
@@ -31,6 +34,14 @@ function updateTasks() {
     doneFilter();
     subtasksExistingBoardSmall();
     categoryColor();
+}
+
+function checkGuestCategory() {
+    if (loggedInUser[0].email === 'guest@guest.com') {
+        if (!categoriesInTaskArray.includes('Design', 'Technical Task')) {
+            categoriesInTaskArray.push('Design', 'Technical Task');
+        }
+    }
 }
 
 function toDoFilter() {
@@ -154,7 +165,8 @@ async function moveTo(category) {
     taskArray[currentDraggedTask]['progressStatus'] = category;
     removeHighlight();
     updateTasks();
-    await setItem('taskArray', JSON.stringify(taskArray));
+    // await setItem('taskArray', JSON.stringify(taskArray));
+    await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
 }
 
 function highlight(id) {
@@ -274,13 +286,14 @@ async function checkSubtaskConfirmed(confirmedSubtasks) {
         let subtaskImg = document.getElementById(`subtaskImgId${i}`);
         let subtaskText = document.getElementById(`subtaskTextId${i}`);
         if (confirmedSubtask === true) {
-            subtaskImg.src = '../img/check.png';
+            subtaskImg.src = './img/check.png';
             subtaskText.classList.add('completed');
         } else if (confirmedSubtask === false) {
-            subtaskImg.src = '../img/uncheck.png';
+            subtaskImg.src = './img/uncheck.png';
             subtaskText.classList.remove('completed');
         }
-        await setItem('taskArray', JSON.stringify(taskArray));
+        await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
+        // await setItem('taskArray', JSON.stringify(taskArray));
     }
 }
 

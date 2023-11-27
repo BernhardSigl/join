@@ -128,3 +128,28 @@ async function loadLastOpenedHTML() {
         lastOpenedHTML = JSON.parse(lastOpenedHTMLAsText);
     }
 }
+
+//guest login
+async function saveGuestTaskArray() {
+    let guestTaskArrayAsText = JSON.stringify(guestTaskArray);
+    localStorage.setItem('guestTaskArray', guestTaskArrayAsText);
+}
+
+async function loadGuestTaskArray() {
+    let guestTaskArrayAsText = localStorage.getItem('guestTaskArray');
+    if (guestTaskArrayAsText) {
+        guestTaskArray = JSON.parse(guestTaskArrayAsText);
+    }
+}
+
+async function saveGuestContactsArray() {
+    let guestContactArrayAsText = JSON.stringify(guestContactArray);
+    localStorage.setItem('guestContactArray', guestContactArrayAsText);
+}
+
+async function loadGuestContactsArray() {
+    let guestContactArrayAsText = localStorage.getItem('guestContactArray');
+    if (guestContactArrayAsText) {
+        guestContactArray = JSON.parse(guestContactArrayAsText);
+    }
+}

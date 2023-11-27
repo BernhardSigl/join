@@ -4,7 +4,7 @@
 # board summary connection #completed
 # finish login online log-in #completed
 # finish login local storage guest
-# name existing
+# name existing #completed
 # header dropdown #completed
 # header question market #completed
 # privacy policy and legal notice log in screen connection #completed

@@ -170,3 +170,63 @@ function openPrivacyPolicyLogScreen() {
     saveLastOpenedHTML();
     window.location.href = 'privacyPolicy.html';
 }
+
+function guestDeleteArrays() {
+    if (document.referrer.includes('index.html')) {
+        if (loggedInUser[0].email === 'guest@guest.com') {
+            deleteAllTasks();
+            deleteContactsArray();
+        }
+    }
+}
+
+function guestCreateTaskArray() {
+    if (loggedInUser[0].email === 'guest@guest.com') {
+        const existingTask = taskArray.find(task => task.id === 0);
+        if (!existingTask) {
+            taskArray.push({
+                category: 'Design',
+                confirmedSubtasks: [false, true, false],
+                contacts: [
+                    {
+                        name: 'Guest (You)',
+                        nameShort: 'G',
+                        email: 'guest@guest.com',
+                        color: 'grey',
+                    },
+                    {
+                        name: 'Max Mustermann',
+                        nameShort: 'MM',
+                        email: 'max.mustermann@web.de',
+                        phone: '+49123 1234567',
+                        color: 'rgb(38, 117, 156)',
+                    },
+                ],
+                date: '30/06/2024',
+                description: 'Create a visual representation of the website layout and design, including color schemes and typography.',
+                id: 0,
+                low: true,
+                medium: false,
+                progressStatus: 'toDo',
+                subtasks: ['Sketch homepage layout', 'Select color palette', 'Choose typography'],
+                title: 'Design Website Mockup',
+                urgent: false,
+            });
+        }
+    }
+}
+
+function guestCreateContactArray() {
+    if (loggedInUser[0].email === 'guest@guest.com') {
+        const existingContact = contactsArray.find(contact => contact.name === 'Max Mustermann');
+        if (!existingContact) {
+            contactsArray.push({
+                color: 'rgb(38, 117, 156)',
+                email: 'max.mustermann@web.de',
+                name: 'Max Mustermann',
+                nameShort: 'MM',
+                phone: '+49123 1234567',
+            });
+        }
+    }
+}

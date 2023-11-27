@@ -86,6 +86,20 @@ function signUp() {
     toggleRequiredAttribute('regPasswordSecondId', true);
 }
 
+function guestLogIn() {
+    let logInEmailText = document.getElementById('logEmailId');
+    let logInPasswordText = document.getElementById('logPasswordId');
+    logInEmailText.style.color = 'white';
+    logInPasswordText.style.color = 'white';
+    logInEmailText.value = 'guest@guest.com';
+    logInPasswordText.value = 'guest#';
+    let logCheckbox = document.getElementById('logCheckboxId');
+    if (logCheckbox.checked) {
+        logCheckbox.checked = false;
+    }
+    logIn();
+}
+
 // register
 function backToLogin() {
     toggleVisibility('hideLogInId', true);

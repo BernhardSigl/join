@@ -22,7 +22,7 @@ function generateTaskHTML(task) {
         <div class="w100 h32 spaceBetween alignCenter ${dNone}">
             <div id="contactsInBoardSmallId${task.id}" class="alignCenter">
             </div>
-            <img src="../img/${prioImg}.png" class="symbol20">
+            <img src="./img/${prioImg}.png" class="symbol20">
         </div>
     </div>
     `;
@@ -50,7 +50,7 @@ function generateBoardHTML(task, id) {
         <span class="fontSize20 fontBlue">Priority:</span>
         <div class="dFlex gap10 alignCenter">
             <span class="fontSize20">${prioText}</span>
-            <img src="../img/${prioImg}.png" class="symbol20">
+            <img src="./img/${prioImg}.png" class="symbol20">
         </div>
     </div>
     <div class="column gap8 dNone" id="assignedToAreaBoardBigId${id}">
@@ -94,7 +94,7 @@ function gernerateSubtasksBoardBigHTML(subtask, subtaskIndex, taskIndex) {
     return /*html*/ `
     <div class="alignCenter subtaskBigBoard gap16"
     onclick="toggleSubtask(${subtaskIndex}, ${taskIndex})">
-        <img src="../img/uncheck.png" class="symbol24" id="subtaskImgId${subtaskIndex}">
+        <img src="./img/uncheck.png" class="symbol24" id="subtaskImgId${subtaskIndex}">
         <span class="fontSize16 pointer" id="subtaskTextId${subtaskIndex}">
         ${subtask}
         </span>

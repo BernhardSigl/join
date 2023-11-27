@@ -159,23 +159,23 @@ async function createTask(moveTo) {
     }
 }
 
-function createTaskContent() {
-    let confirmedSubtasksArray = Array(subtasksInTaskArray.length).fill(false);
-    return {
-        'title': document.getElementById('addTaskTitleId').value,
-        'description': document.getElementById('addTaskDescriptionId').value,
-        'date': document.getElementById('datepickerId').value,
-        'category': document.getElementById('addCategoryId').value,
-        'urgent': urgentStatus,
-        'medium': mediumStatus,
-        'low': lowStatus,
-        'contacts': contactsInTaskArray,
-        'subtasks': subtasksInTaskArray,
-        'progressStatus': 'toDo',
-        'id': currentId,
-        'confirmedSubtasks': confirmedSubtasksArray,
-    };
-}
+// function createTaskContent() {
+//     let confirmedSubtasksArray = Array(subtasksInTaskArray.length).fill(false);
+//     return {
+//         'title': document.getElementById('addTaskTitleId').value,
+//         'description': document.getElementById('addTaskDescriptionId').value,
+//         'date': document.getElementById('datepickerId').value,
+//         'category': document.getElementById('addCategoryId').value,
+//         'urgent': urgentStatus,
+//         'medium': mediumStatus,
+//         'low': lowStatus,
+//         'contacts': contactsInTaskArray,
+//         'subtasks': subtasksInTaskArray,
+//         'progressStatus': 'toDo',
+//         'id': currentId,
+//         'confirmedSubtasks': confirmedSubtasksArray,
+//     };
+// }
 
 // contacts
 function listContacts() {
@@ -211,7 +211,7 @@ function contactsDropdown() {
     let dropdownContent = document.getElementById('contactsDropdownContentId');
     let dropdownImg = document.getElementById('contactsDropdownImgId');
     if (dropdownContent.classList.contains('dNone')) {
-        dropdownImg.src = '../img/arrow_drop_up.svg';
+        dropdownImg.src = './img/arrow_drop_up.svg';
         toggleVisibility('contactsDropdownContentId', true);
     }
 }
@@ -271,7 +271,7 @@ function unmarkAssignedContact(contact, img, i) {
 function categoryDropdown() {
     disableCategoryInput();
     let dropdownImg = document.getElementById('categoryDropdownImgId');
-    dropdownImg.src = '../img/arrow_drop_up.svg';
+    dropdownImg.src = './img/arrow_drop_up.svg';
     toggleVisibility('categoryDropdownContentId', true);
     changeDropdownFunction();
 }

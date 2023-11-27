@@ -17,7 +17,7 @@ function generateNavPanelsHTML(initials) {
         </div>
         <div class="headerRight alignCenter gap16" id="headerRightId">
             <a href="help.html">
-                <img src="/img/help.png" class="questionMarket">
+                <img src="img/help.png" class="questionMarket">
             </a>
             <div onclick="openNavPopup()" class="headerCircle relative">
                 <img src="img/circle.png" class="pointer">
