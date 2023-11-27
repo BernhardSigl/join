@@ -175,7 +175,7 @@ function generateListContactsHTML(contact, i) {
             ${contact.name}
             </span>
         </div>
-        <div class="symbol24 pointer" style="background-image: url('../img/uncheck.png');" id="checkContactImgId${i}">
+        <div class="symbol24 pointer" style="background-image: url('./img/uncheck.png');" id="checkContactImgId${i}">
         </div>
     </div>
     `

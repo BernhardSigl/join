@@ -19,6 +19,7 @@ async function initAddTask() {
     await createIndividuallyCategories();//
     await loadIndividuallyCategories();//
     // await loadCategories();
+    checkGuestCategory();
     updateCategoryList();
     checkCategoryEmptyStatus();
     await createIndividuallyTaskArray();
@@ -33,7 +34,19 @@ async function initContactsInAddTask() {
     await createIndividuallyContactsArray();
     await loadIndividuallyContacts();
     await createLoggedInUser();
+    guestCreateContactArray();
     listContacts();
+}
+
+function checkGuestCategory() {
+    if (loggedInUser[0].email === 'guest@guest.com') {
+        if (!categoriesInTaskArray.includes('Design')) {
+            categoriesInTaskArray.push('Design');
+        }
+        if (!categoriesInTaskArray.includes('Technical Task')) {
+            categoriesInTaskArray.push('Technical Task');
+        }
+    }
 }
 
 async function createIndividuallyTaskArray() {//
@@ -255,7 +268,7 @@ function markAssignedContact(i, img) {
     allAssignedContactContainers.style.backgroundColor = "#2A3647";
     allAssignedContactContainers.style.color = "white";
     allAssignedContactContainers.classList.add('darkHoverListContacts');
-    img.style.backgroundImage = "url('../img/checkWhite.png')";
+    img.style.backgroundImage = "url('./img/checkWhite.png')";
 }
 
 function unmarkAssignedContact(contact, img, i) {

@@ -38,8 +38,11 @@ function updateTasks() {
 
 function checkGuestCategory() {
     if (loggedInUser[0].email === 'guest@guest.com') {
-        if (!categoriesInTaskArray.includes('Design', 'Technical Task')) {
-            categoriesInTaskArray.push('Design', 'Technical Task');
+        if (!categoriesInTaskArray.includes('Design')) {
+            categoriesInTaskArray.push('Design');
+        }
+        if (!categoriesInTaskArray.includes('Technical Task')) {
+            categoriesInTaskArray.push('Technical Task');
         }
     }
 }
