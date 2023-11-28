@@ -100,6 +100,30 @@ function guestLogIn() {
     logIn();
 }
 
+function togglePasswordVisibility(inputId, imgId) {
+    let passwordInput = document.getElementById(`${inputId}`);
+    let passwordImg = document.getElementById(`${imgId}`);
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordImg.src = 'img/closeEye.png';
+    } else {
+        passwordInput.type = 'password';
+        passwordImg.src = 'img/lock.png';
+    }
+}
+
+function showPasswordOpportunity(inputId, imgId) {
+    let passwordInput = document.getElementById(`${inputId}`);
+    let passwordImg = document.getElementById(`${imgId}`);
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'password';
+        passwordImg.src = 'img/openEye.png';
+    } else {
+        passwordInput.type = 'text';
+        passwordImg.src = 'img/closeEye.png';
+    }
+}
+
 // register
 function backToLogin() {
     toggleVisibility('hideLogInId', true);
@@ -131,10 +155,20 @@ async function register() {
     let passwordSecond = document.getElementById('regPasswordSecondId');
     let regBtn = document.getElementById('regBtnId').innerHTML;
     let regCheckboxStatus = document.getElementById('regCheckboxId');
+    let regEmail = document.getElementById('regEmailId');
+    let logInEmailValue = document.getElementById('logEmailId');
+    let logInPasswordValue = document.getElementById('logPasswordId');
+    let logCheckbox = document.getElementById('logCheckboxId');
     regBtn.disabled = true;
     if (passwordsMatch(passwordFirst, passwordSecond)) {
+        rememberMe = [];
+        saveRememberMe();
         createUser(passwordFirst);
+        backToLogin();
+        logInEmailValue.value = regEmail.value;
+        logInPasswordValue.value = passwordFirst.value;
         resetForm(regBtn, regCheckboxStatus);
+        logCheckbox.checked = false;
     } else {
         passwordsDontMatch();
     }

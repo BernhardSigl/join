@@ -67,9 +67,9 @@
                         <div class="relative">
                             <input type="password" id="logPasswordId" placeholder="Password"
                                 class="input1221 fontSize20 inputField pointer" oninput="validatePasswordInput(this)"
-                                required>
-                            <object class="symbol24Input" type="image/svg+xml" data="img/password.svg">
-                            </object>
+                                required onclick="showPasswordOpportunity('logPasswordId', 'logInPasswordImgId')">
+                            <img src="img/lock.png" class="symbol24Input" id="logInPasswordImgId"
+                                onclick="togglePasswordVisibility('logPasswordId', 'logInPasswordImgId')">
                         </div>
                     </div>
                     <!-- remember me -->
@@ -110,7 +110,7 @@
                         <div class="relative">
                             <input placeholder="Name" type="text" type="myName"
                                 class="input1221 fontSize20 inputField pointer" id="regNameId"
-                                oninput="validateNameInput(this)" required>
+                                oninput="validateNameInputRegister(this)" required>
                             <object class="symbol24Input" type="image/svg+xml" data="img/person.svg">
                             </object>
                         </div>
@@ -123,16 +123,18 @@
                         <div class="relative">
                             <input type="password" placeholder="Password"
                                 class="input1221 fontSize20 inputField pointer" id="regPasswordFirstId"
+                                onclick="showPasswordOpportunity('regPasswordFirstId', 'regPasswordFirstImgId')"
                                 oninput="validatePasswordInput(this)" required>
-                            <object class="symbol24Input" type="image/svg+xml" data="img/password.svg">
-                            </object>
+                            <img src="img/lock.png" class="symbol24Input" id="regPasswordFirstImgId"
+                                onclick="togglePasswordVisibility('regPasswordFirstId', 'regPasswordFirstImgId')">
                         </div>
                         <div class="relative">
                             <input type="password" placeholder="Confirm Password"
                                 class="input1221 fontSize20 inputField pointer" id="regPasswordSecondId"
+                                onclick="showPasswordOpportunity('regPasswordSecondId', 'regPasswordSecondImgId')"
                                 oninput="validatePasswordInput(this)" required>
-                            <object class="symbol24Input" type="image/svg+xml" data="img/password.svg">
-                            </object>
+                            <img src="img/lock.png" class="symbol24Input" id="regPasswordSecondImgId"
+                                onclick="togglePasswordVisibility('regPasswordSecondId', 'regPasswordSecondImgId')">
                         </div>
                     </div>
                     <!-- accept privacy polidy -->

@@ -13,6 +13,16 @@ function toggleCheckboxDisabled(elementId, disabled) {
     checkbox.disabled = disabled;
 }
 
+function validateNameInputRegister(input) {
+    const regex = /^[a-zA-Z\s]+$/;
+    const isValid = regex.test(input.value);
+    if (!isValid) {
+        input.setCustomValidity('Only letters are allowed.');
+    } else {
+        input.setCustomValidity('');
+    }
+}
+
 function validateNameInput(input) {
     const regex = /^[a-zA-Z\s]+$/;
     const isValid = regex.test(input.value);

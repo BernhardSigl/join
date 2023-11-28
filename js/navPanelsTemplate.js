@@ -80,19 +80,13 @@ function generateNavPanelsPopupHTML() {
     return /*html*/ `
     <a class="fontSize16 pointer" href="legalNotice.html">Legal notice</a>
     <a class="fontSize16 pointer" href="privacyPolicy.html">Privacy policy</a>
-    <a class="fontSize16 pointer" href="index.html" onclick="deleteRememberMe()">Log out</a>
+    <a class="fontSize16 pointer" href="index.html">Log out</a>
     `
 }
 let isNavPopupVisible = false;
 function openNavPopup() {
     isNavPopupVisible = !isNavPopupVisible;
     toggleVisibility('navPanelsPopupId', isNavPopupVisible);
-}
-
-async function deleteRememberMe() {
-    await loadRememberMe();
-    rememberMe = [];
-    await saveRememberMe();
 }
 
 function extractInitials(names) {
