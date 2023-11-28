@@ -1,20 +1,24 @@
 .signUpBtn {
-    margin: 67px 122px 0 35px;
+    margin: 80px 77px 0 35px;
+}
+
+.logInBoxWidth {
+    width: 652px;
 }
 
 .logInBox {
-    width: auto;
     height: auto;
     padding: 48px 115px;
     background-color: white;
     border-radius: 30px;
-    width: 422px;
+    width: 652px;
+    box-sizing: border-box;
 }
 
 .blueLineLogin {
     height: 3px;
     width: 150px;
-    stroke: #29ABE2;
+    border-radius: 1.5px;
 }
 
 .inputField {
@@ -70,6 +74,7 @@
     height: 200px;
 }
 
+/* index animation */
 #animatedLogInImageId {
     position: absolute;
     top: 50%;
@@ -78,8 +83,8 @@
     width: 287.5px;
     height: 300px;
     z-index: 2;
-    animation: slideAndFadeImg 2s forwards;
-    animation-delay: 1s;
+    animation: slideAndFadeImg 1s forwards;
+    animation-delay: 0.5s;
 }
 
 #animationLogInBackgroundId {
@@ -92,8 +97,8 @@
     z-index: 1;
     opacity: 1;
     transition: opacity 1s ease;
-    animation: slideAndFadeBackground 2s forwards;
-    animation-delay: 1s;
+    animation: slideAndFadeBackground 1s forwards;
+    animation-delay: 0.5s;
     pointer-events: none;
 }
 

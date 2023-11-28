@@ -7,7 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/authentication.css">
+    <link rel="stylesheet" href="css/authentication/authentication.css">
+    <link rel="stylesheet" href="css/authentication/authenticationMobile.css">
     <script src="js/templates.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/authentication.js"></script>
@@ -43,17 +44,16 @@
     </div>
 
     <section>
-        <div class="absoluteMiddle" id="logInWindowId">
+        <div class="absoluteMiddle logInBoxWidth justifyCenter" id="logInWindowId">
             <!-- log in -->
             <form onsubmit="logIn(); return false;">
                 <div class="logInBox gap32 column" id="hideLogInId">
                     <!-- title -->
                     <div class="column gap16 alignCenter">
-                        <span class="fontSize61 bold">
+                        <span class="fontSize61 bold logInTitle">
                             Log in
                         </span>
-                        <object class="blueLineLogin" type="image/svg+xml" data="img/blueLine.svg">
-                        </object>
+                        <img src="img/blueLine.png" class="blueLineLogin">
                     </div>
                     <!-- input fields -->
                     <div class="column gap32">
@@ -78,7 +78,7 @@
                         <span class="fontSize16">Remember me</span>
                     </div>
                     <!-- bottom buttons -->
-                    <div class="gap35 justifyCenter">
+                    <div class="gap35 justifyCenter logInGuestLogInBtns">
                         <button class="btn1524 fontWhite bold fontSize21 pointer" type="submit">
                             Log in
                         </button>
@@ -95,18 +95,16 @@
                 <div class="logInBox gap32 column dNone" id="showRegisterId">
                     <!-- title -->
                     <div class="column gap16 alignCenter">
-                        <span class="fontSize61 bold">
+                        <span class="fontSize61 bold signUpTitle">
                             Sign up
                         </span>
-                        <object class="blueLineLogin" type="image/svg+xml" data="img/blueLine.svg">
-                        </object>
-
+                        <img src="img/blueLine.png" class="blueLineLogin blueLineReg">
                         <button onclick="backToLogin()" class="symbol32 backArrow pointer" type="button">
-                            <img src="img/arrowLeft.svg" alt="">
+                            <img src="img/arrowLeft.svg">
                         </button>
                     </div>
                     <!-- input fields -->
-                    <div class="column gap32">
+                    <div class="column gap32 signUpInputs">
                         <div class="relative">
                             <input placeholder="Name" type="text" type="myName"
                                 class="input1221 fontSize20 inputField pointer" id="regNameId"

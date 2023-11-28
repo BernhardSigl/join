@@ -208,7 +208,7 @@ function passwordsDontMatch() {
 function animationStartScreen() {
     setTimeout(() => {
         document.getElementById('logInJoinLogoId').classList.remove('notVisible');
-        document.getElementById('animatedLogInImageId').style.display = 'none';
+        // document.getElementById('animatedLogInImageId').style.display = 'none';
         document.getElementById('animationLogInBackgroundId').style.display = 'none';
-    }, 3000);
+    }, 1500);
 }
