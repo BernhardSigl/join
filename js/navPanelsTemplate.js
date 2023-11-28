@@ -15,13 +15,14 @@ function generateNavPanelsHTML(initials) {
         <div class="fontSize20 headerTitle">
             Kanban Project Management Tool
         </div>
+        <img src="img/joinLogoLogin.png" class="joinLogoHeader notVisible">
         <div class="headerRight alignCenter gap16" id="headerRightId">
-            <a href="help.html">
+            <a href="help.html" class="dFlex">
                 <img src="img/help.png" class="questionMarket">
             </a>
             <div onclick="openNavPopup()" class="headerCircle relative">
-                <img src="img/circle.png" class="pointer">
-                <span class="fontSize20 bold absoluteMiddle pointer">${initials}</span>
+                <img src="img/circle.png" class="pointer circleHeader">
+                <span class="fontSize20 bold absoluteMiddle pointer nameInHeaderCircle">${initials}</span>
             </div>
         </div>
     </header>
@@ -34,31 +35,27 @@ function generateNavPanelsHTML(initials) {
         <!-- category links -->
         <div class="categoryLinks column gap15" id="categoryLinksId">
             <a href="summary.html" class="categoryLink alignCenter gap8 pointer" id="summaryLinkId">
-                <object class="categoryImage" type="image/svg+xml" data="img/summary.svg">
-                </object>
-                <span class="fontWhite fontSize16 pointer">
+                <img href="summary.html" class="categoryImage" src="img/summary.png">
+                <span class="fontWhite fontSize16 pointer categoryLinkText">
                     Summary
                 </span>
             </a>
             <a href="addTask.html" class="categoryLink alignCenter gap8 pointer" id="addTaskLinkId">
-                <object class="categoryImage" type="image/svg+xml" data="img/addTask.svg">
-                </object>
-                <span class="fontWhite fontSize16 pointer">
+            <img href="addTask.html" class="categoryImage" src="img/addTask.png">
+                <span class="fontWhite fontSize16 pointer categoryLinkText">
                     Add Task
                 </span>
             </a>
             <a href="board.html" class="categoryLink alignCenter gap8 pointer" id="boardLinkId">
-                <object class="categoryImage" type="image/svg+xml" data="img/board.svg">
-                </object>
-                <span class="fontWhite fontSize16 pointer">
+            <img href="board.html" class="categoryImage" src="img/board.png">
+                <span class="fontWhite fontSize16 pointer categoryLinkText">
                     Board
                 </span>
             </a>
             <a href="contacts.html" class="categoryLink alignCenter gap8 pointer"
                 id="contactsLinkId">
-                <object class="categoryImage" type="image/svg+xml" data="img/contacts.svg">
-                </object>
-                <span class="fontWhite fontSize16 pointer">
+                <img href="contacts.html" class="categoryImage" src="img/contacts.png">
+                <span class="fontWhite fontSize16 pointer categoryLinkText">
                     Contacts
                 </span>
             </a>

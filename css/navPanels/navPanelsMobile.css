@@ -1,0 +1,106 @@
+@media(max-width: 985px) {
+    .headerTitle {
+        margin-left: 222px;
+    }
+}
+
+@media(max-width: 850px) {
+    .categoryBar {
+        width: 180px;
+    }
+
+    .content {
+        padding: calc(30px + 110px) 30px 71px calc(180px + 30px);
+    }
+
+    .categoryLink {
+        width: 180px;
+        padding: 8px 35px;
+    }
+
+    .headerTitle {
+        margin-left: 170px;
+    }
+}
+
+@media(max-width: 767px) {
+    .notVisible {
+        visibility: visible;
+    }
+
+    .headerTitle {
+        display: none;
+    }
+
+    header {
+        height: auto;
+        padding: 20px 16px;
+    }
+
+    .circleHeader,
+    .headerCircle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nameInHeaderCircle {
+        font-size: 14px;
+    }
+
+    .questionMarket {
+        width: 28px;
+        height: 28px;
+    }
+
+    .quicklinks {
+        display: none;
+    }
+
+    .bigJoinLogo {
+        display: none;
+    }
+
+    .categoryLinks {
+        flex-direction: row;
+        padding: 0 16px;
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+
+    .categoryLink {
+        flex-direction: column;
+        width: 76px;
+        height: 76px;
+        padding: 15px 0;
+        gap: 4px;
+        margin-top: 1px;
+        border-radius: 8px;
+    }
+
+    .categoryImage {
+        width: auto;
+        height: 24px;
+    }
+
+    .categoryLinkText {
+        font-size: 14px;
+        width: 62px;
+        text-align: center;
+    }
+
+    .categoryBar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 80px;
+        box-sizing: border-box;
+        padding: 0;
+        background: #2A3647;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+    }
+}

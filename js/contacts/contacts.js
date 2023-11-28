@@ -84,9 +84,9 @@ function generateContactsInScrollbarHTML(contact, i) {
         <div class="nameShortSmall horizontalAndVertical pointer" style="background-color: ${contact.color};"  id="nameShortSmallId${i}">
             <span class="fontWhite fontSize12 pointer mb2" id="nameShortSmallText${i}">${contact.nameShort}</span>
         </div>
-        <div class="column gap5">
-            <span class="fontSize20 pointer" id="contactNameSmallId${i}">${contact.name}</span>
-            <span class="fontSize16 fontBrightBlue pointer" id="contactEmailSmallId${i}">${contact.email}</span>
+        <div class="column gap5 contactSmallView">
+            <span class="fontSize20 pointer contactSmallName" id="contactNameSmallId${i}">${contact.name}</span>
+            <span class="fontSize16 fontBrightBlue pointer contactSmallEmail" id="contactEmailSmallId${i}">${contact.email}</span>
         </div>
     </div>`
 }

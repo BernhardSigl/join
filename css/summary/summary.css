@@ -43,18 +43,18 @@ a img {
 .topContainer a:hover,
 .middleContainer a:hover,
 .bottomContainer a:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     cursor: pointer;
     background-color: #2A3647;
     color: white !important;
 }
 
 .changePencilImage:hover img {
-    content: url('../img/pencilWhite.png');
+    content: url('../../img/pencilWhite.png');
 }
 
 .changeHookImage:hover img {
-    content: url('../img/hookWhite.png');
+    content: url('../../img/hookWhite.png');
 }
 
 #currentUserId {
@@ -68,4 +68,10 @@ a img {
 .middleContainerNumberSize {
     width: 85px;
     text-align: center;
+}
+
+.welcomeMessageText {
+    width: 420px;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }

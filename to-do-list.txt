@@ -10,4 +10,6 @@
 # privacy policy and legal notice log in screen connection #completed
 # fix remember me #completed
 
+# fix contacts size (long name)
+# summary animation
 # mobile view

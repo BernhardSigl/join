@@ -9,6 +9,7 @@ let mostUrgentTask;
 let sortedArray = [];
 
 async function initSummary() {
+    checkIndex();
     await loadLoggedInUser();
     navPanelsTemplate();
     navPanelPopupTemplate();
@@ -113,4 +114,25 @@ function updateGreeting() {
         greeting = "Good evening";
     }
     document.getElementById('dayTimeId').innerHTML = greeting;
+}
+
+function checkIndex() {
+    if (window.innerWidth <= 767) {
+        let isFromIndexPage = document.referrer.endsWith("index.html");
+        if (isFromIndexPage) {
+            toggleVisibility('whiteBackgroundId', true);
+            toggleVisibility('welcomeMessageTextId', true);
+            toggleVisibility('loaderContainerId', false);
+            setTimeout(() => {
+                toggleVisibility('whiteBackgroundId', false);
+                toggleVisibility('welcomeMessageTextId', false);
+            }, 3000);
+        } else {
+            toggleVisibility('loaderContainerId', true);
+        }
+    } else {
+        toggleVisibility('loaderContainerId', true);
+        toggleVisibility('whiteBackgroundId', true);
+        toggleVisibility('welcomeMessageTextId', true);
+    }
 }

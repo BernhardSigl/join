@@ -42,7 +42,7 @@ header {
 /* category bar */
 .categoryBar {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 232px;
     height: 100vh;
@@ -69,7 +69,7 @@ header {
 }
 
 .categoryImage {
-    width: 30px;
+    width: auto;
     height: 30px;
     cursor: pointer !important;
 }
@@ -98,6 +98,11 @@ path {
     width: calc(100vw - 232px);
     height: calc(100vh - 96px);
     background-color: #F6F7F8;
+}
+
+.joinLogoHeader {
+    width: 32px;
+    height: 33px;
 }
 
 /* popup */

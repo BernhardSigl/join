@@ -98,6 +98,21 @@
     margin-bottom: -2px;
 }
 
+.contactSmallView {
+    width: 227px;
+}
+
+.contactSmallName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contactSmallEmail {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* scroll */
 .scrollContactsArea::-webkit-scrollbar-button:start:decrement {
     background-position: center;

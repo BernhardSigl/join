@@ -7,12 +7,14 @@
     <!-- always included -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/navpanels.css">
+    <link rel="stylesheet" href="css/navPanels/navpanels.css">
+    <link rel="stylesheet" href="css/navPanels/navPanelsMobile.css">
     <script src="js/navPanelsTemplate.js"></script>
     <script src="js/templates.js"></script>
     <script src="js/storage.js"></script>
     <!-- specific included -->
-    <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/summary/summary.css">
+    <link rel="stylesheet" href="css/summary/summaryMobile.css">
     <script src="js/summary.js"></script>
     <link rel="icon" href="img/joinBrowserLogo.png">
     <title>Summary</title>
@@ -25,7 +27,7 @@
 
 <body onload="initSummary()">
     <!-- loading animation -->
-    <div class="loader-container" id="loaderContainerId">
+    <div class="loader-container dNone" id="loaderContainerId">
         <div class="loader"></div>
     </div>
     <!-- nav panels -->
@@ -38,13 +40,13 @@
                 Join
             </span>
             <img src="img/blueLine.png" class="blueline">
-            <span class="fontSize27">
+            <span class="fontSize27 subtitle">
                 Key metrics at a glance
             </span>
         </section>
 
-        <div class="alignCenter gap80">
-            <section class="column gap28">
+        <div class="alignCenter gap80 btnsAndGreet">
+            <section class="column gap28 leftSummaryContainer">
                 <div class="topContainer dFlex gap32">
                     <a href="board.html" class="horizontalAndVertical gap18 changePencilImage">
                         <img src="img/pencil.png">
@@ -121,7 +123,8 @@
                 </div>
             </section>
 
-            <section>
+            <div class="whiteBackground dNone" id="whiteBackgroundId"></div>
+            <section class="welcomeMessageText dNone" id="welcomeMessageTextId">
                 <span class="fontSize47" id="dayTimeId">
                     ...
                 </span>
