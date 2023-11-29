@@ -84,6 +84,7 @@ function signUp() {
     toggleRequiredAttribute('regEmailId', true);
     toggleRequiredAttribute('regPasswordFirstId', true);
     toggleRequiredAttribute('regPasswordSecondId', true);
+    toggleVisibility('forgotPasswordAreaId', false);
 }
 
 function guestLogIn() {
@@ -134,6 +135,7 @@ function backToLogin() {
     toggleRequiredAttribute('regEmailId', false);
     toggleRequiredAttribute('regPasswordFirstId', false);
     toggleRequiredAttribute('regPasswordSecondId', false);
+    toggleVisibility('forgotPasswordAreaId', false);
 }
 
 async function deleteUsers() {
@@ -208,7 +210,6 @@ function passwordsDontMatch() {
 function animationStartScreen() {
     setTimeout(() => {
         document.getElementById('logInJoinLogoId').classList.remove('notVisible');
-        // document.getElementById('animatedLogInImageId').style.display = 'none';
         document.getElementById('animationLogInBackgroundId').style.display = 'none';
     }, 1500);
 }

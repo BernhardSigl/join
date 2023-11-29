@@ -59,23 +59,24 @@
                     <div class="column gap32">
                         <div class="relative">
                             <input type="email" placeholder="Email" type="email" id="logEmailId"
-                                class="input1221 fontSize20 inputField pointer" oninput="validateEmailInput(this)"
-                                required>
-                            <object class="symbol24Input" type="image/svg+xml" data="img/email.svg">
+                                class="input1221 fontSize20 inputField" oninput="validateEmailInput(this)" required>
+                            <object class="symbol24Input backgroundPointer" type="image/svg+xml" data="img/email.svg">
                             </object>
                         </div>
                         <div class="relative">
                             <input type="password" id="logPasswordId" placeholder="Password"
-                                class="input1221 fontSize20 inputField pointer" oninput="validatePasswordInput(this)"
-                                required onclick="showPasswordOpportunity('logPasswordId', 'logInPasswordImgId')">
-                            <img src="img/lock.png" class="symbol24Input" id="logInPasswordImgId"
+                                class="input1221 fontSize20 inputField" oninput="validatePasswordInput(this)" required
+                                onclick="showPasswordOpportunity('logPasswordId', 'logInPasswordImgId')">
+                            <img src="img/lock.png" class="symbol24Input pointer" id="logInPasswordImgId"
                                 onclick="togglePasswordVisibility('logPasswordId', 'logInPasswordImgId')">
                         </div>
                     </div>
                     <!-- remember me -->
-                    <div class="alignCenter gap8 rememberMe">
-                        <input class="checkbox pointer" type="checkbox" id="logCheckboxId">
-                        <span class="fontSize16">Remember me</span>
+                    <div class="rememberMe alignCenter">
+                        <div class="alignCenter gap8">
+                            <input class="checkbox pointer" type="checkbox" id="logCheckboxId">
+                            <span class="fontSize16">Remember me</span>
+                        </div>
                     </div>
                     <!-- bottom buttons -->
                     <div class="gap35 justifyCenter logInGuestLogInBtns">

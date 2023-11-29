@@ -117,7 +117,7 @@ function updateGreeting() {
 }
 
 function checkIndex() {
-    if (window.innerWidth <= 767) {
+    if (window.innerWidth <= 1400) {
         let isFromIndexPage = document.referrer.endsWith("index.html");
         if (isFromIndexPage) {
             toggleVisibility('whiteBackgroundId', true);

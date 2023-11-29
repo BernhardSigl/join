@@ -6,6 +6,10 @@
     width: 652px;
 }
 
+.logInTitle {
+    caret-color: transparent;
+}
+
 .logInBox {
     height: auto;
     padding: 48px 115px;
@@ -19,6 +23,7 @@
     height: 3px;
     width: 150px;
     border-radius: 1.5px;
+    caret-color: transparent;
 }
 
 .inputField {
@@ -26,8 +31,21 @@
     box-sizing: border-box;
 }
 
+.input {
+    cursor: text;
+}
+
 .rememberMe {
     padding: 8px 0 0 39px;
+    caret-color: transparent;
+}
+
+.forgotPassword {
+    color: black;
+}
+
+.forgotPassword:hover {
+    color: #007CEE;
 }
 
 .privacyLink {

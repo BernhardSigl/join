@@ -1,3 +1,9 @@
+@media(max-width: 1480px) {
+    .gap80 {
+        gap: 30px;
+    }
+}
+
 @media(max-width: 1400px) {
     .btnsAndGreet {
         display: flex;
@@ -6,10 +12,63 @@
         gap: 28px;
     }
 
+    /* animation */
+    .whiteBackground {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #F6F7F8;
+        opacity: 1;
+        animation: fadeOut 1.5s ease-out forwards;
+        animation-delay: 1.5s;
+        z-index: 1;
+    }
+
+    .welcomeMessageText.fade-out,
+    .whiteBackground.fade-out {
+        opacity: 0;
+    }
+
+    #currentUserId {
+        text-align: center;
+    }
+
     .welcomeMessageText {
-        width: 560px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 1;
+        animation: fadeOut 1.5s ease-out forwards;
+        animation-delay: 1.5s;
+        z-index: 1;
+    }
+
+    #dayTimeId {
+        text-align: center;
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    .btnsAndGreet {
+        display: flex;
     }
 }
+
 
 @media(max-width: 985px) {
     .content {
@@ -17,7 +76,7 @@
     }
 }
 
-@media(max-width: 853px) {
+@media(max-width: 850px) {
     .content {
         padding: calc(30px + 110px) 30px 71px calc(180px + 30px);
     }
@@ -40,10 +99,6 @@
         padding: 15px 15px;
     }
 
-    .welcomeMessageText {
-        max-width: 520px;
-    }
-
     #dayTimeId {
         font-size: 36px;
     }
@@ -55,7 +110,12 @@
 
 @media(max-width: 767px) {
     .content {
-        padding: 129px 16px 0 16px;
+        padding: 128px 16px 128px 16px;
+    }
+
+    .welcomeMessageText,
+    .whiteBackground {
+        z-index: 0;
     }
 
     .fontSize61 {
@@ -83,10 +143,6 @@
 
     .subtitle {
         order: 2;
-    }
-
-    .btnsAndGreet {
-        display: flex;
     }
 
     .leftSummaryContainer {
@@ -137,11 +193,6 @@
         font-size: 47px;
     }
 
-    .fontSize16,
-    .fontSize20 {
-        font-size: 14px;
-    }
-
     #dateFrontPageId {
         font-size: 16px;
         width: auto;
@@ -158,49 +209,69 @@
         height: 68px;
     }
 
-    .welcomeMessageText {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        opacity: 1;
-        animation: fadeOut 1.5s ease-out forwards;
-        animation-delay: 1.5s;
+    .topContainer a:hover,
+    .middleContainer a:hover,
+    .bottomContainer a:hover {
+        transform: scale(1.03);
+    }
+}
+
+@media(max-width: 440px) {
+    .fontSize64 {
+        font-size: 24px;
     }
 
-    /* animation */
-    .whiteBackground {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: #F6F7F8;
-        opacity: 1;
-        animation: fadeOut 1.5s ease-out forwards;
-        animation-delay: 1.5s;
+    .topContainer a {
+        height: 130.5px;
     }
 
-    .welcomeMessageText.fade-out,
-    .whiteBackground.fade-out {
-        opacity: 0;
+    .fontSize16,
+    .fontSize20 {
+        font-size: 12px !important;
     }
 
-    #currentUserId {
+    #prioNumberId,
+    #prioFrontPageTextId {
+        width: 61px;
         text-align: center;
     }
 
-    @keyframes fadeOut {
-        from {
-            opacity: 1;
-        }
+    #prioFrontPageTextId {
+        font-size: 12px;
+    }
 
-        to {
-            opacity: 0;
-        }
+    .gap45,
+    .gap18 {
+        gap: 8px;
+    }
+
+    .gap32 {
+        gap: 10px;
+    }
+
+    .bottomContainer {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 767px) and (max-height: 840px) {
+    .content {
+        padding: 95px 16px 95px 16px;
+    }
+
+    .blueline {
+        display: none;
+    }
+
+    .title {
+        margin-bottom: 16px;
+    }
+
+    .leftSummaryContainer {
+        gap: 16px;
+    }
+
+    .topContainer a {
+        height: 108px;
     }
 }

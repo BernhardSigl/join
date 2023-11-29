@@ -102,6 +102,10 @@ input:focus {
     color: #007CEE;
 }
 
+.backgroundPointer {
+    pointer-events: none;
+}
+
 /* button */
 button {
     margin: 0;
@@ -480,4 +484,19 @@ body.disable-scroll {
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* scrollbar mobile */
+.content {
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.content::-webkit-scrollbar {
+    width: 0;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: transparent;
 }
