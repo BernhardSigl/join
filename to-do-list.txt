@@ -9,7 +9,15 @@
 # header question market #completed
 # privacy policy and legal notice log in screen connection #completed
 # fix remember me #completed
+# summary animation #completed
+# mobile view index #completed
+# mobile view summary #completed
 
 # fix contacts size (long name)
-# summary animation
-# mobile view
+# mobile view addTask
+# mobile view board
+# mobile view contacts
+# mobile view navpanels
+# mobile view navpanels dropdown
+# mobile view quicklinks and help
+# mobile view success slide button
