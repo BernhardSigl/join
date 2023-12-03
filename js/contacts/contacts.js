@@ -68,7 +68,7 @@ function categoryContacts(contact, contactsInScrollbar) {
 
 function generateContactsCategoryHTML(firstLetter) {
     return /* html */ `
-    <div>
+    <div class="categoryContactsArea">
         <div class="fontSize20 categoryContacts">
             ${firstLetter}
         </div>
@@ -154,21 +154,41 @@ function openContactInfo(i) {
     let contactInfo = document.getElementById('contactInfoId');
     markContact(i)
     slideOneObject('contactInfoId');
+    document.getElementById('rightContainerId').style.setProperty('display', 'flex', 'important');
+    document.getElementById('editContactPrePopupId').style.setProperty('display', 'flex', 'important');
+    document.getElementById('backArrowMobileId').style.setProperty('display', 'flex', 'important');
     onClickedContact = contactsArray[i];
     contactInfo.innerHTML = generateContactInfoHTML(onClickedContact, i);
+
+    let editContactPopupMobile = document.getElementById('editContactPopupId');
+    editContactPopupMobile.innerHTML = gernerateEditContactPopupMobile(i);
+    slideOutOneObject('editContactPopupId');
+}
+
+function gernerateEditContactPopupMobile(i) {
+    return /*html*/ `
+    <a class="dFlex gap8 alignCenter editContactArea pointer" onclick="openEditTaskPopup(${i})">
+        <img src="img/pencilDark.png" class="symbol24 pointer">
+        <span class="fontSize16 fontBlue pointer">Edit</span>
+    </a>
+    <a class="dFlex gap8 alignCenter deleteContactArea pointer" onclick="deleteContact(${i}); slideOutOneObject('editContactPopupId');     document.getElementById('rightContainerId').style.setProperty('display', 'none');">
+        <img src="img/garbageDark.png" class="symbol24 pointer">
+        <span class="fontSize16 fontBlue pointer">Delete</span>
+    </a>
+    `;
 }
 
 function generateContactInfoHTML(onClickedContact, i) {
     return /*html*/ `
-    <div class="dFlex gap54 alignCenter">
+    <div class="dFlex gap54 alignCenter nameEditDeleteArea">
         <div>
             <div class="nameShortBig horizontalAndVertical" style="background-color: ${onClickedContact.color};">
                 <span class="fontWhite fontSize47">${onClickedContact.nameShort}</span>
             </div>
         </div>
         <div class="column gap8">
-            <span class="fontSize47">${onClickedContact.name}</span>
-            <div class="dFlex gap16">
+            <span class="fontSize47 nameOnBigView">${onClickedContact.name}</span>
+            <div class="dFlex gap16 editContactBigViewArea">
                 <a class="dFlex gap8 alignCenter editContactArea pointer" onclick="openEditTaskPopup(${i})">
                     <img src="img/pencilDark.png" class="symbol24 pointer">
                     <span class="fontSize16 fontBlue pointer">Edit</span>
@@ -230,6 +250,7 @@ async function saveContact(i) {
     await renderContacts();
     await renderContacts();
     loggedInUserNotClickable();
+    closeBigViewMobile(); //mobile
 }
 
 async function deleteContact(i) {
@@ -242,6 +263,7 @@ async function deleteContact(i) {
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     await renderContacts();
     loggedInUserNotClickable();
+    closeBigViewMobile(); //mobile
 }
 
 function markContact(i) {
@@ -282,4 +304,12 @@ function loggedInUserNotClickable() {
     nameShortSmallText.style.setProperty('cursor', 'not-allowed', 'important');
     contactNameSmallId.style.setProperty('cursor', 'not-allowed', 'important');
     contactEmailSmallId.style.setProperty('cursor', 'not-allowed', 'important');
+}
+
+//mobile
+function closeBigViewMobile() {
+    document.getElementById('rightContainerId').style.setProperty('display', 'none');
+    document.getElementById('editContactPrePopupId').style.setProperty('display', 'none', 'important');
+    document.getElementById('backArrowMobileId').style.setProperty('display', 'none', 'important');
+    slideOutOneObject('editContactPopupId');
 }

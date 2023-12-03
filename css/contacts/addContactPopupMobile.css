@@ -1,0 +1,102 @@
+@media(max-width: 1240px) {
+    .addContactArea {
+        display: flex;
+        flex-direction: column;
+        width: 730px;
+        height: calc(100vh - 180px);
+    }
+
+    .leftContainerAddContact {
+        height: 50%;
+        width: 100%;
+        border-radius: 26px 26px 0 0;
+        padding: 66px 24px;
+    }
+
+    .middleContainerAddContact {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: auto;
+        width: auto;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+
+    .rightContainerAddContactArea {
+        height: 50%;
+    }
+
+    .circleAddProfile {
+        margin: 0;
+    }
+
+    .changeCrossToWhite {
+        margin: 3px 3px 0 0;
+    }
+
+    .closePopup {
+        display: flex !important;
+    }
+
+    .closePopup:hover {
+        border-radius: 100%;
+        background: #29ABE2;
+    }
+
+    .crossDesktopContacts {
+        display: none !important;
+    }
+
+    .crossMobileContacts {
+        display: flex !important;
+    }
+
+    .rightContainerAddContact {
+        position: static;
+        width: 100%;
+        height: 100%;
+        padding: 0 16px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .inputArea {
+        width: 100%;
+    }
+
+    #cancelBtn {
+        display: none;
+    }
+
+    .fontSize61 {
+        font-size: 47px;
+    }
+
+    .fontSize27 {
+        font-size: 20px;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .addContactArea {
+        width: 95%;
+        height: calc(100vh - 180px);
+    }
+
+    .deleteCrossImg {
+        display: none;
+    }
+}

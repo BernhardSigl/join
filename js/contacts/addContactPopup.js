@@ -10,6 +10,10 @@ function addContactPopupContent() {
 function generateAddContactContentHTML() {
     return /*html*/`
             <div class="leftContainerAddContact relative">
+                <!-- close popup mobile -->
+                <div class="closePopup dNone" onclick="slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');">
+                    <img src="img/crossWhite.png" class="symbol24 changeCrossToWhite">
+                </div>
                 <img src="img/joinLogoBright.svg" class="joinLogoAddTask">
                 <div class="titleAddContact column gap8">
                     <span class="fontSize61 bold fontWhite">
@@ -27,7 +31,7 @@ function generateAddContactContentHTML() {
                     <input type="color" id="colorPickerId" class="colorPicker pointer">
                 </div>
             </div>
-            <form onsubmit="createContact(); return false;">
+            <form onsubmit="createContact(); return false;" class="rightContainerAddContactArea">
                 <div class="rightContainerAddContact column gap32 justifyCenter">
                     <div class="relative inputArea">
                         <input placeholder="Name (required)" type="text" type="myName" class="input1221 fontSize20 inputField pointer"
@@ -47,7 +51,7 @@ function generateAddContactContentHTML() {
                         </object>
                     </div>
                     <div class="addContactBtn dFlex gap16">
-                        <button class="btn1616 btnWhite alignCenter dFlex  pointer changeCrossImage" id="cancelBtn">
+                        <button class="btn1616 btnWhite alignCenter dFlex pointer changeCrossImage" id="cancelBtn">
                             <span class="fontSize20 pointer">
                             Cancel
                             </span>
@@ -61,8 +65,8 @@ function generateAddContactContentHTML() {
                         </button>
                     </div>
 
-                    <!-- close popup -->
-                    <div class="closePopup" onclick="slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');">
+                    <!-- close popup desktop -->
+                    <div class="closePopup crossDesktopContacts" onclick="slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');">
                         <img src="img/cross.png" class="symbol24">
                     </div>
                 </div>

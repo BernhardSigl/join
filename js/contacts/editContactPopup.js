@@ -15,6 +15,10 @@ function closeEditContactPopup() {
 function generateEditContactContentHTML(i) {
     return /*html*/`
             <div class="leftContainerAddContact relative">
+            <!-- close popup mobile -->
+            <div class="closePopup dNone" onclick="slideOutTwoObjects('editContactAreaId', 'backgroundEditContactId');">
+                <img src="img/crossWhite.png" class="symbol24 changeCrossToWhite">
+            </div>
                 <img src="img/joinLogoBright.svg" class="joinLogoAddTask">
                 <div class="titleAddContact column gap8">
                     <span class="fontSize61 bold fontWhite">
@@ -29,7 +33,7 @@ function generateEditContactContentHTML(i) {
                     <input type="color" id="editColorPickerId" class="colorPicker pointer">
                 </div>
             </div>
-            <form onsubmit="saveContact(${i}); return false;">
+            <form onsubmit="saveContact(${i}); return false;" class="rightContainerAddContactArea">
                 <div class="rightContainerAddContact column gap32 justifyCenter">
                     <div class="relative inputArea">
                         <input placeholder="Name (required)" type="text" type="myName" class="input1221 fontSize20 inputField pointer"
@@ -52,7 +56,7 @@ function generateEditContactContentHTML(i) {
                             <span class="fontSize20 pointer">
                             Delete
                             </span>
-                            <img src="img/cross.png" class="symbol24">
+                            <img src="img/cross.png" class="symbol24 deleteCrossImg">
                         </button>
                         <button class="btn1616 alignCenter dFlex pointer" type="submit">
                             <span class="fontSize20 fontWhite pointer">
@@ -63,8 +67,8 @@ function generateEditContactContentHTML(i) {
                     </div>
 
                     <!-- close popup -->
-                    <div class="closePopup" onclick="closeEditContactPopup()">
-                        <img src="img/cross.png" class="symbol24">
+                    <div class="closePopup crossDesktopContacts" onclick="closeEditContactPopup()">
+                        <img src="img/cross.png" class="symbol24 changeCrossToWhite">
                     </div>
                 </div>
             </form>

@@ -1,9 +1,15 @@
 .content {
     padding: 96px 96px 0 232px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 .leftContainer {
     width: 456px;
+    min-width: 456px;
     height: calc(100vh - 96px);
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     background-color: white;
@@ -111,6 +117,18 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.addContactMobile {
+    display: none;
+}
+
+.contactsTitle {
+    margin-bottom: 32px;
+}
+
+.editContactPopup {
+    display: none;
 }
 
 /* scroll */

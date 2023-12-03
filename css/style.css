@@ -401,6 +401,7 @@ input {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    caret-color: transparent;
 }
 
 .closePopup:hover {

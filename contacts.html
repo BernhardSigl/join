@@ -28,6 +28,8 @@
     <!-- specific included -->
     <link rel="stylesheet" href="css/contacts/contacts.css">
     <link rel="stylesheet" href="css/contacts/addContactPopup.css">
+    <link rel="stylesheet" href="css/contacts/addContactPopupMobile.css">
+    <link rel="stylesheet" href="css/contacts/contactsMobile.css">
     <script src="js/contacts/addContactPopup.js"></script>
     <script src="js/contacts/editContactPopup.js"></script>
     <script src="js/contacts/contacts.js"></script>
@@ -56,6 +58,13 @@
         <div class="dFlex addContactArea" id="editContactAreaId" onclick="doNotClose(event)">
         </div>
     </popup>
+    <popup id="editContactPrePopupId" class="horizontalAndVertical" onclick="slideOneObject('editContactPopupId')">
+        <img src="img/dots.png" class="symbol32">
+    </popup>
+    <popup id="editContactPopupId" class="column gap16 dNone">
+    </popup>
+    <img src="img/arrowLeft.svg" class="pointer backArrow symbol32 dNone" id="backArrowMobileId"
+        onclick="closeBigViewMobile()">
 
     <div class="content">
         <div class="dFlex">
@@ -63,22 +72,25 @@
                 <section class="aboveScrollbar horizontalAndVertical">
                     <button class="btn1212 horizontalAndVertical gap16 pointer" onclick="openAddContactPopup()">
                         <span class="fontSize21 bold fontWhite pointer">Add new contact</span>
-                        <object class="symbol32" type="image/svg+xml" data="img/personPlus.svg">
-                        </object>
+                        <img src="img/personPlus.png" class="symbol32">
                     </button>
                 </section>
+                <button class="btn1212 horizontalAndVertical gap16 pointer addContactMobile"
+                    onclick="openAddContactPopup()">
+                    <img src="img/personPlus.png" class="symbol32">
+                </button>
                 <section class="scrollContactsArea column alignCenter" id="contactsInScrollbarId">
-
                 </section>
             </div>
 
-            <div class="rightContainer column gap32">
+            <div class="rightContainer column gap32" id="rightContainerId"
+                onclick="slideOutOneObject('editContactPopupId')">
                 <section class="contactsTitle alignCenter gap30">
-                    <span class="fontSize61 bold">
+                    <span class="fontSize61 bold titleText">
                         Contacts
                     </span>
                     <img src="img/blueLine.png" class="blueLine">
-                    <span class="fontSize27">
+                    <span class="fontSize27 contactsDescription">
                         Better with a team
                     </span>
                 </section>

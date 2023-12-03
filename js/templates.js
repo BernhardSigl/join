@@ -134,7 +134,7 @@ function slideOutOneObject(frontId) {
         slideInAnimation.classList.remove('slide-out');
         toggleVisibility(frontId, false);
         document.body.classList.remove('disable-scroll');
-    }, 500);
+    }, 200);
 }
 
 function slideTwoObjects(frontId, backgroundId) {

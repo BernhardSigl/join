@@ -1,0 +1,21 @@
+@media(max-width: 1401px) {
+    .content {
+        padding: calc(96px + 110px) 30px 71px calc(232px + 30px);
+    }
+}
+
+@media(max-width: 1386px) {
+    .content {
+        padding: calc(96px + 110px) 30px 71px calc(232px + 30px);
+    }
+
+    .gap48 {
+        gap: 20px;
+    }
+}
+
+@media(max-width: 1076px) {
+    /* .fontSize20 {
+        font-size: 16px;
+    } */
+}
