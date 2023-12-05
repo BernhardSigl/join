@@ -14,7 +14,7 @@ function generateAddTaskHTML() {
         </span>
     </section>
     <form onsubmit="onClickToDo(); return false;" id="createTaskId">
-        <div class="dFlex gap48">
+        <div class="dFlex gap48 leftAndRightContainerMobile">
             <div class="leftContainer column gap32">
                 <!-- title -->
                 <section class="column gap8">
@@ -80,7 +80,7 @@ function generateAddTaskHTML() {
                         Prio
                         </span>
                     </span>
-                    <div class="dFlex gap16">
+                    <div class="dFlex gap16 prioBtnsMobile">
                         <button type="button" class="prioBtn horizontalAndVertical" id="addUrgentId" onclick="urgentBtn()">
                             <span class="fontSize20 pointer" id="urgentTextId">
                             Urgent

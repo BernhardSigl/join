@@ -2,6 +2,10 @@
     .content {
         padding: calc(96px + 110px) 30px 71px calc(232px + 30px);
     }
+
+    .footer {
+        left: 262px;
+    }
 }
 
 @media(max-width: 1386px) {
@@ -12,10 +16,180 @@
     .gap48 {
         gap: 20px;
     }
+
+    .footer {
+        gap: 12px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
 }
 
-@media(max-width: 1076px) {
-    /* .fontSize20 {
+@media(max-width: 1060px) {
+    .prioBtnsMobile {
+        flex-direction: column;
+    }
+
+    .prioBtn {
+        padding: 0 10px;
+        margin: 0;
+        gap: 8px;
+        border-radius: 10px;
+        height: 41px;
+    }
+}
+
+@media(max-width: 955px) {
+    .prioBtnsMobile {
+        flex-direction: column;
+    }
+
+    .fontSize20 {
         font-size: 16px;
-    } */
+    }
+
+    #createTaskTextId {
+        font-size: 20px;
+    }
+
+    .gap48 {
+        gap: 10px;
+    }
+
+    .symbol24InputHover,
+    .symbol24Input {
+        background-color: white;
+        margin: 11px 13px;
+    }
+}
+
+@media(max-width: 850px) {
+    .content {
+        padding: calc(96px + 110px) 30px 71px 210px;
+    }
+
+    .footer {
+        left: 210px;
+    }
+}
+
+@media(max-width: 800px) {
+    .content {
+        padding: calc(96px + 110px) 10px 71px 190px;
+    }
+
+    .footer {
+        left: 190px;
+    }
+}
+
+@media(max-width: 767px) {
+    .content {
+        padding: calc(80px + 48px) 16px 168px 16px;
+    }
+
+    .footer {
+        width: 100vw;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        bottom: 80px;
+        gap: 0;
+        align-items: center;
+        padding: 16px 16px;
+        box-sizing: border-box;
+        background-color: #F6F7F8;
+        z-index: 1;
+    }
+
+    .greyline {
+        display: none;
+    }
+
+    .gap48 {
+        gap: 0;
+    }
+
+    .leftAndRightContainerMobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+    }
+
+    .rightContainer,
+    .leftContainer {
+        width: 100%;
+    }
+
+    .gap32 {
+        gap: 24px;
+    }
+
+    .prioBtnsMobile {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .changeCrossImage {
+        display: none;
+    }
+
+    .dropdownContacts {
+        top: 45px;
+        z-index: 1;
+    }
+
+    /* scroll */
+    #createTaskId {
+        height: 800px;
+        min-height: 320px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    #createTaskId::-webkit-scrollbar-button:start:decrement {
+        background-position: center;
+        background-image: url('../../img/arrow_drop_up.svg');
+        border-top-right-radius: 100% !important;
+        border-top-left-radius: 100% !important;
+    }
+
+    #createTaskId::-webkit-scrollbar-button:end:increment {
+        background-position: center;
+        background-image: url('../../img/arrow_drop_down.svg');
+        border-bottom-right-radius: 100%;
+        border-bottom-left-radius: 100%;
+    }
+
+    #createTaskId::-webkit-scrollbar {
+        display: block;
+        width: 8px;
+    }
+
+    #createTaskId::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    #createTaskId::-webkit-scrollbar-thumb {
+        background-color: #909090;
+        border-radius: 10px;
+    }
+}
+
+@media(max-width: 424px) {
+    .prioBtnsMobile {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .fontSize20 {
+        font-size: 16px !important;
+    }
+
+    .btn1616 {
+        padding: 12px;
+    }
 }
