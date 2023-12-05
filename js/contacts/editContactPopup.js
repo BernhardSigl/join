@@ -21,7 +21,7 @@ function generateEditContactContentHTML(i) {
             </div>
                 <img src="img/joinLogoBright.svg" class="joinLogoAddTask">
                 <div class="titleAddContact column gap8">
-                    <span class="fontSize61 bold fontWhite">
+                    <span class="fontSize61 bold fontWhite addContactTextMobile">
                         Edit Contact
                     </span>
                 </div>

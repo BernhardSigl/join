@@ -16,10 +16,10 @@ function generateAddContactContentHTML() {
                 </div>
                 <img src="img/joinLogoBright.svg" class="joinLogoAddTask">
                 <div class="titleAddContact column gap8">
-                    <span class="fontSize61 bold fontWhite">
+                    <span class="fontSize61 bold fontWhite addContactTextMobile">
                         Add contact
                     </span>
-                    <span class="fontSize27 fontWhite">
+                    <span class="fontSize27 fontWhite addContactSubTextMobile">
                         Tasks are better with a team!
                     </span>
                 </div>

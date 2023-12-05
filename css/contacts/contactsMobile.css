@@ -234,3 +234,44 @@
         z-index: 1;
     }
 }
+
+@media(max-height: 780px) {
+    .contactsTitle {
+        margin-bottom: 0 !important;
+    }
+
+    /* scroll */
+    #contactInfoId {
+        max-height: 320px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    #contactInfoId::-webkit-scrollbar-button:start:decrement {
+        background-position: center;
+        background-image: url('../../img/arrow_drop_up.svg');
+        border-top-right-radius: 100% !important;
+        border-top-left-radius: 100% !important;
+    }
+
+    #contactInfoId::-webkit-scrollbar-button:end:increment {
+        background-position: center;
+        background-image: url('../../img/arrow_drop_down.svg');
+        border-bottom-right-radius: 100%;
+        border-bottom-left-radius: 100%;
+    }
+
+    #contactInfoId::-webkit-scrollbar {
+        display: block;
+        width: 8px;
+    }
+
+    #contactInfoId::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    #contactInfoId::-webkit-scrollbar-thumb {
+        background-color: #909090;
+        border-radius: 10px;
+    }
+}
