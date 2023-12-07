@@ -36,7 +36,7 @@ function generateBoardHTML(task, id) {
         </span>
         <img src="img/cross.png" class="closePopup" onclick="closeBoard()">
     </div>
-    <span class="fontSize61 bold">
+    <span class="fontSize61 bold titleKanbanBigView">
     ${task.title}
     </span>
     <span class="fontSize20 descriptionKanbanBig" id="descriptionBoardBigId${id}">

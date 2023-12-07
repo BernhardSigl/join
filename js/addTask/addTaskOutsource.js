@@ -132,31 +132,33 @@ function generateAddTaskHTML() {
                     <div id="subtaskListId" class="gap8 column scrollAddTaskArea scrollLimitAddTask">
                     </div>
                 </section>
+            
             </div>
-            <!-- footer -->
-            <div class="footer spaceBetween">
-                <div class="leftFooter">
-                    <span class="fontSize20">
-                        <span class="redFooter">*</span>
-                        This field is required
-                    </span>
-                </div>
-                <div class="rightFooter dFlex gap16">
-                    <button class="btn1616 btnWhite alignCenter dFlex  pointer changeCrossImage" onclick="clearTask()" type="button">
-                        <span class="fontSize20 pointer">
-                        Clear
-                        </span>
-                        <img src="img/cross.png" class="symbol24">
-                    </button>
-                    <button class="btn1616 alignCenter dFlex pointer" type="submit">
-                        <span class="fontSize20 fontWhite pointer" id="createTaskTextId">
-                        Create Task
-                        </span>
-                        <img src="img/hookWhiteSmall.png" class="symbol24">
-                    </button>
-                </div>
-            </div>
+            
         </div>
+        <!-- footer -->
+        <div class="footer spaceBetween">
+        <div class="leftFooter">
+            <span class="fontSize20">
+                <span class="redFooter">*</span>
+                This field is required
+            </span>
+        </div>
+        <div class="rightFooter dFlex gap16">
+            <button class="btn1616 btnWhite alignCenter dFlex  pointer changeCrossImage" onclick="clearTask()" type="button">
+                <span class="fontSize20 pointer">
+                Clear
+                </span>
+                <img src="img/cross.png" class="symbol24">
+            </button>
+            <button class="btn1616 alignCenter dFlex pointer" type="submit">
+                <span class="fontSize20 fontWhite pointer" id="createTaskTextId">
+                Create Task
+                </span>
+                <img src="img/hookWhiteSmall.png" class="symbol24">
+            </button>
+        </div>
+    </div>
     </form>
 
     <img src="img/cross.png" class="closePopup dNone" id="closePopupId" onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId'), clearTask()">`

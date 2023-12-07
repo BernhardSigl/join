@@ -21,3 +21,5 @@
 # mobile view navpanels dropdown
 # mobile view quicklinks and help
 # mobile view success slide button
+# add category scrollbar
+# empty category, subtask fix

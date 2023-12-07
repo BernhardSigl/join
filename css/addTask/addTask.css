@@ -1,3 +1,7 @@
+.content {
+    overflow: hidden;
+}
+
 .greyline {
     width: 1px;
     height: auto;
@@ -32,7 +36,7 @@ textarea:focus {
 }
 
 .addContactImg {
-    background-image: url('../img/personPlus.svg');
+    background-image: url('../../img/personPlus.png');
 }
 
 .addContactBtnArea {
@@ -139,7 +143,7 @@ textarea:focus {
 }
 
 .changeCrossImage:hover img {
-    content: url('../img/crossBlue.png') !important;
+    content: url('../../img/crossBlue.png') !important;
 }
 
 #urgentTextId {
@@ -192,7 +196,7 @@ textarea:focus {
 .smallGreyline {
     width: 1px;
     height: 24px;
-    background-image: url('../img/greyLine.png');
+    background-image: url('../../img/greyLine.png');
 }
 
 /* subtask */
@@ -245,17 +249,21 @@ ul {
 .inputDescription::-webkit-scrollbar-button:start:decrement,
 .scrollAddTaskArea::-webkit-scrollbar-button:start:decrement {
     background-position: center;
-    background-image: url('../img/arrow_drop_up.svg');
-    border-top-right-radius: 100% !important;
-    border-top-left-radius: 100% !important;
+    background-image: url('../../img/arrow_drop_up.png');
+    border-top-right-radius: 100%;
+    border-top-left-radius: 100%;
+    background-size: auto 4px;
+    background-repeat: no-repeat;
 }
 
 .inputDescription::-webkit-scrollbar-button:end:increment,
 .scrollAddTaskArea::-webkit-scrollbar-button:end:increment {
     background-position: center;
-    background-image: url('../img/arrow_drop_down.svg');
+    background-image: url('../../img/arrow_drop_down.png');
     border-bottom-right-radius: 100%;
     border-bottom-left-radius: 100%;
+    background-size: auto 4px;
+    background-repeat: no-repeat;
 }
 
 .inputDescription::-webkit-scrollbar,

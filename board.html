@@ -13,7 +13,8 @@
     <script src="js/templates.js"></script>
     <script src="js/storage.js"></script>
     <!-- specific included "add task" -->
-    <link rel="stylesheet" href="css/addTask.css">
+    <link rel="stylesheet" href="css/addTask/addTask.css">
+    <link rel="stylesheet" href="css/addTask/addTaskMobile.css">
     <script src="js/addTask/addTask.js"></script>
     <script src="js/addTask/addTaskOutsource.js"></script>
     <script src="js/addTask/addTaskButtons.js"></script>
@@ -22,7 +23,8 @@
     <script src="js/contacts/addContactPopup.js"></script>
     <link rel="stylesheet" href="css/contacts/addContactPopup.css">
     <!-- specific included -->
-    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/board/board.css">
+    <link rel="stylesheet" href="css/board/boardMobile.css">
     <script src="js/board/board.js"></script>
     <script src="js/board/boardOutsource.js"></script>
     <!-- calender -->
@@ -61,11 +63,11 @@
 
     <div class="content">
         <!-- title, searchbar, add task button -->
-        <section class="alignCenter title spaceBetween">
+        <section class="alignCenter title spaceBetween boardTitleWithSearchbar">
             <span class="fontSize61 bold">
                 Board
             </span>
-            <div class="dFlex gap32">
+            <div class="dFlex gap32 alignCenter">
                 <div class="relative alignCenter">
                     <input type="text" placeholder="Find task" class="input816 fontSize20 searchField"
                         oninput="filterTasks(this.value)" id="searchFieldTasksId">
@@ -74,17 +76,17 @@
                     <object class="symbol32Input" type="image/svg+xml" data="img/search.svg">
                     </object>
                 </div>
-                <button class="btn816 fontSize21 fontWhite addTaskBtn alignCenter pointer" onclick="openTaskPopup()">
-                    Add Task
+                <button class="btn816 addTaskBtn alignCenter pointer" onclick="openTaskPopup()">
+                    <span class="fontSize21 fontWhite addTaskBtnText">Add Task</span>
                     <object class="symbol32" type="image/svg+xml" data="img/plusWhite.svg">
                     </object>
                 </button>
             </div>
         </section>
 
-        <div class="dFlex gap26">
+        <div class="dFlex gap24 boardConentBox">
             <!-- to do -->
-            <section class="column gap16" id="toDoSearchId">
+            <section class="column gap8" id="toDoSearchId">
                 <!-- category title -->
                 <div class="categoryTitle spaceBetween">
                     <span class="fontSize20 bold fontBlue">
@@ -98,12 +100,14 @@
                         No tasks to do
                     </span>
                 </div>
-                <div class="dragArea column gap16" id="toDoId" ondrop="moveTo('toDo')"
-                    ondragover="allowDrop(event); highlight('toDoId')" ondragend="updateTasks()">
+                <div class="verticalBoardScroll">
+                    <div class="dragArea column alignCenter" id="toDoId" ondrop="moveTo('toDo')"
+                        ondragover="allowDrop(event); highlight('toDoId')" ondragend="updateTasks()">
+                    </div>
                 </div>
             </section>
             <!-- in progress -->
-            <section class="column gap16" id="inProgressSearchId">
+            <section class="column gap8" id="inProgressSearchId">
                 <!-- category title -->
                 <div class="categoryTitle spaceBetween">
                     <span class="fontSize20 bold fontBlue">
@@ -118,13 +122,13 @@
                         No tasks in progress
                     </span>
                 </div>
-                <div class="dragArea column gap16" id="inProgressId" ondrop="moveTo('inProgress')"
+                <div class="dragArea column alignCenter" id="inProgressId" ondrop="moveTo('inProgress')"
                     ondragover="allowDrop(event); highlight('inProgressId')" ondragleave="removeHighlight()"
                     ondragend="updateTasks()">
                 </div>
             </section>
             <!-- await feedback -->
-            <section class="column gap16" id="awaitFeedbackSearchId">
+            <section class="column gap8" id="awaitFeedbackSearchId">
                 <!-- category title -->
                 <div class="categoryTitle spaceBetween">
                     <span class="fontSize20 bold fontBlue">
@@ -139,13 +143,13 @@
                         No task feedbacks
                     </span>
                 </div>
-                <div class="dragArea column gap16" id="awaitFeedbackId" ondrop="moveTo('awaitFeedback')"
+                <div class="dragArea column alignCenter" id="awaitFeedbackId" ondrop="moveTo('awaitFeedback')"
                     ondragover="allowDrop(event); highlight('awaitFeedbackId')" ondragleave="removeHighlight()"
                     ondragend="updateTasks()">
                 </div>
             </section>
             <!-- done -->
-            <section class="column gap16" id="doneSearchId">
+            <section class="column gap8" id="doneSearchId">
                 <!-- category title -->
                 <div class="categoryTitle">
                     <span class="fontSize20 bold fontBlue">

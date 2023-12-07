@@ -1,0 +1,183 @@
+@media(max-width: 1480px) {
+    .boardConentBox {
+        flex-direction: column;
+    }
+
+    .title {
+        width: auto;
+    }
+
+    .dragArea {
+        flex-direction: row;
+        min-width: 244px !important;
+        max-width: 244px !important;
+        /* margin: 4px; */
+    }
+
+    .dragPlaceholder {
+        min-width: 244px;
+        max-width: 244px !important;
+        /* height: auto; */
+        box-sizing: border-box;
+        border-radius: 24px;
+        border: 1px dashed #A8A8A8;
+    }
+
+    .noTaskWithPlaceholder {
+        display: flex;
+        flex-direction: row;
+        min-width: 244px;
+        max-width: 244px;
+        gap: 16px;
+    }
+
+    .noTask,
+    .task {
+        min-width: 244px;
+        max-width: 244px;
+    }
+
+    .dragArea {
+        width: 244px;
+        height: auto;
+        overflow-y: hidden;
+        overflow-x: auto;
+        min-width: calc(100vw - 424px) !important;
+        max-width: calc(100vw - 424px) !important;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    /* scroll x */
+    .dragArea::-webkit-scrollbar {
+        display: block;
+        height: 8px;
+    }
+
+    .dragArea::-webkit-scrollbar-button:start:decrement {
+        background-image: url('../../img/arrow_drop_left.png');
+        background-size: 4px auto;
+    }
+
+    .dragArea::-webkit-scrollbar-button:end:increment {
+        background-image: url('../../img/arrow_drop_right.png');
+        background-size: 4px auto;
+    }
+
+    #doneId {
+        height: 275px;
+    }
+
+    /* scroll y */
+    .boardConentBox {
+        max-height: calc(100vh - 438px);
+        overflow-x: hidden;
+        overflow-y: auto;
+        margin-right: -8px;
+    }
+
+    .boardConentBox::-webkit-scrollbar-button:start:decrement {
+        background-position: center;
+        background-image: url('../../img/arrow_drop_up.png');
+        background-size: auto 4px;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+
+    .boardConentBox::-webkit-scrollbar-button:end:increment {
+        background-position: center;
+        background-image: url('../../img/arrow_drop_down.png');
+        background-size: auto 4px;
+        background-repeat: no-repeat;
+    }
+
+    .boardConentBox::-webkit-scrollbar {
+        display: block;
+        width: 8px;
+    }
+
+    .boardConentBox::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    .boardConentBox::-webkit-scrollbar-thumb {
+        background-color: #909090;
+        border-radius: 10px;
+    }
+}
+
+@media(max-width: 1425px) {
+    .dragArea {
+        min-width: calc(100vw - 292px) !important;
+        max-width: calc(100vw - 292px) !important;
+    }
+
+    .addTaskBtnText {
+        display: none;
+    }
+
+    .boardConentBox {
+        max-height: calc(100vh - 381px);
+    }
+
+    .addTaskBtn {
+        height: 40px;
+        width: 40px;
+        justify-content: center;
+    }
+
+    .symbol32 {
+        width: 20px;
+        height: 20px;
+    }
+
+    .fontSize61 {
+        font-size: 47px;
+    }
+
+    .title {
+        height: 56px;
+    }
+}
+
+@media(max-width: 850px) {
+    .dragArea {
+        min-width: calc(100vw - 240px) !important;
+        max-width: calc(100vw - 240px) !important;
+    }
+}
+
+@media(max-width: 800px) {
+    .dragArea {
+        min-width: calc(100vw - 200px) !important;
+        max-width: calc(100vw - 200px) !important;
+    }
+}
+
+@media(max-width: 767px) {
+    .content {
+        padding: calc(80px + 48px) 16px 96px 16px;
+    }
+
+    .boardConentBox {
+        overflow-y: auto;
+        max-height: calc(100vh - 320px);
+    }
+
+    .dragArea {
+        min-width: calc(100vw - 32px) !important;
+        max-width: calc(100vw - 32px) !important;
+    }
+
+    .dragArea::-webkit-scrollbar,
+    .boardConentBox::-webkit-scrollbar {
+        display: block;
+        width: 0;
+        height: 0;
+    }
+
+    .boardTitleWithSearchbar {
+        flex-direction: column;
+    }
+}

@@ -21,6 +21,7 @@
         gap: 12px;
         align-items: flex-start;
         flex-direction: column;
+        width: auto;
     }
 }
 
@@ -87,6 +88,24 @@
         padding: calc(80px + 48px) 16px 168px 16px;
     }
 
+    #createTaskId {
+        height: calc(100vh - 296px - 80px);
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    #subtaskListId {
+        padding-bottom: 4px;
+    }
+
+    .title {
+        margin-bottom: 40px;
+    }
+
+    #addTaskTextId {
+        height: 56px;
+    }
+
     .footer {
         width: 100vw;
         left: 0;
@@ -116,12 +135,17 @@
         height: 100%;
         overflow-y: auto;
         overflow-x: hidden;
-
+        height: calc(100vh - 296px - 90px);
     }
 
     .rightContainer,
     .leftContainer {
         width: 100%;
+        height: auto;
+    }
+
+    .rightContainer {
+        margin-bottom: 8px;
     }
 
     .gap32 {
@@ -143,40 +167,42 @@
     }
 
     /* scroll */
-    #createTaskId {
-        height: 800px;
-        min-height: 320px;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
-
+    /* .leftAndRightContainerMobile::-webkit-scrollbar-button:start:decrement,
     #createTaskId::-webkit-scrollbar-button:start:decrement {
         background-position: center;
-        background-image: url('../../img/arrow_drop_up.svg');
-        border-top-right-radius: 100% !important;
-        border-top-left-radius: 100% !important;
+        background-image: url('../../img/arrow_drop_up.png');
+        border-top-right-radius: 100%;
+        border-top-left-radius: 100%;
+        background-size: auto 4px;
+        background-repeat: no-repeat;
     }
 
+    .leftAndRightContainerMobile::-webkit-scrollbar-button:end:increment,
     #createTaskId::-webkit-scrollbar-button:end:increment {
         background-position: center;
-        background-image: url('../../img/arrow_drop_down.svg');
+        background-image: url('../../img/arrow_drop_down.png');
         border-bottom-right-radius: 100%;
         border-bottom-left-radius: 100%;
+        background-size: auto 4px;
+        background-repeat: no-repeat;
     }
 
+    .leftAndRightContainerMobile::-webkit-scrollbar,
     #createTaskId::-webkit-scrollbar {
         display: block;
         width: 8px;
     }
 
+    .leftAndRightContainerMobile::-webkit-scrollbar-track,
     #createTaskId::-webkit-scrollbar-track {
         background-color: transparent;
     }
 
+    .leftAndRightContainerMobile::-webkit-scrollbar-thumb,
     #createTaskId::-webkit-scrollbar-thumb {
         background-color: #909090;
         border-radius: 10px;
-    }
+    }*/
 }
 
 @media(max-width: 424px) {
