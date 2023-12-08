@@ -115,7 +115,7 @@ function generateAddTaskHTML() {
                         </object>
                         <img src="img/drowndown.png" class="symbol24InputHover pointer" id="categoryDropdownImgId" onclick="categoryDropdown()">
                         <div class="column dropdownContacts dNone" id="categoryDropdownContentId">
-                            <div class="column scrollAddTaskArea scrollLimitCategories" id="categoryListId">
+                            <div class="column scrollAddTaskArea scrollLimitAddTaskCategory" id="categoryListId">
                             </div>
                         </div>
                     </div>

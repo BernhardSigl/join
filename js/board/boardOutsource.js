@@ -2,7 +2,20 @@ function generateTaskHTML(task) {
     checkPrio(task);
     return /*html*/ `
     <div class="task pointer column gap24" draggable="true" id="taskId${task.id}" ondragstart="startDragging(${task.id})" onclick="openBoard(${task.id})">
-        <span class="fontSize16 subjectKanbanSmall fontWhite pointer" id="subjectKanbanSmallId${task.id}">${task.category}</span>
+        <div class="alignCenter spaceBetween w100 gap4 relative">
+            <span class="fontSize16 subjectKanbanSmall textLimit fontWhite pointer" id="subjectKanbanSmallId${task.id}">
+                ${task.category}
+            </span>
+            <div class="fontSize16 subjectKanbanSmall moveText fontWhite pointer" onclick="showMoveDropdown(${task.id}, event)">
+                Move
+            </div>
+            <div class="moveDropdown column dNone" id="moveDropdown(${task.id})">
+            <span class="fontSize16 moveToContent" onclick="moveToMobile('toDo', ${task.id}, event)">To do</span>
+            <span class="fontSize16 moveToContent" onclick="moveToMobile('inProgress', ${task.id}, event)">In progress</span>
+            <span class="fontSize16 moveToContent" onclick="moveToMobile('awaitFeedback', ${task.id}, event)">Await feedback</span>
+            <span class="fontSize16 moveToContent" onclick="moveToMobile('done', ${task.id}, event)">Done</span>
+        </div>
+        </div>
         <div class="gap8 column">
             <span class="fontSize16 titleKanban bold pointer">${task.title}</span>
             <span class="fontSize16 descriptionKanbanSmall fontGrey pointer">${task.description}</span>
@@ -26,6 +39,44 @@ function generateTaskHTML(task) {
         </div>
     </div>
     `;
+}
+
+async function moveToMobile(newProgressStatus, id, event) {
+    event.stopPropagation();
+    taskArray[id].progressStatus = newProgressStatus;
+    closeAllMoveDropdowns();
+    updateTasks();
+    await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
+}
+
+let moveDropdown = {};
+
+function showMoveDropdown(id, event) {
+    event.stopPropagation();
+    closeAllMoveDropdownsExcept(id);
+    if (!moveDropdown[id]) {
+        toggleVisibility(`moveDropdown(${id})`, true);
+        moveDropdown[id] = true;
+    } else {
+        toggleVisibility(`moveDropdown(${id})`, false);
+        moveDropdown[id] = false;
+    }
+}
+
+function closeAllMoveDropdownsExcept(exceptId) {
+    for (const id in moveDropdown) {
+        if (id !== exceptId && moveDropdown[id]) {
+            toggleVisibility(`moveDropdown(${id})`, false);
+            moveDropdown[id] = false;
+        }
+    }
+}
+
+function closeAllMoveDropdowns() {
+    for (const id in moveDropdown) {
+        toggleVisibility(`moveDropdown(${id})`, false);
+        moveDropdown[id] = false;
+    }
 }
 
 function generateBoardHTML(task, id) {

@@ -42,6 +42,12 @@ input:focus {
     outline: none;
 }
 
+.textLimit {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .dFlex {
     display: flex;
 }

@@ -6,16 +6,17 @@ async function initBoard() {
     navPanelPopupTemplate();
     addTaskTemplate();
     // await loadTask();
-
     // await loadContacts();
     await loadLoggedInUser();
-    await loadUsers(); //
+    await loadUsers(); // 
     await createIndividuallyContactsArray(); //
     await loadIndividuallyContacts(); //
     await createLoggedInUser();
     await createIndividuallyTaskArray();
     await loadIndividuallyTasks(); //
-    await loadCategories();
+    // await loadCategories();
+    await createIndividuallyCategories();// //
+    await loadIndividuallyCategories();// //
     await loadSubtasks();
     await loadCategoryColors();
     updateContactColors();

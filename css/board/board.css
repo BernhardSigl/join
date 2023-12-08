@@ -113,6 +113,10 @@
     hyphens: auto;
 }
 
+.moveText {
+    display: none;
+}
+
 /* popup task */
 .footer {
     left: 74px !important;

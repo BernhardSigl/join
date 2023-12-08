@@ -34,9 +34,9 @@
     <link rel="icon" href="img/joinBrowserLogo.png">
 </head>
 
-<body onload="initBoard()">
+<body onload="initBoard()" onclick="closeAllMoveDropdowns()">
     <!-- loading animation -->
-    <div class="loader-container" id="loaderContainerId">
+    <div class=" loader-container" id="loaderContainerId">
         <div class="loader"></div>
     </div>
     <nav id="navPanelsTemplateId"></nav>
@@ -64,7 +64,7 @@
     <div class="content">
         <!-- title, searchbar, add task button -->
         <section class="alignCenter title spaceBetween boardTitleWithSearchbar">
-            <span class="fontSize61 bold">
+            <span class="fontSize61 bold boardTitle">
                 Board
             </span>
             <div class="dFlex gap32 alignCenter">
@@ -78,8 +78,7 @@
                 </div>
                 <button class="btn816 addTaskBtn alignCenter pointer" onclick="openTaskPopup()">
                     <span class="fontSize21 fontWhite addTaskBtnText">Add Task</span>
-                    <object class="symbol32" type="image/svg+xml" data="img/plusWhite.svg">
-                    </object>
+                    <img src="img/plusWhite.png" class="symbol20">
                 </button>
             </div>
         </section>

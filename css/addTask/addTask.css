@@ -224,6 +224,10 @@ ul {
     max-height: 124px;
 }
 
+.scrollLimitAddTaskCategory {
+    max-height: 144px;
+}
+
 .editSubtask,
 .deleteSubtask,
 .smallGreylineSubtask {
