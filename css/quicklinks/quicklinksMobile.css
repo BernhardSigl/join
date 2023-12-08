@@ -1,0 +1,22 @@
+@media(max-width: 767px) {
+    .content {
+        padding: 128px 16px 96px 16px;
+    }
+
+    h1 {
+        font-size: 47px;
+        height: 90px;
+    }
+
+    .symbol32 {
+        top: 128px;
+        right: 16px;
+    }
+
+    .quicklinksContainer {
+        padding-right: 16px;
+        padding-left: 0;
+        padding-top: 0;
+        padding-bottom: 100px;
+    }
+}

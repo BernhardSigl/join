@@ -18,9 +18,10 @@
 # mobile view navpanels #completed
 # mobile view navpanels dropdown #completed
 # add category scrollbar #completed
+# board, addtask contacts show limit #completed
+# mobile view quicklinks and help #completed
 
 # fix contacts size (long name)
 # empty category, subtask fix
-# board, addtask contacts show limit
-# mobile view quicklinks and help
 # mobile view success slide button
+# clean code
