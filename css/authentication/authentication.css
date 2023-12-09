@@ -29,6 +29,12 @@
 .inputField {
     width: 100%;
     box-sizing: border-box;
+    cursor: text !important;
+}
+
+#regPasswordFirstImgId,
+#regPasswordSecondImgId {
+    cursor: pointer;
 }
 
 .input {

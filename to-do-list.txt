@@ -22,6 +22,6 @@
 # mobile view quicklinks and help #completed
 # fix contacts size (long name) #completed
 # empty category, subtask fix #completed
+# mobile view success slide button #completed
 
-# mobile view success slide button
 # clean code

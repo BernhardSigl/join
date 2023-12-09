@@ -53,7 +53,7 @@ async function trueCredential(user) {
         'name': user.name,
         'email': user.email,
     });
-    saveLoggedInUser();
+    await saveLoggedInUser();
 
     // remember me
     let logCheckbox = document.getElementById('logCheckboxId');
@@ -66,7 +66,7 @@ async function trueCredential(user) {
         });
     }
     window.location.href = 'summary.html';
-    saveRememberMe();
+    await saveRememberMe();
 }
 
 function wrongCredential() {
@@ -84,7 +84,6 @@ function signUp() {
     toggleRequiredAttribute('regEmailId', true);
     toggleRequiredAttribute('regPasswordFirstId', true);
     toggleRequiredAttribute('regPasswordSecondId', true);
-    toggleVisibility('forgotPasswordAreaId', false);
 }
 
 function guestLogIn() {
@@ -135,7 +134,6 @@ function backToLogin() {
     toggleRequiredAttribute('regEmailId', false);
     toggleRequiredAttribute('regPasswordFirstId', false);
     toggleRequiredAttribute('regPasswordSecondId', false);
-    toggleVisibility('forgotPasswordAreaId', false);
 }
 
 async function deleteUsers() {
@@ -163,8 +161,9 @@ async function register() {
     let logCheckbox = document.getElementById('logCheckboxId');
     regBtn.disabled = true;
     if (passwordsMatch(passwordFirst, passwordSecond)) {
+        createdItemBtn('User successfully created');
         rememberMe = [];
-        saveRememberMe();
+        await saveRememberMe();
         createUser(passwordFirst);
         backToLogin();
         logInEmailValue.value = regEmail.value;
