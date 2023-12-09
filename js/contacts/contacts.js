@@ -207,7 +207,7 @@ function generateContactInfoHTML(onClickedContact, i) {
             <span class="fontSize16 bold">
             Email
             </span>
-            <a class="fontSize16 fontBrightBlue pointer" href="mailto:${onClickedContact.email}">
+            <a class="fontSize16 fontBrightBlue pointer emailOnBigView" href="mailto:${onClickedContact.email}">
             ${onClickedContact.email}
             </a>
         </div>
@@ -215,7 +215,7 @@ function generateContactInfoHTML(onClickedContact, i) {
             <span class="fontSize16 bold">
                 Phone
             </span>
-            <a class="fontSize16 fontBlue pointer" href="tel:${onClickedContact.phone}">
+            <a class="fontSize16 fontBlue pointer phoneOnBigView" href="tel:${onClickedContact.phone}">
             ${onClickedContact.phone}
             </a>
         </div>

@@ -124,6 +124,20 @@
     display: none;
 }
 
+.nameOnBigView {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 400px;
+    max-height: 112px;
+}
+
+.phoneOnBigView,
+.emailOnBigView {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 574px;
+}
+
 /* scroll */
 .scrollContactsArea {
     height: calc(100vh - 96px - 101px);

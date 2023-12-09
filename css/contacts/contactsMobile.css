@@ -15,6 +15,23 @@
     }
 }
 
+@media(max-width: 1240px) {
+    .nameOnBigView {
+        max-height: 86px;
+        font-size: 36px;
+    }
+
+    .phoneOnBigView,
+    .emailOnBigView,
+    .nameOnBigView {
+        max-width: 345px;
+    }
+
+    .nameEditDeleteArea {
+        gap: 20px;
+    }
+}
+
 @media(max-width: 1230px) {
     .nameShortBig {
         width: 80px;
@@ -25,8 +42,10 @@
         font-size: 27px;
     }
 
+    .phoneOnBigView,
+    .emailOnBigView,
     .nameOnBigView {
-        font-size: 36px;
+        max-width: 311px;
     }
 }
 
@@ -36,10 +55,6 @@
         flex-direction: column;
         align-items: flex-start;
         order: 1;
-    }
-
-    .nameEditDeleteArea {
-        gap: 20px;
     }
 
     .blueLine {
@@ -78,6 +93,21 @@
         width: 285px;
     }
 
+    .contactSmallEmail,
+    .contactSmallName {
+        max-width: calc(100% - 42px);
+    }
+
+    .nameOnBigView {
+        font-size: 20px;
+    }
+
+    .nameOnBigView,
+    .phoneOnBigView,
+    .emailOnBigView {
+        max-width: 250px;
+    }
+
     .leftContainer {
         width: 340px;
         min-width: 340px;
@@ -114,6 +144,17 @@
     .content {
         padding: 96px 0 0 180px;
     }
+
+    .nameOnBigView {
+        font-size: 20px;
+        max-width: 250px;
+    }
+
+    .nameOnBigView,
+    .phoneOnBigView,
+    .emailOnBigView {
+        max-width: 225px;
+    }
 }
 
 @media(min-width: 768px) {
@@ -133,6 +174,19 @@
         height: calc(100vh - 160px);
         box-sizing: border-box;
         padding: 48px 16px;
+    }
+
+    .contactSmallView {
+        width: 100%;
+    }
+
+    .nameOnBigView {
+        max-width: calc(100vw - 136px);
+    }
+
+    .phoneOnBigView,
+    .emailOnBigView {
+        max-width: calc(100vw - 16px);
     }
 
     .content {
@@ -220,7 +274,6 @@
         width: 56px;
         height: 56px;
         box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        /* z-index: 1; */
     }
 
     .editContactBigViewArea {
