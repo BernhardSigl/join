@@ -313,16 +313,22 @@ function originalDropdownFunction() {
 async function listCategories() {
     let categoryInput = document.getElementById('addCategoryId');
     let categoryList = document.getElementById('categoryListId');
-    categoriesInTaskArray.push(categoryInput.value);
-    categoriesInTaskArray.sort();
-    checkCategoryEmptyStatus();
-    categoryList.innerHTML = '';
-    for (let i = 0; i < categoriesInTaskArray.length; i++) {
-        let category = categoriesInTaskArray[i];
-        categoryList.innerHTML += generateCategoryListHTML(category, i);
+    if (categoryInput.value.trim() === '') {
+        categoryInput.setCustomValidity('Please enter at least one character.');
+        categoryInput.reportValidity();
+    } else {
+        categoryInput.setCustomValidity('');
+        categoriesInTaskArray.push(categoryInput.value);
+        categoriesInTaskArray.sort();
+        checkCategoryEmptyStatus();
+        categoryList.innerHTML = '';
+        for (let i = 0; i < categoriesInTaskArray.length; i++) {
+            let category = categoriesInTaskArray[i];
+            categoryList.innerHTML += generateCategoryListHTML(category, i);
+        }
+        await setItem(`individuallyCategories_${userId}`, JSON.stringify(categoriesInTaskArray));
+        // await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
     }
-    await setItem(`individuallyCategories_${userId}`, JSON.stringify(categoriesInTaskArray));
-    // await setItem('categoriesInTaskArray', JSON.stringify(categoriesInTaskArray));
 }
 
 function checkCategoryEmptyStatus() {
@@ -421,14 +427,20 @@ function updateCategoryList() {
 function addSubtask() {
     let subtaskInput = document.getElementById('subtaskInputId');
     let subtaskList = document.getElementById('subtaskListId');
-    subtasksInTaskArray.push(subtaskInput.value);
-    subtaskList.innerHTML = '';
-    subtaskInput.value = '';
-    for (let i = 0; i < subtasksInTaskArray.length; i++) {
-        const subtask = subtasksInTaskArray[i];
-        subtaskList.innerHTML += generateSubtaskListHTML(subtask, i);
+    if (subtaskInput.value.trim() === '') {
+        subtaskInput.setCustomValidity('Please enter at least one character.');
+        subtaskInput.reportValidity();
+    } else {
+        subtaskInput.setCustomValidity('');
+        subtasksInTaskArray.push(subtaskInput.value);
+        subtaskList.innerHTML = '';
+        subtaskInput.value = '';
+        for (let i = 0; i < subtasksInTaskArray.length; i++) {
+            const subtask = subtasksInTaskArray[i];
+            subtaskList.innerHTML += generateSubtaskListHTML(subtask, i);
+        }
+        disableSubtaskInput();
     }
-    disableSubtaskInput();
 }
 
 function clearSubtaskInput() {

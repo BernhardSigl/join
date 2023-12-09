@@ -92,6 +92,14 @@ function validatePhoneInput(input) {
     }
 }
 
+function validateZeroInput(inputField) {
+    if (inputField.value.trim() === '') {
+        inputField.setCustomValidity('Please enter at least one character.');
+    } else {
+        inputField.setCustomValidity('');
+    }
+}
+
 function setActiveLink() {
     let currentUrl = window.location.href;
     let activeLinkId = "";

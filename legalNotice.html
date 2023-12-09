@@ -28,7 +28,7 @@
     }
 
     function checkLastOpenedHTML() {
-        if (lastOpenedHTML.includes("index")) {
+        if (loggedInUser[0].email === 'nothing@nothing.com') {
             toggleVisibility('categoryLinksId', false);
             toggleVisibility('headerRightId', false);
         }
