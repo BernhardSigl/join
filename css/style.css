@@ -132,10 +132,12 @@ button:hover {
 .btn1524 {
     margin: 0;
     gap: 4px;
+    caret-color: transparent;
 }
 
 .btn816 {
     padding: 8px 16px;
+    caret-color: transparent;
 }
 
 .btn1212 {
@@ -144,14 +146,17 @@ button:hover {
     gap: 16px;
     width: 352px;
     height: auto;
+    caret-color: transparent;
 }
 
 .btn1616 {
     padding: 16px;
+    caret-color: transparent;
 }
 
 .btn1524 {
     padding: 15px 24px;
+    caret-color: transparent;
 }
 
 .btnWhite {
@@ -380,6 +385,7 @@ input {
     z-index: 2;
     align-items: flex-end;
     overflow: hidden;
+    animation: itemCreatedBtnFadeInOut 1.5s ease-out forwards;
 }
 
 #itemCreatedBtnId button {
@@ -388,6 +394,24 @@ input {
     color: white;
     border-radius: 20px;
     overflow: hidden;
+}
+
+@keyframes itemCreatedBtnFadeInOut {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 /* box on summary, add task and board */
@@ -494,6 +518,7 @@ body.disable-scroll {
     align-items: center;
     justify-content: center;
     z-index: 9999;
+    caret-color: transparent;
 }
 
 .loader {

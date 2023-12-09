@@ -13,6 +13,7 @@
     box-sizing: border-box;
     background-color: #2A3647;
     border-radius: 26px 0 0 26px;
+    caret-color: transparent;
 }
 
 .titleAddContact {
@@ -49,6 +50,7 @@
 .middleContainerAddContact {
     width: 275px;
     height: 100%;
+    caret-color: transparent;
 }
 
 .circleAddProfile {

@@ -23,6 +23,7 @@
     width: auto;
     height: auto;
     padding: 110px 55px;
+    caret-color: transparent;
 }
 
 .nameShortBig,
@@ -144,6 +145,7 @@
     box-sizing: border-box;
     overflow-y: auto;
     padding: 32px 24px;
+    caret-color: transparent;
 }
 
 .scrollContactsArea::-webkit-scrollbar-button:start:decrement {

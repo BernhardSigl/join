@@ -249,26 +249,14 @@ function guestCreateContactArray() {
     }
 }
 
-function changesSaved(inputText) {
-    document.getElementById('successfullyCreatedId').innerHTML = /* html */ `
-    ${inputText}`;
-    toggleVisibility('successfullyCreatedId', true);
-    slideOneObject('successfullyCreatedId');
-    setTimeout(function () {
-        slideOutOneObject('successfullyCreatedId');
-    }, 2500);
-    setTimeout(function () {
-        toggleVisibility('successfullyCreatedId', false);
-    }, 2900);
-}
-
 function createdItemBtn(inputText) {
-    // setTimeout(() => {
-    document.getElementById('itemCreatedBtnId').innerHTML = /*html*/ `
-        <button>${inputText}</button>`;
-    // slideOneObject('itemCreatedBtnId');
-    // setTimeout(() => {
-    //     slideOutOneObject('itemCreatedBtnId');
-    // }, 1500);
-    // }, 200);
+    let itemCreatedBtn = document.getElementById('itemCreatedBtnId');
+
+    itemCreatedBtn.innerHTML = /*html*/ `
+    <button>${inputText}</button>`;
+    itemCreatedBtn.classList.remove('dNone');
+
+    setTimeout(function () {
+        itemCreatedBtn.classList.add('dNone');
+    }, 1500);
 }
