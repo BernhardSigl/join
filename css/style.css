@@ -369,6 +369,27 @@ input {
     margin: 80px 0 0 77px;
 }
 
+#itemCreatedBtnId {
+    position: absolute;
+    left: 0;
+    bottom: 100px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+#itemCreatedBtnId button {
+    padding: 25px 25px;
+    font-size: 20px;
+    color: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
 /* box on summary, add task and board */
 .content {
     /* header + margin-top | margin-right | margin-bottom | sidebar + margin-left */

@@ -106,11 +106,11 @@ function generateBoardHTML(task, id) {
     </div>
     <div class="column gap8 dNone" id="assignedToAreaBoardBigId${id}">
         <span class="fontSize20 fontBlue">Assigned to:</span>
-        <div id="contactsInBoardBigId${id}"></div>
+        <div id="contactsInBoardBigId${id}" class="contactsInBoardBig"></div>
     </div>
     <div class="column gap8 dNone" id="subtaskBoardBigAreaId${id}">
         <span class="fontBlue fontSize20">Subtasks</span>
-        <div id="subtasksInBoardBigId${id}" class="pointer"></div>
+        <div id="subtasksInBoardBigId${id}" class="pointer subtasksInBoardBig"></div>
     </div>
     <div class="footerBoardBig gap8">
         <div class="alignCenter gap8 pointer deleteBoardArea" onclick="deleteTask(${id})">

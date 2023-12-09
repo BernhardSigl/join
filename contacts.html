@@ -43,28 +43,35 @@
     <div class="loader-container" id="loaderContainerId">
         <div class="loader"></div>
     </div>
+
     <!-- nav panels -->
     <nav id="navPanelsTemplateId"></nav>
     <nav id="navPanelsPopupId" class="column dNone"></nav>
+
     <!-- add contact popup -->
     <popup class="background dNone" id="backgroundAddContactId"
         onclick="slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId')">
         <div class="dFlex addContactArea" id="addContactAreaId" onclick="doNotClose(event)">
         </div>
     </popup>
+
     <!-- edit contact popup -->
     <popup class="background dNone" id="backgroundEditContactId"
         onclick="slideOutTwoObjects('editContactAreaId', 'backgroundEditContactId')">
         <div class="dFlex addContactArea" id="editContactAreaId" onclick="doNotClose(event)">
         </div>
     </popup>
-    <popup id="editContactPrePopupId" class="horizontalAndVertical" onclick="slideOneObject('editContactPopupId')">
+    <popup id="editContactPrePopupId" class="horizontalAndVertical dNone"
+        onclick="slideOneObject('editContactPopupId')">
         <img src="img/dots.png" class="symbol32">
     </popup>
     <popup id="editContactPopupId" class="column gap16 dNone">
     </popup>
     <img src="img/arrowLeft.svg" class="pointer backArrow symbol32 dNone" id="backArrowMobileId"
         onclick="closeBigViewMobile()">
+
+    <!-- created item btn -->
+    <div id="itemCreatedBtnId" class="dNone"></div>
 
     <div class="content">
         <div class="dFlex">

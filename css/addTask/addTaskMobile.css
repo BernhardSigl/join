@@ -88,6 +88,10 @@
         padding: calc(80px + 48px) 16px 168px 16px;
     }
 
+    .assignedToAreaMobile {
+        margin-bottom: 16px;
+    }
+
     #createTaskId {
         height: calc(100vh - 296px - 80px);
         overflow-y: auto;

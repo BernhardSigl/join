@@ -70,10 +70,15 @@ textarea:focus {
     z-index: 1;
 }
 
+#assignedContactsId {
+    overflow-y: auto;
+    max-height: 98.8px;
+}
+
 .scrollAddTaskArea {
     overflow-y: auto;
     height: auto;
-    max-height: 224px;
+    max-height: 230px;
 }
 
 .scrollLimitCategories {
@@ -250,6 +255,7 @@ ul {
 }
 
 /* scroll */
+#assignedContactsId::-webkit-scrollbar-button:start:decrement,
 .inputDescription::-webkit-scrollbar-button:start:decrement,
 .scrollAddTaskArea::-webkit-scrollbar-button:start:decrement {
     background-position: center;
@@ -260,6 +266,7 @@ ul {
     background-repeat: no-repeat;
 }
 
+#assignedContactsId::-webkit-scrollbar-button:end:increment,
 .inputDescription::-webkit-scrollbar-button:end:increment,
 .scrollAddTaskArea::-webkit-scrollbar-button:end:increment {
     background-position: center;
@@ -270,17 +277,20 @@ ul {
     background-repeat: no-repeat;
 }
 
+#assignedContactsId::-webkit-scrollbar,
 .inputDescription::-webkit-scrollbar,
 .scrollAddTaskArea::-webkit-scrollbar {
     display: block;
     width: 8px;
 }
 
+#assignedContactsId::-webkit-scrollbar-track,
 .inputDescription::-webkit-scrollbar-track,
 .scrollAddTaskArea::-webkit-scrollbar-track {
     background-color: transparent;
 }
 
+#assignedContactsId::-webkit-scrollbar-thumb,
 .inputDescription::-webkit-scrollbar-thumb,
 .scrollAddTaskArea::-webkit-scrollbar-thumb {
     background-color: #909090;

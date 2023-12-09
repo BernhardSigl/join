@@ -94,6 +94,7 @@ async function deleteTask(taskId) {
     await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
     updateTasks();
     slideOutTwoObjects('boardAreaId', 'backgroundBoardPopupId');
+    createdItemBtn('Task successfully deleted');
 }
 
 function enableCalender() {
@@ -170,6 +171,7 @@ async function createTask(moveTo) {
         updateTasks();
         slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId');
     }
+    createdItemBtn('Task successfully created');
 }
 
 // function createTaskContent() {
@@ -273,7 +275,7 @@ function markAssignedContact(i, img) {
 
 function unmarkAssignedContact(contact, img, i) {
     let allAssignedContactContainers = document.getElementById(`assignedContactId${i}`);
-    img.style.backgroundImage = "url('../img/uncheck.png')";
+    img.style.backgroundImage = "url('./img/uncheck.png')";
     allAssignedContactContainers.style.backgroundColor = "white";
     allAssignedContactContainers.style.color = "black";
     allAssignedContactContainers.classList.remove('darkHoverListContacts');
@@ -533,7 +535,7 @@ function clearAssignedContacts() {
     for (let i = 0; i < contactsArray.length; i++) {
         let img = document.getElementById(`checkContactImgId${i}`);
         let selectedContact = document.getElementById(`assignedContactId${i}`);
-        img.style.backgroundImage = "url('../img/uncheck.png')";
+        img.style.backgroundImage = "url('./img/uncheck.png')";
         selectedContact.style.backgroundColor = "white";
         selectedContact.style.color = "black";
         selectedContact.classList.remove('darkHoverListContacts');

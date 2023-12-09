@@ -122,6 +122,7 @@ async function createContact() {
         const deleteRestArray = Math.ceil(contactsInTaskArray.length / 2);
         contactsInTaskArray.splice(deleteRestArray);
     }
+    createdItemBtn('Contact successfully created');
 }
 
 // color function
@@ -251,6 +252,7 @@ async function saveContact(i) {
     await renderContacts();
     loggedInUserNotClickable();
     closeBigViewMobile(); //mobile
+    createdItemBtn('Contact successfully saved');
 }
 
 async function deleteContact(i) {
@@ -264,6 +266,7 @@ async function deleteContact(i) {
     await renderContacts();
     loggedInUserNotClickable();
     closeBigViewMobile(); //mobile
+    createdItemBtn('Contact successfully deleted');
 }
 
 function markContact(i) {

@@ -457,6 +457,7 @@ async function saveEditedTask(taskIndex) {
     updateTasks();
     await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
     // await setItem('taskArray', JSON.stringify(taskArray));
+    createdItemBtn('Task successfully saved');
 }
 
 function filterTasks(searchTerm) {
