@@ -1,17 +1,46 @@
+/**
+ * Array to store contacts in a task.
+ */
 let contactsInTaskArray = [];
+/**
+ * Array to store subtasks in a task.
+ */
 let subtasksInTaskArray = [];
+/**
+ * Array to store confirmed subtasks in a task.
+ */
 let confirmedSubtasksArray = [];
+/**
+ * Flag to check if date picker has been executed.
+ * @type {boolean}
+ */
 let datePickerExecuted;
+/**
+ * Current ID for task creation.
+ * @type {number}
+ */
 let currentId;
+/**
+ * Array to store tasks.
+ */
 let taskArray;
+
+/**
+ * Array to store categories related to tasks.
+ * @type {Array}
+ */
 let categoriesInTaskArray;
 
+/**
+ * Initializes the add task functionality.
+ */
 async function initAddTask() {
     navPanelsTemplate();
     navPanelPopupTemplate();
     addTaskTemplate();
     enableCalender();
     await loadLoggedInUser();
+    await loadUsers();
     await initContactsInAddTask();
     await initCategoriesArray();
     await createIndividuallyTaskArray();
@@ -20,8 +49,10 @@ async function initAddTask() {
     toggleVisibility('loaderContainerId', false);
 }
 
+/**
+ * Initializes contacts array.
+ */
 async function initContactsInAddTask() {
-    await loadUsers();
     await createIndividuallyContactsArray();
     await loadIndividuallyContacts();
     await createLoggedInUser();
@@ -29,6 +60,9 @@ async function initContactsInAddTask() {
     listContacts();
 }
 
+/**
+ * Initializes the categories array.
+ */
 async function initCategoriesArray() {
     await createIndividuallyCategories();
     await loadIndividuallyCategories();
@@ -37,6 +71,9 @@ async function initCategoriesArray() {
     checkCategoryEmptyStatus();
 }
 
+/**
+ * Adds guest categories if the logged-in user is a guest.
+ */
 function checkGuestCategory() {
     if (loggedInUser[0].email === 'guest@guest.com') {
         if (!categoriesInTaskArray.includes('Design')) {
@@ -48,6 +85,9 @@ function checkGuestCategory() {
     }
 }
 
+/**
+ * Creates an individual task array.
+ */
 async function createIndividuallyTaskArray() {//
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
@@ -59,6 +99,9 @@ async function createIndividuallyTaskArray() {//
     }
 }
 
+/**
+ * Creates an individual categories array.
+ */
 async function createIndividuallyCategories() {
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
@@ -70,6 +113,9 @@ async function createIndividuallyCategories() {
     }
 }
 
+/**
+ * Sets the current ID for task creation.
+ */
 function checkCurrentId() {
     if (taskArray.length > 0) {
         currentId = taskArray.reduce((maxId, task) => Math.max(maxId, task.id), -1) + 1;
@@ -78,6 +124,10 @@ function checkCurrentId() {
     }
 }
 
+/**
+ * Deletes a task from the task array.
+ * @param {number} taskId - The ID of the task to delete.
+ */
 async function deleteTask(taskId) {
     taskArray = taskArray.filter(task => task.id !== taskId);
     taskArray.forEach((task, index) => {
@@ -89,12 +139,18 @@ async function deleteTask(taskId) {
     createdItemBtn('Task successfully deleted');
 }
 
+/**
+ * Enables the date picker for task creation.
+ */
 function enableCalender() {
     datePickerExecuted = false;
     removePikaday();
     datePicker();
 }
 
+/**
+ * Initializes the pikaday date picker.
+ */
 function datePicker() {
     if (!datePickerExecuted) {
         let dateInput = document.getElementById('datepickerId');
@@ -115,6 +171,9 @@ function datePicker() {
     }
 }
 
+/**
+ * Remove pikaday.
+ */
 function removePikaday() {
     let pikadayElements = document.querySelectorAll('.pika-single');
     pikadayElements.forEach(function (element) {
@@ -122,18 +181,31 @@ function removePikaday() {
     });
 }
 
+/**
+ * Handles the creation of a task in the 'To do' progress status.
+ */
 function onClickToDo() {
     createTask(`toDo`);
 }
 
+/**
+ * Handles the creation of a task in the 'In progress' progress status.
+ */
 function onClickInProgress() {
     createTask(`inProgress`);
 }
 
+/**
+ * Handles the creation of a task in the 'Await feedback' progress status.
+ */
 function onClickAwaitFeedback() {
     createTask(`awaitFeedback`);
 }
 
+/**
+ * Creates a task and adds it to the task array.
+ * @param {string} moveTo - Move the task to a specific category.
+ */
 async function createTask(moveTo) {
     createTaskData(moveTo);
     contactsInTaskArray = [];
@@ -143,6 +215,10 @@ async function createTask(moveTo) {
     createdItemBtn('Task successfully created');
 }
 
+/**
+ * Gathers data and creates a task object.
+ * @param {string} moveTo - Move the task to a specific category.
+ */
 function createTaskData(moveTo) {
     while (taskArray.some(task => task.id === currentId)) {
         currentId++;
@@ -165,6 +241,9 @@ function createTaskData(moveTo) {
     taskArray.push(addTask);
 }
 
+/**
+ * Executes specific behavior after creating a task, specific to the task board.
+ */
 function createTaskBoardBehavior() {
     if (window.location.href.endsWith("board.html")) {
         updateTasks();
@@ -172,6 +251,9 @@ function createTaskBoardBehavior() {
     }
 }
 
+/**
+ * Clears the task input fields and resets related variables.
+ */
 function clearTask() {
     clearButtons();
     document.getElementById('addTaskTitleId').value = '';
@@ -185,6 +267,9 @@ function clearTask() {
     clearAssignedContacts();
 }
 
+/**
+ * Clears the assigned contacts in the task creation.
+ */
 function clearAssignedContacts() {
     contactsInTaskArray = [];
     for (let i = 0; i < contactsArray.length; i++) {
@@ -198,6 +283,10 @@ function clearAssignedContacts() {
     assignedContacts();
 }
 
+/**
+ * Closes the dropdown menus if the click is outside of them.
+ * @param {Event} event - The click event.
+ */
 function closeDropdown(event) {
     const excludedContainerIds = ['searchContactId', 'contactsDropdownImgId', 'contactsDropdownContentId', 'addCategoryId', 'categoryDropdownImgId', 'categoryDropdownContentId'];
     for (const excludedContainerId of excludedContainerIds) {
@@ -211,6 +300,10 @@ function closeDropdown(event) {
     categoryDropup();
 }
 
+/**
+ * Handles the behavior when the Enter key is pressed.
+ * @param {Event} event - The key press event.
+ */
 function handleEnterKey(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
