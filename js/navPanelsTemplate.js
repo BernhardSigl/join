@@ -62,7 +62,7 @@ function generateNavPanelsHTML(initials) {
         </div>
         <!-- quick links -->
         <div class="quicklinks column gap4">
-            <a href="privacyPolicy.html" class="fontSize16 pointer" id="privacyPoliciyLinkId">
+            <a href="privacyPolicy.html" class="fontSize16 pointer" id="privacyPolicyLinkId">
                 Privacy policy
             </a>
             <a href="legalNotice.html" class="fontSize16 pointer" id="legalNoticeLinkId">
