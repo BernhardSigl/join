@@ -1,3 +1,6 @@
+/**
+ * Lists contacts in the task assignment dropdown.
+ */
 function listContacts() {
     let listContacts = document.getElementById('assignToId');
     contactsArray.sort((a, b) => {
@@ -12,6 +15,9 @@ function listContacts() {
     }
 }
 
+/**
+ * Filters contacts based on the search input in the task assignment dropdown.
+ */
 function filterContacts() {
     let searchInput = document.getElementById('searchContactId');
     let searchText = searchInput.value.toLowerCase();
@@ -26,6 +32,9 @@ function filterContacts() {
     }
 }
 
+/**
+ * Handles the behavior of the contacts dropdown, showing or hiding the content.
+ */
 function contactsDropdown() {
     document.getElementById('searchContactId').placeholder = "Type to search";
     let dropdownContent = document.getElementById('contactsDropdownContentId');
@@ -36,6 +45,9 @@ function contactsDropdown() {
     }
 }
 
+/**
+ * Toggles the visibility of the contacts dropdown content and adjusts the dropdown icon.
+ */
 function toggleContactsDrowdown() {
     document.getElementById('searchContactId').placeholder = "Select contacts to assign";
     let dropdownContent = document.getElementById('contactsDropdownContentId');
@@ -49,6 +61,11 @@ function toggleContactsDrowdown() {
     }
 }
 
+/**
+ * Toggles the check/uncheck status of a contact in the dropdown and updates the assigned contacts array.
+ * @param {string} id - The ID of the contact's checkbox image element.
+ * @param {number} i - The index of the contact in the contacts array.
+ */
 function toggleCheckContact(id, i) {
     contact = contactsArray[i];
     let img = document.getElementById(id);
@@ -60,6 +77,9 @@ function toggleCheckContact(id, i) {
     }
 }
 
+/**
+ * Updates the list of assigned contacts.
+ */
 function assignedContacts() {
     let assignedContacts = document.getElementById('assignedContactsId');
     contactsInTaskArray.sort((a, b) => a.name.localeCompare(b.name));
@@ -70,6 +90,11 @@ function assignedContacts() {
     }
 }
 
+/**
+ * Marks a contact as assigned in the dropdown and updates the assigned contacts array.
+ * @param {number} i - The index of the contact in the contacts array.
+ * @param {Element} img - The checkbox image element of the contact.
+ */
 function markAssignedContact(i, img) {
     let allAssignedContactContainers = document.getElementById(`assignedContactId${i}`);
     allAssignedContactContainers.style.backgroundColor = "#2A3647";
@@ -78,6 +103,12 @@ function markAssignedContact(i, img) {
     img.style.backgroundImage = "url('./img/checkWhite.png')";
 }
 
+/**
+ * Unmarks a contact as assigned in the dropdown and updates the assigned contacts array.
+ * @param {Object} contact - The contact object.
+ * @param {Element} img - The checkbox image element of the contact.
+ * @param {number} i - The index of the contact in the contacts array.
+ */
 function unmarkAssignedContact(contact, img, i) {
     let allAssignedContactContainers = document.getElementById(`assignedContactId${i}`);
     img.style.backgroundImage = "url('./img/uncheck.png')";
