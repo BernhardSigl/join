@@ -1,7 +1,14 @@
+/**
+ * Sets up the add task template for addTask.html and board.html.
+ */
 function addTaskTemplate() {
     document.getElementById('addTaskTemplateId').innerHTML = generateAddTaskHTML();
 }
 
+/**
+ * Generates the HTML content for the add task template.
+ * @returns {string} - The HTML content for the add task template.
+ */
 function generateAddTaskHTML() {
     return /*html*/`
     <section class="alignCenter gap30 title titleAddTask">
@@ -160,6 +167,12 @@ function generateAddTaskHTML() {
     <img src="img/cross.png" class="closePopup dNone" id="closePopupId" onclick="slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId'), clearTask()">`
 }
 
+/**
+ * Generates the HTML content for a contact in the contacts list.
+ * @param {Object} contact - The contact object.
+ * @param {number} i - The index of the contact in the contacts array.
+ * @returns {string} - The HTML content for the contact in the contacts list.
+ */
 function generateListContactsHTML(contact, i) {
     return /*html*/ `
     <div class="listContacts dFlex alignCenter spaceBetween pointer" onclick="toggleCheckContact('checkContactImgId${i}', ${i})" id="assignedContactId${i}">
@@ -179,6 +192,11 @@ function generateListContactsHTML(contact, i) {
     `
 }
 
+/**
+ * Generates the HTML content for a contact in the assigned contacts area.
+ * @param {Object} contactBelowAssignedTo - The contact object.
+ * @returns {string} - The HTML content for the contact in the assigned contacts area.
+ */
 function generateContactsBelowAssignedTo(contactBelowAssignedTo) {
     return /*html*/ `
         <div class="nameShortSmall horizontalAndVertical" style="background-color: ${contactBelowAssignedTo.color};">
@@ -189,6 +207,12 @@ function generateContactsBelowAssignedTo(contactBelowAssignedTo) {
     `
 }
 
+/**
+ * Generates the HTML content for a category in the categories list.
+ * @param {string} category - The category name.
+ * @param {number} i - The index of the category in the categories array.
+ * @returns {string} - The HTML content for the category in the categories list.
+ */
 function generateCategoryListHTML(category, i) {
     return /*html*/ `
     <div class="listCategories dFlex alignCenter spaceBetween pointer" onclick="addCategory(${i})">
@@ -204,6 +228,12 @@ function generateCategoryListHTML(category, i) {
     `
 }
 
+/**
+ * Generates the HTML content for a subtask in the subtasks list.
+ * @param {string} subtask - The subtask content.
+ * @param {number} i - The index of the subtask in the subtasks array.
+ * @returns {string} - The HTML content for the subtask in the subtasks list.
+ */
 function generateSubtaskListHTML(subtask, i) {
     return /*html*/ `
     <div class="listSubtask listSubtaskHover default" id="subtaskListElement${i}">
