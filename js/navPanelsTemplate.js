@@ -1,3 +1,13 @@
+/**
+ * Tracks the visibility status of the navigation popup.
+ * @type {boolean}
+ */
+let isNavPopupVisible = false;
+
+/**
+ * Generates the navigation panels HTML template.
+ * Loads the logged-in user and sets the active link.
+ */
 function navPanelsTemplate() {
     loadLoggedInUser();
     let initials = extractInitials(loggedInUser[0].name);
@@ -5,10 +15,18 @@ function navPanelsTemplate() {
     setActiveLink();
 }
 
+/**
+ * Generates the navigation panels popup HTML template.
+ */
 function navPanelPopupTemplate() {
     document.getElementById('navPanelsPopupId').innerHTML = generateNavPanelsPopupHTML();
 }
 
+/**
+ * Generates HTML for the navigation panels.
+ * @param {string} initials - The initials of the logged-in user.
+ * @returns {string} - The generated HTML.
+ */
 function generateNavPanelsHTML(initials) {
     return /*html*/ `
     <header class="alignCenter spaceBetween">
@@ -73,6 +91,10 @@ function generateNavPanelsHTML(initials) {
     `
 }
 
+/**
+ * Generates HTML for the navigation panels popup.
+ * @returns {string} - The generated HTML.
+ */
 function generateNavPanelsPopupHTML() {
     return /*html*/ `
     <a class="fontSize16 pointer" href="legalNotice.html">Legal notice</a>
@@ -80,12 +102,20 @@ function generateNavPanelsPopupHTML() {
     <a class="fontSize16 pointer" href="index.html">Log out</a>
     `
 }
-let isNavPopupVisible = false;
+
+/**
+ * Toggles the visibility of the navigation popup and updates the visibility status.
+ */
 function openNavPopup() {
     isNavPopupVisible = !isNavPopupVisible;
     toggleVisibility('navPanelsPopupId', isNavPopupVisible);
 }
 
+/**
+ * Extracts and returns the initials from the provided name.
+ * @param {string} names - The full name of the user.
+ * @returns {string} - The extracted initials.
+ */
 function extractInitials(names) {
     const nameParts = names.split(' ');
     let initials = nameParts[0].charAt(0).toUpperCase();
