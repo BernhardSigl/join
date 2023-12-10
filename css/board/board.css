@@ -132,6 +132,7 @@
 /* popup board */
 .boardArea {
     width: auto;
+    min-width: 525px;
     height: auto;
     max-height: 100vh;
     box-sizing: border-box;

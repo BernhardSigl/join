@@ -24,6 +24,7 @@
         animation: fadeOut 1.5s ease-out forwards;
         animation-delay: 1.5s;
         z-index: 1;
+        pointer-events: none;
     }
 
     .welcomeMessageText.fade-out,
