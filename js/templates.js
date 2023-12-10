@@ -92,6 +92,15 @@ function validatePhoneInput(input) {
     }
 }
 
+function validateCheckbox(checkbox) {
+    const isValid = checkbox.checked;
+    if (!isValid) {
+        checkbox.setCustomValidity('You must accept the privacy policy.');
+    } else {
+        checkbox.setCustomValidity('');
+    }
+}
+
 function validateZeroInput(inputField) {
     if (inputField.value.trim() === '') {
         inputField.setCustomValidity('Please enter at least one character.');
