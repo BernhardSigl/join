@@ -1,9 +1,8 @@
-// let contactsArray = [];
 let nameShortArray = [];
 let selectedColor = '#D1D1D1';
 let nameShortReturn;
 let lastFirstLetter = '';
-let userContactsArray = []; // test
+let userContactsArray = [];
 let userId = null;
 let contactsArray;
 
@@ -17,11 +16,10 @@ async function initContacts() {
     navPanelPopupTemplate();
     addContactPopupContent();
     editContactPopupContent();
-    await loadLoggedInUser(); //for later
+    await loadLoggedInUser();
     await loadUsers();
-    // await loadContacts();
-    await createIndividuallyContactsArray(); //test
-    await loadIndividuallyContacts(); //test
+    await createIndividuallyContactsArray();
+    await loadIndividuallyContacts();
     await createLoggedInUser();
     guestCreateContactArray();
     await renderContacts(); // two times because of "async"
@@ -106,7 +104,6 @@ async function createContact() {
     slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');
     await renderContacts();
     await renderContacts();
-    // await setItem('contactsArray', JSON.stringify(contactsArray));
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     if (window.location.href.includes("contacts.html")) {
         loggedInUserNotClickable();
@@ -246,12 +243,11 @@ async function saveContact(i) {
     contactsArray[i] = editedContact;
     toggleVisibility('contactInfoId', false);
     closeEditContactPopup();
-    // await setItem('contactsArray', JSON.stringify(contactsArray));
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     await renderContacts();
     await renderContacts();
     loggedInUserNotClickable();
-    closeBigViewMobile(); //mobile
+    closeBigViewMobile();
     createdItemBtn('Contact successfully saved');
 }
 
@@ -261,11 +257,10 @@ async function deleteContact(i) {
     toggleVisibility('contactInfoId', false);
     contactsArray.splice(i, 1);
     closeEditContactPopup();
-    // await setItem('contactsArray', JSON.stringify(contactsArray));
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     await renderContacts();
     loggedInUserNotClickable();
-    closeBigViewMobile(); //mobile
+    closeBigViewMobile();
     createdItemBtn('Contact successfully deleted');
 }
 
@@ -289,8 +284,6 @@ async function createLoggedInUser() {
         };
         contactsArray.push(createContact);
         await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
-        // await setItem('contactsArray', JSON.stringify(contactsArray));
-        // await renderContacts()
     }
 }
 

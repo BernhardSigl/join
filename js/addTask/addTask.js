@@ -42,7 +42,7 @@ async function initAddTask() {
     await loadLoggedInUser();
     await loadUsers();
     await initContactsInAddTask();
-    await initCategoriesArray();
+    await initCategoriesArrayInAddTask();
     await createIndividuallyTaskArray();
     await loadIndividuallyTasks();
     checkCurrentId();
@@ -63,7 +63,7 @@ async function initContactsInAddTask() {
 /**
  * Initializes the categories array.
  */
-async function initCategoriesArray() {
+async function initCategoriesArrayInAddTask() {
     await createIndividuallyCategories();
     await loadIndividuallyCategories();
     checkGuestCategory();

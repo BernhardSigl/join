@@ -79,7 +79,7 @@ function editSubtask(i) {
     subtaskListElement.classList.remove('listSubtaskHover');
     subtaskInput.focus();
     subtaskInput.selectionStart = subtaskInput.value.length;
-    pencilImage.style.backgroundImage = 'url("../img/confirm.png")';
+    pencilImage.style.backgroundImage = 'url("./img/confirm.png")';
 }
 
 /**
@@ -91,7 +91,7 @@ function confirmSubtaskRenaming(pencilImage, i) {
     let subtaskListElement = document.getElementById(`subtaskListElement${i}`);
     let rename = document.getElementById(`subtaskEditInputId${i}`);
     document.getElementById(`subtaskEditInputId${i}`).classList.remove('text');
-    pencilImage.style.backgroundImage = 'url("../img/pencilDark.png")';
+    pencilImage.style.backgroundImage = 'url("./img/pencilDark.png")';
     subtasksInTaskArray[i] = rename.value;
     subtaskListElement.style.backgroundColor = 'transparent';
     subtaskListElement.style.borderBottom = 'none'

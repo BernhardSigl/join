@@ -27,9 +27,9 @@ function generateTaskHTML(task) {
             </div>
 
             <div class="alignCenter gap2">
-                <span class="fontSize12" id="progressId${task.id}">
+                <span class="fontSize12 pointer" id="progressId${task.id}">
                 </span>
-                <span class="fontSize12">Subtasks</span>
+                <span class="fontSize12 pointer">Subtasks</span>
             </div>
         </div>
         <div class="w100 h32 spaceBetween alignCenter ${dNone}">
@@ -136,6 +136,21 @@ function generateContactsBoardBigHTML(contact) {
         </div>
         <span class="fontSize20">
         ${contact.name}
+        </span>
+    </div>
+    `
+}
+
+function generateTaskPlaceholderHTML() {
+    return /*html*/ `
+    <div class="dragPlaceholder dNone" id="dragPlaceholderId"></div>`;
+}
+
+function generateContactsBoardSmallHTML(contactsBoard) {
+    return /*html*/ `
+    <div class="nameShortBoardSmall horizontalAndVertical pointer" style="background-color: ${contactsBoard.color};">
+        <span class="fontWhite fontSize12 pointer mb2">
+        ${contactsBoard.nameShort}
         </span>
     </div>
     `

@@ -25,3 +25,5 @@
 # mobile view success slide button #completed
 
 # clean code
+# delete guest categories
+# contacts limit board small view
