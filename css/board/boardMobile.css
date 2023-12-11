@@ -139,7 +139,7 @@
     }
 
     .boardArea {
-        min-width: auto;
+        min-width: 90vw;
     }
 }
 
