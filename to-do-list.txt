@@ -23,8 +23,8 @@
 # fix contacts size (long name) #completed
 # empty category, subtask fix #completed
 # mobile view success slide button #completed
+# clean code #completed
+# delete guest categories #completed
 
-# clean code
-# delete guest categories
 # contacts limit board small view
 # disable content at loading

@@ -80,6 +80,14 @@ async function deleteAllTasks() {
 }
 
 /**
+ * Delete the category array for guest log in.
+ */
+async function deleteAllCategories() {
+    categoriesInTaskArray = [];
+    await setItem(`individuallyCategories_${userId}`, JSON.stringify(categoriesInTaskArray));
+}
+
+/**
  * Adds guest categories if the logged-in user is a guest.
  */
 function checkGuestCategory() {

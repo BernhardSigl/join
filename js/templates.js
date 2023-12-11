@@ -305,6 +305,7 @@ function guestDeleteArrays() {
         if (loggedInUser[0].email === 'guest@guest.com') {
             deleteAllTasks();
             deleteContactsArray();
+            deleteAllCategories();
         }
     }
 }
