@@ -1,3 +1,6 @@
+/**
+ * Filters tasks with 'toDo' progress status, sorts them and checks for an empty list.
+ */
 function toDoFilter() {
     let toDoFilter = taskArray.filter(t => t['progressStatus'] == 'toDo');
     toDoFilter.sort(sortBoard);
@@ -12,6 +15,10 @@ function toDoFilter() {
     document.getElementById('toDoId').innerHTML += generateTaskPlaceholderHTML();
 }
 
+/**
+ * Shows or hides the 'no to-do tasks' message based on the presence of tasks in the 'toDo' filter.
+ * @param {Array} toDoFilter - Array of tasks filtered with 'toDo' progress status.
+ */
 function noToDo(toDoFilter) {
     if (toDoFilter.length == 0) {
         toggleVisibility('noToDoId', true);
@@ -20,6 +27,9 @@ function noToDo(toDoFilter) {
     }
 }
 
+/**
+ * Filters tasks with 'inProgress' progress status, sorts them and checks for an empty list.
+ */
 function inProgressFilter() {
     let inProgressFilter = taskArray.filter(t => t['progressStatus'] == 'inProgress');
     inProgressFilter.sort(sortBoard);
@@ -34,6 +44,10 @@ function inProgressFilter() {
     document.getElementById('inProgressId').innerHTML += generateTaskPlaceholderHTML();
 }
 
+/**
+ * Shows or hides the 'no in-progress tasks' message based on the presence of tasks in the 'inProgress' filter.
+ * @param {Array} inProgressFilter - Array of tasks filtered with 'inProgress' progress status.
+ */
 function noInProgress(inProgressFilter) {
     if (inProgressFilter.length == 0) {
         toggleVisibility('noInProgressId', true);
@@ -42,6 +56,9 @@ function noInProgress(inProgressFilter) {
     }
 }
 
+/**
+ * Filters tasks with 'awaitFeedback' progress status, sorts them and checks for an empty list.
+ */
 function awaitFeedbackFilter() {
     let awaitFeedbackFilter = taskArray.filter(t => t['progressStatus'] == 'awaitFeedback');
     awaitFeedbackFilter.sort(sortBoard);
@@ -56,6 +73,10 @@ function awaitFeedbackFilter() {
     document.getElementById('awaitFeedbackId').innerHTML += generateTaskPlaceholderHTML();
 }
 
+/**
+ * Shows or hides the 'no tasks awaiting feedback' message based on the presence of tasks in the 'awaitFeedback' filter.
+ * @param {Array} awaitFeedbackFilter - Array of tasks filtered with 'awaitFeedback' progress status.
+ */
 function noAwaitFeedback(awaitFeedbackFilter) {
     if (awaitFeedbackFilter.length == 0) {
         toggleVisibility('noAwaitFeedbackId', true);
@@ -64,6 +85,9 @@ function noAwaitFeedback(awaitFeedbackFilter) {
     }
 }
 
+/**
+ * Filters tasks with 'done' progress status, sorts them and checks for an empty list.
+ */
 function doneFilter() {
     let doneFilter = taskArray.filter(t => t['progressStatus'] == 'done');
     doneFilter.sort(sortBoard);
@@ -78,6 +102,10 @@ function doneFilter() {
     document.getElementById('doneId').innerHTML += generateTaskPlaceholderHTML();
 }
 
+/**
+ * Shows or hides the 'no completed tasks' message based on the presence of tasks in the 'done' filter.
+ * @param {Array} doneFilter - Array of tasks filtered with 'done' progress status.
+ */
 function noDone(doneFilter) {
     if (doneFilter.length == 0) {
         toggleVisibility('noDoneId', true);

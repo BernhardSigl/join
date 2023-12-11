@@ -138,7 +138,7 @@ function validatePhoneInput(input) {
     const regex = /^[0-9\s+\/]+$/;
     const isValid = regex.test(input.value);
     if (!isValid) {
-        input.setCustomValidity('Only numbers, spaces, "+", and "/" are allowed.');
+        input.setCustomValidity('Only numbers, spaces, "+" and "/" are allowed.');
     } else {
         input.setCustomValidity('');
     }

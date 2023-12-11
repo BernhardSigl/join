@@ -59,7 +59,7 @@ async function initCategoriesArrayInBoard() {
 }
 
 /**
- * Creates guest templates by initializing guest tasks, contacts, and categories.
+ * Creates guest templates by initializing guest tasks, contacts and categories.
  */
 function createGuestTemplates() {
     guestCreateTaskArray();

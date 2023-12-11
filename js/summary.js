@@ -39,7 +39,7 @@ let lowCounter = 0;
  */
 let mostUrgentTask;
 /**
- * An array used for sorting tasks based on priority, and it is a copy of the original task array.
+ * An array used for sorting tasks based on priority and it is a copy of the original task array.
  * @type {Array}
  */
 let sortedArray = [];
