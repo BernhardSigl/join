@@ -49,8 +49,9 @@ async function initContacts() {
     guestCreateContactArray();
     await renderContacts(); // two times because of "async"
     await renderContacts();
-    await new Promise(resolve => setTimeout(resolve, 500));
-    loggedInUserNotClickable();
+    document.addEventListener('DOMContentLoaded', () => {
+        loggedInUserNotClickable();
+    });
     disableLoadingScreenContacts();
 }
 
@@ -337,6 +338,7 @@ function loggedInUserNotClickable() {
     let nameShortSmallText = document.getElementById(`nameShortSmallText${indexOfLoggedInUser}`);
     let contactNameSmallId = document.getElementById(`contactNameSmallId${indexOfLoggedInUser}`);
     let contactEmailSmallId = document.getElementById(`contactEmailSmallId${indexOfLoggedInUser}`);
+    console.log(loggedInUserInContactList);
     loggedInUserInContactList.removeAttribute('onclick');
     loggedInUserProperty(loggedInUserInContactList, nameShortSmallId, nameShortSmallText, contactNameSmallId, contactEmailSmallId);
 }
