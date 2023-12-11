@@ -212,9 +212,14 @@ function checkPrio(task) {
 function checkAmountContactsBoardSmall(contacts, id) {
     const contactsInBoardSmallId = document.getElementById(`contactsInBoardSmallId${id}`);
     contactsInBoardSmallId.innerHTML = '';
+    const maxContactsToShow = 7;
     for (let i = 0; i < contacts.length; i++) {
         let contactBoard = contacts[i];
-        contactsInBoardSmallId.innerHTML += generateContactsBoardSmallHTML(contactBoard);
+        if (i < maxContactsToShow) {
+            contactsInBoardSmallId.innerHTML += generateContactsBoardSmallHTML(contactBoard);
+        } else if (i === maxContactsToShow) {
+            contactsInBoardSmallId.innerHTML += '<img src="./img/contactDots.png" class="contactDotsImg">';
+        }
     }
 }
 

@@ -25,6 +25,6 @@
 # mobile view success slide button #completed
 # clean code #completed
 # delete guest categories #completed
+# contacts limit board small view #completed
 
-# contacts limit board small view
 # disable content at loading

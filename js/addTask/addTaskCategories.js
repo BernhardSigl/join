@@ -85,7 +85,7 @@ async function validCategoryInput(categoryInput, categoryList) {
 function checkCategoryEmptyStatus() {
     let addCategoryImg = document.getElementById('addCategoryBtnId');
     if (categoriesInTaskArray.length == 0) {
-        withoutCategories(addCategoryImg);
+        withoutCategoriesStorage(addCategoryImg);
     } else if (categoriesInTaskArray.length != 0) {
         withCategoriesStorage(addCategoryImg);
     }
