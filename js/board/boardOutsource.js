@@ -1,3 +1,14 @@
+/**
+ * Object used to keep track of the visibility state of move dropdowns for tasks.
+ * @type {number}
+ */
+let moveDropdown = {};
+
+/**
+ * Generates HTML for displaying a task in the kanban board.
+ * @param {Object} task - Task object containing information like title, description, category, etc.
+ * @returns {string} - HTML string representing the task in the kanban board.
+ */
 function generateTaskHTML(task) {
     checkPrio(task);
     return /*html*/ `
@@ -41,6 +52,12 @@ function generateTaskHTML(task) {
     `;
 }
 
+/**
+ * Moves a task to a new progress status on mobile devices.
+ * @param {string} newProgressStatus - The new progress status for the task.
+ * @param {number} id - The Id of the task.
+ * @param {Event} event - The event object.
+ */
 async function moveToMobile(newProgressStatus, id, event) {
     event.stopPropagation();
     taskArray[id].progressStatus = newProgressStatus;
@@ -49,8 +66,11 @@ async function moveToMobile(newProgressStatus, id, event) {
     await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
 }
 
-let moveDropdown = {};
-
+/**
+ * Shows the move dropdown for a task.
+ * @param {number} id - The Id of the task.
+ * @param {Event} event - The event object.
+ */
 function showMoveDropdown(id, event) {
     event.stopPropagation();
     closeAllMoveDropdownsExcept(id);
@@ -63,6 +83,10 @@ function showMoveDropdown(id, event) {
     }
 }
 
+/**
+ * Closes all move dropdowns except the one specified.
+ * @param {number} exceptId - The Id of the dropdown to keep open.
+ */
 function closeAllMoveDropdownsExcept(exceptId) {
     for (const id in moveDropdown) {
         if (id !== exceptId && moveDropdown[id]) {
@@ -72,6 +96,9 @@ function closeAllMoveDropdownsExcept(exceptId) {
     }
 }
 
+/**
+ * Closes all move dropdowns.
+ */
 function closeAllMoveDropdowns() {
     for (const id in moveDropdown) {
         toggleVisibility(`moveDropdown(${id})`, false);
@@ -79,6 +106,12 @@ function closeAllMoveDropdowns() {
     }
 }
 
+/**
+ * Generates HTML for displaying detailed information about a task in the board view.
+ * @param {Object} task - Task object containing information like title, description, category, etc.
+ * @param {number} id - The Id of the task.
+ * @returns {string} - HTML string representing detailed task information in the board view.
+ */
 function generateBoardHTML(task, id) {
     return /*html*/ `
     <div class="dFlex relative spaceBetween">
@@ -126,6 +159,11 @@ function generateBoardHTML(task, id) {
     `;
 }
 
+/**
+ * Generates HTML for displaying a contact in the board view.
+ * @param {Object} contact - Contact object containing information like name and color.
+ * @returns {string} - HTML string representing a contact in the board view.
+ */
 function generateContactsBoardBigHTML(contact) {
     return /*html*/ `
     <div class="dFlex alignCenter gap16 contactBigBoard">
@@ -141,11 +179,20 @@ function generateContactsBoardBigHTML(contact) {
     `
 }
 
+/**
+ * Generates HTML for displaying a placeholder in the task list.
+ * @returns {string} - HTML string representing a task placeholder.
+ */
 function generateTaskPlaceholderHTML() {
     return /*html*/ `
     <div class="dragPlaceholder dNone" id="dragPlaceholderId"></div>`;
 }
 
+/**
+ * Generates HTML for displaying a contact in the small board view.
+ * @param {Object} contactsBoard - Contact object containing information like name and color.
+ * @returns {string} - HTML string representing a contact in the small board view.
+ */
 function generateContactsBoardSmallHTML(contactsBoard) {
     return /*html*/ `
     <div class="nameShortBoardSmall horizontalAndVertical pointer" style="background-color: ${contactsBoard.color};">
@@ -156,6 +203,13 @@ function generateContactsBoardSmallHTML(contactsBoard) {
     `
 }
 
+/**
+ * Generates HTML for displaying a subtask in the big board view.
+ * @param {string} subtask - Subtask text.
+ * @param {number} subtaskIndex - Index of the subtask.
+ * @param {number} taskIndex - Index of the task.
+ * @returns {string} - HTML string representing a subtask in the big board view.
+ */
 function gernerateSubtasksBoardBigHTML(subtask, subtaskIndex, taskIndex) {
     return /*html*/ `
     <div class="alignCenter subtaskBigBoard gap16"
@@ -168,6 +222,9 @@ function gernerateSubtasksBoardBigHTML(subtask, subtaskIndex, taskIndex) {
     `
 }
 
+/**
+ * Closes the board view.
+ */
 async function closeBoard() {
     slideOutTwoObjects('boardAreaId', 'backgroundBoardPopupId')
     await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
