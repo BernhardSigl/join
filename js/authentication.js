@@ -142,6 +142,8 @@ function signUp() {
  * Logs in as a guest user with predefined credentials.
  */
 function guestLogIn() {
+    document.body.style.cursor = 'wait';
+    toggleVisibility('loaderContainerId', true);
     let logInEmailText = document.getElementById('logEmailId');
     let logInPasswordText = document.getElementById('logPasswordId');
     logInEmailText.style.color = 'white';

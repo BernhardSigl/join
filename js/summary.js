@@ -62,6 +62,7 @@ async function initSummary() {
     toggleVisibility('hiddenSummaryId', true);
     welcomeMessageMobile();
     toggleVisibility('navPanelsTemplateId', true);
+    toggleVisibility('loaderContainerId', false);
 }
 
 /**
@@ -220,11 +221,9 @@ function welcomeMessageMobile() {
     if (window.innerWidth <= 1400) {
         let isFromIndexPage = document.referrer.endsWith("index.html");
         if (isFromIndexPage) {
-            console.log('yes');
             lastPageWasIndexHTML();
         } else {
             lastPageWasNotIndexHTML();
-            console.log('no');
         }
     }
 }
