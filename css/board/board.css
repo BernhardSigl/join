@@ -236,6 +236,7 @@
 .titleKanbanBigView,
 .descriptionKanbanBig {
     max-width: 525px !important;
+    hyphens: auto;
 }
 
 .subtaskBigBoard {

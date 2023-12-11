@@ -204,6 +204,22 @@ function generateContactsBoardSmallHTML(contactsBoard) {
 }
 
 /**
+ * Generates HTML for displaying the count of additional contacts.
+ * @param {number} contactsLength - The total number of contacts.
+ * @param {number} maxContactsToShow - The maximum number of contacts to display on the board.
+ * @returns {string} - The count of additional contacts.
+ */
+function generateMoreContactsBoardSmallHTML(contactsLength, maxContactsToShow) {
+    return /*html*/ `
+    <div class="nameShortBoardSmall horizontalAndVertical pointer" style="background-color: #D1D1D1;">
+        <span class="fontWhite fontSize12 pointer mb2">
+        +${contactsLength - maxContactsToShow}
+        </span>
+    </div>
+    `
+}
+
+/**
  * Generates HTML for displaying a subtask in the big board view.
  * @param {string} subtask - Subtask text.
  * @param {number} subtaskIndex - Index of the subtask.
