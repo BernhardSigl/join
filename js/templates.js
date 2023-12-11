@@ -124,7 +124,6 @@ function validateDateInput(input) {
     const isValid = regex.test(formattedValue);
     if (!isValid) {
         input.setCustomValidity(`Only numbers and '/' are allowed.`);
-        console.log(formattedValue);
     } else {
         input.setCustomValidity('');
     }
