@@ -1,16 +1,42 @@
+/**
+ * Array to store shortened names.
+ * @type {Array}
+ */
 let nameShortArray = [];
+/**
+ * The selected color for contacts.
+ * @type {string}
+ */
 let selectedColor = '#D1D1D1';
+/**
+ * Variable to hold the name short returned value.
+ * @type {string}
+ */
 let nameShortReturn;
+/**
+ * Variable to store the last first letter.
+ * @type {string}
+ */
 let lastFirstLetter = '';
+/**
+ * Array to store user contacts.
+ * @type {Array}
+ */
 let userContactsArray = [];
+/**
+ * The user Id.
+ * @type {Number}
+ */
 let userId = null;
+/**
+ * Array to store contacts.
+ * @type {Array}
+ */
 let contactsArray;
 
-async function deleteContactsArray() {
-    contactsArray = [];
-    await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
-}
-
+/**
+ * Initializes the contacts.
+ */
 async function initContacts() {
     navPanelsTemplate();
     navPanelPopupTemplate();
@@ -18,8 +44,7 @@ async function initContacts() {
     editContactPopupContent();
     await loadLoggedInUser();
     await loadUsers();
-    await createIndividuallyContactsArray();
-    await loadIndividuallyContacts();
+    await loadContacts();
     await createLoggedInUser();
     guestCreateContactArray();
     await renderContacts(); // two times because of "async"
@@ -28,6 +53,17 @@ async function initContacts() {
     toggleVisibility('loaderContainerId', false);
 }
 
+/**
+ * Loads contacts.
+ */
+async function loadContacts() {
+    await createIndividuallyContactsArray();
+    await loadIndividuallyContacts();
+}
+
+/**
+ * Creates the individually contacts array.
+ */
 async function createIndividuallyContactsArray() {
     for (let i = 0; i < users.length; i++) {
         const user = users[i];
@@ -39,6 +75,17 @@ async function createIndividuallyContactsArray() {
     }
 }
 
+/**
+ * Deletes the contacts array.
+ */
+async function deleteContactsArray() {
+    contactsArray = [];
+    await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
+}
+
+/**
+ * Renders the contacts.
+ */
 async function renderContacts() {
     if (window.location.pathname.endsWith('contacts.html')) {
         let contactsInScrollbar = document.getElementById('contactsInScrollbarId');
@@ -52,10 +99,18 @@ async function renderContacts() {
     }
 }
 
+/**
+ * Sorts the contacts array.
+ */
 function sortContacts() {
     contactsArray.sort((a, b) => a.name.localeCompare(b.name, 'de', { sensitivity: 'base' }));
 }
 
+/**
+ * Categorizes the contacts.
+ * @param {Object} contact - The contact object.
+ * @param {HTMLElement} contactsInScrollbar - The element to display the contacts.
+ */
 function categoryContacts(contact, contactsInScrollbar) {
     let firstLetter = contact.name.charAt(0).toUpperCase();
     if (firstLetter !== lastFirstLetter) {
@@ -64,50 +119,44 @@ function categoryContacts(contact, contactsInScrollbar) {
     }
 }
 
-function generateContactsCategoryHTML(firstLetter) {
-    return /* html */ `
-    <div class="categoryContactsArea">
-        <div class="fontSize20 categoryContacts">
-            ${firstLetter}
-        </div>
-        <div class="partingLine">
-        </div>
-    </div>
-    `;
-}
-
-function generateContactsInScrollbarHTML(contact, i) {
-    return /*html*/ `
-    <div class="dFlex gap35 contactInfoSmall alignCenter pointer" onclick="openContactInfo(${i})" id="contactInfoSmallId${i}">
-        <div class="nameShortSmall horizontalAndVertical pointer" style="background-color: ${contact.color};"  id="nameShortSmallId${i}">
-            <span class="fontWhite fontSize12 pointer mb2" id="nameShortSmallText${i}">${contact.nameShort}</span>
-        </div>
-        <div class="column gap5 contactSmallView">
-            <span class="fontSize20 pointer contactSmallName" id="contactNameSmallId${i}">${contact.name}</span>
-            <span class="fontSize16 fontBrightBlue pointer contactSmallEmail" id="contactEmailSmallId${i}">${contact.email}</span>
-        </div>
-    </div>`
-}
-
+/**
+ * Creates a contact.
+ */
 async function createContact() {
+    let createContact = createContactData();
+    contactsArray.push(createContact);
+    slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');
+    await renderContacts();
+    await renderContacts(); // two times for safety reason
+    await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
+    if (window.location.href.includes("contacts.html")) {
+        loggedInUserNotClickable();
+    }
+    createContactAddTaskBoardBehavior();
+    createdItemBtn('Contact successfully created');
+}
+
+/**
+ * Creates contact data.
+ * @returns {Object} - The contact data.
+ */
+function createContactData() {
     let nameInput = document.getElementById('addNameId').value;
     let emailInput = document.getElementById('addEmailId').value;
     let phoneInput = document.getElementById('addPhoneId').value;
-    let createContact = {
+    return {
         "name": nameInput,
         "nameShort": nameShort(nameInput),
         "email": emailInput,
         "phone": phoneInput,
         "color": selectedColor,
     };
-    contactsArray.push(createContact);
-    slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');
-    await renderContacts();
-    await renderContacts();
-    await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
-    if (window.location.href.includes("contacts.html")) {
-        loggedInUserNotClickable();
-    }
+}
+
+/**
+ * Creates contact behavior for adding tasks and boards.
+ */
+function createContactAddTaskBoardBehavior() {
     if (window.location.href.includes("addTask.html") || window.location.href.includes("board.html")) {
         listContacts();
         for (let j = 0; j < contactsArray.length; j++) {
@@ -119,10 +168,12 @@ async function createContact() {
         const deleteRestArray = Math.ceil(contactsInTaskArray.length / 2);
         contactsInTaskArray.splice(deleteRestArray);
     }
-    createdItemBtn('Contact successfully created');
 }
 
-// color function
+/**
+ * Handles the color change input event.
+ * @param {Event} event - The input event.
+ */
 oninput = function (event) {
     let selectedColor = event.target.value;
     if (/^#[0-9A-Fa-f]{6}$/.test(selectedColor)) {
@@ -130,6 +181,10 @@ oninput = function (event) {
     }
 };
 
+/**
+ * Updates the selected color.
+ * @param {string} color - The selected color.
+ */
 function updateSelectedColor(color) {
     document.getElementById("chooseColorId").style.backgroundColor = color;
     selectedColor = color;
@@ -139,7 +194,11 @@ function updateSelectedColor(color) {
     }
 }
 
-// name short function
+/**
+ * Shortens a name.
+ * @param {string} name - The full name.
+ * @returns {string} - The shortened name.
+ */
 function nameShort(name) {
     let nameParts = name.split(' ');
     let firstName = nameParts[0];
@@ -147,7 +206,10 @@ function nameShort(name) {
     return `${firstName.charAt(0).toUpperCase()}${lastName.charAt(0).toUpperCase()}`;
 }
 
-//big info
+/**
+ * Opens contact information.
+ * @param {number} i - The index of the contact.
+ */
 function openContactInfo(i) {
     let contactInfo = document.getElementById('contactInfoId');
     markContact(i)
@@ -157,70 +219,15 @@ function openContactInfo(i) {
     document.getElementById('backArrowMobileId').style.setProperty('display', 'flex', 'important');
     onClickedContact = contactsArray[i];
     contactInfo.innerHTML = generateContactInfoHTML(onClickedContact, i);
-
     let editContactPopupMobile = document.getElementById('editContactPopupId');
     editContactPopupMobile.innerHTML = gernerateEditContactPopupMobile(i);
     slideOutOneObject('editContactPopupId');
 }
 
-function gernerateEditContactPopupMobile(i) {
-    return /*html*/ `
-    <a class="dFlex gap8 alignCenter editContactArea pointer" onclick="openEditTaskPopup(${i})">
-        <img src="img/pencilDark.png" class="symbol24 pointer">
-        <span class="fontSize16 fontBlue pointer">Edit</span>
-    </a>
-    <a class="dFlex gap8 alignCenter deleteContactArea pointer" onclick="deleteContact(${i}); slideOutOneObject('editContactPopupId');     document.getElementById('rightContainerId').style.setProperty('display', 'none');">
-        <img src="img/garbageDark.png" class="symbol24 pointer">
-        <span class="fontSize16 fontBlue pointer">Delete</span>
-    </a>
-    `;
-}
-
-function generateContactInfoHTML(onClickedContact, i) {
-    return /*html*/ `
-    <div class="dFlex gap54 alignCenter nameEditDeleteArea">
-        <div>
-            <div class="nameShortBig horizontalAndVertical" style="background-color: ${onClickedContact.color};">
-                <span class="fontWhite fontSize47">${onClickedContact.nameShort}</span>
-            </div>
-        </div>
-        <div class="column gap8">
-            <span class="fontSize47 nameOnBigView">${onClickedContact.name}</span>
-            <div class="dFlex gap16 editContactBigViewArea">
-                <a class="dFlex gap8 alignCenter editContactArea pointer" onclick="openEditTaskPopup(${i})">
-                    <img src="img/pencilDark.png" class="symbol24 pointer">
-                    <span class="fontSize16 fontBlue pointer">Edit</span>
-                </a>
-                <a class="dFlex gap8 alignCenter deleteContactArea pointer" onclick="deleteContact(${i})">
-                    <img src="img/garbageDark.png" class="symbol24 pointer">
-                    <span class="fontSize16 fontBlue pointer">Delete</span>
-                </a>
-            </div>
-        </div>
-        </div>
-        <span class="fontSize20 contactInfoTextBlock alignCenter">
-            Contact Information
-        </span>
-        <div class="column gap15">
-            <span class="fontSize16 bold">
-            Email
-            </span>
-            <a class="fontSize16 fontBrightBlue pointer emailOnBigView" href="mailto:${onClickedContact.email}">
-            ${onClickedContact.email}
-            </a>
-        </div>
-        <div class="column gap15">
-            <span class="fontSize16 bold">
-                Phone
-            </span>
-            <a class="fontSize16 fontBlue pointer phoneOnBigView" href="tel:${onClickedContact.phone}">
-            ${onClickedContact.phone}
-            </a>
-        </div>
-    </div>
-    `
-}
-
+/**
+ * Edits a contact.
+ * @param {number} i - The index of the contact.
+ */
 function editContact(i) {
     document.getElementById('editNameId').value = contactsArray[i].name;
     document.getElementById('editEmailId').value = contactsArray[i].email;
@@ -228,18 +235,12 @@ function editContact(i) {
     document.getElementById('profileColorId').style.background = contactsArray[i].color;
 }
 
+/**
+ * Saves a contact.
+ * @param {number} i - The index of the contact.
+ */
 async function saveContact(i) {
-    let editedName = document.getElementById('editNameId').value;
-    let editedEmail = document.getElementById('editEmailId').value;
-    let editedPhone = document.getElementById('editPhoneId').value;
-    let editedColor = document.getElementById('profileColorId').style.background;
-    let editedContact = {
-        "name": editedName,
-        "nameShort": nameShort(editedName),
-        "email": editedEmail,
-        "phone": editedPhone,
-        "color": editedColor,
-    };
+    let editedContact = saveContactData();
     contactsArray[i] = editedContact;
     toggleVisibility('contactInfoId', false);
     closeEditContactPopup();
@@ -251,6 +252,28 @@ async function saveContact(i) {
     createdItemBtn('Contact successfully saved');
 }
 
+/**
+ * Saves the contact data.
+ * @returns {Object} - The edited contact data.
+ */
+function saveContactData() {
+    let editedName = document.getElementById('editNameId').value;
+    let editedEmail = document.getElementById('editEmailId').value;
+    let editedPhone = document.getElementById('editPhoneId').value;
+    let editedColor = document.getElementById('profileColorId').style.background;
+    return {
+        "name": editedName,
+        "nameShort": nameShort(editedName),
+        "email": editedEmail,
+        "phone": editedPhone,
+        "color": editedColor,
+    };
+}
+
+/**
+ * Deletes a contact.
+ * @param {number} i - The index of the contact to delete.
+ */
 async function deleteContact(i) {
     document.getElementById('cancelBtn').disabled = true;
     document.getElementById('deleteBtnId').disabled = true;
@@ -264,6 +287,10 @@ async function deleteContact(i) {
     createdItemBtn('Contact successfully deleted');
 }
 
+/**
+ * Marks a contact.
+ * @param {number} i - The index of the contact to mark.
+ */
 function markContact(i) {
     let contactsInScrollbar = document.getElementById(`contactInfoSmallId${i}`);
     let allContactContainers = document.querySelectorAll('.contactInfoSmall');
@@ -273,6 +300,10 @@ function markContact(i) {
     contactsInScrollbar.classList.add('markContact');
 }
 
+/**
+ * Creates the logged-in user if not already present.
+ * @async
+ */
 async function createLoggedInUser() {
     let contactExists = contactsArray.some(contact => contact.email === loggedInUser[0].email);
     if (!contactExists) {
@@ -287,6 +318,9 @@ async function createLoggedInUser() {
     }
 }
 
+/**
+ * Disables clicks on the logged-in user in the contacts list.
+ */
 function loggedInUserNotClickable() {
     let indexOfLoggedInUser = contactsArray.findIndex(contact => contact.email === loggedInUser[0].email);
     let loggedInUserInContactList = document.getElementById(`contactInfoSmallId${indexOfLoggedInUser}`);
@@ -295,6 +329,18 @@ function loggedInUserNotClickable() {
     let contactNameSmallId = document.getElementById(`contactNameSmallId${indexOfLoggedInUser}`);
     let contactEmailSmallId = document.getElementById(`contactEmailSmallId${indexOfLoggedInUser}`);
     loggedInUserInContactList.removeAttribute('onclick');
+    loggedInUserProperty(loggedInUserInContactList, nameShortSmallId, nameShortSmallText, contactNameSmallId, contactEmailSmallId);
+}
+
+/**
+ * Sets properties for the logged-in user.
+ * @param {HTMLElement} loggedInUserInContactList - The container for the logged-in user.
+ * @param {HTMLElement} nameShortSmallId - The container for the shortened name display.
+ * @param {HTMLElement} nameShortSmallText - The container for the text of the shortened name display.
+ * @param {HTMLElement} contactNameSmallId - The container for the contact's name.
+ * @param {HTMLElement} contactEmailSmallId - The container for the contact's email.
+ */
+function loggedInUserProperty(loggedInUserInContactList, nameShortSmallId, nameShortSmallText, contactNameSmallId, contactEmailSmallId) {
     loggedInUserInContactList.style.setProperty('cursor', 'not-allowed', 'important');
     nameShortSmallId.style.setProperty('cursor', 'not-allowed', 'important');
     nameShortSmallText.style.setProperty('cursor', 'not-allowed', 'important');
@@ -302,7 +348,9 @@ function loggedInUserNotClickable() {
     contactEmailSmallId.style.setProperty('cursor', 'not-allowed', 'important');
 }
 
-//mobile
+/**
+ * Closes the big view on mobile devices.
+ */
 function closeBigViewMobile() {
     document.getElementById('rightContainerId').style.setProperty('display', 'none');
     document.getElementById('editContactPrePopupId').style.setProperty('display', 'none', 'important');

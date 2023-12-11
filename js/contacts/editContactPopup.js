@@ -1,17 +1,33 @@
+/**
+ * Opens the edit contact popup, displaying the necessary content and populating with data from the specified contact.
+ * @param {number} i - The index of the contact to be edited.
+ */
 function openEditTaskPopup(i) {
     editContactPopupContent(i);
     slideTwoObjects('editContactAreaId', 'backgroundEditContactId');
     editContact(i);
 }
 
+/**
+ * Populates the content of the edit contact popup with data from the specified contact.
+ * @param {number} i - The index of the contact to be edited.
+ */
 function editContactPopupContent(i) {
     document.getElementById('editContactAreaId').innerHTML = generateEditContactContentHTML(i);
 }
 
+/**
+ * Closes the edit contact popup.
+ */
 function closeEditContactPopup() {
     slideOutTwoObjects('editContactAreaId', 'backgroundEditContactId');
 }
 
+/**
+ * Generates HTML content for the edit contact popup, pre-filled with data from the specified contact.
+ * @param {number} i - The index of the contact to be edited.
+ * @returns {string} - The HTML content for the edit contact popup.
+ */
 function generateEditContactContentHTML(i) {
     return /*html*/`
             <div class="leftContainerAddContact relative">

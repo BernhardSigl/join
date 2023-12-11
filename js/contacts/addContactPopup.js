@@ -1,12 +1,22 @@
+/**
+ * Opens the add contact popup, displaying the necessary content.
+ */
 function openAddContactPopup() {
     addContactPopupContent();
     slideTwoObjects('addContactAreaId', 'backgroundAddContactId');
 }
 
+/**
+ * Populates the content of the add contact popup.
+ */
 function addContactPopupContent() {
     document.getElementById('addContactAreaId').innerHTML = generateAddContactContentHTML();
 }
 
+/**
+ * Generates HTML content for the add contact popup.
+ * @returns {string} - The HTML content for the add contact popup.
+ */
 function generateAddContactContentHTML() {
     return /*html*/`
             <div class="leftContainerAddContact relative">
