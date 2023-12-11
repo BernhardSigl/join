@@ -1,0 +1,10 @@
+{
+    "name": "Join",
+    "short_name": "Join",
+    "theme_color": "#293648",
+    "background_color": "#293648",
+    "display": "fullscreen",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/"
+}
