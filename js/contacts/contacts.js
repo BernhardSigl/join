@@ -47,9 +47,10 @@ async function initContacts() {
     await loadContacts();
     await createLoggedInUser();
     guestCreateContactArray();
-    await renderContacts(); // three times because of "async"
+    await renderContacts(); // two times because of "async"
+    await new Promise(resolve => setTimeout(resolve, 2000));
     await renderContacts();
-    await renderContacts();
+    await new Promise(resolve => setTimeout(resolve, 2000));
     loggedInUserNotClickable();
     disableLoadingScreenContacts();
 }
