@@ -11,13 +11,11 @@
         flex-direction: row;
         min-width: 244px !important;
         max-width: 244px !important;
-        /* margin: 4px; */
     }
 
     .dragPlaceholder {
         min-width: 244px;
         max-width: 244px !important;
-        /* height: auto; */
         box-sizing: border-box;
         border-radius: 24px;
         border: 1px dashed #A8A8A8;
@@ -47,6 +45,10 @@
         display: flex;
         align-items: flex-start;
         gap: 8px;
+    }
+
+    .moveText {
+        display: flex;
     }
 
     /* scroll x */

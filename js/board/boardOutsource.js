@@ -21,11 +21,11 @@ function generateTaskHTML(task) {
                 Move
             </div>
             <div class="moveDropdown column dNone" id="moveDropdown(${task.id})">
-            <span class="fontSize16 moveToContent" onclick="moveToMobile('toDo', ${task.id}, event)">To do</span>
-            <span class="fontSize16 moveToContent" onclick="moveToMobile('inProgress', ${task.id}, event)">In progress</span>
-            <span class="fontSize16 moveToContent" onclick="moveToMobile('awaitFeedback', ${task.id}, event)">Await feedback</span>
-            <span class="fontSize16 moveToContent" onclick="moveToMobile('done', ${task.id}, event)">Done</span>
-        </div>
+                <span class="fontSize16 moveToContent" onclick="moveToMobile('toDo', ${task.id}, event)">To do</span>
+                <span class="fontSize16 moveToContent" onclick="moveToMobile('inProgress', ${task.id}, event)">In progress</span>
+                <span class="fontSize16 moveToContent" onclick="moveToMobile('awaitFeedback', ${task.id}, event)">Await feedback</span>
+                <span class="fontSize16 moveToContent" onclick="moveToMobile('done', ${task.id}, event)">Done</span>
+            </div>
         </div>
         <div class="gap8 column">
             <span class="fontSize16 titleKanban bold pointer">${task.title}</span>
@@ -50,60 +50,6 @@ function generateTaskHTML(task) {
         </div>
     </div>
     `;
-}
-
-/**
- * Moves a task to a new progress status on mobile devices.
- * @param {string} newProgressStatus - The new progress status for the task.
- * @param {number} id - The Id of the task.
- * @param {Event} event - The event object.
- */
-async function moveToMobile(newProgressStatus, id, event) {
-    event.stopPropagation();
-    taskArray[id].progressStatus = newProgressStatus;
-    closeAllMoveDropdowns();
-    updateTasks();
-    await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
-}
-
-/**
- * Shows the move dropdown for a task.
- * @param {number} id - The Id of the task.
- * @param {Event} event - The event object.
- */
-function showMoveDropdown(id, event) {
-    event.stopPropagation();
-    closeAllMoveDropdownsExcept(id);
-    if (!moveDropdown[id]) {
-        toggleVisibility(`moveDropdown(${id})`, true);
-        moveDropdown[id] = true;
-    } else {
-        toggleVisibility(`moveDropdown(${id})`, false);
-        moveDropdown[id] = false;
-    }
-}
-
-/**
- * Closes all move dropdowns except the one specified.
- * @param {number} exceptId - The Id of the dropdown to keep open.
- */
-function closeAllMoveDropdownsExcept(exceptId) {
-    for (const id in moveDropdown) {
-        if (id !== exceptId && moveDropdown[id]) {
-            toggleVisibility(`moveDropdown(${id})`, false);
-            moveDropdown[id] = false;
-        }
-    }
-}
-
-/**
- * Closes all move dropdowns.
- */
-function closeAllMoveDropdowns() {
-    for (const id in moveDropdown) {
-        toggleVisibility(`moveDropdown(${id})`, false);
-        moveDropdown[id] = false;
-    }
 }
 
 /**
