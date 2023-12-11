@@ -1,7 +1,20 @@
+/**
+ * Array to store filtered tasks.
+ */
 let filteredTasksArray = [];
+/**
+ * Array to store category colors.
+ */
 let categoryColorsArray = [];
+/**
+ * Variable to store the currently dragged task id.
+ * @type {number}
+ */
 let currentDraggedTask;
 
+/**
+ * Initializes the board by setting up templates, loading user information and initializing arrays.
+ */
 async function initBoard() {
     navPanelsTemplate();
     navPanelPopupTemplate();
@@ -15,29 +28,48 @@ async function initBoard() {
     await loadSubtasks();
     await loadCategoryColors();
     updateContactColors();
-    guestCreateTaskArray();
-    guestCreateContactArray();
-    checkGuestCategory();
+    createGuestTemplates();
     updateTasks();
     checkCurrentId();
     toggleVisibility('loaderContainerId', false);
 }
 
+/**
+ * Initializes the contacts array in the board.
+ */
 async function initContactsArrayInBoard() {
     await createIndividuallyContactsArray();
     await loadIndividuallyContacts();
 }
 
+/**
+ * Initializes the task array in the board.
+ */
 async function initTaskArrayInBoard() {
     await createIndividuallyTaskArray();
     await loadIndividuallyTasks();
 }
 
+/**
+ * Initializes the categories array in the board.
+ */
 async function initCategoriesArrayInBoard() {
     await createIndividuallyCategories();
     await loadIndividuallyCategories();
 }
 
+/**
+ * Creates guest templates by initializing guest tasks, contacts, and categories.
+ */
+function createGuestTemplates() {
+    guestCreateTaskArray();
+    guestCreateContactArray();
+    checkGuestCategory();
+}
+
+/**
+ * Updates the tasks on the board by applying various filters.
+ */
 function updateTasks() {
     toDoFilter();
     inProgressFilter();
@@ -47,6 +79,9 @@ function updateTasks() {
     categoryColor();
 }
 
+/**
+ * Adds default categories for guest users.
+ */
 function checkGuestCategory() {
     if (loggedInUser[0].email === 'guest@guest.com') {
         if (!categoriesInTaskArray.includes('Design')) {
@@ -58,6 +93,12 @@ function checkGuestCategory() {
     }
 }
 
+/**
+ * Sorts tasks based on priority and date.
+ * @param {*} a - First task object.
+ * @param {*} b - Second task object.
+ * @returns {number} - Comparison result.
+ */
 function sortBoard(a, b) {
     const priorityComparison = (b.urgent - a.urgent) || (b.medium - a.medium) || (b.low - a.low);
     const [dayA, monthA, yearA] = a.date.split('/');
@@ -68,6 +109,10 @@ function sortBoard(a, b) {
     return priorityComparison || dateComparison;
 }
 
+/**
+ * Update the progress of subtasks for a given task.
+ * @param {*} task - Task object.
+ */
 function checkSubtaskProgress(task) {
     const subtasksLimit = task.confirmedSubtasks.length;
     const completedSubtasks = task.confirmedSubtasks.filter(subtask => subtask === true).length;
@@ -78,15 +123,27 @@ function checkSubtaskProgress(task) {
     progressText.textContent = `${completedSubtasks}/${subtasksLimit}`;
 }
 
+/**
+ * Initiates the dragging of a task.
+ * @param {*} id - Task ID.
+ */
 function startDragging(id) {
     currentDraggedTask = id;
     document.getElementById(`taskId${id}`).classList.add('rotated');
 }
 
+/**
+ * Allows dropping when dragging over a drop zone.
+ * @param {*} ev - Drag event.
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
 
+/**
+ * Moves the currently dragged task to the specified category.
+ * @param {string} category - Category to move the task to.
+ */
 async function moveTo(category) {
     taskArray[currentDraggedTask]['progressStatus'] = category;
     removeHighlight();
@@ -94,6 +151,10 @@ async function moveTo(category) {
     await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
 }
 
+/**
+ * Highlights the drop zone when dragging over it.
+ * @param {string} id - Id of the drop zone.
+ */
 function highlight(id) {
     document.getElementById(id).classList.add('dragAreaHighlight');
 
@@ -103,6 +164,9 @@ function highlight(id) {
     });
 }
 
+/**
+ * Removes the highlight from drop zones.
+ */
 function removeHighlight() {
     document.getElementById('toDoId').classList.remove('dragAreaHighlight');
     document.getElementById('inProgressId').classList.remove('dragAreaHighlight');
@@ -110,6 +174,9 @@ function removeHighlight() {
     document.getElementById('doneId').classList.remove('dragAreaHighlight');
 }
 
+/**
+ * Opens the task popup for creating a new task.
+ */
 function openTaskPopup() {
     addTaskTemplate();
     slideTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId'); toggleVisibility('closePopupId', true);
@@ -118,6 +185,11 @@ function openTaskPopup() {
     updateCategoryList();
 }
 
+/**
+ * Checks the priority of a task and returns corresponding values.
+ * @param {*} task - Task object.
+ * @returns {{prioImg: string, prioText: string, dNone: string}} - Priority information.
+ */
 function checkPrio(task) {
     if (task.low === true) {
         return prioImg = 'lowGreen', prioText = "Low", dNone = '';
@@ -132,6 +204,11 @@ function checkPrio(task) {
     }
 }
 
+/**
+ * Checks the amount of contacts for a task.
+ * @param {Array} contacts - Array of contacts.
+ * @param {string} id - Task Id.
+ */
 function checkAmountContactsBoardSmall(contacts, id) {
     const contactsInBoardSmallId = document.getElementById(`contactsInBoardSmallId${id}`);
     contactsInBoardSmallId.innerHTML = '';
@@ -141,6 +218,10 @@ function checkAmountContactsBoardSmall(contacts, id) {
     }
 }
 
+/**
+ * Opens the board for a specific task, displaying detailed information.
+ * @param {number} taskIndex - Index of the task in the array.
+ */
 function openBoard(taskIndex) {
     let task = taskArray[taskIndex];
     slideTwoObjects('boardAreaId', 'backgroundBoardPopupId');
@@ -151,6 +232,11 @@ function openBoard(taskIndex) {
     categoryColor();
 }
 
+/**
+ * Update the behavior of the opened board for a task.
+ * @param {*} task - Task object.
+ * @param {number} taskIndex - Index of the task in the array.
+ */
 function checkOpenBoardBehaviour(task, taskIndex) {
     if (task.contacts.length != 0) {
         toggleVisibility(`assignedToAreaBoardBigId${taskIndex}`, true);
@@ -167,6 +253,11 @@ function checkOpenBoardBehaviour(task, taskIndex) {
     }
 }
 
+/**
+ * Checks the amount of contacts in the big board view.
+ * @param {Array} contacts - Array of contacts.
+ * @param {number} taskIndex - Index of the task in the array.
+ */
 function checkAmountContactsBoardBig(contacts, taskIndex) {
     const contactsBoardBig = document.getElementById(`contactsInBoardBigId${taskIndex}`);
     contactsBoardBig.innerHTML = '';
@@ -176,6 +267,11 @@ function checkAmountContactsBoardBig(contacts, taskIndex) {
     }
 }
 
+/**
+ * Checks the amount of subtasks in the big board view.
+ * @param {Array} subtasks - Array of subtasks.
+ * @param {number} taskIndex - Index of the task in the array.
+ */
 function checkAmountSubtasksBoardBig(subtasks, taskIndex) {
     let subtasksBoardBig = document.getElementById(`subtasksInBoardBigId${taskIndex}`);
     subtasksBoardBig.innerHTML = '';
@@ -185,6 +281,11 @@ function checkAmountSubtasksBoardBig(subtasks, taskIndex) {
     }
 }
 
+/**
+ * Toggles the completion status of a subtask.
+ * @param {number} subtaskIndex - Index of the subtask in the task's subtasks array.
+ * @param {number} taskIndex - Index of the task in the array.
+ */
 function toggleSubtask(subtaskIndex, taskIndex) {
     let task = taskArray[taskIndex];
     let subtaskStatus = task.confirmedSubtasks[subtaskIndex];
@@ -193,6 +294,11 @@ function toggleSubtask(subtaskIndex, taskIndex) {
     updateTasks();
 }
 
+/**
+ * Update the completion status of subtasks.
+ * @param {Array} confirmedSubtasks - Array of confirmed subtasks.
+ * @returns {Promise<void>}
+ */
 async function checkSubtaskConfirmed(confirmedSubtasks) {
     for (let i = 0; i < confirmedSubtasks.length; i++) {
         const confirmedSubtask = confirmedSubtasks[i];
@@ -209,6 +315,9 @@ async function checkSubtaskConfirmed(confirmedSubtasks) {
     }
 }
 
+/**
+ * Update the visibility of progress bars for tasks with existing subtasks.
+ */
 function subtasksExistingBoardSmall() {
     for (let i = 0; i < taskArray.length; i++) {
         let task = taskArray[i];
@@ -218,6 +327,9 @@ function subtasksExistingBoardSmall() {
     }
 }
 
+/**
+ * Sets up event handling for the 'To do' task creation form.
+ */
 function toDoChangeFunction() {
     const toDo = document.getElementById('createTaskId');
     toDo.onsubmit = function () {
@@ -226,6 +338,9 @@ function toDoChangeFunction() {
     };
 }
 
+/**
+ * Sets up event handling for the 'In progress' task creation form.
+ */
 function inProgressChangeFunction() {
     const inProgress = document.getElementById('createTaskId');
     inProgress.onsubmit = function () {
@@ -234,6 +349,9 @@ function inProgressChangeFunction() {
     };
 }
 
+/**
+ * Sets up event handling for the 'Await feedback' task creation form.
+ */
 function awaitFeedbackChangeFunction() {
     const awaitFeedback = document.getElementById('createTaskId');
     awaitFeedback.onsubmit = function () {
@@ -242,6 +360,10 @@ function awaitFeedbackChangeFunction() {
     };
 }
 
+/**
+ * Generates a dark color based on a string.
+ * @param {string} str - Input string.
+ */
 function generateDarkColorFromString(str) {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -253,15 +375,14 @@ function generateDarkColorFromString(str) {
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
-function setCategoryBackgroundColor(task) {
-    const smallCategoryElement = document.getElementById(`subjectKanbanSmallId${task.id}`);
-    const bigCategoryElement = document.getElementById(`subjectKanbanBigId${task.id}`);
-    const categoryName = task.category;
-
-    let colorObject = categoryColorsArray.find(obj => obj.categoryName === task.category);
-    categoryColorBehavior(smallCategoryElement, bigCategoryElement, categoryName, colorObject, task);
-}
-
+/**
+ * Manages the behavior of category colors for tasks.
+ * @param {HTMLElement} smallCategoryElement - Small category element.
+ * @param {HTMLElement} bigCategoryElement - Big category element.
+ * @param {string} categoryName - Category name.
+ * @param {*} colorObject - Object containing category color information.
+ * @param {*} task - Task object.
+ */
 function categoryColorBehavior(smallCategoryElement, bigCategoryElement, categoryName, colorObject, task) {
     if (!colorObject) {
         const colorValue = generateDarkColorFromString(task.category);
@@ -274,40 +395,59 @@ function categoryColorBehavior(smallCategoryElement, bigCategoryElement, categor
     }
 }
 
+/**
+ * Updates the category colors for tasks on the board.
+ */
 async function categoryColor() {
     taskArray.forEach(task => {
         setCategoryBackgroundColor(task);
     });
     const existingCategories = new Set(taskArray.map(task => task.category));
     categoryColorsArray = categoryColorsArray.filter(obj => existingCategories.has(obj.categoryName));
-
     taskArray.forEach(task => {
         setCategoryBackgroundColor(task);
     });
     await setItem('categoryColorsArray', JSON.stringify(categoryColorsArray));
 }
 
+/**
+ * Sets the background color of a task's category.
+ * @param {*} task - Task object.
+ */
+function setCategoryBackgroundColor(task) {
+    const smallCategoryElement = document.getElementById(`subjectKanbanSmallId${task.id}`);
+    const bigCategoryElement = document.getElementById(`subjectKanbanBigId${task.id}`);
+    const categoryName = task.category;
+    let colorObject = categoryColorsArray.find(obj => obj.categoryName === task.category);
+    categoryColorBehavior(smallCategoryElement, bigCategoryElement, categoryName, colorObject, task);
+}
+
+/**
+ * Updates the colors of contacts in the task array.
+ */
 function updateContactColors() {
     if (taskArray.length > 0) {
         for (let i = 0; i < taskArray.length; i++) {
             const task = taskArray[i];
-
             for (let j = 0; j < task.contacts.length; j++) {
                 const taskContact = task.contacts[j];
-
                 const contactIndex = contactsArray.findIndex(contact => contact.name === taskContact.name);
-
                 contactsColorBehavior(contactIndex, i, j);
             }
         }
     }
 }
 
+/**
+ * Manages the behavior of contact colors for tasks.
+ * @param {number} contactIndex - Index of the contact in the contacts array.
+ * @param {number} i - Index of the task in the task array.
+ * @param {number} j - Index of the contact in the task's contacts array.
+ */
 function contactsColorBehavior(contactIndex, i, j) {
     if (contactIndex !== -1) {
         taskArray[i].contacts[j].color = contactsArray[contactIndex].color;
     } else {
-
         taskArray[i].contacts.splice(j, 1);
         j--;
     }

@@ -72,6 +72,14 @@ async function initCategoriesArrayInAddTask() {
 }
 
 /**
+ * Delete the task array for guest log in.
+ */
+async function deleteAllTasks() {
+    taskArray = [];
+    await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
+}
+
+/**
  * Adds guest categories if the logged-in user is a guest.
  */
 function checkGuestCategory() {
@@ -159,6 +167,7 @@ function datePicker() {
             position: 'top right',
             format: 'DD/MM/YYYY',
             onSelect: function (date) {
+                dateInput.value = '';
                 const formattedDate = [
                     date.getDate().toString().padStart(2, '0'),
                     (date.getMonth() + 1).toString().padStart(2, '0'),

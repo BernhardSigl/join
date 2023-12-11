@@ -72,7 +72,7 @@ function generateAddTaskHTML() {
                         <span class="red">*</span>
                     </span>
                     <div class="relative" onclick="datePicker()">
-                        <input type="text" class="input1216withImg inputField fontSize20" placeholder="dd/mm/yyyy" id="datepickerId" oninput="validateDateInput(this)" required>
+                        <input type="text" class="input1216withImg inputField fontSize20" placeholder="dd/mm/yyyy" id="datepickerId"  oninput="validateDateInput(this)" required>
                         <img src="img/event.png" class="symbol24InputHover dateImg">
                     </div>
                 </section>

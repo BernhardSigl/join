@@ -27,3 +27,4 @@
 # clean code
 # delete guest categories
 # contacts limit board small view
+# disable content at loading

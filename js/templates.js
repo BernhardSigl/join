@@ -117,11 +117,14 @@ function validatePasswordInput(input) {
  * @param {HTMLInputElement} input - The input element to validate.
  */
 function validateDateInput(input) {
-    const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/;
-    const isValid = regex.test(input.value);
-
+    const sanitizedValue = input.value.replace(/[^0-9.\/]/g, '');
+    const formattedValue = sanitizedValue.replace(/\./g, '/');
+    input.value = formattedValue;
+    const regex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])\/(19|20)?\d{2}$/;
+    const isValid = regex.test(formattedValue);
     if (!isValid) {
         input.setCustomValidity(`Only numbers and '/' are allowed.`);
+        console.log(formattedValue);
     } else {
         input.setCustomValidity('');
     }
