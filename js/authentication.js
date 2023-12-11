@@ -42,7 +42,7 @@ function logIn() {
     let logInEmail = document.getElementById('logEmailId');
     let logInPassword = document.getElementById('logPasswordId');
     users.forEach(user => {
-        if (checkCredential(user, logInEmail, logInPassword) || (logInEmail.value === 'guest@guest.com' && logInPassword.value === 'guest#')) {
+        if (checkCredential(user, logInEmail, logInPassword)) {
             trueCredential(user);
         } else {
             wrongCredential();
