@@ -95,7 +95,7 @@ function disableLoadingScreenContacts() {
  * Renders the contacts.
  */
 async function renderContacts() {
-    if (window.location.pathname.endsWith('contacts.html')) {
+    if (window.location.href.includes("contacts.html") || window.location.href.includes("/contacts")) {
         let contactsInScrollbar = document.getElementById('contactsInScrollbarId');
         contactsInScrollbar.innerHTML = '';
         for (let i = 0; i < contactsArray.length; i++) {
@@ -165,7 +165,7 @@ function createContactData() {
  * Creates contact behavior for adding tasks and boards.
  */
 function createContactAddTaskBoardBehavior() {
-    if (window.location.href.includes("addTask.html") || window.location.href.includes("board.html")) {
+    if (window.location.href.includes("addTask.html") || window.location.href.includes("board.html") || window.location.href.includes("/addTask") || window.location.href.includes("/board")) {
         listContacts();
         for (let j = 0; j < contactsArray.length; j++) {
             let contact = contactsArray[j];
@@ -196,7 +196,7 @@ oninput = function (event) {
 function updateSelectedColor(color) {
     document.getElementById("chooseColorId").style.backgroundColor = color;
     selectedColor = color;
-    if (window.location.pathname.endsWith('contacts.html')) {
+    if (window.location.pathname.endsWith('contacts.html') || window.location.pathname.endsWith('/contacts')) {
         document.getElementById("profileColorId").style.backgroundColor = color;
         selectedColor = color;
     }
