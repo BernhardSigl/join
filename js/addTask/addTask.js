@@ -46,7 +46,7 @@ async function initAddTask() {
     await createIndividuallyTaskArray();
     await loadIndividuallyTasks();
     checkCurrentId();
-    toggleVisibility('loaderContainerId', false);
+    disableLoadingScreenAddTask();
 }
 
 /**
@@ -69,6 +69,14 @@ async function initCategoriesArrayInAddTask() {
     checkGuestCategory();
     updateCategoryList();
     checkCategoryEmptyStatus();
+}
+
+/**
+ * Disables the loading screen and makes the add task page visible.
+ */
+function disableLoadingScreenAddTask() {
+    toggleVisibility('addTaskTemplateId', true);
+    toggleVisibility('loaderContainerId', false);
 }
 
 /**

@@ -31,7 +31,7 @@ async function initBoard() {
     createGuestTemplates();
     updateTasks();
     checkCurrentId();
-    toggleVisibility('loaderContainerId', false);
+    disableLoadingScreenBoard();
 }
 
 /**
@@ -65,6 +65,14 @@ function createGuestTemplates() {
     guestCreateTaskArray();
     guestCreateContactArray();
     checkGuestCategory();
+}
+
+/**
+ * Disables the loading screen and makes the board page visible.
+ */
+function disableLoadingScreenBoard() {
+    toggleVisibility('boardTemplateId', true);
+    toggleVisibility('loaderContainerId', false);
 }
 
 /**

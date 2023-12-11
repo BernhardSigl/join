@@ -26,5 +26,4 @@
 # clean code #completed
 # delete guest categories #completed
 # contacts limit board small view #completed
-
-# disable content at loading
+# disable content at loading #completed

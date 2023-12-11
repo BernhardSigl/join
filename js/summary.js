@@ -59,7 +59,7 @@ async function initSummary() {
     sortTaskArray();
     taskArrayCounter();
     updateCounter();
-    disableLoadingScreen();
+    disableLoadingScreenSummary();
 }
 
 /**
@@ -75,7 +75,7 @@ async function loadGlobalData() {
 /**
  * Disables the loading screen and makes the summary page visible.
  */
-function disableLoadingScreen() {
+function disableLoadingScreenSummary() {
     toggleVisibility('hiddenSummaryId', true);
     toggleVisibility('loaderContainerId', false);
 }

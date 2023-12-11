@@ -50,7 +50,7 @@ async function initContacts() {
     await renderContacts(); // two times because of "async"
     await renderContacts();
     loggedInUserNotClickable();
-    toggleVisibility('loaderContainerId', false);
+    disableLoadingScreenContacts();
 }
 
 /**
@@ -81,6 +81,14 @@ async function createIndividuallyContactsArray() {
 async function deleteContactsArray() {
     contactsArray = [];
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
+}
+
+/**
+ * Disables the loading screen and makes the contacts page visible.
+ */
+function disableLoadingScreenContacts() {
+    toggleVisibility('contactsTemplateId', true);
+    toggleVisibility('loaderContainerId', false);
 }
 
 /**
