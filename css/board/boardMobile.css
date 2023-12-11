@@ -49,10 +49,6 @@
         gap: 8px;
     }
 
-    .boardArea {
-        min-width: auto;
-    }
-
     /* scroll x */
     .dragArea::-webkit-scrollbar {
         display: block;
@@ -138,6 +134,10 @@
     .dragArea {
         min-width: calc(100vw - 240px) !important;
         max-width: calc(100vw - 240px) !important;
+    }
+
+    .boardArea {
+        min-width: auto;
     }
 }
 
