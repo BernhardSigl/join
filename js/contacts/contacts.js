@@ -47,11 +47,8 @@ async function initContacts() {
     await loadContacts();
     await createLoggedInUser();
     guestCreateContactArray();
-    try {
-        await renderContacts();
-    } catch (error) {
-        console.error('Error render contacts:', error);
-    }
+    await renderContacts(); // two times because of "async"
+    await renderContacts();
     loggedInUserNotClickable();
     disableLoadingScreenContacts();
 }
@@ -137,8 +134,11 @@ async function createContact() {
     let createContact = createContactData();
     contactsArray.push(createContact);
     slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');
-    await renderContacts();
-    await renderContacts(); // two times for safety reason
+    try {
+        await renderContacts();
+    } catch (error) {
+        console.error('Error render contacts:', error);
+    }
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     if (window.location.href.includes("contacts.html")) {
         loggedInUserNotClickable();
