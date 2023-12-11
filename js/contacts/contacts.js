@@ -95,15 +95,19 @@ function disableLoadingScreenContacts() {
  * Renders the contacts.
  */
 async function renderContacts() {
-    if (window.location.pathname.endsWith('contacts.html')) {
-        let contactsInScrollbar = document.getElementById('contactsInScrollbarId');
-        contactsInScrollbar.innerHTML = '';
-        for (let i = 0; i < contactsArray.length; i++) {
-            let contact = contactsArray[i];
-            sortContacts(contactsArray);
-            categoryContacts(contact, contactsInScrollbar);
-            contactsInScrollbar.innerHTML += generateContactsInScrollbarHTML(contact, i);
+    try {
+        if (window.location.pathname.endsWith('contacts.html')) {
+            let contactsInScrollbar = document.getElementById('contactsInScrollbarId');
+            contactsInScrollbar.innerHTML = '';
+            for (let i = 0; i < contactsArray.length; i++) {
+                let contact = contactsArray[i];
+                sortContacts(contactsArray);
+                categoryContacts(contact, contactsInScrollbar);
+                contactsInScrollbar.innerHTML += generateContactsInScrollbarHTML(contact, i);
+            }
         }
+    } catch (error) {
+        console.error('Error rendering contacts:', error);
     }
 }
 
