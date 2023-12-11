@@ -47,11 +47,10 @@ async function initContacts() {
     await loadContacts();
     await createLoggedInUser();
     guestCreateContactArray();
-    await renderContacts(); // two times because of "async"
+    await renderContacts(); // three times because of "async"
     await renderContacts();
-    document.addEventListener('DOMContentLoaded', () => {
-        loggedInUserNotClickable();
-    });
+    await renderContacts();
+    loggedInUserNotClickable();
     disableLoadingScreenContacts();
 }
 
