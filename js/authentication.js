@@ -68,7 +68,25 @@ function checkCredential(user, logInEmail, logInPassword) {
 function trueCredential(user) {
     checkLoggedInUser(user);
     checkRememberMe();
-    window.location.href = 'summary.html';
+    let firstURL = 'summary.html';
+    let secondURL = '/summary';
+    if (urlExists(firstURL)) {
+        window.location.href = firstURL;
+    } else {
+        window.location.href = secondURL;
+    }
+}
+
+/**
+ * Checks the existence of a URL.
+ * @param {string} url - The URL to check.
+ * @returns {boolean} - True if the URL exists, false otherwise.
+ */
+function urlExists(url) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', url, false);
+    http.send();
+    return http.status !== 404;
 }
 
 /**

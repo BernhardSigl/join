@@ -48,7 +48,7 @@ let sortedArray = [];
  * Initializes the summary page by executing various setup tasks.
  */
 async function initSummary() {
-    welcomeMessageMobile();
+    toggleVisibility('navPanelsTemplateId', false);
     navPanelsTemplate();
     navPanelPopupTemplate();
     await loadGlobalData();
@@ -59,7 +59,9 @@ async function initSummary() {
     sortTaskArray();
     taskArrayCounter();
     updateCounter();
-    disableLoadingScreenSummary();
+    toggleVisibility('hiddenSummaryId', true);
+    welcomeMessageMobile();
+    toggleVisibility('navPanelsTemplateId', true);
 }
 
 /**
@@ -70,14 +72,6 @@ async function loadGlobalData() {
     await loadUsers();
     await createIndividuallyTaskArray();
     await loadIndividuallyTasks();
-}
-
-/**
- * Disables the loading screen and makes the summary page visible.
- */
-function disableLoadingScreenSummary() {
-    toggleVisibility('hiddenSummaryId', true);
-    toggleVisibility('loaderContainerId', false);
 }
 
 /**
@@ -226,12 +220,12 @@ function welcomeMessageMobile() {
     if (window.innerWidth <= 1400) {
         let isFromIndexPage = document.referrer.endsWith("index.html");
         if (isFromIndexPage) {
+            console.log('yes');
             lastPageWasIndexHTML();
         } else {
-            toggleVisibility('loaderContainerId', true);
+            lastPageWasNotIndexHTML();
+            console.log('no');
         }
-    } else {
-        lastPageWasNotIndexHTML();
     }
 }
 
@@ -241,7 +235,6 @@ function welcomeMessageMobile() {
 function lastPageWasIndexHTML() {
     toggleVisibility('whiteBackgroundId', true);
     toggleVisibility('welcomeMessageTextId', true);
-    toggleVisibility('loaderContainerId', false);
     setTimeout(() => {
         toggleVisibility('whiteBackgroundId', false);
         toggleVisibility('welcomeMessageTextId', false);
@@ -252,7 +245,6 @@ function lastPageWasIndexHTML() {
  * Prevent displays a welcome message when the last visited page was not the index.html page.
  */
 function lastPageWasNotIndexHTML() {
-    toggleVisibility('loaderContainerId', true);
-    toggleVisibility('whiteBackgroundId', true);
-    toggleVisibility('welcomeMessageTextId', true);
+    toggleVisibility('whiteBackgroundId', false);
+    toggleVisibility('welcomeMessageTextId', false);
 }

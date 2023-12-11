@@ -336,7 +336,6 @@ function loggedInUserNotClickable() {
     let nameShortSmallText = document.getElementById(`nameShortSmallText${indexOfLoggedInUser}`);
     let contactNameSmallId = document.getElementById(`contactNameSmallId${indexOfLoggedInUser}`);
     let contactEmailSmallId = document.getElementById(`contactEmailSmallId${indexOfLoggedInUser}`);
-    console.log(loggedInUserInContactList);
     loggedInUserInContactList.removeAttribute('onclick');
     loggedInUserProperty(loggedInUserInContactList, nameShortSmallId, nameShortSmallText, contactNameSmallId, contactEmailSmallId);
 }
