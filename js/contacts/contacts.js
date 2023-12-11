@@ -134,13 +134,10 @@ async function createContact() {
     let createContact = createContactData();
     contactsArray.push(createContact);
     slideOutTwoObjects('addContactAreaId', 'backgroundAddContactId');
-    try {
-        await renderContacts();
-    } catch (error) {
-        console.error('Error render contacts:', error);
-    }
+    await renderContacts();
+    await renderContacts();
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
-    if (window.location.href.includes("contacts.html")) {
+    if (window.location.href.includes("contacts.html") || window.location.href.includes("contacts")) {
         loggedInUserNotClickable();
     }
     createContactAddTaskBoardBehavior();
