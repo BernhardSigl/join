@@ -378,5 +378,5 @@ function createdItemBtn(inputText) {
     itemCreatedBtn.classList.remove('dNone');
     setTimeout(function () {
         itemCreatedBtn.classList.add('dNone');
-    }, 1500);
+    }, 1000);
 }

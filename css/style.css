@@ -475,11 +475,11 @@ input {
 }
 
 .slide-in {
-    animation: slide-in 0.5s ease;
+    animation: slide-in 0.25s ease;
 }
 
 .slide-out {
-    animation: slide-out 0.5s ease;
+    animation: slide-out 0.25s ease;
 }
 
 @keyframes slide-in {
