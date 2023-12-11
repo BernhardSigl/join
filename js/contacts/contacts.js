@@ -49,7 +49,7 @@ async function initContacts() {
     guestCreateContactArray();
     await renderContacts(); // two times because of "async"
     await renderContacts();
-    loggedInUserNotClickable();
+    await loggedInUserNotClickable();
     disableLoadingScreenContacts();
 }
 
@@ -95,19 +95,15 @@ function disableLoadingScreenContacts() {
  * Renders the contacts.
  */
 async function renderContacts() {
-    try {
-        if (window.location.pathname.endsWith('contacts.html')) {
-            let contactsInScrollbar = document.getElementById('contactsInScrollbarId');
-            contactsInScrollbar.innerHTML = '';
-            for (let i = 0; i < contactsArray.length; i++) {
-                let contact = contactsArray[i];
-                sortContacts(contactsArray);
-                categoryContacts(contact, contactsInScrollbar);
-                contactsInScrollbar.innerHTML += generateContactsInScrollbarHTML(contact, i);
-            }
+    if (window.location.pathname.endsWith('contacts.html')) {
+        let contactsInScrollbar = document.getElementById('contactsInScrollbarId');
+        contactsInScrollbar.innerHTML = '';
+        for (let i = 0; i < contactsArray.length; i++) {
+            let contact = contactsArray[i];
+            sortContacts(contactsArray);
+            categoryContacts(contact, contactsInScrollbar);
+            contactsInScrollbar.innerHTML += generateContactsInScrollbarHTML(contact, i);
         }
-    } catch (error) {
-        console.error('Error rendering contacts:', error);
     }
 }
 
@@ -259,7 +255,7 @@ async function saveContact(i) {
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     await renderContacts();
     await renderContacts();
-    loggedInUserNotClickable();
+    await loggedInUserNotClickable();
     closeBigViewMobile();
     createdItemBtn('Contact successfully saved');
 }
@@ -294,7 +290,7 @@ async function deleteContact(i) {
     closeEditContactPopup();
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     await renderContacts();
-    loggedInUserNotClickable();
+    await loggedInUserNotClickable();
     closeBigViewMobile();
     createdItemBtn('Contact successfully deleted');
 }
