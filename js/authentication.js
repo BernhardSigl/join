@@ -42,7 +42,7 @@ function logIn() {
     let logInEmail = document.getElementById('logEmailId');
     let logInPassword = document.getElementById('logPasswordId');
     users.forEach(user => {
-        if (checkCredential(user, logInEmail, logInPassword)) {
+        if (checkCredential(user, logInEmail, logInPassword) || (logInEmail.value === 'guest@guest.com' && logInPassword.value === 'guest#')) {
             trueCredential(user);
         } else {
             wrongCredential();
@@ -124,7 +124,6 @@ function signUp() {
  * Logs in as a guest user with predefined credentials.
  */
 function guestLogIn() {
-    toggleRequiredAttribute('logPasswordId', true);
     let logInEmailText = document.getElementById('logEmailId');
     let logInPasswordText = document.getElementById('logPasswordId');
     logInEmailText.style.color = 'white';
