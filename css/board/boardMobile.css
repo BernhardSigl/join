@@ -124,10 +124,6 @@
     .title {
         height: 56px;
     }
-
-    .titleKanbanBigView {
-        min-height: 56px;
-    }
 }
 
 @media(max-width: 1100px) {
@@ -248,5 +244,17 @@
 @media (max-height: 957px) and (max-width: 767px) {
     .boardArea {
         border-radius: 0;
+    }
+}
+
+@media (max-height: 958px) {
+    .titleKanbanBigView {
+        min-height: 143px;
+    }
+}
+
+@media(max-width: 1425px) and (max-height: 958px) {
+    .titleKanbanBigView {
+        min-height: 113px;
     }
 }
