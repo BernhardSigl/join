@@ -274,7 +274,7 @@ function createTaskData(moveTo) {
  * Executes specific behavior after creating a task, specific to the task board.
  */
 function createTaskBoardBehavior() {
-    if (window.location.href.endsWith("board.html")) {
+    if (window.location.href.endsWith("board.html") || window.location.href.endsWith("/board")) {
         updateTasks();
         slideOutTwoObjects('addTaskTemplateId', 'backgroundAddTaskPopupId');
     }

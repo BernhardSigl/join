@@ -104,7 +104,7 @@ function confirmSubtaskRenaming(pencilImage, i) {
  * @param {number} i - The index of the subtask in the subtasks array.
  */
 function deleteSubtask(i) {
-    if (window.location.pathname.includes('board.html')) {
+    if (window.location.pathname.includes('board.html') || window.location.pathname.includes('/board')) {
         if (Array.isArray(updatedConfirmedSubtasksArray)) {
             updatedConfirmedSubtasksArray.splice(i, 1);
         }

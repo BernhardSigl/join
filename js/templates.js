@@ -187,17 +187,17 @@ function setActiveLink() {
  * @returns {string} - The ID of the active link.
  */
 function markNavbarLinks(currentUrl) {
-    if (currentUrl.includes("summary.html")) {
+    if (currentUrl.includes("summary.html") || currentUrl.includes("/summary")) {
         return "summaryLinkId";
-    } else if (currentUrl.includes("addTask.html")) {
+    } else if (currentUrl.includes("addTask.html") || currentUrl.includes("/addTask")) {
         return "addTaskLinkId";
-    } else if (currentUrl.includes("board.html")) {
+    } else if (currentUrl.includes("board.html") || currentUrl.includes("/board")) {
         return "boardLinkId";
-    } else if (currentUrl.includes("contacts.html")) {
+    } else if (currentUrl.includes("contacts.html") || currentUrl.includes("/contacts")) {
         return "contactsLinkId";
-    } else if (currentUrl.includes("privacyPolicy.html")) {
+    } else if (currentUrl.includes("privacyPolicy.html") || currentUrl.includes("/privacyPolicy")) {
         return "privacyPolicyLinkId";
-    } else if (currentUrl.includes("legalNotice.html")) {
+    } else if (currentUrl.includes("legalNotice.html") || currentUrl.includes("/legalNotice")) {
         return "legalNoticeLinkId";
     }
     return "";
