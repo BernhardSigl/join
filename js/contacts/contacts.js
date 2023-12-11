@@ -49,7 +49,8 @@ async function initContacts() {
     guestCreateContactArray();
     await renderContacts(); // two times because of "async"
     await renderContacts();
-    await loggedInUserNotClickable();
+    await new Promise(resolve => setTimeout(resolve, 500));
+    loggedInUserNotClickable();
     disableLoadingScreenContacts();
 }
 
@@ -255,7 +256,7 @@ async function saveContact(i) {
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     await renderContacts();
     await renderContacts();
-    await loggedInUserNotClickable();
+    loggedInUserNotClickable();
     closeBigViewMobile();
     createdItemBtn('Contact successfully saved');
 }
@@ -290,7 +291,7 @@ async function deleteContact(i) {
     closeEditContactPopup();
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
     await renderContacts();
-    await loggedInUserNotClickable();
+    loggedInUserNotClickable();
     closeBigViewMobile();
     createdItemBtn('Contact successfully deleted');
 }
