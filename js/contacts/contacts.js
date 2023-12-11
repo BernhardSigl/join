@@ -137,7 +137,7 @@ async function createContact() {
     await renderContacts();
     await renderContacts();
     await setItem(`individuallyContacts_${userId}`, JSON.stringify(contactsArray));
-    if (window.location.href.includes("contacts.html") || window.location.href.includes("contacts")) {
+    if (window.location.href.includes("contacts.html") || window.location.href.includes("/contacts")) {
         loggedInUserNotClickable();
     }
     createContactAddTaskBoardBehavior();
