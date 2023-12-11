@@ -124,6 +124,7 @@ function signUp() {
  * Logs in as a guest user with predefined credentials.
  */
 function guestLogIn() {
+    toggleRequiredAttribute('logPasswordId', false);
     let logInEmailText = document.getElementById('logEmailId');
     let logInPasswordText = document.getElementById('logPasswordId');
     logInEmailText.style.color = 'white';
