@@ -163,6 +163,17 @@ textarea:focus {
     width: 40.5px;
 }
 
+.btnErrorBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+#errorContainerBtnId {
+    margin-left: 4px;
+}
+
 /* category */
 .greylineInputAddTask {
     right: 49px !important;

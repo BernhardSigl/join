@@ -14,6 +14,8 @@ let mediumStatus = false;
  */
 let lowStatus = false;
 
+let onePrioBtnPressed = true;
+
 /**
  * Handles the click event for the "urgent" button.
  */
@@ -21,6 +23,7 @@ function urgentBtn() {
     let urgentBtn = document.getElementById('addUrgentId');
     let urgentImg = document.getElementById('urgentImgId');
     let urgentText = document.getElementById('urgentTextId');
+    hideError();
     resetButtons();
     mediumStatus = false;
     lowStatus = false;
@@ -69,6 +72,7 @@ function mediumBtn() {
     let mediumBtn = document.getElementById('addMediumId');
     let mediumImg = document.getElementById('mediumImgId');
     let mediumText = document.getElementById('mediumTextId');
+    hideError();
     if (mediumStatus === false) {
         mediumBtnPressed(mediumImg, mediumBtn, mediumText);
     } else {
@@ -114,6 +118,7 @@ function lowBtn() {
     let lowBtn = document.getElementById('addLowId');
     let lowImg = document.getElementById('lowImgId');
     let lowText = document.getElementById('lowTextId');
+    hideError();
     if (lowStatus === false) {
         lowBtnPressed(lowImg, lowBtn, lowText);
     } else {
@@ -147,6 +152,34 @@ function lowBtnUnpressed(lowImg, lowBtn, lowText) {
     lowText.style.color = '';
     lowText.style.fontWeight = '';
     lowStatus = false;
+}
+
+/**
+ * Validates the priority buttons and sets the status accordingly.
+ * Displays an error message if exactly one priority button is not selected.
+ */
+function validateButton() {
+    if (urgentStatus + mediumStatus + lowStatus !== 1) {
+        onePrioBtnPressed = false;
+        displayError();
+    } else {
+        hideError();
+        onePrioBtnPressed = true;
+    }
+}
+
+/**
+ * Displays an error message in the designated error container.
+ */
+function displayError() {
+    document.getElementById(`errorContainerBtnId`).innerHTML = `Please select a prioritization`;
+}
+
+/**
+ * Hides the error message in the designated error container.
+ */
+function hideError() {
+    document.getElementById(`errorContainerBtnId`).innerHTML = '';
 }
 
 /**

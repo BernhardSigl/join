@@ -191,6 +191,7 @@ function openTaskPopup() {
     enableCalender();
     listContacts();
     updateCategoryList();
+    mediumBtn();
 }
 
 /**
@@ -252,6 +253,7 @@ function openBoard(taskIndex) {
  */
 function checkOpenBoardBehaviour(task, taskIndex) {
     if (task.contacts.length != 0) {
+        checkAmountContactsBoardBig(task.contacts, taskIndex);
         toggleVisibility(`assignedToAreaBoardBigId${taskIndex}`, true);
     }
     if (task.subtasks.length != 0) {

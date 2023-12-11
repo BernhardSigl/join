@@ -46,6 +46,7 @@ async function initAddTask() {
     await createIndividuallyTaskArray();
     await loadIndividuallyTasks();
     checkCurrentId();
+    mediumBtn();
     disableLoadingScreenAddTask();
 }
 
@@ -232,12 +233,15 @@ function onClickAwaitFeedback() {
  * @param {string} moveTo - Move the task to a specific category.
  */
 async function createTask(moveTo) {
-    createTaskData(moveTo);
-    contactsInTaskArray = [];
-    await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
-    clearTask();
-    createTaskBoardBehavior();
-    createdItemBtn('Task successfully created');
+    validateButton();
+    if (onePrioBtnPressed === true) {
+        createTaskData(moveTo);
+        contactsInTaskArray = [];
+        await setItem(`individuallyTasks_${userId}`, JSON.stringify(taskArray));
+        clearTask();
+        createTaskBoardBehavior();
+        createdItemBtn('Task successfully created');
+    }
 }
 
 /**
