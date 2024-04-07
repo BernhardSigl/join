@@ -167,6 +167,7 @@ async function loadLoggedInUser() {
     let loggedInUserAsText = localStorage.getItem('loggedInUser');
     if (loggedInUserAsText) {
         loggedInUser = JSON.parse(loggedInUserAsText);
+        loggedInUser = [loggedInUser.pop()];
     }
 }
 

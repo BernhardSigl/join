@@ -25,6 +25,7 @@
         navPanelPopupTemplate();
         await loadLastOpenedHTML();
         checkLastOpenedHTML();
+        backBtnVisibility();
     }
 
     function checkLastOpenedHTML() {
@@ -32,6 +33,16 @@
             toggleVisibility('categoryLinksId', false);
             toggleVisibility('headerRightId', false);
         }
+    }
+
+    function backBtnVisibility() {
+        let backBtnValue = localStorage.getItem('backBtn');
+                if (backBtnValue === 'false') {
+                    let backBtn = document.getElementById('backBtn');
+                    if (backBtn) {
+                        backBtn.style.visibility = 'hidden';
+                    }
+                }
     }
 </script>
 
@@ -118,7 +129,7 @@
                 Website imprint created by <a href="https://www.impressum-generator.de">impressum-generator.de</a> from
                 <a href="https://www.kanzlei-hasselbach.de/" rel="nofollow">Kanzlei Hasselbach</a>
             </div>
-            <div class="pointer" onclick="openLastOpenedHTML()">
+            <div class="pointer" onclick="openLastOpenedHTML()" id="backBtn">
                 <img src="img/arrowLeft.svg" class="symbol32">
             </div>
         </div>

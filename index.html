@@ -48,7 +48,7 @@
             <a class="fontSize16 footerLinks pointer" onclick="openPrivacyPolicyLogScreen()">
                 Privacy Policy
             </a>
-            <a class="fontSize16 footerLinks pointer" onclick="openPrivacyPolicyLogScreen()">
+            <a class="fontSize16 footerLinks pointer" onclick="openLegalNoticeLogScreen()">
                 Legal notice
             </a>
         </section>
@@ -57,7 +57,7 @@
     <section>
         <div class="absoluteMiddle logInBoxWidth justifyCenter" id="logInWindowId">
             <!-- log in -->
-            <form onsubmit="logIn(); return false;">
+            <form onsubmit="return false;">
                 <div class="logInBox gap32 column" id="hideLogInId">
                     <!-- title -->
                     <div class="column gap16 alignCenter">
@@ -91,7 +91,7 @@
                     </div>
                     <!-- bottom buttons -->
                     <div class="gap35 justifyCenter logInGuestLogInBtns">
-                        <button class="btn1524 fontWhite bold fontSize21 pointer" type="submit">
+                        <button class="btn1524 fontWhite bold fontSize21 pointer" type="submit" onclick="logIn();">
                             Log in
                         </button>
                         <button class="btn1524 fontWhite bold btnWhite fontSize21 pointer" onclick="guestLogIn()">
@@ -152,7 +152,7 @@
                         <input class="checkbox pointer" type="checkbox" id="regCheckboxId"
                             onchange="validateCheckbox(this);" required>
                         <span class="fontSize16">I accept the</span>
-                        <a href="#" class="fontSize16 pointer privacyLink">privacy policy</a>
+                        <a href="#" onclick="openPrivacyPolicyLogScreen()" class="fontSize16 pointer privacyLink">privacy policy</a>
                     </div>
                     <!-- bottom buttons -->
                     <div class="justifyCenter">

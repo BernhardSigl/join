@@ -286,6 +286,7 @@ function openLastOpenedHTML() {
  * Opens the Privacy Policy page, saving the last opened HTML page for the back button.
  */
 function openPrivacyPolicyLogScreen() {
+    localStorage.setItem('backBtn', 'false');
     loggedInUser.push({
         'name': 'nothing',
         'email': 'nothing@nothing.com',
@@ -293,7 +294,19 @@ function openPrivacyPolicyLogScreen() {
     lastOpenedHTML = window.location.href;
     saveLoggedInUser();
     saveLastOpenedHTML();
-    window.location.href = 'privacyPolicy.html';
+    window.open('privacyPolicy.html', '_blank');
+}
+
+function openLegalNoticeLogScreen() {
+    localStorage.setItem('backBtn', 'false');
+    loggedInUser.push({
+        'name': 'nothing',
+        'email': 'nothing@nothing.com',
+    });
+    lastOpenedHTML = window.location.href;
+    saveLoggedInUser();
+    saveLastOpenedHTML();
+    window.open('legalNotice.html', '_blank');
 }
 
 /**
