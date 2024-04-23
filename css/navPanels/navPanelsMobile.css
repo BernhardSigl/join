@@ -21,6 +21,11 @@
     .headerTitle {
         margin-left: 170px;
     }
+
+    .quicklinks a {
+        width: 180px;
+        padding: 8px 34px;
+    }
 }
 
 @media(max-width: 767px) {

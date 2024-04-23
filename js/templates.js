@@ -2,7 +2,7 @@
  * Keeps track of the last opened HTML page for navigation purposes.
  * @type {string}
  */
-let lastOpenedHTML = '';
+let lastOpenedHTML = "";
 
 /**
  * Toggles the visibility of an HTML element.
@@ -10,8 +10,8 @@ let lastOpenedHTML = '';
  * @param {boolean} show - A flag indicating whether to show or hide the element.
  */
 function toggleVisibility(id, show) {
-    const showHide = document.getElementById(id);
-    showHide.classList.toggle('dNone', !show);
+  const showHide = document.getElementById(id);
+  showHide.classList.toggle("dNone", !show);
 }
 
 /**
@@ -20,8 +20,8 @@ function toggleVisibility(id, show) {
  * @param {boolean} required - A flag indicating whether the required attribute should be set.
  */
 function toggleRequiredAttribute(elementId, required) {
-    const element = document.getElementById(elementId);
-    element.required = required;
+  const element = document.getElementById(elementId);
+  element.required = required;
 }
 
 /**
@@ -30,8 +30,8 @@ function toggleRequiredAttribute(elementId, required) {
  * @param {boolean} disabled - A flag indicating whether the checkbox should be disabled.
  */
 function toggleCheckboxDisabled(elementId, disabled) {
-    const checkbox = document.getElementById(elementId);
-    checkbox.disabled = disabled;
+  const checkbox = document.getElementById(elementId);
+  checkbox.disabled = disabled;
 }
 
 /**
@@ -39,13 +39,13 @@ function toggleCheckboxDisabled(elementId, disabled) {
  * @param {HTMLInputElement} input - The input element to validate.
  */
 function validateNameInputRegister(input) {
-    const regex = /^[a-zA-Z\s]+$/;
-    const isValid = regex.test(input.value);
-    if (!isValid) {
-        input.setCustomValidity('Only letters are allowed.');
-    } else {
-        input.setCustomValidity('');
-    }
+  const regex = /^[a-zA-Z\s]+$/;
+  const isValid = regex.test(input.value);
+  if (!isValid) {
+    input.setCustomValidity("Only letters are allowed.");
+  } else {
+    input.setCustomValidity("");
+  }
 }
 
 /**
@@ -53,16 +53,18 @@ function validateNameInputRegister(input) {
  * @param {HTMLInputElement} input - The input element to validate.
  */
 function validateNameInput(input) {
-    const regex = /^[a-zA-Z\s]+$/;
-    const isValid = regex.test(input.value);
-    const isNameInArray = contactsArray.some(contact => contact.name === input.value);
-    if (!isValid) {
-        input.setCustomValidity('Only letters are allowed.');
-    } else if (isNameInArray) {
-        input.setCustomValidity('Name already exists.');
-    } else {
-        input.setCustomValidity('');
-    }
+  const regex = /^[a-zA-Z\s]+$/;
+  const isValid = regex.test(input.value);
+  const isNameInArray = contactsArray.some(
+    (contact) => contact.name === input.value
+  );
+  if (!isValid) {
+    input.setCustomValidity("Only letters are allowed.");
+  } else if (isNameInArray) {
+    input.setCustomValidity("Name already exists.");
+  } else {
+    input.setCustomValidity("");
+  }
 }
 
 /**
@@ -70,16 +72,16 @@ function validateNameInput(input) {
  * @param {HTMLInputElement} input - The input element to validate.
  */
 function validateEmailInputRegister(input) {
-    const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    const isValid = regex.test(input.value);
-    const isEmailInArray = users.some(user => user.email === input.value);
-    if (!isValid) {
-        input.setCustomValidity('Please enter a valid email address.');
-    } else if (isEmailInArray) {
-        input.setCustomValidity('Email already exists.');
-    } else {
-        input.setCustomValidity('');
-    }
+  const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+  const isValid = regex.test(input.value);
+  const isEmailInArray = users.some((user) => user.email === input.value);
+  if (!isValid) {
+    input.setCustomValidity("Please enter a valid email address.");
+  } else if (isEmailInArray) {
+    input.setCustomValidity("Email already exists.");
+  } else {
+    input.setCustomValidity("");
+  }
 }
 
 /**
@@ -87,14 +89,14 @@ function validateEmailInputRegister(input) {
  * @param {HTMLInputElement} input - The input element to validate.
  */
 function validateEmailInput(input) {
-    const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    const isValid = regex.test(input.value);
+  const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+  const isValid = regex.test(input.value);
 
-    if (!isValid) {
-        input.setCustomValidity('Please enter a valid email address.');
-    } else {
-        input.setCustomValidity('');
-    }
+  if (!isValid) {
+    input.setCustomValidity("Please enter a valid email address.");
+  } else {
+    input.setCustomValidity("");
+  }
 }
 
 /**
@@ -102,14 +104,16 @@ function validateEmailInput(input) {
  * @param {HTMLInputElement} input - The input element to validate.
  */
 function validatePasswordInput(input) {
-    const regex = /^(?=.*[A-Za-z])(?=.*[@#$%^&+=]).{6,}$/;
-    const isValid = regex.test(input.value);
+  const regex = /^(?=.*[A-Za-z])(?=.*[@#$%^&+=]).{6,}$/;
+  const isValid = regex.test(input.value);
 
-    if (!isValid) {
-        input.setCustomValidity('Password must contain at least 6 characters including letters and may include at least one special character.');
-    } else {
-        input.setCustomValidity('');
-    }
+  if (!isValid) {
+    input.setCustomValidity(
+      "Password must contain at least 6 characters including letters and may include at least one special character."
+    );
+  } else {
+    input.setCustomValidity("");
+  }
 }
 
 /**
@@ -117,16 +121,16 @@ function validatePasswordInput(input) {
  * @param {HTMLInputElement} input - The input element to validate.
  */
 function validateDateInput(input) {
-    const sanitizedValue = input.value.replace(/[^0-9.\/]/g, '');
-    const formattedValue = sanitizedValue.replace(/\./g, '/');
-    input.value = formattedValue;
-    const regex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])\/(19|20)?\d{2}$/;
-    const isValid = regex.test(formattedValue);
-    if (!isValid) {
-        input.setCustomValidity(`Only numbers and '/' are allowed.`);
-    } else {
-        input.setCustomValidity('');
-    }
+  const sanitizedValue = input.value.replace(/[^0-9.\/]/g, "");
+  const formattedValue = sanitizedValue.replace(/\./g, "/");
+  input.value = formattedValue;
+  const regex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[0-2])\/(19|20)?\d{2}$/;
+  const isValid = regex.test(formattedValue);
+  if (!isValid) {
+    input.setCustomValidity(`Only numbers and '/' are allowed.`);
+  } else {
+    input.setCustomValidity("");
+  }
 }
 
 /**
@@ -134,13 +138,13 @@ function validateDateInput(input) {
  * @param {HTMLInputElement} input - The input element to validate.
  */
 function validatePhoneInput(input) {
-    const regex = /^[0-9\s+\/]+$/;
-    const isValid = regex.test(input.value);
-    if (!isValid) {
-        input.setCustomValidity('Only numbers, spaces, "+" and "/" are allowed.');
-    } else {
-        input.setCustomValidity('');
-    }
+  const regex = /^[0-9\s+\/]+$/;
+  const isValid = regex.test(input.value);
+  if (!isValid) {
+    input.setCustomValidity('Only numbers, spaces, "+" and "/" are allowed.');
+  } else {
+    input.setCustomValidity("");
+  }
 }
 
 /**
@@ -148,12 +152,12 @@ function validatePhoneInput(input) {
  * @param {HTMLInputElement} checkbox - The checkbox element to validate.
  */
 function validateCheckbox(checkbox) {
-    const isValid = checkbox.checked;
-    if (!isValid) {
-        checkbox.setCustomValidity('You must accept the privacy policy.');
-    } else {
-        checkbox.setCustomValidity('');
-    }
+  const isValid = checkbox.checked;
+  if (!isValid) {
+    checkbox.setCustomValidity("You must accept the privacy policy.");
+  } else {
+    checkbox.setCustomValidity("");
+  }
 }
 
 /**
@@ -161,24 +165,24 @@ function validateCheckbox(checkbox) {
  * @param {HTMLInputElement} inputField - The input field to validate.
  */
 function validateZeroInput(inputField) {
-    if (inputField.value.trim() === '') {
-        inputField.setCustomValidity('Please enter at least one character.');
-    } else {
-        inputField.setCustomValidity('');
-    }
+  if (inputField.value.trim() === "") {
+    inputField.setCustomValidity("Please enter at least one character.");
+  } else {
+    inputField.setCustomValidity("");
+  }
 }
 
 /**
  * Pull the active link based on the current URL.
  */
 function setActiveLink() {
-    let currentUrl = window.location.href;
-    let activeLinkId = markNavbarLinks(currentUrl);
-    if (activeLinkId !== "") {
-        let activeLink = document.getElementById(activeLinkId);
-        activeLink.style.backgroundColor = "#091931";
-        activeLink.style.pointerEvents = "none";
-    }
+  let currentUrl = window.location.href;
+  let activeLinkId = markNavbarLinks(currentUrl);
+  if (activeLinkId !== "") {
+    let activeLink = document.getElementById(activeLinkId);
+    activeLink.style.backgroundColor = "#091931";
+    activeLink.style.pointerEvents = "none";
+  }
 }
 
 /**
@@ -187,20 +191,35 @@ function setActiveLink() {
  * @returns {string} - The ID of the active link.
  */
 function markNavbarLinks(currentUrl) {
-    if (currentUrl.includes("summary.html") || currentUrl.includes("/summary")) {
-        return "summaryLinkId";
-    } else if (currentUrl.includes("addTask.html") || currentUrl.includes("/addTask")) {
-        return "addTaskLinkId";
-    } else if (currentUrl.includes("board.html") || currentUrl.includes("/board")) {
-        return "boardLinkId";
-    } else if (currentUrl.includes("contacts.html") || currentUrl.includes("/contacts")) {
-        return "contactsLinkId";
-    } else if (currentUrl.includes("privacyPolicy.html") || currentUrl.includes("/privacyPolicy")) {
-        return "privacyPolicyLinkId";
-    } else if (currentUrl.includes("legalNotice.html") || currentUrl.includes("/legalNotice")) {
-        return "legalNoticeLinkId";
-    }
-    return "";
+  if (currentUrl.includes("summary.html") || currentUrl.includes("/summary")) {
+    return "summaryLinkId";
+  } else if (
+    currentUrl.includes("addTask.html") ||
+    currentUrl.includes("/addTask")
+  ) {
+    return "addTaskLinkId";
+  } else if (
+    currentUrl.includes("board.html") ||
+    currentUrl.includes("/board")
+  ) {
+    return "boardLinkId";
+  } else if (
+    currentUrl.includes("contacts.html") ||
+    currentUrl.includes("/contacts")
+  ) {
+    return "contactsLinkId";
+  } else if (
+    currentUrl.includes("privacyPolicy.html") ||
+    currentUrl.includes("/privacyPolicy")
+  ) {
+    return "privacyPolicyLinkId";
+  } else if (
+    currentUrl.includes("legalNotice.html") ||
+    currentUrl.includes("/legalNotice")
+  ) {
+    return "legalNoticeLinkId";
+  }
+  return "";
 }
 
 /**
@@ -208,14 +227,14 @@ function markNavbarLinks(currentUrl) {
  * @param {string} frontId - The ID of the element to slide in.
  */
 function slideOneObject(frontId) {
-    document.body.classList.add('disable-scroll');
-    slideInAnimation = document.getElementById(frontId);
-    toggleVisibility(frontId, true);
-    slideInAnimation.classList.add('slide-in');
-    setTimeout(function () {
-        slideInAnimation.classList.remove('slide-in');
-        document.body.classList.remove('disable-scroll');
-    }, 500);
+  document.body.classList.add("disable-scroll");
+  slideInAnimation = document.getElementById(frontId);
+  toggleVisibility(frontId, true);
+  slideInAnimation.classList.add("slide-in");
+  setTimeout(function () {
+    slideInAnimation.classList.remove("slide-in");
+    document.body.classList.remove("disable-scroll");
+  }, 500);
 }
 
 /**
@@ -223,14 +242,14 @@ function slideOneObject(frontId) {
  * @param {string} frontId - The ID of the element to slide out.
  */
 function slideOutOneObject(frontId) {
-    document.body.classList.add('disable-scroll');
-    slideInAnimation = document.getElementById(frontId);
-    slideInAnimation.classList.add('slide-out');
-    setTimeout(function () {
-        slideInAnimation.classList.remove('slide-out');
-        toggleVisibility(frontId, false);
-        document.body.classList.remove('disable-scroll');
-    }, 200);
+  document.body.classList.add("disable-scroll");
+  slideInAnimation = document.getElementById(frontId);
+  slideInAnimation.classList.add("slide-out");
+  setTimeout(function () {
+    slideInAnimation.classList.remove("slide-out");
+    toggleVisibility(frontId, false);
+    document.body.classList.remove("disable-scroll");
+  }, 200);
 }
 
 /**
@@ -239,15 +258,15 @@ function slideOutOneObject(frontId) {
  * @param {string} backgroundId - The ID of the background element to toggle visibility.
  */
 function slideTwoObjects(frontId, backgroundId) {
-    document.body.classList.add('disable-scroll');
-    slideInAnimation = document.getElementById(frontId);
-    toggleVisibility(frontId, true);
-    toggleVisibility(backgroundId, true);
-    slideInAnimation.classList.add('slide-in');
-    setTimeout(function () {
-        slideInAnimation.classList.remove('slide-in');
-        document.body.classList.remove('disable-scroll');
-    }, 500);
+  document.body.classList.add("disable-scroll");
+  slideInAnimation = document.getElementById(frontId);
+  toggleVisibility(frontId, true);
+  toggleVisibility(backgroundId, true);
+  slideInAnimation.classList.add("slide-in");
+  setTimeout(function () {
+    slideInAnimation.classList.remove("slide-in");
+    document.body.classList.remove("disable-scroll");
+  }, 500);
 }
 
 /**
@@ -256,15 +275,15 @@ function slideTwoObjects(frontId, backgroundId) {
  * @param {string} backgroundId - The ID of the background element to toggle visibility.
  */
 function slideOutTwoObjects(frontId, backgroundId) {
-    document.body.classList.add('disable-scroll');
-    slideInAnimation = document.getElementById(frontId);
-    slideInAnimation.classList.add('slide-out');
-    setTimeout(function () {
-        toggleVisibility(backgroundId, false);
-        toggleVisibility(frontId, false);
-        slideInAnimation.classList.remove('slide-out');
-        document.body.classList.remove('disable-scroll');
-    }, 200);
+  document.body.classList.add("disable-scroll");
+  slideInAnimation = document.getElementById(frontId);
+  slideInAnimation.classList.add("slide-out");
+  setTimeout(function () {
+    toggleVisibility(backgroundId, false);
+    toggleVisibility(frontId, false);
+    slideInAnimation.classList.remove("slide-out");
+    document.body.classList.remove("disable-scroll");
+  }, 200);
 }
 
 /**
@@ -272,111 +291,215 @@ function slideOutTwoObjects(frontId, backgroundId) {
  * @param {Event} event - The event object.
  */
 function doNotClose(event) {
-    event.stopPropagation();
+  event.stopPropagation();
 }
 
 /**
  * Opens the last opened HTML page in the browsing history.
  */
 function openLastOpenedHTML() {
-    window.history.back();
+  window.history.back();
 }
 
 /**
  * Opens the Privacy Policy page, saving the last opened HTML page for the back button.
  */
 function openPrivacyPolicyLogScreen() {
-    localStorage.setItem('backBtn', 'false');
-    loggedInUser.push({
-        'name': 'nothing',
-        'email': 'nothing@nothing.com',
-    });
-    lastOpenedHTML = window.location.href;
-    saveLoggedInUser();
-    saveLastOpenedHTML();
-    window.open('privacyPolicy.html', '_blank');
+  localStorage.setItem("backBtn", "false");
+  loggedInUser.push({
+    name: "nothing",
+    email: "nothing@nothing.com",
+  });
+  lastOpenedHTML = window.location.href;
+  saveLoggedInUser();
+  saveLastOpenedHTML();
+  window.open("privacyPolicy.html", "_blank");
 }
 
 function openLegalNoticeLogScreen() {
-    localStorage.setItem('backBtn', 'false');
-    loggedInUser.push({
-        'name': 'nothing',
-        'email': 'nothing@nothing.com',
-    });
-    lastOpenedHTML = window.location.href;
-    saveLoggedInUser();
-    saveLastOpenedHTML();
-    window.open('legalNotice.html', '_blank');
+  localStorage.setItem("backBtn", "false");
+  loggedInUser.push({
+    name: "nothing",
+    email: "nothing@nothing.com",
+  });
+  lastOpenedHTML = window.location.href;
+  saveLoggedInUser();
+  saveLastOpenedHTML();
+  window.open("legalNotice.html", "_blank");
 }
 
 /**
  * Deletes arrays if the user is a guest and came from the index page.
  */
 function guestDeleteArrays() {
-    if (document.referrer.includes('index.html')) {
-        if (loggedInUser[0].email === 'guest@guest.com') {
-            deleteAllTasks();
-            deleteContactsArray();
-            deleteAllCategories();
-        }
+  if (document.referrer.includes("index.html")) {
+    if (loggedInUser[0].email === "guest@guest.com") {
+      deleteAllTasks();
+      deleteContactsArray();
+      deleteAllCategories();
     }
+  }
 }
 
 /**
  * Creates a task array if the user is a guest.
  */
 function guestCreateTaskArray() {
-    if (loggedInUser[0].email === 'guest@guest.com') {
-        const existingTask = taskArray.find(task => task.id === 0);
-        if (!existingTask) {
-            taskArray.push({
-                category: 'Design',
-                confirmedSubtasks: [false, true, false],
-                contacts: [
-                    {
-                        name: 'Guest (You)',
-                        nameShort: 'G',
-                        email: 'guest@guest.com',
-                        color: 'grey',
-                    },
-                    {
-                        name: 'Max Mustermann',
-                        nameShort: 'MM',
-                        email: 'max.mustermann@web.de',
-                        phone: '+49123 1234567',
-                        color: 'rgb(38, 117, 156)',
-                    },
-                ],
-                date: '30/06/2024',
-                description: 'Create a visual representation of the website layout and design, including color schemes and typography.',
-                id: 0,
-                low: true,
-                medium: false,
-                progressStatus: 'toDo',
-                subtasks: ['Sketch homepage layout', 'Select color palette', 'Choose typography'],
-                title: 'Design Website Mockup',
-                urgent: false,
-            });
+  if (loggedInUser[0].email === "guest@guest.com") {
+    const existingTask = taskArray.find((task) => task.id === 0);
+    if (!existingTask) {
+      taskArray.push(
+        {
+          category: "Design",
+          confirmedSubtasks: [false, true, false],
+          contacts: [
+            {
+              name: "Guest (You)",
+              nameShort: "G",
+              email: "guest@guest.com",
+              color: "grey",
+            },
+            {
+              name: "Max Mustermann",
+              nameShort: "MM",
+              email: "max.mustermann@web.de",
+              phone: "+49123 1234567",
+              color: "rgb(38, 117, 156)",
+            },
+          ],
+          date: "30/07/2024",
+          description:
+            "Create a visual representation of the website layout and design, including color schemes and typography.",
+          id: 0,
+          low: true,
+          medium: false,
+          progressStatus: "toDo",
+          subtasks: [
+            "Sketch homepage layout",
+            "Select color palette",
+            "Choose typography",
+          ],
+          title: "Design Website Mockup",
+          urgent: false,
+        },
+        {
+          category: "Python",
+          confirmedSubtasks: [true, false],
+          contacts: [
+            {
+              name: "Guest (You)",
+              nameShort: "G",
+              email: "guest@guest.com",
+              color: "grey",
+            },
+            {
+              name: "Max Mustermann",
+              nameShort: "MM",
+              email: "max.mustermann@web.de",
+              phone: "+49123 1234567",
+              color: "rgb(38, 117, 156)",
+            },
+            {
+              color: "rgb(173, 101, 24)",
+              email: "marko.tuepprath@gmx.com",
+              name: "Marko Tuepprath",
+              nameShort: "MT",
+              phone: "+49452 4456322",
+            },
+            {
+              color: "rgb(16, 110, 41)",
+              email: "tom.fischer@gmail.com",
+              name: "Tom Fischer",
+              nameShort: "TF",
+              phone: "+49456 4553614",
+            },
+          ],
+          date: "24/09/2024",
+          description:
+            "Develop the websites backend functionality, including database integration and authentication.",
+          id: 1,
+          low: false,
+          medium: true,
+          progressStatus: "inProgress",
+          subtasks: ["Django initialisation", "Create superusers"],
+          title: "Backend initialisation",
+          urgent: false,
+        },
+        {
+          category: "Angular",
+          confirmedSubtasks: [true, true, false],
+          contacts: [
+            {
+              name: "Guest (You)",
+              nameShort: "G",
+              email: "guest@guest.com",
+              color: "grey",
+            },
+            {
+              color: "rgb(173, 101, 24)",
+              email: "marko.tuepprath@gmx.com",
+              name: "Marko Tuepprath",
+              nameShort: "MT",
+              phone: "+49452 4456322",
+            },
+            {
+              color: "rgb(16, 110, 41)",
+              email: "tom.fischer@gmail.com",
+              name: "Tom Fischer",
+              nameShort: "TF",
+              phone: "+49456 4553614",
+            },
+          ],
+          date: "12/08/2024",
+          description:
+            "Set up the foundational structure for the Angular project, including initializing the project, establishing a connection with Firebase for database services, and integrating Material Design components for a modern user interface.",
+          id: 2,
+          low: false,
+          medium: true,
+          progressStatus: "inProgress",
+          subtasks: ["Setup project", "Firebase connection", "Include material design"],
+          title: "Setup Angular Project",
+          urgent: false,
         }
+      );
     }
+  }
 }
 
 /**
  * Creates a contact array if the user is a guest.
  */
 function guestCreateContactArray() {
-    if (loggedInUser[0].email === 'guest@guest.com') {
-        const existingContact = contactsArray.find(contact => contact.name === 'Max Mustermann');
-        if (!existingContact) {
-            contactsArray.push({
-                color: 'rgb(38, 117, 156)',
-                email: 'max.mustermann@web.de',
-                name: 'Max Mustermann',
-                nameShort: 'MM',
-                phone: '+49123 1234567',
-            });
+  if (loggedInUser[0].email === "guest@guest.com") {
+    const existingContact = contactsArray.find(
+      (contact) => contact.name === "Max Mustermann"
+    );
+    if (!existingContact) {
+      contactsArray.push(
+        {
+          color: "rgb(38, 117, 156)",
+          email: "max.mustermann@web.de",
+          name: "Max Mustermann",
+          nameShort: "MM",
+          phone: "+49123 1234567",
+        },
+        {
+          color: "rgb(16, 110, 41)",
+          email: "tom.fischer@gmail.com",
+          name: "Tom Fischer",
+          nameShort: "TF",
+          phone: "+49456 4553614",
+        },
+        {
+          color: "rgb(173, 101, 24)",
+          email: "marko.tuepprath@gmx.com",
+          name: "Marko Tuepprath",
+          nameShort: "MT",
+          phone: "+49452 4456322",
         }
+      );
     }
+  }
 }
 
 /**
@@ -384,11 +507,11 @@ function guestCreateContactArray() {
  * @param {string} inputText - The text to display on the button.
  */
 function createdItemBtn(inputText) {
-    let itemCreatedBtn = document.getElementById('itemCreatedBtnId');
-    itemCreatedBtn.innerHTML = /*html*/ `
+  let itemCreatedBtn = document.getElementById("itemCreatedBtnId");
+  itemCreatedBtn.innerHTML = /*html*/ `
     <button>${inputText}</button>`;
-    itemCreatedBtn.classList.remove('dNone');
-    setTimeout(function () {
-        itemCreatedBtn.classList.add('dNone');
-    }, 1000);
+  itemCreatedBtn.classList.remove("dNone");
+  setTimeout(function () {
+    itemCreatedBtn.classList.add("dNone");
+  }, 1000);
 }
